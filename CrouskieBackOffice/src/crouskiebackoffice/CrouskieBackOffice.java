@@ -2,6 +2,7 @@ package crouskiebackoffice;
 
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAOProduct;
+import crouskiebackoffice.model.Product;
 import java.sql.SQLException;
 
 public class CrouskieBackOffice {
@@ -12,10 +13,17 @@ public class CrouskieBackOffice {
             for (var pr : prod.getProducts()) {
                 System.out.println(pr);
             }
-            prod.setNameOf(1, "newName");
+
+            Product product = new Product("name Product isnerted", "sldfkj", 1.5f);
+            prod.insertOrUpdate(product);
+            System.out.println("");
+            System.out.println("");
+            
             for (var pr : prod.getProducts()) {
                 System.out.println(pr);
             }
+            
+            System.out.println("j'ai resussi tt seul : " + product.getId());
 
             ConnectionDB.getInstance().close();
 

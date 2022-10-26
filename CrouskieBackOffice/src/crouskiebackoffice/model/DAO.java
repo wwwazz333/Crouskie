@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class DAO {
+public abstract class DAO<T> {
 
     public List<Object[]> selectAll(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
@@ -22,7 +22,7 @@ public abstract class DAO {
         while (resultSet.next()) {
             Object[] row = new Object[columnCount];
             for (int i = 0; i < row.length; i++) {
-                row[i] = resultSet.getObject(i+1);
+                row[i] = resultSet.getObject(i + 1);
             }
             results.add(row);
         }
@@ -42,5 +42,23 @@ public abstract class DAO {
         pstmt.close();
         return nbrEditedRow;
     }
+
+    public abstract Boolean insertOrUpdate(T product) throws SQLException;
+
+    public List<T> getAllData() throws SQLException, NumberFormatException {
+        List<Object[]> res = selectAll("SELECT * FROM " + getTableName(), null);
+        List<T> datas = new LinkedList<>();
+
+        for (Object[] values : res) {
+            datas.add(parseData(values));
+        }
+
+        return datas;
+
+    }
+
+    protected abstract T parseData(Object[] objs);
+
+    protected abstract String getTableName();
 
 }

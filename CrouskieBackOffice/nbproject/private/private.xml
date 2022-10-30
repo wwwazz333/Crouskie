@@ -4,7 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/DAOProduct.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/Product.java</file>
             <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/CrouskieBackOffice.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/Color.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/DAO.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/ClothSize.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/ProductColorSize.java</file>
+            <file>file:/home/wwwazz/MEGA/Devoir/Crouskie/Project/crouskie-sa/CrouskieBackOffice/src/crouskiebackoffice/model/ProductBought.java</file>
         </group>
     </open-files>
 </project-private>

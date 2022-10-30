@@ -1,7 +1,7 @@
 package crouskiebackoffice.model;
 
-
 public class ClothSize {
+
     int id;
     String name;
 
@@ -9,4 +9,10 @@ public class ClothSize {
         this.id = id;
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

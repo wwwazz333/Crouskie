@@ -2,6 +2,7 @@ package crouskiebackoffice.model;
 
 import java.math.BigInteger;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class DAOProduct extends DAO<Product> {
@@ -13,8 +14,9 @@ public class DAOProduct extends DAO<Product> {
         return tableName;
     }
     @Override
-    protected Product parseData(Object[] objs) {
-        return new Product(Integer.parseInt(objs[0].toString()), objs[1].toString(), objs[2].toString(), Float.parseFloat(objs[3].toString()));
+    protected Product parseData(HashMap<String, Object> obj) {
+        return new Product(Integer.parseInt(obj.get("idprod").toString()), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), 
+                Float.parseFloat(obj.get("priceprod").toString()));
     }
 
     public Boolean setNameOf(Product product, String newName) throws SQLException {
@@ -46,21 +48,21 @@ public class DAOProduct extends DAO<Product> {
 
     public Boolean exist(Product product) throws SQLException {
         Object[] args = {product.getId()};
-        return ((int) super.selectAll("SELECT count(idprod) FROM " + getTableName() + " WHERE idprod = ?", args).get(0)[0]) == 1;
+        return ((int) super.selectAll("SELECT count(idprod) as nbr FROM " + getTableName() + " WHERE idprod = ?", args).get(0).get("nbr")) == 1;
     }
 
     public int getIdOf(Product product) throws SQLException {
         int id = -1;
         Object[] args = {product.getName(), product.getDescription(), product.getPrice()};
-        List<Object[]> liste = super.selectAll("SELECT idprod FROM " + getTableName() + " WHERE nameprod = ? and descriptionprod = ? and priceprod = ?", args);
+        List<HashMap<String, Object>> liste = super.selectAll("SELECT idprod FROM " + getTableName() + " WHERE nameprod = ? and descriptionprod = ? and priceprod = ?", args);
         if (!liste.isEmpty()) {
-            id = ((int) liste.get(0)[0]);
+            id = ((int) liste.get(0).get("idprod"));
         }
         return id;
     }
 
     private int getLastIdInserted() throws SQLException {
-        return ((BigInteger) super.selectAll("SELECT LAST_INSERT_ID(IDPROD) from PRODUCT order by LAST_INSERT_ID(IDPROD) desc limit 1;", null).get(0)[0]).intValue();
+        return ((BigInteger) super.selectAll("SELECT LAST_INSERT_ID(IDPROD) as last_id from PRODUCT order by LAST_INSERT_ID(IDPROD) desc limit 1;", null).get(0).get("last_id")).intValue();
     }
 
     @Override

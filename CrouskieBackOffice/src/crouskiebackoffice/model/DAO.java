@@ -1,28 +1,29 @@
 package crouskiebackoffice.model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 public abstract class DAO<T> {
 
-    public List<Object[]> selectAll(String request, Object[] args) throws SQLException {
+    public List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
-        List<Object[]> results = new LinkedList<>();
+
         if (args != null) {
             for (int i = 0; i < args.length; i++) {
                 pstmt.setObject(i + 1, args[i]);
             }
         }
         ResultSet resultSet = pstmt.executeQuery();
+        ResultSetMetaData metaData = resultSet.getMetaData();
         final int columnCount = resultSet.getMetaData().getColumnCount();
 
+        List<HashMap<String, Object>> results = new LinkedList<>();
         while (resultSet.next()) {
-            Object[] row = new Object[columnCount];
-            for (int i = 0; i < row.length; i++) {
-                row[i] = resultSet.getObject(i + 1);
+            HashMap<String, Object> row = new HashMap<>();
+            for (int i = 1; i <= columnCount; i++) {
+                row.put(metaData.getColumnName(i).toLowerCase(), resultSet.getObject(i));
             }
             results.add(row);
         }
@@ -46,18 +47,17 @@ public abstract class DAO<T> {
     public abstract Boolean insertOrUpdate(T product) throws SQLException;
 
     public List<T> getAllData() throws SQLException, NumberFormatException {
-        List<Object[]> res = selectAll("SELECT * FROM " + getTableName(), null);
+        List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName(), null);
         List<T> datas = new LinkedList<>();
 
-        for (Object[] values : res) {
+        for (HashMap<String, Object> values : res) {
             datas.add(parseData(values));
         }
 
         return datas;
-
     }
 
-    protected abstract T parseData(Object[] objs);
+    protected abstract T parseData(HashMap<String, Object> obj);
 
     protected abstract String getTableName();
 

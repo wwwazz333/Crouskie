@@ -46,8 +46,12 @@ public abstract class DAO<T> {
 
     public abstract Boolean insertOrUpdate(T product) throws SQLException;
 
-    public List<T> getAllData() throws SQLException, NumberFormatException {
-        List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName(), null);
+    public List<T> getAllData() throws SQLException {
+        return getAllData(null);
+    }
+
+    public List<T> getAllData(String orderby) throws SQLException {
+        List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName() + ((orderby != null) ? " ORDER BY " + orderby : ""), null);
         List<T> datas = new LinkedList<>();
 
         for (HashMap<String, Object> values : res) {
@@ -56,6 +60,8 @@ public abstract class DAO<T> {
 
         return datas;
     }
+
+    protected abstract Boolean exist(T obj) throws SQLException;
 
     protected abstract T parseData(HashMap<String, Object> obj);
 

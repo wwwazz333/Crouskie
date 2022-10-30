@@ -2,14 +2,12 @@ package crouskiebackoffice.model;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class DAOStock extends DAO<ProductColorSize> {
 
     @Override
     protected String getTableName() {
-        return "STOCKED";
+        return "STOCKED natural join PRODUCT natural join COLOR natural join CLOTH_SIZE";
     }
 
     @Override
@@ -26,15 +24,10 @@ public class DAOStock extends DAO<ProductColorSize> {
     }
 
     @Override
-    public List<ProductColorSize> getAllData() throws SQLException, NumberFormatException {
-        List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName() + " natural join PRODUCT natural join COLOR natural join CLOTH_SIZE ORDER BY idprod", null);
-        List<ProductColorSize> datas = new LinkedList<>();
-
-        for (HashMap<String, Object> values : res) {
-            datas.add(parseData(values));
-        }
-
-        return datas;
+    protected Boolean exist(ProductColorSize obj) {
+        return obj.getColor() != null && obj.getColor().getName() != null
+                && obj.getProduct() != null && obj.getProduct().getId() != -1
+                && obj.getSize() != null && obj.getSize().getId() != -1;
     }
 
 }

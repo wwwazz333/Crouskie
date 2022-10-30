@@ -14,6 +14,24 @@ public class ProductColorSize {
         this.quantity = quantity;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public ClothSize getSize() {
+        return size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    
+
     @Override
     public String toString() {
         return product.toString() + "\t" + color.toString() + "\t" + size.toString() + "\t" + quantity;

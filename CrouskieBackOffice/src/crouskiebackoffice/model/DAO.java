@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class DAO<T> {
 
-    public List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException {
+    protected List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
 
         if (args != null) {
@@ -32,7 +32,14 @@ public abstract class DAO<T> {
         return results;
     }
 
-    public int execute(String request, Object[] args) throws SQLException {
+    /**
+     * 
+     * @param request the request to send
+     * @param args the arguments of the request
+     * @return the numbers of edited row
+     * @throws SQLException an Exception may happen due to the request
+     */
+    protected int execute(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
         if (args != null) {
             for (int i = 0; i < args.length; i++) {
@@ -44,12 +51,23 @@ public abstract class DAO<T> {
         return nbrEditedRow;
     }
 
-    public abstract Boolean insertOrUpdate(T product) throws SQLException;
+    public abstract Boolean insertOrUpdate(T obj) throws SQLException;
 
+    /**
+     * 
+     * @return All the data of the concerned table as a List
+     * @throws SQLException an Exception may happen due to the request
+     */
     public List<T> getAllData() throws SQLException {
         return getAllData(null);
     }
 
+    /**
+     * 
+     * @param orderby ordered by it (ex : "SELECT * FROM ... ORDER BY [orderby]")
+     * @return All the data of the concerned table as a List
+     * @throws SQLException an Exception may happen due to the request
+     */
     public List<T> getAllData(String orderby) throws SQLException {
         List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName() + ((orderby != null) ? " ORDER BY " + orderby : ""), null);
         List<T> datas = new LinkedList<>();
@@ -61,7 +79,7 @@ public abstract class DAO<T> {
         return datas;
     }
 
-    protected abstract Boolean exist(T obj) throws SQLException;
+    public abstract Boolean exist(T obj) throws SQLException;
 
     protected abstract T parseData(HashMap<String, Object> obj);
 

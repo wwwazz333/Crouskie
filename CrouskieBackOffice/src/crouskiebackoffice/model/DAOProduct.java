@@ -54,7 +54,7 @@ public class DAOProduct extends DAO<Product> {
     }
 
     @Override
-    protected Boolean exist(Product product) {
+    public Boolean exist(Product product) {
         return product != null && product.getId() != -1;
     }
 }

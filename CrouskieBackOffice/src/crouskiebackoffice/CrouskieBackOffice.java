@@ -1,7 +1,10 @@
 package crouskiebackoffice;
 
+import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAO;
+import crouskiebackoffice.model.DAOClothSize;
+import crouskiebackoffice.model.DAOColor;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.DAOStock;
 import crouskiebackoffice.model.Product;
@@ -15,17 +18,22 @@ public class CrouskieBackOffice {
             for (var pr : prod.getAllData()) {
                 System.out.println(pr);
             }
+//
+//            Product product = new Product(4, "name Product isnerted", "sldfkj", 424f);
+//            prod.insertOrUpdate(product);
+//            System.out.println("");
+//            System.out.println("");
 
-            Product product = new Product(4, "name Product isnerted", "sldfkj", 424f);
-            prod.insertOrUpdate(product);
-            System.out.println("");
-            System.out.println("");
-
-            for (var pr : prod.getAllData()) {
+            for (var pr : new DAOClothSize().getAllData("idsize")) {
                 System.out.println(pr);
             }
-
-            System.out.println("j'ai resussi tt seul : " + product.getId());
+            
+            for (var pr : new DAOColor().getAllData()) {
+                System.out.println(pr);
+            }
+            System.out.println("");
+               System.out.println(new DAOColor().exist(new Color("rouge")));
+               System.out.println(new DAOColor().exist(new Color("rouges")));
 
             ConnectionDB.getInstance().close();
 

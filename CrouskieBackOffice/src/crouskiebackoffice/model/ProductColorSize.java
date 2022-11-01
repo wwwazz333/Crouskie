@@ -2,10 +2,10 @@ package crouskiebackoffice.model;
 
 public class ProductColorSize {
 
-    Product product;
-    Color color;
-    ClothSize size;
-    int quantity;
+    private Product product;
+    private Color color;
+    private ClothSize size;
+    private int quantity;
 
     public ProductColorSize(Product product, Color color, ClothSize size, int quantity) {
         this.product = product;

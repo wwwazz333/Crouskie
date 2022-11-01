@@ -11,7 +11,7 @@ public class DAOStock extends DAO<ProductColorSize> {
     }
 
     @Override
-    public Boolean insertOrUpdate(ProductColorSize product) throws SQLException {
+    public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -24,7 +24,7 @@ public class DAOStock extends DAO<ProductColorSize> {
     }
 
     @Override
-    protected Boolean exist(ProductColorSize obj) {
+    public Boolean exist(ProductColorSize obj) {
         return obj.getColor() != null && obj.getColor().getName() != null
                 && obj.getProduct() != null && obj.getProduct().getId() != -1
                 && obj.getSize() != null && obj.getSize().getId() != -1;

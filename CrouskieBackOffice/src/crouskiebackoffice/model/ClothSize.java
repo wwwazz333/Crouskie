@@ -2,8 +2,8 @@ package crouskiebackoffice.model;
 
 public class ClothSize {
 
-    int id;
-    String name;
+    private int id;
+    private String name;
 
     public ClothSize(int id, String name) {
         this.id = id;

@@ -1,6 +1,6 @@
 # Crouskie - Site internet
 
-Ce projet est réalisé par les étudiants de l'IUT Info Lyon 1
+Ce projet est réalisé par les étudiants de l'IUT Info Lyon 1.
 
 [TOC]
 

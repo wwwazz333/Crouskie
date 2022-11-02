@@ -25,8 +25,8 @@
 :root{
     /*============ Couleurs ============*/
 
-    --first-color: rgb(65, 126, 255);
-    --second-color: rgba(3, 8, 103, 1);
+    --primary-color: #E10512;
+    --secondary-color: #F9CDD0;
     /* --background-gradient: linear-gradient(120deg, var(--first-color) 0%, var(--second-color) 100%);
     --reverse-background-gradient: linear-gradient(120deg, var(--second-color) 0%, var(--first-color) 100%); */
     --text-color: rgb(255, 255, 255);
@@ -105,7 +105,7 @@ body{
 button{
     /* Propriétés basiques */
     color: var(--text-color);
-    background-color: var(--first-color);
+    background-color: var(--primary-color);
     margin-top: 0.5rem;
     padding: 0.7rem;
     border: none;
@@ -130,6 +130,10 @@ button{
 }
 
 button.outlined{
+    
+}
+
+a{
 
 }
 

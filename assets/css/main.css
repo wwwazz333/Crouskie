@@ -53,6 +53,7 @@
 
     /*============== Effects ===============*/
 
+    --border-radius: 15px;
     --blur: blur(5px);
     -webkit-font-smoothing: antialiased;
 }
@@ -68,6 +69,27 @@
 body{
     width: 100%;
     min-height: 100vh;
+}
+
+/* ============ Propriétés globales ============ */
+
+
+/* Les flexs */
+.flex{
+    display: flex;
+}
+
+.flex.row{
+    flex-flow: row;
+}
+
+.flex.column{
+    flex-flow: column;
+}
+
+/* Si on veut une bordure ronde sur les composants */
+.rounded{
+    border-radius: 35px;
 }
 
 /*============ Composants Basiques ============*/
@@ -86,9 +108,9 @@ button{
     background-color: var(--first-color);
     margin-top: 0.5rem;
     padding: 0.7rem;
-    border-radius: 10px;
     border: none;
     cursor: pointer;
+    border-radius: var(--border-radius);
 
     /* Fonts */
     font-family: inherit;
@@ -105,6 +127,10 @@ button{
     -moz-transition: 0.3s ease-out;
     -o-transition: 0.3s ease-out;
     transition: 0.3s ease-out;
+}
+
+button.outlined{
+
 }
 
 /* TODO les propriétés hover et focus du bouton */

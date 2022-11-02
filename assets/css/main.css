@@ -53,6 +53,7 @@
 
     /*============== Effects ===============*/
 
+    --border-radius: 15px;
     --blur: blur(5px);
     -webkit-font-smoothing: antialiased;
 }
@@ -86,7 +87,6 @@ button{
     background-color: var(--first-color);
     margin-top: 0.5rem;
     padding: 0.7rem;
-    border-radius: 10px;
     border: none;
     cursor: pointer;
 
@@ -105,6 +105,10 @@ button{
     -moz-transition: 0.3s ease-out;
     -o-transition: 0.3s ease-out;
     transition: 0.3s ease-out;
+}
+
+button.outlined{
+
 }
 
 /* TODO les propriétés hover et focus du bouton */

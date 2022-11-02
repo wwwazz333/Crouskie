@@ -139,9 +139,13 @@ button.outlined{
 
 .header{
     /* A faire */
-    
+}
+
+.header .nav{
+    flex:3;
 }
 
 .footer{
     /* A faire */
 }
+

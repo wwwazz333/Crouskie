@@ -1,6 +1,7 @@
 <?php
 //isoler ici dans des constantes les textes affichés sur le site
 define('LOGO', 'Logo crouskie'); // Affiché si image non trouvée
+define('SHOPPINGBAG','logo panier');
 
 define('MENU_ACCUEIL','Accueil');
 

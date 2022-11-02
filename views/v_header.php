@@ -11,7 +11,7 @@
 		<!-- En-tête -->
 		<header class="header flex row">
 			<div class="flex row">
-			<a href="index.php"><img src="Logocrouskie.svg" height="55px" width="230px" alt="<?=LOGO?>"></a>
+			<a href="index.php"><img src= <?= PATH_IMAGES."/icons/Logocrouskie.svg"?> height="55px" width="230px" alt="<?=LOGO?>"></a>
 			</div>
 			<div class="flex row nav">
 				<a href="index.php?page=collections">Collections</a>

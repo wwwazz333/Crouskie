@@ -9,6 +9,16 @@
 	</head> 
 	<body>
 		<!-- En-tête -->
-		<header class="header">
+		<header class="header flex row">
+			<div class="flex row">
+				
+			</div>
+			<div class="flex row">
+
+			</div>
+			<div class="flex row">
+
+			</div>
 		</header>
 		<!-- Vue -->
+		

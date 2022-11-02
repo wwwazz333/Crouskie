@@ -71,6 +71,27 @@ body{
     min-height: 100vh;
 }
 
+/* ============ Propriétés globales ============ */
+
+
+/* Les flexs */
+.flex{
+    display: flex;
+}
+
+.flex.row{
+    flex-flow: row;
+}
+
+.flex.column{
+    flex-flow: column;
+}
+
+/* Si on veut une bordure ronde sur les composants */
+.rounded{
+    border-radius: 35px;
+}
+
 /*============ Composants Basiques ============*/
 
 /*============ Extra ============*/
@@ -89,6 +110,7 @@ button{
     padding: 0.7rem;
     border: none;
     cursor: pointer;
+    border-radius: var(--border-radius);
 
     /* Fonts */
     font-family: inherit;

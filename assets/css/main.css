@@ -19,6 +19,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Courgette&family=Fredoka:wght@300;400;500&display=swap');
 
 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 
 /*============ Variables CSS ============*/
 
@@ -142,11 +143,17 @@ a{
 /*============ Composants Complexes ============*/
 
 .header{
-    /* A faire */
+    padding: 1rem;
 }
 
 .header .nav{
     flex:3;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.header button{
+    margin-top: 0;
 }
 
 .footer{

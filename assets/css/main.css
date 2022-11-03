@@ -129,6 +129,14 @@ p.underlined{
 
 /*============ Composants Basiques ============*/
 
+.box{
+    background-color: white;
+    color: var(--primary-color);
+    width: fit-content;
+    height: fit-content;
+    padding: 40px 30px 40px 30px;
+}
+
 /*============ Inputs ============*/
 
 button{

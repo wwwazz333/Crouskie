@@ -129,7 +129,7 @@ p.underlined{
 
 /*============ Composants Basiques ============*/
 
-.box{
+.card{
     background-color: white;
     color: var(--primary-color);
     width: fit-content;

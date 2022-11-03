@@ -214,6 +214,15 @@ input.icon{
     background-size: 30px;
 }
 
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus
+{
+    outline: none;
+    border: solid #6d6b6b84 2px;
+    transition: 0.4s;
+}
+
 /* TODO les propriétés hover et focus du bouton et du input */
 
 /* Les liens de navigations */

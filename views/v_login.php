@@ -17,7 +17,7 @@ require_once(PATH_VIEWS . 'head.php');
         <p>Saisissez votre e-mail pour vous<br>connecter ou créer un compte</p>
     </div>
     <form class="card flex column center shadow rounded">
-        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" data-icon="<?= PATH_ICONS . "email-outline.svg"?>">
+        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" data-icon="<?= PATH_ICONS . "email-outline.svg"?>" required>
         <input type="submit" value="Connexion / Inscription" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>

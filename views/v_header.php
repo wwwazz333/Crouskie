@@ -9,10 +9,13 @@
 	</head> 
 	<body>
 		<!-- En-tête -->
-		<!-- Version classique et non transparente -->
+		<!-- Version classique et non transparente à faire !-->
 		<header class="header flex row shadow">
 			<div class="flex row">
-			<a href="index.php"><img src=<?= PATH_IMAGES."/icons/Logocrouskie.svg"?> height="55px" width="230px" alt="<?=LOGO?>"></a>
+				<a href="index.php">
+					<!-- Il faut trouver une solution pour le changement de couleur dynamique -->
+					<img src=<?= PATH_IMAGES."icons/Logocrouskie.svg"?> height="50px" width="200px" alt="<?=LOGO?>">
+				</a>
 			</div>
 			<div class="flex row nav">
 				<a href="index.php?page=collections">Collections</a>
@@ -20,7 +23,9 @@
 			</div>
 			<div class="flex row">
 				<!-- Bouton pour le panier -->
-				<a href="index.php?page=panier"><img src=<?= PATH_IMAGES."/icons/shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>"></a> 
+				<a href="index.php?page=panier">
+					<img src=<?= PATH_IMAGES."/icons/shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
+				</a> 
 				<button class="outlined rounded">Connexion</button>
 			</div>
 		</header>

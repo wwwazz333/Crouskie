@@ -18,13 +18,16 @@
 				</a>
 			</div>
 			<div class="flex row nav">
+				<!-- utiliser les balises ul et li -->
 				<a href="index.php?page=collections">Collections</a>
 				<a href="index.php?page=produits">Produits</a>
 			</div>
-			<div class="flex row">
+			<!-- classe right temporaire le temps de trouver un nom / convention de noms pour le css -->
+			<div class="flex row right">
 				<!-- Bouton pour le panier -->
-				<a href="index.php?page=panier">
-					<img src=<?= PATH_IMAGES."/icons/shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
+				<a href="index.php?page=panier" class="icon">
+					<!-- Couleur dynamique à faire !-->
+					<img src=<?= PATH_IMAGES."icons/shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
 				</a> 
 				<button class="outlined rounded">Connexion</button>
 			</div>

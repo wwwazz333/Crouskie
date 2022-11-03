@@ -30,6 +30,7 @@
     --secondary-color: #F9CDD0;
     --background-color: #EBF1F4;
     --background-accent-color: #B1BBC9;
+    --dark-color-light: #484646d8;
     /* --background-gradient: linear-gradient(120deg, var(--first-color) 0%, var(--second-color) 100%);
     --reverse-background-gradient: linear-gradient(120deg, var(--second-color) 0%, var(--first-color) 100%); */
     --text-color: rgb(255, 255, 255);
@@ -73,6 +74,10 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: var(--background-color);
+
+    /* image de fond temporaire */
+    background-image: url(../images/icons/background.jpg);
+    background-size: cover;
 }
 
 /* ============ Propriétés globales ============ */
@@ -89,6 +94,11 @@ body{
 
 .flex.column{
     flex-flow: column;
+}
+
+.flex.center{
+    align-items: center;
+    justify-content: center;
 }
 
 /* Si on veut une bordure ronde sur les composants */
@@ -156,6 +166,33 @@ button.outlined{
 
 /* Faire bouton hover */
 
+input{
+    /* Propriétés basiques */
+    padding: 0.5rem;
+    border: solid #6d6b6b84 1px;
+
+    /* Fonts */
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: var(--normal-font-size);
+
+    /* Size */
+    height: 50px;
+    width: 100%;
+}
+
+input::-webkit-input-placeholder{
+    font-weight: var(--font-light);
+    color: var(--dark-text-color-light);
+}
+
+input.icon{
+    background-image: attr(data-icon url);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
+}
+
 a{
     color: inherit;
     text-decoration: none;
@@ -163,8 +200,20 @@ a{
 }
 
 .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 40px;
     width: 40px;
+    color: inherit;
+}
+
+.icon.counter::after{
+    content: attr(data-number);
+    position: relative;
+    left: -22px;
+    top: 4px;
+    font-size: 0.9rem;
     color: inherit;
 }
 
@@ -173,7 +222,10 @@ a{
 /*============ Composants Complexes ============*/
 
 .header{
-    padding: 0.5rem;
+    padding: 1rem;
+    /* padding-left: 1rem;
+    padding-right: 1rem; */
+
     background-color: white;
     color: var(--primary-color);
     align-items: center; 
@@ -193,10 +245,11 @@ a{
 
     .header .right{
         height: 40px;
+        gap: 0.5rem;
     }
 
 .header.transparent{
-    background-color: transparent;
+    background: linear-gradient(to bottom,#000000d4,transparent);
     color: white;
 }
 

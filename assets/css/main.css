@@ -108,7 +108,7 @@ body{
 }
 
 .circle{
-    border-radius: 50%;
+    border-radius: 35px;
 }
 
 /*============ Styles ============*/
@@ -144,7 +144,9 @@ p.underlined{
 
 /*============ Inputs ============*/
 
-button{
+button,
+input[type=submit],
+input[type=button]{
     /* Propriétés basiques */
     color: var(--text-color);
     background-color: var(--primary-color);
@@ -179,24 +181,30 @@ button.outlined{
 
 /* Faire bouton hover */
 
-input{
+input[type=text],
+input[type=password],
+input[type=email]
+{
     /* Propriétés basiques */
     padding: 0.5rem;
     border: solid #6d6b6b84 1px;
+    color: var(--dark-text-color);
 
     /* Fonts */
     font-family: inherit;
     font-size: inherit;
-    font-weight: var(--normal-font-size);
+    font-weight: var(--font-regular);
 
     /* Size */
     height: 50px;
     width: 100%;
 }
 
-input::-webkit-input-placeholder{
-    font-weight: var(--font-light);
-    color: var(--dark-text-color-light);
+input[type=text]::-webkit-input-placeholder,
+input[type=password]::-webkit-input-placeholder,
+input[type=email]::-webkit-input-placeholder{
+    font-weight: var(--font-regular);
+    color: var(--dark-color-light);
 }
 
 input.icon{

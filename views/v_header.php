@@ -16,7 +16,7 @@
 			<div class="flex row">
 				<a href="index.php">
 					<!-- Il faut trouver une solution pour le changement de couleur dynamique -->
-					<img src=<?= PATH_IMAGES."icons/Logocrouskie.svg"?> height="50px" width="200px" alt="<?=LOGO?>">
+					<img src=<?= PATH_LOGOS."crouskie-text-filled-white.svg"?> height="50px" width="200px" alt="<?=LOGO?>">
 				</a>
 			</div>
 			<div class="flex row nav">
@@ -29,7 +29,7 @@
 				<!-- Bouton pour le panier -->
 				<a href="index.php?page=panier" class="icon counter" data-number=0>
 					<!-- Couleur dynamique à faire !-->
-					<img src=<?= PATH_IMAGES."icons/white-shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
+					<img src=<?= PATH_ICONS."white-shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
 				</a> 
 				<button class="outlined rounded">Connexion</button>
 			</div>

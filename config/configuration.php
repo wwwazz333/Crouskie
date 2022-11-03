@@ -25,8 +25,11 @@ define('PATH_TEXTES','./languages/');
 
 //sous dossiers
 define('PATH_CSS', PATH_ASSETS.'css/');
-define('PATH_IMAGES', PATH_ASSETS.'images/');
 define('PATH_SCRIPTS', PATH_ASSETS.'scripts/');
 
-//fichiers
-// define('PATH_LOGO', PATH_IMAGES.'logo.png');
+define('PATH_IMAGES', PATH_ASSETS.'images/');
+define('PATH_LOGOS', PATH_IMAGES.'logos/');
+define('PATH_ICONS', PATH_IMAGES.'icons/');
+define('PATH_BACKGROUNDS', PATH_IMAGES.'backgrounds/');
+
+// fichiers

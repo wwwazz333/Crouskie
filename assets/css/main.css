@@ -28,11 +28,13 @@
 
     --primary-color: #E10512;
     --secondary-color: #F9CDD0;
+    --background-color: #EBF1F4;
+    --background-accent-color: #B1BBC9;
     /* --background-gradient: linear-gradient(120deg, var(--first-color) 0%, var(--second-color) 100%);
     --reverse-background-gradient: linear-gradient(120deg, var(--second-color) 0%, var(--first-color) 100%); */
     --text-color: rgb(255, 255, 255);
-    --dark-text-color: rgb(85, 84, 84);
-    --shadow-box: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    --dark-text-color: rgb(1, 1, 1);
+    --box-shadow: 0 4px 25px 10px rgba(0, 0, 0, 0.25);
 
     /*============ Fonts et typo ============*/
 
@@ -70,6 +72,7 @@
 body{
     width: 100%;
     min-height: 100vh;
+    background-color: var(--background-color);
 }
 
 /* ============ Propriétés globales ============ */
@@ -90,7 +93,11 @@ body{
 
 /* Si on veut une bordure ronde sur les composants */
 .rounded{
-    border-radius: 35px;
+    border-radius: var(--border-radius);
+}
+
+.circle{
+    border-radius: 50%;
 }
 
 /*============ Composants Basiques ============*/
@@ -101,6 +108,10 @@ body{
     filter: var(--blur);
 }
 
+.shadow{
+    box-shadow: var(--box-shadow);
+}
+
 /*============ Inputs ============*/
 
 button{
@@ -108,16 +119,14 @@ button{
     color: var(--text-color);
     background-color: var(--primary-color);
     margin-top: 0.5rem;
-    padding: 0.7rem;
+    /* padding: 0.5rem; */
     border: none;
     cursor: pointer;
-    border-radius: var(--border-radius);
 
     /* Fonts */
     font-family: inherit;
     font-size: inherit;
     font-weight: var(--font-medium);
-    box-shadow: var(--shadow-box);
 
     /* Rempli la largeur du parent */
     width: 100%;
@@ -131,7 +140,9 @@ button{
 }
 
 button.outlined{
-    
+    background-color: transparent;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
 a{
@@ -143,12 +154,14 @@ a{
 /*============ Composants Complexes ============*/
 
 .header{
-    padding: 1rem;
+    padding: 0.5rem;
+    background-color: white;
 }
 
 .header .nav{
     flex:3;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 1rem;
     align-items: center;
 }
 

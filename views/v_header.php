@@ -9,7 +9,8 @@
 	</head> 
 	<body>
 		<!-- En-tête -->
-		<header class="header flex row">
+		<!-- Version classique et non transparente -->
+		<header class="header flex row shadow">
 			<div class="flex row">
 			<a href="index.php"><img src=<?= PATH_IMAGES."/icons/Logocrouskie.svg"?> height="55px" width="230px" alt="<?=LOGO?>"></a>
 			</div>
@@ -20,7 +21,7 @@
 			<div class="flex row">
 				<!-- Bouton pour le panier -->
 				<a href="index.php?page=panier"><img src=<?= PATH_IMAGES."/icons/shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>"></a> 
-				<button>Connexion</button>
+				<button class="outlined rounded">Connexion</button>
 			</div>
 		</header>
 		<!-- Vue -->

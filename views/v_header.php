@@ -31,7 +31,7 @@
 					<!-- Couleur dynamique à faire !-->
 					<img src=<?= PATH_ICONS."white-shopping-bag.svg"?> alt="<?=SHOPPINGBAG?>">
 				</a> 
-				<button class="outlined rounded">Connexion</button>
+				<button class="rounded">Connexion</button>
 			</div>
 		</header>
 		<!-- Vue -->

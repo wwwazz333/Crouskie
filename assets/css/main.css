@@ -193,12 +193,19 @@ input.icon{
     background-size: 30px;
 }
 
+/* TODO les propriétés hover et focus du bouton et du input */
+
+/* Les liens de navigations */
 a{
     color: inherit;
     text-decoration: none;
     font-weight: var(--font-medium);
 }
 
+
+/*============ Composants basiques divers ============*/
+
+/* Pour rendre un composant html compatible avec une icone */
 .icon{
     display: flex;
     justify-content: center;
@@ -208,6 +215,7 @@ a{
     color: inherit;
 }
 
+/* permet d'afficher un nombre au centre de l'icone */
 .icon.counter::after{
     content: attr(data-number);
     position: relative;
@@ -217,15 +225,10 @@ a{
     color: inherit;
 }
 
-/* TODO les propriétés hover et focus du bouton */
-
 /*============ Composants Complexes ============*/
 
 .header{
     padding: 1rem;
-    /* padding-left: 1rem;
-    padding-right: 1rem; */
-
     background-color: white;
     color: var(--primary-color);
     align-items: center; 
@@ -248,10 +251,19 @@ a{
         gap: 0.5rem;
     }
 
+/* Header version transparent */
+
 .header.transparent{
     background: linear-gradient(to bottom,#000000d4,transparent);
     color: white;
 }
+
+.header.transparent button{
+    background-color: white;
+    color: black;
+}
+
+/*============ Footer ============*/
 
 .footer{
     /* A faire */

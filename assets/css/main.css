@@ -35,7 +35,8 @@
     --reverse-background-gradient: linear-gradient(120deg, var(--second-color) 0%, var(--first-color) 100%); */
     --text-color: rgb(255, 255, 255);
     --dark-text-color: rgb(1, 1, 1);
-    --box-shadow: 0 4px 25px 10px rgba(0, 0, 0, 0.25);
+    --box-shadow: 0 4px 15px 5px rgba(0, 0, 0, 0.25);
+    --box-shadow-small : 0 4px 4px rgba(0, 0, 0, 0.25);
 
     /*============ Fonts et typo ============*/
 
@@ -127,13 +128,17 @@ p.underlined{
     box-shadow: var(--box-shadow);
 }
 
+.shadow-small{
+    box-shadow: var(--box-shadow-small);
+}
+
 /*============ Composants Basiques ============*/
 
 .card{
     background-color: white;
     color: var(--primary-color);
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content;
+    height: fit-content; */
     padding: 40px 30px 40px 30px;
 }
 
@@ -280,6 +285,7 @@ a{
 
 .footer{
     /* A faire */
+    width: 100%;
 }
 
 /*============ Animations ============*/

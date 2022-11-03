@@ -276,6 +276,9 @@ a{
 
 /*============ Animations ============*/
 
+
+/*============ Translations ============*/
+
 @keyframes slideInFromTop {
     0% {
       transform: translateY(-100%);
@@ -313,6 +316,7 @@ a{
     }
 }
 
+/*============ Opacity ============*/
 
 @keyframes opacityFadeIn {
     0% {
@@ -320,5 +324,14 @@ a{
     }
     100% {
       opacity: 1;
+    }
+}
+
+@keyframes opacityFadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 //  En tête de page
-require_once(PATH_VIEWS.'head.php');
-require_once(PATH_VIEWS.'header.php');
+require_once(PATH_VIEWS . 'head.php');
+require_once(PATH_VIEWS . 'header.php');
 ?>
 <!--  Début de la page -->
 
@@ -10,4 +10,4 @@ require_once(PATH_VIEWS.'header.php');
 
 
 <!--  Pied de page -->
-<?php require_once(PATH_VIEWS.'footer.php')?>
+<?php require_once(PATH_VIEWS . 'footer.php') ?>

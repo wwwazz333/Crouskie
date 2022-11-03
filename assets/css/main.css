@@ -76,8 +76,8 @@ body{
     background-color: var(--background-color);
 
     /* image de fond temporaire */
-    background-image: url(../images/backgrounds/background.jpg);
-    background-size: cover;
+    /* background-image: url(../images/backgrounds/background.jpg);
+    background-size: cover; */
 }
 
 /* ============ Propriétés globales ============ */

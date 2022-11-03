@@ -15,7 +15,7 @@ public class DAOColor extends DAO<Color> {
     @Override
     public Boolean insertOrUpdate(Color color) throws SQLException {
         Object[] args = {color.getName()};
-        return super.execute("INSERT INTO " + getTableName() + " (namesize) VALUES (?)", args) == 1;
+        return super.execute("INSERT INTO " + getTableName() + " (namecolor) VALUES (?)", args) == 1;
 
     }
 

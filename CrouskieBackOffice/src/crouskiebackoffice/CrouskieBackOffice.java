@@ -1,5 +1,6 @@
 package crouskiebackoffice;
 
+import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAO;
@@ -8,6 +9,7 @@ import crouskiebackoffice.model.DAOColor;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.DAOStock;
 import crouskiebackoffice.model.Product;
+import crouskiebackoffice.model.ProductColorSize;
 import java.sql.SQLException;
 
 public class CrouskieBackOffice {
@@ -27,14 +29,23 @@ public class CrouskieBackOffice {
             for (var pr : new DAOClothSize().getAllData("idsize")) {
                 System.out.println(pr);
             }
-            
+
             for (var pr : new DAOColor().getAllData()) {
                 System.out.println(pr);
             }
-            System.out.println("");
-               System.out.println(new DAOColor().exist(new Color("rouge")));
-               System.out.println(new DAOColor().exist(new Color("rouges")));
 
+            for (var pr : new DAOStock().getAllData()) {
+                System.out.println(pr);
+            }
+
+            System.out.println("");
+            System.out.println(new DAOColor().exist(new Color("rouge")));
+            System.out.println(new DAOColor().exist(new Color("rouges")));
+
+            new DAOStock().insertOrUpdate(new ProductColorSize(new Product(1, "string", "des", 12f), new Color("rouge"), new ClothSize(2, "S"), 14));
+            
+            
+            
             ConnectionDB.getInstance().close();
 
         } catch (NumberFormatException | SQLException e) {

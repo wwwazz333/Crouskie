@@ -10,9 +10,23 @@ public class DAOStock extends DAO<ProductColorSize> {
         return "STOCKED natural join PRODUCT natural join COLOR natural join CLOTH_SIZE";
     }
 
+    /**
+     *
+     * @param productColorSize the product has been stocked or his stock has been updated
+     * @return if action completed
+     * @throws SQLException SQLException an Exception may happen due to the request (ex : if the product doesn't exist)
+     */
     @Override
     public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (exist(productColorSize)) {
+            Object[] args = {productColorSize.getQuantity(), productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId()};
+
+            return super.execute("UPDATE " + getTableName() + " SET quantitystocked = ? WHERE idprod = ? and namecolor = ? and idsize = ?", args) == 1;
+
+        } else {
+            Object[] args = {productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId(), productColorSize.getQuantity()};
+            return super.execute("INSERT INTO " + getTableName() + "(idprod, namecolor, idsize, quantitystocked) VALUES (?, ?, ?, ?)", args) == 1;
+        }
     }
 
     @Override

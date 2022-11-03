@@ -232,6 +232,7 @@ a{
     background-color: white;
     color: var(--primary-color);
     align-items: center; 
+    animation: 0.7s ease-out 0s 1 slideInFromTop, 1s ease-out 0s 1 opacityFadeIn;
 }
 
     .header .nav{
@@ -269,3 +270,23 @@ a{
     /* A faire */
 }
 
+/*============ Animations ============*/
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+
+
+@keyframes opacityFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}

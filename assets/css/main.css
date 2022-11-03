@@ -76,7 +76,7 @@ body{
     background-color: var(--background-color);
 
     /* image de fond temporaire */
-    background-image: url(../images/icons/background.jpg);
+    background-image: url(../images/backgrounds/background.jpg);
     background-size: cover;
 }
 

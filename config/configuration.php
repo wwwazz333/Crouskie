@@ -29,5 +29,4 @@ define('PATH_IMAGES', PATH_ASSETS.'images/');
 define('PATH_SCRIPTS', PATH_ASSETS.'scripts/');
 
 //fichiers
-define('PATH_LOGO', PATH_IMAGES.'logo.png');
-define('PATH_MENU', PATH_VIEWS.'menu.php');
+// define('PATH_LOGO', PATH_IMAGES.'logo.png');

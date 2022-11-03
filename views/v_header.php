@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title><?= TITRE ?></title>
+		<link rel="shortcut icon" href="<?= PATH_IMAGES?>favicon.ico" type="image/x-icon">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="Language" content="<?= LANG ?>"/>
 		<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=0"/>

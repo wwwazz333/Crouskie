@@ -18,22 +18,66 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerPane = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        mainPane = new javax.swing.JPanel();
+        tabPane = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        statusbarPane = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crouskie BackOffice");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(720, 480));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        headerPane.setLayout(new javax.swing.BoxLayout(headerPane, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel2.setText("Crouskie");
+        headerPane.add(jLabel2);
+
+        getContentPane().add(headerPane, java.awt.BorderLayout.NORTH);
+
+        mainPane.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
         );
+
+        tabPane.addTab("tab1", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
+        );
+
+        tabPane.addTab("tab2", jPanel2);
+
+        mainPane.add(tabPane, "card2");
+
+        getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
+
+        statusbarPane.setLayout(new javax.swing.BoxLayout(statusbarPane, javax.swing.BoxLayout.LINE_AXIS));
+
+        jLabel1.setText("Test...");
+        statusbarPane.add(jLabel1);
+
+        getContentPane().add(statusbarPane, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,5 +116,13 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel headerPane;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel mainPane;
+    private javax.swing.JPanel statusbarPane;
+    private javax.swing.JTabbedPane tabPane;
     // End of variables declaration//GEN-END:variables
 }

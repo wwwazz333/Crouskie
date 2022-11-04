@@ -31,6 +31,7 @@
     --background-color: #EBF1F4;
     --background-accent-color: #B1BBC9;
     --dark-color-light: #484646d8;
+    --valid-color: #82E105;
     /* --background-gradient: linear-gradient(120deg, var(--first-color) 0%, var(--second-color) 100%);
     --reverse-background-gradient: linear-gradient(120deg, var(--second-color) 0%, var(--first-color) 100%); */
     --text-color: rgb(255, 255, 255);
@@ -79,6 +80,11 @@ body{
     /* image de fond temporaire */
     /* background-image: url(../images/backgrounds/background.jpg);
     background-size: cover; */
+}
+
+/* Permet de cacher les élément possédant la class hidden */
+*.hidden{
+    display: none !important;
 }
 
 /* ============ Propriétés globales ============ */
@@ -207,13 +213,6 @@ input[type=email]::-webkit-input-placeholder{
     color: var(--dark-color-light);
 }
 
-input.icon{
-    background-image: attr(data-icon url);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 30px;
-}
-
 input[type=text]:focus,
 input[type=password]:focus,
 input[type=email]:focus
@@ -222,6 +221,31 @@ input[type=email]:focus
     border: solid #6d6b6b84 2px;
     transition: 0.4s;
 }
+
+/* Pour des champs invalides (ici seulement du text*/
+
+/* input[type=text]:invalid,
+input[type=password]:invalid,
+input[type=email]:invalid
+{
+    border: solid var(--primary-color) 2px;
+} */
+
+input[type=text]:valid,
+input[type=password]:valid,
+input[type=email]:valid
+{
+    border: solid var(--valid-color) 2px;
+}
+
+/* Non fonctionnel actuellement */
+input.icon{
+    background-image: attr(data-icon url);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
+}
+
 
 /* TODO les propriétés hover et focus du bouton et du input */
 

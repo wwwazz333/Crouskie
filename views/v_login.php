@@ -17,7 +17,10 @@ require_once(PATH_VIEWS . 'head.php');
         <p>Saisissez votre e-mail pour vous<br>connecter ou créer un compte</p>
     </div>
     <form class="card flex column center shadow rounded">
-        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" data-icon="<?= PATH_ICONS . "email-outline.svg"?>" required>
+        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
+            data-icon="<?= PATH_ICONS . "email-outline.svg"?>" 
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
+        >
         <input type="submit" id="form-confirm" value="Connexion / Inscription" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>

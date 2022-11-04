@@ -1,8 +1,61 @@
 package crouskiebackoffice.view;
 
+import crouskiebackoffice.controle.CallBack;
 import javax.swing.BorderFactory;
 
 public class StatusbarPanel extends javax.swing.JPanel {
+
+    public void showMsg(String msg) {
+        msgLabel.setText(msg);
+    }
+
+    public void showMsg(String msg, long millis) {
+        showMsg(msg, millis, () -> {
+            clear();
+        }, false);
+    }
+
+    public void showMsg(String msg, long millis, Boolean loading) {
+        showMsg(msg, millis, () -> {
+            clear();
+        }, loading);
+    }
+
+    public void showMsg(String msg, long millis, CallBack callBack) {
+        showMsg(msg, millis, callBack, false);
+    }
+
+    public void showMsg(String msg, long millis, CallBack callBack, Boolean loading) {
+        showMsg(msg);
+        if (loading) {
+            loadingAnimation.start();
+        }
+        new Thread(() -> {
+            try {
+                Thread.sleep(millis);
+                if (callBack != null) {
+                    callBack.run();
+                }
+                if (loading) {
+                    loadingAnimation.stop();
+                }
+            } catch (InterruptedException ex) {
+                System.err.println("Error : Failed to wait for changing statusBar");
+            }
+        }).start();
+    }
+
+    public void clear() {
+        msgLabel.setText((""));
+    }
+
+    public void setLoading(Boolean loading) {
+        if (loading) {
+            loadingAnimation.start();
+        } else {
+            loadingAnimation.stop();
+        }
+    }
 
     /**
      * Creates new form StatusbarPanel
@@ -19,17 +72,31 @@ public class StatusbarPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0));
+        msgLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        loadingAnimation = new crouskiebackoffice.view.LoadingAnimation();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0));
 
         setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setMaximumSize(new java.awt.Dimension(99999, 20));
+        setMinimumSize(new java.awt.Dimension(100, 20));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        add(filler2);
 
-        jLabel1.setText("Test... couooool");
-        add(jLabel1);
+        msgLabel.setText("Test... couooool");
+        add(msgLabel);
+        add(jPanel1);
+        add(loadingAnimation);
+        add(filler1);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.JPanel jPanel1;
+    private crouskiebackoffice.view.LoadingAnimation loadingAnimation;
+    private javax.swing.JLabel msgLabel;
     // End of variables declaration//GEN-END:variables
 }

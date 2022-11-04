@@ -138,7 +138,9 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("Error : can't load software Ico");
         }
-        
-        BorderFactory.createLineBorder(new Color(0, 0, 0));
+
+        statusbarPanel1.showMsg("Loading...", 3000, () -> {
+            statusbarPanel1.clear();
+        }, true);
     }
 }

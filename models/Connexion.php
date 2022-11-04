@@ -18,7 +18,7 @@ class Connexion
   }
 
   //appelée par unserialize
-  private function __wakeup()
+  public function __wakeup()
   {
   }
 

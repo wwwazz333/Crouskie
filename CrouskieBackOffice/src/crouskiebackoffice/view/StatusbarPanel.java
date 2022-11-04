@@ -84,7 +84,7 @@ public class StatusbarPanel extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
         add(filler2);
 
-        msgLabel.setText("Test... couooool");
+        msgLabel.setText(" ");
         add(msgLabel);
         add(jPanel1);
         add(loadingAnimation);

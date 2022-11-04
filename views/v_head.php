@@ -14,5 +14,11 @@
 			echo("<link rel=\"stylesheet\" href=\"".PATH_CSS.$page.".css\">");
 		}
 		?>
+
+		<?php
+		if (isset($page) && is_file(PATH_SCRIPTS.$page.".js")) {
+			echo("<script defer src=\"".PATH_SCRIPTS.$page.".js\"></script>");
+		}
+		?>
 		
 	</head> 

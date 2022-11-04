@@ -18,7 +18,7 @@ require_once(PATH_VIEWS . 'head.php');
     </div>
     <form class="card flex column center shadow rounded">
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" data-icon="<?= PATH_ICONS . "email-outline.svg"?>" required>
-        <input type="submit" value="Connexion / Inscription" class="valid circle">
+        <input type="submit" id="form-confirm" value="Connexion / Inscription" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>

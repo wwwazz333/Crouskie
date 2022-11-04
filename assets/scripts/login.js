@@ -5,3 +5,7 @@
 
     Elliot CASNA, Anne PASSELEGUE, Thomas WARRIER, Marc BERIOT, Virgile MENARD-BEDIANT
 */
+
+const form = document.querySelector('form');
+const form_submit = form.querySelector('input[type=submit]');
+

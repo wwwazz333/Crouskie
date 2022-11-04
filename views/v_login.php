@@ -4,7 +4,7 @@ require_once(PATH_VIEWS . 'head.php');
 ?>
 <!--  Début de la page -->
 <img src="<?=PATH_LOGOS . "crouskie-geant.png"?>" alt="crouskie géant" class="background">
-<div class="flex column content">
+<div class="flex column content center">
     <div class="logo">
         <a href="index.php">
             <!-- Il faut trouver une solution pour le changement de couleur dynamique -->
@@ -16,7 +16,7 @@ require_once(PATH_VIEWS . 'head.php');
         <h3>Connexion / Inscription</h3>
         <p>Saisissez votre e-mail pour vous<br>connecter ou créer un compte</p>
     </div>
-    <form class="card flex column center shadow rounded">
+    <form class="card flex column center shadow rounded" onsubmit="return checkForm(event)">
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
             data-icon="<?= PATH_ICONS . "email-outline.svg"?>" 
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required

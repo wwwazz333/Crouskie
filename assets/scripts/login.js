@@ -7,5 +7,17 @@
 */
 
 const form = document.querySelector('form');
+const form_email = document.getElementById('email');
 const form_submit = form.querySelector('input[type=submit]');
 
+
+function checkForm(event) {
+    // Check e-mail from API
+    if (form_email.value == 'elliot.casna@gmail.com') {
+        console.log(form_email.value);
+        return true;
+    }else{
+        event.preventDefault();
+    }
+    return false
+}

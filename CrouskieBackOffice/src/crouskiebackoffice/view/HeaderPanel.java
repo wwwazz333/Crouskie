@@ -10,6 +10,8 @@ package crouskiebackoffice.view;
  */
 public class HeaderPanel extends javax.swing.JPanel {
 
+   
+
     /**
      * Creates new form HeaderPanel
      */
@@ -25,17 +27,36 @@ public class HeaderPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        banner = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 0, 0));
         setForeground(new java.awt.Color(255, 255, 255));
+        setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/wwwazz/MEGA/Devoir/Crouskie/banier.jpeg")); // NOI18N
-        add(jLabel1);
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/back_small.png"))); // NOI18N
+        backBtn.setToolTipText("go Back");
+        backBtn.setBorder(null);
+        backBtn.setBorderPainted(false);
+        backBtn.setContentAreaFilled(false);
+        backBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(backBtn, java.awt.BorderLayout.WEST);
+
+        jPanel1.setBackground(new java.awt.Color(254, 0, 0));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+        banner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/banier_small.jpeg"))); // NOI18N
+        banner.setAlignmentX(0.5F);
+        jPanel1.add(banner);
+
+        add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel banner;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

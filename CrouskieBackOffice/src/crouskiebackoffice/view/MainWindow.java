@@ -1,5 +1,9 @@
 package crouskiebackoffice.view;
 
+import java.awt.Color;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -112,7 +116,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MainWindow().setVisible(true);
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.initSettings();
+            mainWindow.setVisible(true);
         });
     }
 
@@ -125,4 +131,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabPane;
     private crouskiebackoffice.view.VisualisationPanel visualisationPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void initSettings() {
+        try {
+            setIconImage(ImageIO.read(getClass().getResource("/assets/logo.png")));
+        } catch (IOException ex) {
+            System.err.println("Error : can't load software Ico");
+        }
+        
+        BorderFactory.createLineBorder(new Color(0, 0, 0));
+    }
 }

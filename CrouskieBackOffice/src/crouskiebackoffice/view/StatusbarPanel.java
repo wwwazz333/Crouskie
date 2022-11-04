@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package crouskiebackoffice.view;
 
-/**
- *
- * @author wwwazz
- */
+import javax.swing.BorderFactory;
+
 public class StatusbarPanel extends javax.swing.JPanel {
 
     /**
@@ -27,6 +21,7 @@ public class StatusbarPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
+        setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jLabel1.setText("Test... couooool");

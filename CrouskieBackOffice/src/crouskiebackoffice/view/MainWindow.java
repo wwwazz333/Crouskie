@@ -24,7 +24,7 @@ public class MainWindow extends javax.swing.JFrame {
         headerPanel1 = new crouskiebackoffice.view.HeaderPanel();
         mainPane = new javax.swing.JPanel();
         tabPane = new javax.swing.JTabbedPane();
-        visualisationPanel1 = new crouskiebackoffice.view.VisualisationPanel();
+        visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
         addingPanel1 = new crouskiebackoffice.view.AddingPanel();
         editionPanel1 = new crouskiebackoffice.view.EditionPanel();
         statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
@@ -39,28 +39,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         mainPane.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout visualisationPanel1Layout = new javax.swing.GroupLayout(visualisationPanel1);
-        visualisationPanel1.setLayout(visualisationPanel1Layout);
-        visualisationPanel1Layout.setHorizontalGroup(
-            visualisationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        visualisationPanel1Layout.setVerticalGroup(
-            visualisationPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 221, Short.MAX_VALUE)
-        );
-
-        tabPane.addTab("Visualiser", visualisationPanel1);
+        tabPane.addTab("Visualiser", visualisationPanel);
 
         javax.swing.GroupLayout addingPanel1Layout = new javax.swing.GroupLayout(addingPanel1);
         addingPanel1.setLayout(addingPanel1Layout);
         addingPanel1Layout.setHorizontalGroup(
             addingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
         addingPanel1Layout.setVerticalGroup(
             addingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 221, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Ajouter", addingPanel1);
@@ -69,11 +58,11 @@ public class MainWindow extends javax.swing.JFrame {
         editionPanel1.setLayout(editionPanel1Layout);
         editionPanel1Layout.setHorizontalGroup(
             editionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 464, Short.MAX_VALUE)
         );
         editionPanel1Layout.setVerticalGroup(
             editionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 221, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         tabPane.addTab("Éditer", editionPanel1);
@@ -113,7 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel mainPane;
     private crouskiebackoffice.view.StatusbarPanel statusbarPanel1;
     private javax.swing.JTabbedPane tabPane;
-    private crouskiebackoffice.view.VisualisationPanel visualisationPanel1;
+    private crouskiebackoffice.view.VisualisationPanel visualisationPanel;
     // End of variables declaration//GEN-END:variables
 
     private void initSettings() {

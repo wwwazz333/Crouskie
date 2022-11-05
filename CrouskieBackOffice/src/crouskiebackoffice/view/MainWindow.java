@@ -1,9 +1,8 @@
 package crouskiebackoffice.view;
 
-import java.awt.Color;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -34,8 +33,8 @@ public class MainWindow extends javax.swing.JFrame {
         setTitle("Crouskie BackOffice");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
+        setMinimumSize(new java.awt.Dimension(400, 157));
         setPreferredSize(new java.awt.Dimension(720, 480));
-        getContentPane().setLayout(new java.awt.BorderLayout());
         getContentPane().add(headerPanel1, java.awt.BorderLayout.NORTH);
 
         mainPane.setLayout(new java.awt.CardLayout());
@@ -91,24 +90,9 @@ public class MainWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //Lien pour téléchargé le look and feel : https://search.maven.org/artifact/com.formdev/flatlaf/2.6/jar
+            javax.swing.UIManager.setLookAndFeel(new FlatLightLaf());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

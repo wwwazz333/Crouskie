@@ -33,7 +33,7 @@ public class DAOProductBought extends DAO<ProductBought> {
     protected ProductBought parseData(HashMap<String, Object> obj) {
         return new ProductBought((int) obj.get("idpp"),
                 new ProductColorSize(
-                        new Product((int) obj.get("idprod"), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), (float) obj.get("priceprod")),
+                        new Product((int) obj.get("idprod"), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), (float) obj.get("priceprod"), null),
                         new Color(obj.get("namecolor").toString()),
                         new ClothSize((int) obj.get("idsize"), obj.get("namesize").toString()), (int) obj.get("quantitybought")),
                 (int) obj.get("numorder"), (java.sql.Timestamp) obj.get("dateorder"));

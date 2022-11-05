@@ -1,5 +1,7 @@
 package crouskiebackoffice.model;
 
+import java.util.List;
+
 public class Product {
 
     private int id;
@@ -8,18 +10,44 @@ public class Product {
     private String description;
     private float price;
 
-    public Product(int id, String name, String description, float price) {
+    private List<Color> existingColor;
+    private List<ClothSize> existingSize;
+    private Collection collection;
+
+    public Product(int id, String name, String description, float price, Collection collection) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.collection = collection;
     }
 
-    public Product(String name, String description, float price) {
+    public Product(String name, String description, float price, Collection collection) {
         this.id = -1;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.collection = collection;
+    }
+
+    public Product(String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize) {
+        this.id = -1;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.collection = collection;
+        this.existingColor = existingColor;
+        this.existingSize = existingSize;
+    }
+
+    public Product(int id, String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.collection = collection;
+        this.existingColor = existingColor;
+        this.existingSize = existingSize;
     }
 
     public int getId() {
@@ -58,9 +86,19 @@ public class Product {
         return id != -1;
     }
 
+    public List<Color> getExistingColor() {
+        return existingColor;
+    }
+
+    public List<ClothSize> getExistingSize() {
+        return existingSize;
+    }
+
     @Override
     public String toString() {
-        return "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price;
+        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", collection=" + collection + '}';
     }
+
+    
 
 }

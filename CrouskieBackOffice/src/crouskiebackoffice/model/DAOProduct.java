@@ -2,8 +2,30 @@ package crouskiebackoffice.model;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DAOProduct extends DAO<Product> {
+
+    @Override
+    public List<Product> getAllData(String orderby) throws SQLException {
+        String selectRequest = "SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, \n"
+                + "case \n"
+                + "	when IDCOLLECTION is null then null\n"
+                + "    else namecollection\n"
+                + "end as NAMECOLLECTION,\n"
+                + "(SELECT group_concat(CONCAT(idsize, ',', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
+                + "(SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing\n"
+                + "FROM `PRODUCT` P1 NATURAL JOIN EXISTINGSIZE NATURAL JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION" + ((orderby != null) ? " ORDER BY " + orderby : "");
+        List<HashMap<String, Object>> res = selectAll(selectRequest, null);
+        List<Product> datas = new LinkedList<>();
+
+        for (HashMap<String, Object> values : res) {
+            datas.add(parseData(values));
+        }
+
+        return datas;
+    }
 
     @Override
     protected String getTableName() {
@@ -12,7 +34,20 @@ public class DAOProduct extends DAO<Product> {
 
     @Override
     protected Product parseData(HashMap<String, Object> obj) {
-        return new Product((int) obj.get("idprod"), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), (float) obj.get("priceprod"));
+        List<ClothSize> size_existing = new LinkedList<>();
+        List<Color> color_existing = new LinkedList<>();
+
+        for (String sizeLine : obj.get("size_existing").toString().split(";;;")) {
+            int id = Integer.parseInt(sizeLine.split(",")[0]);
+            String name = sizeLine.split(",")[0];
+            size_existing.add(new ClothSize(id, name));
+        }
+        for (String name : obj.get("color_existing").toString().split(";;;")) {
+            color_existing.add(new Color(name));
+        }
+
+        return new Product((int) obj.get("idprod"), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), (float) obj.get("priceprod"),
+                (obj.get("idcollection") != null) ? new Collection((int) obj.get("idcollection"), obj.get("namecollection").toString()) : null, color_existing, size_existing);
     }
 
     public Boolean setNameOf(Product product, String newName) throws SQLException {

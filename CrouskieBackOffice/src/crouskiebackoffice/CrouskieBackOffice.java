@@ -1,6 +1,7 @@
 package crouskiebackoffice;
 
 import crouskiebackoffice.model.ConnectionDB;
+import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.DAOProductBought;
 import java.sql.SQLException;
 
@@ -8,7 +9,7 @@ public class CrouskieBackOffice {
 
     public static void main(String[] args) {
         try {
-            for (var pr : new DAOProductBought().getAllData("idpp")) {
+            for (var pr : new DAOProduct().getAllData("idprod")) {
                 System.out.println(pr);
             }
 

@@ -8,23 +8,19 @@ import java.util.List;
 public class DAOProduct extends DAO<Product> {
 
     @Override
-    public List<Product> getAllData(String orderby) throws SQLException {
-        String selectRequest = "SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, \n"
+    protected String getRequestForAllData() {
+        //set requet permet de récupérer les info d'un produit en faison la liasion avec
+        //  la collection (id, name) ces valeurs seront null si il n'appartien au aucun collection
+        //  les taille existante qui sont concaténer en une String sous la form  :  idsize, namesize;;;idsize2, namesize2
+        //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
+        return "SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, \n"
                 + "case \n"
                 + "	when IDCOLLECTION is null then null\n"
                 + "    else namecollection\n"
                 + "end as NAMECOLLECTION,\n"
                 + "(SELECT group_concat(CONCAT(idsize, ',', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
                 + "(SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing\n"
-                + "FROM `PRODUCT` P1 NATURAL JOIN EXISTINGSIZE NATURAL JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION" + ((orderby != null) ? " ORDER BY " + orderby : "");
-        List<HashMap<String, Object>> res = selectAll(selectRequest, null);
-        List<Product> datas = new LinkedList<>();
-
-        for (HashMap<String, Object> values : res) {
-            datas.add(parseData(values));
-        }
-
-        return datas;
+                + "FROM `PRODUCT` P1 NATURAL JOIN EXISTINGSIZE NATURAL JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION";
     }
 
     @Override

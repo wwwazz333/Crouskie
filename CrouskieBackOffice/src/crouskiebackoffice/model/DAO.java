@@ -33,7 +33,7 @@ public abstract class DAO<T> {
     }
 
     /**
-     * 
+     *
      * @param request the request to send
      * @param args the arguments of the request
      * @return the numbers of edited row
@@ -54,7 +54,7 @@ public abstract class DAO<T> {
     public abstract Boolean insertOrUpdate(T obj) throws SQLException;
 
     /**
-     * 
+     *
      * @return All the data of the concerned table as a List
      * @throws SQLException an Exception may happen due to the request
      */
@@ -63,13 +63,13 @@ public abstract class DAO<T> {
     }
 
     /**
-     * 
+     *
      * @param orderby ordered by it (ex : "SELECT * FROM ... ORDER BY [orderby]")
      * @return All the data of the concerned table as a List
      * @throws SQLException an Exception may happen due to the request
      */
-    public List<T> getAllData(String orderby) throws SQLException {
-        List<HashMap<String, Object>> res = selectAll("SELECT * FROM " + getTableName() + ((orderby != null) ? " ORDER BY " + orderby : ""), null);
+    public final List<T> getAllData(String orderby) throws SQLException {
+        List<HashMap<String, Object>> res = selectAll(getRequestForAllData() + ((orderby != null) ? " ORDER BY " + orderby : ""), null);
         List<T> datas = new LinkedList<>();
 
         for (HashMap<String, Object> values : res) {
@@ -77,6 +77,10 @@ public abstract class DAO<T> {
         }
 
         return datas;
+    }
+
+    protected String getRequestForAllData() {
+        return "SELECT * FROM " + getTableName();
     }
 
     public abstract Boolean exist(T obj) throws SQLException;

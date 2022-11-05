@@ -5,55 +5,56 @@ import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.Product;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 public class ModelVisualisationProduct extends AbstractTableModel {
-    
-    private final String[] columnNames = {"Nom", "Déscription", "Prix (en €)"};
-    private final Class[] columnClass = {String.class, String.class, Float.class};
-    
+
+    private final String[] columnNames = {"Nom", "Déscription", "Prix (en €)", "Collection", "Tailles", "Couleurs", "Edit"};
+    private final Class[] columnClass = {String.class, String.class, Float.class, String.class, String.class, String.class, JButton.class};
+
     private List<Product> rowData = new LinkedList<>();
-    
+
     public ModelVisualisationProduct() {
         DAOProduct dao = new DAOProduct();
-        
+
         try {
             rowData = dao.getAllData("nameprod");
             ConnectionDB.getInstance().close();
         } catch (SQLException ex) {
             Logger.getLogger(ModelVisualisationProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @Override
     public int getRowCount() {
         return rowData.size();
     }
-    
+
     @Override
     public int getColumnCount() {
         return columnNames.length;
     }
-    
+
     @Override
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     @Override
     public Class getColumnClass(int columnIndex) {
         return columnClass[columnIndex];
     }
-    
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 2;
+        return false;
     }
-    
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Product currentProduct = rowData.get(rowIndex);
@@ -67,17 +68,36 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 break;
             case 2:
                 res = currentProduct.getPrice();
-                
+                break;
+            case 3:
+                if (currentProduct.getCollection() != null) {
+                    res = currentProduct.getCollection().getName();
+                } else {
+                    res = "";
+                }
+                break;
+            case 4:
+                res = Arrays.toString(currentProduct.getExistingSize().toArray());
+                break;
+            case 5:
+                res = Arrays.toString(currentProduct.getExistingColor().toArray());
+                break;
+            case 6:
+                res = new JButton("coucou");
                 break;
             default:
                 throw new AssertionError();
         }
         return res;
     }
-    
+
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        rowData.get(rowIndex).setPrice((float) aValue);
+        if (columnIndex == 2) {
+            rowData.get(rowIndex).setPrice((float) aValue);
+        }else{
+            super.setValueAt(aValue, rowIndex, columnIndex);
+        }
     }
-    
+
 }

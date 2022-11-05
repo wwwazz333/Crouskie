@@ -94,6 +94,11 @@ public class Product {
         return existingSize;
     }
 
+    public Collection getCollection() {
+        return collection;
+    }
+    
+
     @Override
     public String toString() {
         return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", collection=" + collection + '}';

@@ -19,22 +19,19 @@ public class VisualisationPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productVisualisationTable1 = new crouskiebackoffice.view.ProductVisualisationTable();
 
         setLayout(new java.awt.BorderLayout());
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
-        jTable1.setModel(new ModelVisualisationProduct());
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(productVisualisationTable1);
 
-        add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        add(jScrollPane2, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private crouskiebackoffice.view.ProductVisualisationTable productVisualisationTable1;
     // End of variables declaration//GEN-END:variables
 }

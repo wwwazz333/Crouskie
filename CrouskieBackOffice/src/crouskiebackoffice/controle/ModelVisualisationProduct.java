@@ -3,6 +3,7 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.Product;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.*;
@@ -52,7 +53,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
+        return columnIndex == getColumnCount() - 1;
     }
 
     @Override
@@ -83,7 +84,12 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 res = Arrays.toString(currentProduct.getExistingColor().toArray());
                 break;
             case 6:
-                res = new JButton("coucou");
+                JButton b = new JButton("edit");
+                b.addActionListener((java.awt.event.ActionEvent evt) -> {
+                    //go to edit for this row
+                    System.out.println("row = " + rowIndex);
+                });
+                res = b;
                 break;
             default:
                 throw new AssertionError();
@@ -95,7 +101,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         if (columnIndex == 2) {
             rowData.get(rowIndex).setPrice((float) aValue);
-        }else{
+        } else {
             super.setValueAt(aValue, rowIndex, columnIndex);
         }
     }

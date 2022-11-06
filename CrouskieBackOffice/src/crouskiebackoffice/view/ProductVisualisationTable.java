@@ -6,6 +6,7 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableCellRenderer;
 
 public class ProductVisualisationTable extends JTable {
@@ -13,7 +14,7 @@ public class ProductVisualisationTable extends JTable {
     public ProductVisualisationTable() {
         setModel(new ModelVisualisationProduct());
         getColumn(getColumnName(getColumnCount() - 1)).setCellRenderer(new ButtonRenderer());
-        getColumn(getColumnName(getColumnCount() - 1)).setCellEditor(new ButtonEditor(new JCheckBox()));
+        getColumn(getColumnName(getColumnCount() - 1)).setCellEditor(new ButtonEditor());
     }
 
     class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -25,30 +26,21 @@ public class ProductVisualisationTable extends JTable {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Modify" : value.toString());
-            return this;
+            return (Component) value;
         }
     }
 
     class ButtonEditor extends DefaultCellEditor {
 
-        private String label;
-
-        public ButtonEditor(JCheckBox checkBox) {
-            super(checkBox);
+        public ButtonEditor() {
+            super(new JCheckBox());
         }
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "Modify" : value.toString();
-
-            JButton button = new JButton(label);
-            return button;
+            return (Component) value;
         }
 
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
     }
 
 }

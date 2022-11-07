@@ -19,7 +19,6 @@
 				<!-- Bouton pour le panier -->
 				<a href="index.php?page=panier" class="icon counter" data-number=0>
 					<!-- Couleur dynamique à faire !-->
-					
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
 				<button onclick="window.location.assign('index.php?page=login');" class="rounded">Connexion</button>

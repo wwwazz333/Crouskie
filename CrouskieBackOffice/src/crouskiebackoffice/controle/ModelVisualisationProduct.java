@@ -87,7 +87,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 res = Arrays.toString(currentProduct.getTags().toArray());
                 break;
             case 7:
-                JButton b = new JButton("edit");
+                JButton b = new JButton();
                 b.addActionListener((java.awt.event.ActionEvent evt) -> {
                     //go to edit for this row
                     System.out.println("row = " + rowIndex);

@@ -363,6 +363,8 @@ a{
     position: relative;
 }
 
+/* Barre droite */
+
 .footer .logo-container::after{
     position: absolute;
     left: 110%;
@@ -373,6 +375,8 @@ a{
     border-radius: 2px;
     background-color: var(--primary-color);
 }
+
+/* Barre gauche */
 
 .footer .logo-container::before{
     position: absolute;

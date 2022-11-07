@@ -12,7 +12,7 @@
 			<div class="flex row nav">
 				<!-- utiliser les balises ul et li -->
 				<a href="index.php?page=collections">Collections</a>
-				<a href="index.php?page=produits">Produits</a>
+				<a href="index.php?page=products">Produits</a>
 			</div>
 			<!-- classe right temporaire le temps de trouver un nom / convention de noms pour le css -->
 			<div class="flex row right">

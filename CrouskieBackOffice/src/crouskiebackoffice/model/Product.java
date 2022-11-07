@@ -97,6 +97,11 @@ public class Product {
         return existingSize;
     }
 
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    
     public Collection getCollection() {
         return collection;
     }

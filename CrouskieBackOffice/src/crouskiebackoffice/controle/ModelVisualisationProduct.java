@@ -14,8 +14,8 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModelVisualisationProduct extends AbstractTableModel {
 
-    private final String[] columnNames = {"Nom", "Déscription", "Prix (en €)", "Collection", "Tailles", "Couleurs", "Edit"};
-    private final Class[] columnClass = {String.class, String.class, Float.class, String.class, String.class, String.class, JButton.class};
+    private final String[] columnNames = {"Nom", "Déscription", "Prix (en €)", "Collection", "Tailles", "Couleurs", "Tags", "Edit"};
+    private final Class[] columnClass = {String.class, String.class, Float.class, String.class, String.class, String.class, String.class, JButton.class};
 
     private List<Product> rowData = new LinkedList<>();
 
@@ -84,6 +84,9 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 res = Arrays.toString(currentProduct.getExistingColor().toArray());
                 break;
             case 6:
+                res = Arrays.toString(currentProduct.getTags().toArray());
+                break;
+            case 7:
                 JButton b = new JButton("edit");
                 b.addActionListener((java.awt.event.ActionEvent evt) -> {
                     //go to edit for this row

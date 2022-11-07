@@ -9,6 +9,9 @@ define('CROUKIE_GEANT','crouskie géant en arrière plan');
 define('MENU_COLLECTIONS','Collections');
 define('MENU_PRODUITS','Produits');
 
+// Footer
+define('RESEAUX_SOCIAUX','Retrouvez nous sur :');
+
 // Messages d'erreurs
 define('TEXTE_PAGE_404','Oops, la page demandée n\'existe pas !');
 define('MESSAGE_ERREUR',"Une erreur s'est produite");

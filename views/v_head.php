@@ -20,4 +20,13 @@
 			echo("<script defer src=\"".PATH_SCRIPTS.$page.".js\"></script>");
 		}
 		?>
+		<!-- Vérification de connexion -->
+		<!-- Ceci est temporaire !!! -->
+		<?php
+		if (isset($_SESSION['logged']) && $_SESSION['logged']) {
+			$isLogged = true;
+		}else{
+			$isLogged = false;
+		}
+		?>
 	</head> 

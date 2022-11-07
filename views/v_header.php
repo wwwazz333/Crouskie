@@ -20,7 +20,8 @@
 				<a href="index.php?page=panier" class="icon" data-number=0>
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
-				<button onclick="window.location.assign('index.php?page=login');" class="rounded"><?= CONNEXION ?></button>
+				<button onclick="window.location.assign('index.php?page=<?= $isLogged ? 'account' : 'login' ?>');" 
+				class="rounded"><?= $isLogged ? MON_COMPTE : CONNEXION ?></button>
 			</div>
 		</header>
 		<!-- Vue -->

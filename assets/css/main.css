@@ -272,8 +272,8 @@ a{
 .icon.counter::after{
     content: attr(data-number);
     position: absolute;
-    left: 16px;
-    top: 16px;
+    left: 14px;
+    top: 15px;
     font-size: 0.9rem;
     color: inherit;
 }
@@ -323,7 +323,7 @@ a{
     }
 
     .header iconify-icon {
-        font-size: 40px;
+        font-size: 35px;
     }
 
 /* Header version transparent */

@@ -11,6 +11,7 @@ function sendJson(mixed $result,bool $success = true)
 
 if (isset($_POST['action'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
+    require_once(PATH_MODELS . 'ProductDAO.php');
     try {
         switch ($_POST['action']) {
             case 'check':
@@ -19,6 +20,23 @@ if (isset($_POST['action'])) {
                     $res = $DAO->isEmailExist(htmlspecialchars($_POST['email']));
                     sendJson($res);
                 }
+                break;
+            case 'search':
+                if (isset($_POST['name'])) {
+                    $DAO = new ProductDAO(DEBUG);
+                    $res = $DAO->getProductsByName(htmlspecialchars($_POST['name']));
+                    sendJson($res);
+                }
+                break;
+            case 'products':
+                $DAO = new ProductDAO(DEBUG);
+                $res = $DAO->getProducts();
+                sendJson($res);
+                break;
+            case 'prod_id':
+                $DAO = new ProductDAO(DEBUG);
+                $res = $DAO->getProductByID($_POST['id']);
+                sendJson($res);
                 break;
             default:
                 sendJson("Unknow action",false);

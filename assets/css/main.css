@@ -260,17 +260,14 @@ a{
 /*============ Composants basiques divers ============*/
 
 /* Pour rendre un composant html compatible avec une icone */
-.icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+iconify-icon{
     height: 40px;
     width: 40px;
     color: inherit;
 }
 
 /* permet d'afficher un nombre au centre de l'icone */
-.icon.counter::after{
+iconify-icon.counter::after{
     content: attr(data-number);
     position: relative;
     left: -21px;

@@ -12,6 +12,7 @@ public class Product {
 
     private List<Color> existingColor;
     private List<ClothSize> existingSize;
+    private List<Tag> tags;
     private Collection collection;
 
     public Product(int id, String name, String description, float price, Collection collection) {
@@ -30,7 +31,7 @@ public class Product {
         this.collection = collection;
     }
 
-    public Product(String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize) {
+    public Product(String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
         this.id = -1;
         this.name = name;
         this.description = description;
@@ -38,9 +39,10 @@ public class Product {
         this.collection = collection;
         this.existingColor = existingColor;
         this.existingSize = existingSize;
+        this.tags = tags;
     }
 
-    public Product(int id, String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize) {
+    public Product(int id, String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -48,6 +50,7 @@ public class Product {
         this.collection = collection;
         this.existingColor = existingColor;
         this.existingSize = existingSize;
+        this.tags = tags;
     }
 
     public int getId() {
@@ -97,13 +100,12 @@ public class Product {
     public Collection getCollection() {
         return collection;
     }
-    
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", collection=" + collection + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", collection=" + collection + '}';
     }
 
-    
+   
 
 }

@@ -341,8 +341,48 @@ a{
 /*============ Footer ============*/
 
 .footer{
-    /* A faire */
     width: 100%;
+    margin: 2rem 0 2rem 0;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--primary-color);
+    overflow: hidden;
+}
+
+.footer .icons-container{
+    gap: 1.5rem;
+}
+
+.footer p{
+    font-weight: var(--font-medium);
+}
+
+/* Partie avec le logo et les barres sur le coté */
+
+.footer .logo-container{
+    position: relative;
+}
+
+.footer .logo-container::after{
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    content: "";
+    width: 25vw;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer .logo-container::before{
+    position: absolute;
+    right: 110%;
+    top: 50%;
+    content: "";
+    width: 25vw;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
 }
 
 /*============ Animations ============*/

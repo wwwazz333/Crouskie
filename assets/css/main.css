@@ -76,10 +76,6 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: var(--background-color);
-
-    /* image de fond temporaire */
-    /* background-image: url(../images/backgrounds/background.jpg);
-    background-size: cover; */
 }
 
 /* Permet de cacher les élément possédant la class hidden */
@@ -280,6 +276,10 @@ a{
     top: 16px;
     font-size: 0.9rem;
     color: inherit;
+}
+
+.hero{
+    height: 100vh;
 }
 
 /*============ Composants Complexes ============*/

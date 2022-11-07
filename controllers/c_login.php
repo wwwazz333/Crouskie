@@ -2,10 +2,10 @@
 if (isset($_POST['action'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
     try {
-        $DAO = new UtilisateurDAO(DEBUG);
         switch ($_POST['action']) {
             case 'check':
                 if (isset($_POST['email'])) {
+                    $DAO = new UtilisateurDAO(DEBUG);
                     $res = $DAO->isEmailExist(htmlspecialchars($_POST['email']));
                     sendJson($res);
                 }

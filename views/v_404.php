@@ -6,5 +6,5 @@
             <img src=<?= PATH_LOGOS . "crouskie-text-outlined-red.svg" ?> height="120px" width="414px" alt="<?= LOGO ?>">
         </a>
     </div>
-    <h1>Malheusement, cette page n'existe pas...</h1>
+    <h1><?= TEXTE_PAGE_404 ?></h1>
 </div>

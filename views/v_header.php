@@ -17,7 +17,8 @@
 			<!-- classe right temporaire le temps de trouver un nom / convention de noms pour le css -->
 			<div class="flex row right">
 				<!-- Bouton pour le panier -->
-				<a href="index.php?page=panier" class="icon counter" data-number=0>
+				<!-- Ajouter la class counter pour afficher le nombre d'articles dans le panier -->
+				<a href="index.php?page=panier" class="icon" data-number=0>
 					<!-- Couleur dynamique à faire !-->
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>

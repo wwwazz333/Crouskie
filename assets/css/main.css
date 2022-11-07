@@ -261,23 +261,23 @@ a{
 
 /* Pour rendre un composant html compatible avec une icone */
 .icon{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
     color: inherit;
 }
+
 .icon iconify-icon{
-    font-size: 40px;
-    
+    font-size: 30px;
 }
+
 /* permet d'afficher un nombre au centre de l'icone */
 .icon.counter::after{
     content: attr(data-number);
-    position: relative;
-    left: -21px;
-    top: 4px;
+    position: absolute;
+    left: 16px;
+    top: 16px;
     font-size: 0.9rem;
     color: inherit;
 }
@@ -313,6 +313,10 @@ a{
     .header .right{
         height: 40px;
         gap: 0.5rem;
+    }
+
+    .header iconify-icon {
+        font-size: 40px;
     }
 
 /* Header version transparent */

@@ -1,7 +1,5 @@
 	<body>
 		<!-- En-tête -->
-		<!-- Version classique et non transparente à faire !-->
-		<!-- Il faudra une condition pour vérifier la page demandant le header et changer si c'est accueil -->
 		<header class="header flex row <?= $page == 'accueil' ? 'transparent' : 'shadow'?>">
 			<div>
 				<a href="index.php">
@@ -13,18 +11,16 @@
 			</div>
 			<div class="flex row nav">
 				<!-- utiliser les balises ul et li -->
-				<a href="index.php?page=collections">Collections</a>
-				<a href="index.php?page=products">Produits</a>
+				<a href="index.php?page=collections"><?= MENU_COLLECTIONS ?></a>
+				<a href="index.php?page=products"><?= MENU_PRODUITS ?></a>
 			</div>
-			<!-- classe right temporaire le temps de trouver un nom / convention de noms pour le css -->
 			<div class="flex row right">
 				<!-- Bouton pour le panier -->
-				<!-- Ajouter la class counter pour afficher le nombre d'articles dans le panier -->
+				<!-- Ajouter la class 'counter' pour afficher le nombre d'articles dans le panier -->
 				<a href="index.php?page=panier" class="icon" data-number=0>
-					<!-- Couleur dynamique à faire !-->
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
-				<button onclick="window.location.assign('index.php?page=login');" class="rounded">Connexion</button>
+				<button onclick="window.location.assign('index.php?page=login');" class="rounded"><?= CONNEXION ?></button>
 			</div>
 		</header>
 		<!-- Vue -->

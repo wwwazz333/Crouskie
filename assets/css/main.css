@@ -235,12 +235,12 @@ input[type=email]:valid
 }
 
 /* Non fonctionnel actuellement */
-input.icon{
+/* input.icon{
     background-image: attr(data-icon url);
     background-repeat: no-repeat;
     background-position: right;
     background-size: 30px;
-}
+} */
 
 
 /* TODO les propriétés hover et focus du bouton et du input */
@@ -278,6 +278,7 @@ a{
     color: inherit;
 }
 
+/* Hero */
 .hero{
     height: 100vh;
 }

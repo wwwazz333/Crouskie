@@ -9,4 +9,4 @@ require_once(PATH_VIEWS . 'header.php');
 
 
 <!--  Pied de page -->
-<?=require_once(PATH_VIEWS.'footer.php')?>
+<?php require_once(PATH_VIEWS.'footer.php')?>

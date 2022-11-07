@@ -2,11 +2,13 @@
 		<!-- En-tête -->
 		<!-- Version classique et non transparente à faire !-->
 		<!-- Il faudra une condition pour vérifier la page demandant le header et changer si c'est accueil -->
-		<header class="header flex row transparent">
+		<header class="header flex row <?= $page == 'accueil' ? 'transparent' : 'shadow'?>">
 			<div>
 				<a href="index.php">
-					<!-- Il faut trouver une solution pour le changement de couleur dynamique -->
-					<img src=<?= PATH_LOGOS . "crouskie-text-filled-white.svg" ?> height="50px" width="200px" alt="<?= LOGO ?>">
+					<img src=<?= $page == 'accueil' ? 
+					PATH_LOGOS . "crouskie-text-filled-white.svg" : 
+					PATH_LOGOS .  "crouskie-text-outlined-red.svg"?> 
+					height="50px" width="200px" alt="<?= LOGO ?>">
 				</a>
 			</div>
 			<div class="flex row nav">

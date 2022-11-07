@@ -1,4 +1,7 @@
 <?php
+// Initialisation du système de session
+session_name('croukie');
+session_start();
 // Initialisation des paramètres du site
 require_once('./config/configuration.php');
 require_once(PATH_TEXTES.LANG.'.php');

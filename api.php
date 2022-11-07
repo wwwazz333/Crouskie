@@ -25,7 +25,7 @@ if (isset($data['action'])) {
                 }
                 break;
             case 'search':
-                if (isset($_POST['name'])) {
+                if (isset($data['name'])) {
                     $DAO = new ProductDAO(DEBUG);
                     $res = $DAO->getProductsByName(htmlspecialchars($data['name']));
                     sendJson($res);

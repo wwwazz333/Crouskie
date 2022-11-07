@@ -5,7 +5,6 @@
 
     Elliot CASNA, Anne PASSELEGUE, Thomas WARRIER, Marc BERIOT, Virgile MENARD-BEDIANT
 */
-
 // Premier formulaire
 const form = document.querySelector('form');
 const form_email = document.getElementById('email');

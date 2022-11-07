@@ -22,6 +22,9 @@ require_once(PATH_VIEWS . 'head.php');
         >
         <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
+    <!-- <form action="index.php?page=login" method="post" class="card flex column center shadown rounded">
+
+    </form> -->
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>
 

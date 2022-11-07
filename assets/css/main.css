@@ -99,6 +99,10 @@ body{
     flex-flow: column;
 }
 
+.flex.wrap{
+    flex-wrap: wrap;
+}
+
 .flex.center{
     align-items: center;
     justify-content: center;
@@ -227,9 +231,9 @@ input[type=email]:invalid
     border: solid var(--primary-color) 2px;
 } */
 
-input[type=text]:valid,
-input[type=password]:valid,
-input[type=email]:valid
+input[type=text]:required:valid,
+input[type=password]:required:valid,
+input[type=email]:required:valid
 {
     border: solid var(--valid-color) 2px;
 }
@@ -292,9 +296,9 @@ a{
 /*============ Composants Complexes ============*/
 
 .header{
-    /* Fixed ? */
     position: fixed;
     width: 100%;
+    top: 0;
 
     padding: 1rem;
     background-color: white;

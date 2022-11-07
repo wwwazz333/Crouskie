@@ -1,0 +1,12 @@
+.search{
+    margin-top: 130px;
+}
+
+#input-search{
+    width: 50%;
+}
+
+.products{
+    min-height: 70vh;
+    margin-top: 2rem;
+}

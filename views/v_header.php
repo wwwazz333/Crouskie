@@ -20,7 +20,7 @@
 				<a href="index.php?page=panier" class="icon" data-number=0>
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
-				<button onclick="window.location.assign('index.php?page=<?= $isLogged ? 'account' : 'login' ?>');" 
+				<button onclick="window.location.assign('index.php?page=<?= $isLogged ? 'account' : 'portal' ?>');" 
 				class="rounded"><?= $isLogged ? MON_COMPTE : CONNEXION ?></button>
 			</div>
 		</header>

@@ -16,15 +16,12 @@ require_once(PATH_VIEWS . 'head.php');
         <h3><?= CONNEXION_INSCRIPTION ?></h3>
         <p><?= INSTRUCTIONS_CONNEXION ?></p>
     </div>
-    <form class="card flex column center shadow rounded" onsubmit="return checkForm(event)">
+    <form action="index.php?page=portal" method="post" class="card flex column center shadow rounded">
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
         >
         <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
-    <!-- <form action="index.php?page=login" method="post" class="card flex column center shadown rounded">
-
-    </form> -->
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>
 

@@ -16,7 +16,7 @@ class User{
     /*
     Constructeur de l'utilisateur
     */
-    function __construct(string $first_name, string $last_name, string $email, string $username){
+    function __construct__(string $first_name, string $last_name, string $email, string $username){
         $this -> _first_name = $first_name;
         $this -> _last_name = $last_name;
         $this -> _email = $email;

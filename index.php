@@ -19,6 +19,14 @@ else{
   $page='accueil'; //page d'accueil du site - http://.../index.php
 }
 
+// Vérification connexion
+// Ceci est temporaire !!
+if (isset($_SESSION['logged']) && $_SESSION['logged']) {
+  $isLogged = true;
+}else{
+  $isLogged = false;
+}
+
 //appel du controller
 require_once(PATH_CONTROLLERS.$page.'.php');
 ?>

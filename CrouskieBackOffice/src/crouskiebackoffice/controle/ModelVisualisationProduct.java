@@ -3,6 +3,7 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.Product;
+import crouskiebackoffice.view.EditProduct;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -91,6 +92,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 b.addActionListener((java.awt.event.ActionEvent evt) -> {
                     //go to edit for this row
                     System.out.println("row = " + rowIndex);
+                    Navigator.getInstance().goTo(new EditProduct("bite"), "bite");
                 });
                 res = b;
                 break;

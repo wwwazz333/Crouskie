@@ -1,10 +1,25 @@
 package crouskiebackoffice.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import crouskiebackoffice.controle.Navigator;
+import crouskiebackoffice.model.ConnectionDB;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class MainWindow extends javax.swing.JFrame {
+
+    @Override
+    public void dispose() {
+        try {
+            ConnectionDB.getInstance().close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.dispose();
+    }
 
     /**
      * Creates new form MainWindow
@@ -27,6 +42,8 @@ public class MainWindow extends javax.swing.JFrame {
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
         addingPanel1 = new crouskiebackoffice.view.AddingPanel();
         editionPanel1 = new crouskiebackoffice.view.EditionPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +86,27 @@ public class MainWindow extends javax.swing.JFrame {
 
         mainPane.add(tabPane, "tabPane");
 
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(326, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(94, 94, 94))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(jLabel1)
+                .addContainerGap(251, Short.MAX_VALUE))
+        );
+
+        mainPane.add(jPanel1, "editProduct");
+
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
         getContentPane().add(statusbarPanel1, java.awt.BorderLayout.SOUTH);
 
@@ -99,6 +137,8 @@ public class MainWindow extends javax.swing.JFrame {
     private crouskiebackoffice.view.AddingPanel addingPanel1;
     private crouskiebackoffice.view.EditionPanel editionPanel1;
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel mainPane;
     private crouskiebackoffice.view.StatusbarPanel statusbarPanel1;
     private javax.swing.JTabbedPane tabPane;
@@ -111,5 +151,7 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.err.println("Error : can't load software Ico");
         }
+
+        Navigator.getInstance().init(mainPane, "tabPane");
     }
 }

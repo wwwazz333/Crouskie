@@ -4,13 +4,13 @@
  */
 package crouskiebackoffice.view;
 
+import crouskiebackoffice.controle.Navigator;
+
 /**
  *
  * @author wwwazz
  */
 public class HeaderPanel extends javax.swing.JPanel {
-
-   
 
     /**
      * Creates new form HeaderPanel
@@ -73,7 +73,8 @@ public class HeaderPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        System.out.println("back");
+        Navigator.getInstance().goBack();
     }//GEN-LAST:event_backBtnActionPerformed
 
 

@@ -7,7 +7,7 @@ public class DAOColor extends DAO<Color> {
 
     /**
      * It can't be updated because the key is the only parameter which is the name of the color
-     * 
+     *
      * @param color the Color to insert
      * @return true if the color is inserted
      * @throws SQLException an Exception may happen due to the request
@@ -33,6 +33,12 @@ public class DAOColor extends DAO<Color> {
     @Override
     protected String getTableName() {
         return "COLOR";
+    }
+
+    @Override
+    public Boolean remove(Color obj) throws SQLException {
+        Object[] args = {obj.getName()};
+        return super.execute("DELETE FROM " + getTableName() + " WHERE namecolor = ? ", args) == 1;
     }
 
 }

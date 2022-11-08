@@ -44,4 +44,10 @@ public class DAOStock extends DAO<ProductColorSize> {
                 && obj.getSize() != null && obj.getSize().getId() != -1;
     }
 
+    @Override
+    public Boolean remove(ProductColorSize obj) throws SQLException {
+        Object[] args = {obj.getProduct().getId(), obj.getColor().getName(), obj.getSize().getId()};
+        return super.execute("DELETE FROM " + "STOCKED" + " WHERE idpp = ? and namecolor = ? and idsize = ? ", args) == 1;
+    }
+
 }

@@ -1,15 +1,15 @@
 package crouskiebackoffice;
 
 import crouskiebackoffice.model.ConnectionDB;
-import crouskiebackoffice.model.DAOProduct;
-import crouskiebackoffice.model.DAOProductBought;
+import crouskiebackoffice.model.DAOTag;
 import java.sql.SQLException;
 
 public class CrouskieBackOffice {
 
     public static void main(String[] args) {
         try {
-            for (var pr : new DAOProduct().getAllData("idprod")) {
+            DAOTag dao = new DAOTag();
+            for (var pr : dao.getAllData()) {
                 System.out.println(pr);
             }
 

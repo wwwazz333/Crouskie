@@ -102,4 +102,10 @@ public class DAOProduct extends DAO<Product> {
     public Boolean exist(Product product) {
         return product != null && product.getId() != -1;
     }
+
+    @Override
+    public Boolean remove(Product obj) throws SQLException {
+        Object[] args = {obj.getId()};
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idprod = ? ", args) == 1;
+    }
 }

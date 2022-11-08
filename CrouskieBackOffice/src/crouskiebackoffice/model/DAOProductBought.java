@@ -44,4 +44,10 @@ public class DAOProductBought extends DAO<ProductBought> {
         return "PRODUCTBOUGHT natural join CMD natural join PRODUCT natural join CLOTH_SIZE natural join COLOR";
     }
 
+    @Override
+    public Boolean remove(ProductBought obj) throws SQLException {
+        Object[] args = {obj.getId()};
+        return super.execute("DELETE FROM " + "PRODUCTBOUGHT" + " WHERE idpp = ? ", args) == 1;
+    }
+
 }

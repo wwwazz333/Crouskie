@@ -82,6 +82,8 @@ public abstract class DAO<T> {
     protected String getRequestForAllData() {
         return "SELECT * FROM " + getTableName();
     }
+    
+    public abstract Boolean remove(T obj) throws SQLException;
 
     public abstract Boolean exist(T obj) throws SQLException;
 

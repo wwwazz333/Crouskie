@@ -31,4 +31,9 @@ public class DAOClothSize extends DAO<ClothSize> {
         return "CLOTH_SIZE";
     }
 
+    @Override
+    public Boolean remove(ClothSize obj) throws SQLException {
+        Object[] args = {obj.getId()};
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idsize = ? ", args) == 1;
+    }
 }

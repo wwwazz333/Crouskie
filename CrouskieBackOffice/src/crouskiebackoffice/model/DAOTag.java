@@ -31,4 +31,9 @@ public class DAOTag extends DAO<Tag> {
         return "TAG";
     }
 
+    @Override
+    public Boolean remove(Tag obj) throws SQLException {
+        Object[] args = {obj.getId()};
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idtag = ? ", args) == 1;
+    }
 }

@@ -8,7 +8,7 @@ class collectionDAO extends DAO
         $collection = [];
         foreach($result as $collection){
             array_push($collection, 
-                new Product(
+                new Collection(
                     $collection['NAMECOLLECTION'],
                     $collection['IDCOLLECTION'],
                     $collection['PATHPICTURE']

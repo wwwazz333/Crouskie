@@ -92,7 +92,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 b.addActionListener((java.awt.event.ActionEvent evt) -> {
                     //go to edit for this row
                     System.out.println("row = " + rowIndex);
-                    Navigator.getInstance().goTo(new EditProduct("bite"), "bite");
+                    Navigator.getInstance().goTo(new EditProduct(currentProduct), "editProduct");
                 });
                 res = b;
                 break;

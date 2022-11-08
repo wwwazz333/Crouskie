@@ -1,5 +1,6 @@
 <?php
 require_once(PATH_MODELS . 'DAO.php');
+require_once(PATH_ENTITY.'Collection.php');
 
 class collectionDAO extends DAO
 {
@@ -8,7 +9,7 @@ class collectionDAO extends DAO
         $collection = [];
         foreach($result as $collection){
             array_push($collection, 
-                new Product(
+                new Collection(
                     $collection['NAMECOLLECTION'],
                     $collection['IDCOLLECTION'],
                     $collection['PATHPICTURE']
@@ -33,7 +34,7 @@ class collectionDAO extends DAO
     // Obtenir un produit par son ID
     public function getProductByID(int $id)
     {
-        $collection = $this->queryRow("SELECT * FROM coll$collection WHERE idprod = ?", array($id));
+        $collection = $this->queryRow("SELECT * FROM collection WHERE IDCOLLECTION = ?", array($id));
         return $collection == false ? false : $collection;
     }
 }

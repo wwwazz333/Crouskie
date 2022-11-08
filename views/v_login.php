@@ -3,7 +3,7 @@
 require_once(PATH_VIEWS . 'head.php');
 ?>
 <!--  Début de la page -->
-<img src="<?=PATH_LOGOS . "crouskie-geant.png"?>" alt="crouskie géant" class="background">
+<img src="<?=PATH_LOGOS . "crouskie-geant.png"?>" alt="<?= CROUKIE_GEANT ?>" class="background">
 <div class="flex column content center">
     <div class="logo">
         <a href="index.php">
@@ -13,16 +13,18 @@ require_once(PATH_VIEWS . 'head.php');
     </div>
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
-        <h3>Connexion / Inscription</h3>
-        <p>Saisissez votre e-mail pour vous<br>connecter ou créer un compte</p>
+        <h3><?= CONNEXION_INSCRIPTION ?></h3>
+        <p><?= INSTRUCTIONS_CONNEXION ?></p>
     </div>
     <form class="card flex column center shadow rounded" onsubmit="return checkForm(event)">
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
-            data-icon="<?= PATH_ICONS . "email-outline.svg"?>" 
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
         >
-        <input type="submit" id="form-confirm" value="Connexion / Inscription" class="valid circle">
+        <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
+    <!-- <form action="index.php?page=login" method="post" class="card flex column center shadown rounded">
+
+    </form> -->
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>
 

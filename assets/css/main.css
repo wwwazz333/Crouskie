@@ -76,10 +76,6 @@ body{
     width: 100%;
     min-height: 100vh;
     background-color: var(--background-color);
-
-    /* image de fond temporaire */
-    /* background-image: url(../images/backgrounds/background.jpg);
-    background-size: cover; */
 }
 
 /* Permet de cacher les élément possédant la class hidden */
@@ -101,6 +97,10 @@ body{
 
 .flex.column{
     flex-flow: column;
+}
+
+.flex.wrap{
+    flex-wrap: wrap;
 }
 
 .flex.center{
@@ -231,20 +231,20 @@ input[type=email]:invalid
     border: solid var(--primary-color) 2px;
 } */
 
-input[type=text]:valid,
-input[type=password]:valid,
-input[type=email]:valid
+input[type=text]:required:valid,
+input[type=password]:required:valid,
+input[type=email]:required:valid
 {
     border: solid var(--valid-color) 2px;
 }
 
 /* Non fonctionnel actuellement */
-input.icon{
+/* input.icon{
     background-image: attr(data-icon url);
     background-repeat: no-repeat;
     background-position: right;
     background-size: 30px;
-}
+} */
 
 
 /* TODO les propriétés hover et focus du bouton et du input */
@@ -261,32 +261,44 @@ a{
 
 /* Pour rendre un composant html compatible avec une icone */
 .icon{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
     color: inherit;
 }
+
 .icon iconify-icon{
-    font-size: 40px;
+    font-size: 30px;
 }
+
 /* permet d'afficher un nombre au centre de l'icone */
 .icon.counter::after{
     content: attr(data-number);
-    position: relative;
-    left: -21px;
-    top: 4px;
+    position: absolute;
+    left: 14px;
+    top: 15px;
     font-size: 0.9rem;
     color: inherit;
+}
+
+/* Hero */
+.hero{
+    height: 100vh;
+}
+
+.hero img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 /*============ Composants Complexes ============*/
 
 .header{
-    /* Fixed ? */
     position: fixed;
     width: 100%;
+    top: 0;
 
     padding: 1rem;
     background-color: white;
@@ -314,6 +326,10 @@ a{
         gap: 0.5rem;
     }
 
+    .header iconify-icon {
+        font-size: 35px;
+    }
+
 /* Header version transparent */
 
 .header.transparent{
@@ -329,8 +345,53 @@ a{
 /*============ Footer ============*/
 
 .footer{
-    /* A faire */
     width: 100%;
+    padding: 2rem 0 2rem 0;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--primary-color);
+    overflow: hidden;
+    background-color: white;
+}
+
+.footer .icons-container{
+    gap: 1.5rem;
+}
+
+.footer p{
+    font-weight: var(--font-medium);
+}
+
+/* Partie avec le logo et les barres sur le coté */
+
+.footer .logo-container{
+    position: relative;
+}
+
+/* Barre droite */
+
+.footer .logo-container::after{
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    content: "";
+    width: 25vw;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Barre gauche */
+
+.footer .logo-container::before{
+    position: absolute;
+    right: 110%;
+    top: 50%;
+    content: "";
+    width: 25vw;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
 }
 
 /*============ Animations ============*/

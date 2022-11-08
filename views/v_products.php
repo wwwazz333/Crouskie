@@ -4,9 +4,11 @@ require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
 ?>
 <!--  Début de la page -->
-<div class="hero">
-    <!-- alt dynamique à faire -->
-    <img src="<?=PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
+<div class="flex row center search">
+    <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
+</div>
+<div class="flex row wrap products">
+
 </div>
 <!--  Fin de la page -->
 

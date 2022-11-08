@@ -9,22 +9,25 @@ function sendJson(mixed $result,bool $success = true)
     echo json_encode($res);
 }
 
-if (isset($_POST['action'])) {
+// get json data from POST Request
+$data = json_decode(file_get_contents('php://input'), true);
+
+if (isset($data['action'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
     try {
-        switch ($_POST['action']) {
+        switch ($data['action']) {
             case 'check':
-                if (isset($_POST['email'])) {
+                if (isset($data['email'])) {
                     $DAO = new UtilisateurDAO(DEBUG);
-                    $res = $DAO->isEmailExist(htmlspecialchars($_POST['email']));
+                    $res = $DAO->isEmailExist(htmlspecialchars($data['email']));
                     sendJson($res);
                 }
                 break;
             case 'search':
-                if (isset($_POST['name'])) {
+                if (isset($data['name'])) {
                     $DAO = new ProductDAO(DEBUG);
-                    $res = $DAO->getProductsByName(htmlspecialchars($_POST['name']));
+                    $res = $DAO->getProductsByName(htmlspecialchars($data['name']));
                     sendJson($res);
                 }
                 break;
@@ -35,7 +38,7 @@ if (isset($_POST['action'])) {
                 break;
             case 'prod_id':
                 $DAO = new ProductDAO(DEBUG);
-                $res = $DAO->getProductByID($_POST['id']);
+                $res = $DAO->getProductByID($data['id']);
                 sendJson($res);
                 break;
             default:

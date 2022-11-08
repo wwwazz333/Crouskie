@@ -1,6 +1,6 @@
 <?php
 // Initialisation du système de session
-session_name('croukie');
+session_name('crouskie');
 session_start();
 // Initialisation des paramètres du site
 require_once('./config/configuration.php');

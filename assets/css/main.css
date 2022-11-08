@@ -270,7 +270,6 @@ a{
 }
 .icon iconify-icon{
     font-size: 40px;
-    
 }
 /* permet d'afficher un nombre au centre de l'icone */
 .icon.counter::after{

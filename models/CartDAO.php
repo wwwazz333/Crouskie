@@ -2,7 +2,7 @@
 require_once(PATH_MODELS . 'DAO.php');
 require_once(PATH_ENTITY.'Cart.php');
 
-class collectionDAO extends DAO
+class cartDAO extends DAO
 {
 
     public function resultToCartArray(array $result){

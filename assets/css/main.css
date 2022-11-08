@@ -41,8 +41,7 @@
 
     /*============ Fonts et typo ============*/
 
-    --title-font: 'Montserrat'; /* TODO Importer police Chalet custom */
-    --main-font: 'Montserrat', sans-serif;
+    --main-font: "Montserrat", sans-serif;
     --h1-font-size: 2.5rem;
     --h2-font-size: 1.5rem;
     --h3-font-size: 1.25rem;
@@ -62,6 +61,9 @@
     --border-radius: 15px;
     --blur: blur(5px);
     -webkit-font-smoothing: antialiased;
+
+    /* Font */
+    font-family: var(--main-font);
 }
 
 /*============ CSS Globale ============*/
@@ -77,6 +79,7 @@ body{
     min-height: 100vh;
     background-color: var(--background-color);
 }
+
 
 /* Permet de cacher les élément possédant la class hidden */
 *.hidden{

@@ -19,5 +19,11 @@ class collectionDAO extends DAO
         return $cart;
     }
     
-    
+      //get all the existing collections
+      public function getCartByCustomerId(int $id)
+      {
+          $cart = $this->queryAll("SELECT * FROM cart where IDCUSTOMER = ?",array($id));
+          return $cart == false ? false : $cart;
+      }
+      
 }

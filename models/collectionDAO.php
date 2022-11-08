@@ -33,7 +33,7 @@ class collectionDAO extends DAO
     // Obtenir un produit par son ID
     public function getProductByID(int $id)
     {
-        $collection = $this->queryRow("SELECT * FROM coll$collection WHERE idprod = ?", array($id));
+        $collection = $this->queryRow("SELECT * FROM collection WHERE IDCOLLECTION = ?", array($id));
         return $collection == false ? false : $collection;
     }
 }

@@ -16,6 +16,7 @@ public class ConnectionDB {
 
     private ConnectionDB() throws SQLException {
         con = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
+//        con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr/p2100284", "p2100284", "613689");
     }
 
     public static ConnectionDB getInstance() throws SQLException {

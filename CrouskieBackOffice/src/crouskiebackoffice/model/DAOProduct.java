@@ -18,9 +18,9 @@ public class DAOProduct extends DAO<Product> {
                 + "	when IDCOLLECTION is null then null\n"
                 + "	else namecollection\n"
                 + "    end as NAMECOLLECTION,\n"
-                + "(SELECT group_concat(CONCAT(idsize, ',', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
+                + "(SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
                 + "(SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,\n"
-                + "(SELECT group_concat(CONCAT(idtag, ',', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags\n"
+                + "(SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags\n"
                 + "FROM `PRODUCT` P1 NATURAL JOIN EXISTINGSIZE NATURAL JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION";
     }
 
@@ -38,7 +38,7 @@ public class DAOProduct extends DAO<Product> {
         if (obj.get("size_existing") != null) {
             for (String sizeLine : obj.get("size_existing").toString().split(";;;")) {
                 int id = Integer.parseInt(sizeLine.split(",")[0]);
-                String name = sizeLine.split(",")[1];
+                String name = sizeLine.split(",,,")[1];
                 size_existing.add(new ClothSize(id, name));
             }
         }
@@ -50,7 +50,7 @@ public class DAOProduct extends DAO<Product> {
         if (obj.get("tags") != null) {
             for (String sizeLine : obj.get("tags").toString().split(";;;")) {
                 int id = Integer.parseInt(sizeLine.split(",")[0]);
-                String name = sizeLine.split(",")[1];
+                String name = sizeLine.split(",,,")[1];
                 tags.add(new Tag(id, name));
             }
         }

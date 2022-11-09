@@ -12,7 +12,7 @@ if (isset($_POST['email'])) {
 
     $DAO = new UtilisateurDAO(DEBUG);
     if($DAO->isEmailExist($email)){
-        header('Location: index.php?page=signin&email='.$email);
+        header('Location: index.php?page=signup&email='.$email);
         exit();
     }else{
         header('Location: index.php?page=signup&email='.$email);

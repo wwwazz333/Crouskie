@@ -2,6 +2,7 @@ body{
     overflow: hidden;
 }
 
+/* Crouskie Geant */
 .background{
     position: absolute;
     bottom: -100px;
@@ -9,6 +10,7 @@ body{
     z-index: -1;
 }
 
+/* Espacement des élements du contenu de la page */
 .logo{
     margin-top: 2rem;
 }
@@ -23,6 +25,8 @@ body{
     width: 100%;
 }
 
+/* Style du formulaire */
+
 form{
     width: 450px;
     height: 250px;
@@ -32,6 +36,8 @@ form{
 form .valid{
     height: 60px;
 }
+
+/* Bouton gérer les crouskies */
 
 a{
     font-weight: var(--font-light);

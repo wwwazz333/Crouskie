@@ -8,7 +8,7 @@ class Product{
     private string $_description;
     private float $_price;
 
-    function __construct__(int $id, int $collection_id, string $name, string $description, float $price)
+    function __construct(int $id, int $collection_id, string $name, string $description, float $price)
     {
         $this->_id = $id;
         $this->_collection_id;

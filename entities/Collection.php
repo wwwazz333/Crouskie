@@ -9,7 +9,7 @@ class Collection
 
 
 
-    function __construct__(int $name, int $_collection_id, string $_path_picture)
+    function __construct(int $name, int $_collection_id, string $_path_picture)
     {
         $this->_name = $name;
         $this->_collection_id = $_collection_id;

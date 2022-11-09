@@ -20,9 +20,10 @@ require_once(PATH_VIEWS . 'head.php');
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
         >
-        <input type="password" name="password" id="password" placeholder="Créez un mot de passe" class="icon rounded shadow-small" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
-        >
+        <input type="password" name="password" id="password" placeholder="Créez un mot de passe" class="icon rounded shadow-small">
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer mot de passe" class="icon rounded shadow-small">
+        <input type="text" name="firstname" id="firstname" placeholder="Prénom" class="icon rounded shadow-small">
+        <input type="text" name="lastname" id="lastname" placeholder="Nom" class="icon rounded shadow-small">
         <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>

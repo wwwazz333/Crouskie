@@ -20,7 +20,7 @@ if (isset($_POST['email'])) {
     }
 
 }else{
-    // A faire
+    
 }
 
 require_once(PATH_VIEWS . $page . '.php');

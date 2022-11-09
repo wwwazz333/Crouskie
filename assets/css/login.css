@@ -1,0 +1,38 @@
+body{
+    overflow: hidden;
+}
+
+.background{
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    z-index: -1;
+}
+
+.logo{
+    margin-top: 2rem;
+}
+
+.instruction{
+    gap: 1rem;
+}
+
+.content{
+    width: fit-content;
+    gap: 2rem;
+    width: 100%;
+}
+
+form{
+    width: 450px;
+    height: 300px;
+    gap: 2rem;
+}
+
+form .valid{
+    height: 60px;
+}
+
+a{
+    font-weight: var(--font-light);
+}

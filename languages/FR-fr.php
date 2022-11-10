@@ -5,6 +5,10 @@ define('LOGO', 'Logo crouskie'); // Affiché si image non trouvée
 define('SHOPPINGBAG','logo panier');
 define('CROUKIE_GEANT','crouskie géant en arrière plan');
 
+//acceuil
+define('COLLECTION_DISCOVER','Découvrez la nouvelle collection');
+define('DISCOVER','Découvrir');
+
 // Menus
 define('MENU_COLLECTIONS','Collections');
 define('MENU_PRODUITS','Produits');

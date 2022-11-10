@@ -4,7 +4,6 @@ require_once(PATH_ENTITY.'Collection.php');
 
 class collectionDAO extends DAO
 {
-
     public function resultToCollectionArray(array $result){
         $collection = [];
         foreach($result as $collection){

@@ -13,16 +13,13 @@ require_once(PATH_VIEWS . 'head.php');
     </div>
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
-        <h3><?= CONNEXION_INSCRIPTION ?></h3>
-        <p><?= INSTRUCTIONS_CONNEXION ?></p>
+        <h3><?= CONNEXION ?></h3>
+        <p>Entrez votre mot de passe afin de vous connecter.</p>
     </div>
-    <form action="index.php?page=portal" method="post" class="card flex column center shadow rounded">
-        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
-        >
-        <input type="password" name="password" id="password" placeholder="Mot de passe" class="icon rounded shadow-small" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
-        >
+    <form action="index.php?page=signin" method="post" class="card flex column center shadow rounded">
+        <input type="hidden" name="email" id="email" value="<?= $_GET['email']?>">
+        <a href="index.php?page=portal"><?=$_GET['email']?><iconify-icon icon="material-symbols:edit"></iconify-icon></a>
+        <input type="password" name="password" id="password" placeholder="Mot de passe" class="icon rounded shadow-small" required>
         <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>

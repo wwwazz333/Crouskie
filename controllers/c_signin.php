@@ -16,7 +16,7 @@ if (isset($_POST['email'])) {
 if (isset($_GET['email'])) {
     require_once(PATH_VIEWS . $page . '.php');
 }else{
-    // Dans le cas contraire en le redirige vers la page d'accueil
+    // Dans le cas contraire en le redirige vers la page portail (demande d'email)
     header('Location: index.php?page=portal');
     exit();
 }

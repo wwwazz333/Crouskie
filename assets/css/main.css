@@ -279,9 +279,9 @@ a{
 .icon.counter::after{
     content: attr(data-number);
     position: absolute;
-    left: 14px;
-    top: 15px;
-    font-size: 0.9rem;
+    left: 13px;
+    top: 18px;
+    font-size: 0.8rem;
     color: inherit;
 }
 

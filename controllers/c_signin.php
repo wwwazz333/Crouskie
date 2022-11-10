@@ -9,6 +9,11 @@ if ($isLogged) {
 // On regarde si il s'agit d'une tentative de connexion
 if (isset($_POST['password'])) {
     $password = $_POST['password'];
+    $email = $_GET['email'];
+    $utilisateurDAO = new UtilisateurDAO(DEBUG);
+    if($password == $utilisateurDAO->getPassword($email)){
+        $isLogged==true;
+    }
 }
 
 

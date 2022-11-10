@@ -9,7 +9,7 @@ require_once(PATH_VIEWS . 'header.php');
     <img src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
     <div class='flex column'>
         <p><?=COLLECTION_DISCOVER?></p>
-        <p id='col-name-home'>Crousk-hiver</p>
+        <p>Crousk-hiver</p>
         <button class='rounded'><?=DISCOVER?></button>
     </div>
 

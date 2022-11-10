@@ -8,4 +8,7 @@ class UtilisateurDAO extends DAO
         return $result[0] == 1 ? true : false;
     }
 
+    public function addUser(string $email, string $password,string $firstName,string $lastName){
+        //$result = $this->queryUpdate();
+    }
 }

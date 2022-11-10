@@ -49,6 +49,10 @@ abstract class DAO
 	} 
     return $res;
   }
+
+  public function queryUpdate(){
+    
+  }
   
   //retourne un tableau 2D avec éventuellement plusieurs enregistrements
   public function queryAll($sql, $args = null)

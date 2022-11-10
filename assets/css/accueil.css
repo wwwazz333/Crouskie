@@ -1,0 +1,19 @@
+
+.hero p{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.hero button{
+    background-color: var(--background-color);
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: black;
+    width: 150px;
+    height: 40px;
+    
+}

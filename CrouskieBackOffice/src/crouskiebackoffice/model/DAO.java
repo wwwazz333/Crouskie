@@ -7,6 +7,13 @@ import java.util.List;
 
 public abstract class DAO<T> {
 
+    /**
+     * get a list of rows returned by the request that has for arguments args
+     * @param request the SQL request to send
+     * @param args arguments that replace "?"
+     * @return A list of rows returned by the request
+     * @throws SQLException an Exception may happen due to the request
+     */
     protected List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
 

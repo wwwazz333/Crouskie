@@ -19,8 +19,6 @@ if (isset($_POST['email'])) {
         exit();
     }
 
-}else{
-    
 }
 
 require_once(PATH_VIEWS . $page . '.php');

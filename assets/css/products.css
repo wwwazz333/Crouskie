@@ -10,3 +10,21 @@
     min-height: 70vh;
     margin-top: 2rem;
 }
+
+.products img{
+    height:260px ;
+    width: 250px;
+    box-shadow: var(--box-shadow-small);
+}
+.products iconify-icon{
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border-radius: 30px;
+    padding: 7px;   
+}
+
+.products div{
+    align-items:center; 
+    background-color: white;
+}
+

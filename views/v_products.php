@@ -8,10 +8,22 @@ require_once(PATH_VIEWS . 'header.php');
     <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
 </div>
 <div class="flex row wrap products">
+    <div class='flex column rounded'>
+        <img class='rounded' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
+        <div class='flex row' style='padding-top:10px;background-color:transparent;'>
+            <div class='flex column'>
+                <p>Crouskie Hoodie</p>
+                <p>45€</p>
+            </div>
+            <iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
+        </div>
+    </div>
+
+
 
 </div>
 <!--  Fin de la page -->
 
 
 <!--  Pied de page -->
-<?php require_once(PATH_VIEWS.'footer.php')?>
+<?php require_once(PATH_VIEWS . 'footer.php') ?>

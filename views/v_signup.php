@@ -13,7 +13,7 @@ require_once(PATH_VIEWS . 'head.php');
     </div>
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
-        <h3><?= CONNEXION_INSCRIPTION ?></h3>
+        <h3><?= INSCRIPTION ?></h3>
         <p><?= INSTRUCTIONS_CONNEXION ?></p>
     </div>
     <form action="index.php?page=portal" method="post" class="card flex column center shadow rounded">

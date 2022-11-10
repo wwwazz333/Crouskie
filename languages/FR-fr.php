@@ -27,6 +27,7 @@ define('CONNECTED','Vous êtes connecté(e)');
 define('MON_COMPTE','Mon compte');
 
 // Page Connexion
+define('INSCRIPTION','Inscription');
 define('CONNEXION_INSCRIPTION','Connexion / Inscription');
 define('INSTRUCTIONS_CONNEXION','Saisissez votre e-mail pour vous<br>connecter ou créer un compte');
 define('GERER_COOKIES','Gérer mes croukies');

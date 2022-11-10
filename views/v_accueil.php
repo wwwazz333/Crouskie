@@ -7,9 +7,12 @@ require_once(PATH_VIEWS . 'header.php');
 <div class="hero">
     <!-- alt dynamique à faire -->
     <img src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
+    <div class='flex column'>
+        <p><?=COLLECTION_DISCOVER?></p>
+        <p id='col-name-home'>Crousk-hiver</p>
+        <button class='rounded'><?=DISCOVER?></button>
+    </div>
 
-    <p>Découvrez la nouvelle collection Crousk-hiver</p>
-    <button class='rounded'>Découvrir</button>
 
 </div>
 <!--  Fin de la page -->

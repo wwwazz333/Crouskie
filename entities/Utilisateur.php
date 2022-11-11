@@ -7,7 +7,6 @@ class User{
     private string $_first_name;
     private string $_last_name;
     private string $_email;
-    private string $_username;
 
     // Je pense faire d'autres classes pour :
     // Commands
@@ -16,11 +15,10 @@ class User{
     /*
     Constructeur de l'utilisateur
     */
-    function __construct(string $first_name, string $last_name, string $email, string $username){
+    function __construct(string $first_name, string $last_name, string $email){
         $this -> _first_name = $first_name;
         $this -> _last_name = $last_name;
         $this -> _email = $email;
-        $this -> _username = $username;
     }
 
     /*============ Getters ============*/
@@ -41,12 +39,6 @@ class User{
     public function getEmail()
     {
         return $this->_email;
-    }
-
-    //Obtenir le pseudo
-    public function getUsername()
-    {
-        return $this->_username;
     }
 
 }

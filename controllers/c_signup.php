@@ -1,5 +1,4 @@
 <?php
-
 // On regarde si il s'agit d'une tentative de connexion
 if (isset($_POST['email'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
@@ -9,8 +8,10 @@ if (isset($_POST['email'])) {
         $_POST['firstname'],
         $_POST['lastname']
     );
-    header('Location: index.php');
-    exit();
+    if ($res) {
+        
+    }
+    // Bruh moment
 }
 
 // On vérifie que l'email est bien présente dans l'URL avant d'afficher la page

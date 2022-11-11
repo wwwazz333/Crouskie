@@ -21,7 +21,6 @@ if (isset($_POST['password'])) {
                 $data["FIRST_NAME"],
                 $data["LAST_NAME"],
                 $data["MAIL_ADDRESS"],
-                $data["USERNAME"]
             );
             $_SESSION['account'] = serialize($user);
             // redirection accueil temporaire

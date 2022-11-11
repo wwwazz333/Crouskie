@@ -11,7 +11,7 @@ class Product{
     function __construct(int $id, int $collection_id, string $name, string $description, float $price)
     {
         $this->_id = $id;
-        $this->_collection_id;
+        $this->_collection_id = $collection_id;
         $this->_name = $name;
         $this->_description = $description;
         $this->_price = $price;

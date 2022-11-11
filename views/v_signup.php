@@ -14,17 +14,18 @@ require_once(PATH_VIEWS . 'head.php');
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
         <h3><?= INSCRIPTION ?></h3>
-        <p><?= INSTRUCTIONS_CONNEXION ?></p>
+        <p><?= INSTRUCTIONS_SIGNUP ?></p>
     </div>
-    <form action="index.php?page=portal" method="post" class="card flex column center shadow rounded">
-        <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
-        >
+    <form action="index.php?page=signup" method="post" class="card flex column center shadow rounded">
+        <input type="hidden" name="email" id="email" value="<?= $_GET['email']?>">
+        <a href="index.php?page=portal"><?=$_GET['email']?><iconify-icon icon="material-symbols:edit"></iconify-icon></a>
         <input type="password" name="password" id="password" placeholder="Créez un mot de passe" class="icon rounded shadow-small">
         <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmer mot de passe" class="icon rounded shadow-small">
-        <input type="text" name="firstname" id="firstname" placeholder="Prénom" class="icon rounded shadow-small">
-        <input type="text" name="lastname" id="lastname" placeholder="Nom" class="icon rounded shadow-small">
-        <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
+        <div class="flex row">
+            <input type="text" name="firstname" id="firstname" placeholder="Prénom" class="icon rounded shadow-small">
+            <input type="text" name="lastname" id="lastname" placeholder="Nom" class="icon rounded shadow-small">
+        </div>
+        <input type="submit" id="form-confirm" value="<?= INSCRIPTION ?>" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>

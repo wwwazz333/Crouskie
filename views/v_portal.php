@@ -14,7 +14,7 @@ require_once(PATH_VIEWS . 'head.php');
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
         <h3><?= CONNEXION_INSCRIPTION ?></h3>
-        <p><?= INSTRUCTIONS_CONNEXION ?></p>
+        <p><?= INSTRUCTIONS_PORTAL ?></p>
     </div>
     <form action="index.php?page=portal" method="post" class="card flex column center shadow rounded">
         <input type="email" name="email" id="email" placeholder="E-mail" class="icon rounded shadow-small" 
@@ -22,7 +22,7 @@ require_once(PATH_VIEWS . 'head.php');
         >
         <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
     </form>
-    <a href="#" class="underlined">Gérer mes crouskies</a>
+    <a href="#" class="underlined"><?= GERER_COOKIES ?></a>
 </div>
 
 <!--  Fin de la page -->

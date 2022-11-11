@@ -9,13 +9,13 @@ require_once(PATH_VIEWS . 'header.php');
     <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
 </div>
 <div class="flex row wrap products">
-    <?php foreach ($productArray as $product) {?>
+    <?php foreach ($products as $product) {?>
         <div class='flex column rounded' style='height:fit-content;'>
         <img class='rounded' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
         <div class='flex row' style='padding-top:10px;background-color:transparent;'>
             <div class='flex column'>
                 <p><?=$product->getName()?></p>
-                <p><?=$product->getPrice()?></p>
+                <p><?=$product->getPrice()?> €</p>
             </div>
             <iconify-icon class='circle'icon="akar-icons:shopping-bag"></iconify-icon>
         </div>

@@ -10,7 +10,7 @@ class ProductDAO extends DAO{
             array_push($products, 
                 new Product(
                     $product['IDPROD'],
-                    $product['IDCOLLECTION'],
+                    $product['IDCOLLECTION'] == null ? 'NULL' : $product['IDCOLLECTION'],
                     $product['NAMEPROD'],
                     $product['DESCRIPTIONPROD'],
                     $product['PRICEPROD']

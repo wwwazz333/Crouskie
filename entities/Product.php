@@ -3,12 +3,12 @@
 class Product{
     // properties
     private int $_id;
-    private int $_collection_id;
+    private string $_collection_id;
     private string $_name;
     private string $_description;
     private float $_price;
 
-    function __construct(int $id, int $collection_id, string $name, string $description, float $price)
+    function __construct(int $id,string $collection_id, string $name, string $description, float $price)
     {
         $this->_id = $id;
         $this->_collection_id = $collection_id;
@@ -24,7 +24,7 @@ class Product{
         return $this->_id;
     }
 
-    public function getCollectionId() : int
+    public function getCollectionId() : string
     {
         return $this->_collection_id;
     }

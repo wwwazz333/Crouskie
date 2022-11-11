@@ -8,18 +8,17 @@ require_once(PATH_VIEWS . 'header.php');
 <div class="flex row center search">
     <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
 </div>
-<div class="flex row wrap products">
+<div class="flex row wrap" id="products">
     <?php foreach ($products as $product) {?>
-        <div class='flex column rounded' style='height:fit-content;'>
-        <img class='rounded' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
-        <div class='flex row' style='padding-top:10px;background-color:transparent;'>
-            <div class='flex column'>
-                <p><?=$product->getName()?></p>
-                <p><?=$product->getPrice()?> €</p>
+        <a href="index.php?page=detail&id=<?= $product->getId() ?>">
+            <div class='flex column rounded shadow-small product-item'>
+                <img class='rounded shadow-small' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
+                <div class='flex column center details'>
+                    <p><?=$product->getName()?></p>
+                    <p><?=$product->getPrice()?>€</p>
+                </div>
             </div>
-            <iconify-icon class='circle'icon="akar-icons:shopping-bag"></iconify-icon>
-        </div>
-    </div>  
+        </a>  
     <?php } ?>
 </div>
 <!--  Fin de la page -->

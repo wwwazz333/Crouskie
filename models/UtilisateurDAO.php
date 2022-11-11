@@ -2,20 +2,21 @@
 require_once(PATH_MODELS . 'DAO.php');
 class UtilisateurDAO extends DAO
 {
-    public function getPassword($email){
-        $result = $this->queryRow("SELECT password FROM customer WHERE mail_adress = ?",array($email));
+    public function getUser($email){
+        $result = $this->queryRow("SELECT * FROM customer WHERE mail_address = ?",array($email));
         return $result;
     }
 
     public function isEmailExist(string $email)
     {
-        $result = $this->queryRow("SELECT count(*) FROM customer WHERE mail_address = ?",array($email));
-        return $result[0] == 1 ? true : false;
+        $result = $this->getUser($email);
+        return $result ? true : false;
     }
 
     public function addUser(string $email, string $password,string $firstName,string $lastName){
         $result = $this->queryBdd("INSERT INTO customer (first_name,last_name,mail_address,username,password) VALUES (?,?,?,?)",array(
             $lastName,$lastName,$firstName,$password
         ));
+        return $result;
     }
 }

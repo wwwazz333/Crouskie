@@ -1,10 +1,13 @@
 <?php
-// Initialisation du système de session
-session_name('crouskie');
-session_start();
 // Initialisation des paramètres du site
 require_once('./config/configuration.php');
 require_once(PATH_TEXTES.LANG.'.php');
+
+// besoin de require avant de serialiser / deserialiser
+require_once(PATH_ENTITY . 'Utilisateur.php');
+// Initialisation du système de session
+session_name('crouskie');
+session_start();
 
 //vérification de la page demandée 
 if(isset($_GET['page']))
@@ -21,8 +24,9 @@ else{
 
 // Vérification connexion
 // Ceci est temporaire !!
-if (isset($_SESSION['logged']) && $_SESSION['logged']) {
+if (isset($_SESSION['account'])) {
   $isLogged = true;
+  $user = unserialize($_SESSION['account']);
 }else{
   $isLogged = false;
 }

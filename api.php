@@ -31,16 +31,6 @@ if (isset($data['action'])) {
                     sendJson($res);
                 }
                 break;
-            case 'products':
-                $DAO = new ProductDAO(DEBUG);
-                $res = $DAO->getProducts();
-                sendJson($res);
-                break;
-            case 'prod_id':
-                $DAO = new ProductDAO(DEBUG);
-                $res = $DAO->getProductByID($data['id']);
-                sendJson($res);
-                break;
             default:
                 sendJson("Unknow action",false);
                 break;

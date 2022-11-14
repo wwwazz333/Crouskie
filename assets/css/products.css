@@ -11,8 +11,8 @@
     min-height: 70vh;
     margin-top: 2rem;
     gap: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+
+    padding: 0 2rem 2rem 2rem;
 }
 
 /* Items dans les produits */

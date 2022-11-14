@@ -8,7 +8,7 @@ require_once(PATH_VIEWS . 'header.php');
 <div class="flex row center search">
     <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
 </div>
-<div class="flex row wrap" id="products">
+<div class="flex row wrap center" id="products">
     <?php foreach ($products as $product) {?>
         <a href="index.php?page=detail&id=<?= $product->getId() ?>">
             <div class='flex column rounded shadow-small product-item'>

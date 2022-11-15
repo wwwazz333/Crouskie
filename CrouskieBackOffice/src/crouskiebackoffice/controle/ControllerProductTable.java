@@ -11,17 +11,17 @@ import java.util.logging.Logger;
  *
  * @author wwwazz
  */
-public class ProductTableControlle {
+public class ControllerProductTable {
     
     ModelVisualisationProduct modelVisualisationProduct;
     DAO dao;
 
-    public ProductTableControlle() {
+    public ControllerProductTable() {
         dao = new DAOProduct();
         try {
             modelVisualisationProduct = new ModelVisualisationProduct(dao.getAllData("nameprod"));
         } catch (SQLException ex) {
-            Logger.getLogger(ProductTableControlle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerProductTable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

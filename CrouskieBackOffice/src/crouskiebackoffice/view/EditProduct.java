@@ -23,6 +23,10 @@ public class EditProduct extends javax.swing.JPanel {
         nameInput.setText(prod.getName());
         descriptionInput.setText(prod.getDescription());
         priceInput.setText(prod.getPrice() + "");
+
+        tagsList.addMouseListener(controller.getMouseListenerForTagsList());
+        colorList.addMouseListener(controller.getMouseListenerForColorsList());
+        sizeList.addMouseListener(controller.getMouseListenerForSizesList());
     }
 
     /**
@@ -132,7 +136,7 @@ public class EditProduct extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         add(sizeLabel, gridBagConstraints);
 
-        sizeList.setModel(controller.getSizeListModel());
+        sizeList.setModel(controller.getSizesListModel());
         sizeList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPaneSize.setViewportView(sizeList);
 

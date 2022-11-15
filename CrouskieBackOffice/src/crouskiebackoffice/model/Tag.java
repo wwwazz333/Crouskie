@@ -1,6 +1,6 @@
 package crouskiebackoffice.model;
 
-public class Tag {
+public class Tag implements HasName{
 
     private int id;
     private String name;
@@ -19,6 +19,7 @@ public class Tag {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

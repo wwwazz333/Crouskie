@@ -1,20 +1,24 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.CollectionModelComboBox;
-import crouskiebackoffice.model.Color;
+import crouskiebackoffice.model.DAOClothSize;
 import crouskiebackoffice.model.DAOCollection;
+import crouskiebackoffice.model.DAOColor;
 import crouskiebackoffice.model.DAOProduct;
+import crouskiebackoffice.model.DAOTag;
+import crouskiebackoffice.model.DynamicListModel;
 import crouskiebackoffice.model.Product;
-import crouskiebackoffice.model.Tag;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -25,7 +29,7 @@ public class ControllerEditProduct {
     private Product product;
     private DAOCollection daoCollection;
     private DAOProduct daoProduct;
-    private DefaultListModel tagsListModel, colorsListModel, SizeListModel;
+    private DefaultListModel tagsListModel, colorsListModel, sizesListModel;
     private DefaultComboBoxModel collectionComboBoxModel;
 
     public ControllerEditProduct(Product product) {
@@ -39,19 +43,9 @@ public class ControllerEditProduct {
             Logger.getLogger(ControllerEditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        tagsListModel = new DefaultListModel();
-        for (Tag tag : product.getTags()) {
-            tagsListModel.addElement(tag.getName());
-        }
-        colorsListModel = new DefaultListModel();
-        for (Color color : product.getExistingColor()) {
-            colorsListModel.addElement(color.getName());
-        }
-
-        SizeListModel = new DefaultListModel();
-        for (ClothSize size : product.getExistingSize()) {
-            SizeListModel.addElement(size.getName());
-        }
+        tagsListModel = new DynamicListModel(product.getTags(), new DAOTag());
+        colorsListModel = new DynamicListModel(product.getExistingColor(), new DAOColor());
+        sizesListModel = new DynamicListModel(product.getExistingSize(), new DAOClothSize());
     }
 
     public void save(String name, String description, String price) throws NumberFormatException, SQLException {
@@ -69,6 +63,45 @@ public class ControllerEditProduct {
         return collectionComboBoxModel;
     }
 
+    public MouseListener getMouseListenerForTagsList() {
+        return new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                int index = list.locationToIndex(evt.getPoint());
+                Object obj = colorsListModel.get(index);
+                if (obj == DynamicListModel.ajoutLabel) {
+
+                }
+            }
+        };
+    }
+
+    public MouseListener getMouseListenerForSizesList() {
+        return new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                int index = list.locationToIndex(evt.getPoint());
+                Object obj = colorsListModel.get(index);
+                if (obj == DynamicListModel.ajoutLabel) {
+
+                }
+            }
+        };
+    }
+
+    public MouseListener getMouseListenerForColorsList() {
+        return new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                int index = list.locationToIndex(evt.getPoint());
+                Object obj = colorsListModel.get(index);
+                if (obj == DynamicListModel.ajoutLabel) {
+
+                }
+            }
+        };
+    }
+
     public DefaultListModel getTagsListModel() {
         return tagsListModel;
     }
@@ -77,8 +110,8 @@ public class ControllerEditProduct {
         return colorsListModel;
     }
 
-    public DefaultListModel getSizeListModel() {
-        return SizeListModel;
+    public DefaultListModel getSizesListModel() {
+        return sizesListModel;
     }
 
 }

@@ -1,13 +1,14 @@
 package crouskiebackoffice.model;
 
-public class Color {
+public class Color implements HasName{
 
-    private String name;
+    private final String name;
 
     public Color(String name) {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }

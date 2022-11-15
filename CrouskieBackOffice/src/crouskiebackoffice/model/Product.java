@@ -2,7 +2,7 @@ package crouskiebackoffice.model;
 
 import java.util.List;
 
-public class Product {
+public class Product implements HasName{
 
     private int id;
 
@@ -77,6 +77,7 @@ public class Product {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

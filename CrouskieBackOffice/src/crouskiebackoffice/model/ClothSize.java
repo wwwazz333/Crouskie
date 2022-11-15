@@ -1,9 +1,9 @@
 package crouskiebackoffice.model;
 
-public class ClothSize {
+public class ClothSize implements HasName {
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 
     public ClothSize(int id, String name) {
         this.id = id;
@@ -19,6 +19,7 @@ public class ClothSize {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }

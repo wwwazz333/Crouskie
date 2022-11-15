@@ -26,7 +26,7 @@ public class ControllerEditProduct {
     private DAOCollection daoCollection;
     private DAOProduct daoProduct;
     private DefaultListModel tagsListModel, colorsListModel, SizeListModel;
-    private DefaultComboBoxModel<Collection> collectionComboBoxModel;
+    private DefaultComboBoxModel collectionComboBoxModel;
 
     public ControllerEditProduct(Product product) {
         this.product = product;

@@ -1,5 +1,6 @@
-package crouskiebackoffice.controle;
+package crouskiebackoffice.model;
 
+import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.Product;
@@ -19,15 +20,8 @@ public class ModelVisualisationProduct extends AbstractTableModel {
 
     private List<Product> rowData = new LinkedList<>();
 
-    public ModelVisualisationProduct() {
-        DAOProduct dao = new DAOProduct();
-
-        try {
-            rowData = dao.getAllData("nameprod");
-        } catch (SQLException ex) {
-            Logger.getLogger(ModelVisualisationProduct.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    public ModelVisualisationProduct(List<Product> allData) {
+        rowData = allData;
     }
 
     @Override

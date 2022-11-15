@@ -1,6 +1,6 @@
 package crouskiebackoffice.view;
 
-import crouskiebackoffice.controle.ModelVisualisationProduct;
+import crouskiebackoffice.model.ModelVisualisationProduct;
 
 public class VisualisationPanel extends javax.swing.JPanel {
 

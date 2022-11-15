@@ -1,6 +1,7 @@
 package crouskiebackoffice.view;
 
-import crouskiebackoffice.controle.ModelVisualisationProduct;
+import crouskiebackoffice.controle.ProductTableControlle;
+import crouskiebackoffice.model.ModelVisualisationProduct;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
@@ -11,8 +12,11 @@ import javax.swing.table.TableCellRenderer;
 
 public class ProductVisualisationTable extends JTable {
 
+    ProductTableControlle controlle;
+
     public ProductVisualisationTable() {
-        setModel(new ModelVisualisationProduct());
+        controlle = new ProductTableControlle();
+        setModel(controlle.getModelVisualisationProduct());
         getColumn(getColumnName(getColumnCount() - 1)).setCellRenderer(new ButtonRenderer());
         getColumn(getColumnName(getColumnCount() - 1)).setCellEditor(new ButtonEditor());
 

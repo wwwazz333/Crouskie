@@ -96,16 +96,18 @@ public class DAOProduct extends DAO<Product> {
             res += super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
             res += super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
             if (res == 0) {
-                Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(), product.getId()};
-                res += super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ? WHERE idprod = ?", args2);
+                Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
+                    (product.getCollection() != null ? product.getCollection().getId() : null),
+                    product.getId()};
+                res += super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2);
                 return res == 0 && insertAll(product);
             }
 
         } else {
             insertAll(product);
 
-            Object[] args = {product.getName(), product.getDescription(), product.getPrice()};
-            return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod) VALUES (?, ?, ?)", args) == 0;
+            Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getCollection().getId()};
+            return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) == 0;
         }
         return false;
     }

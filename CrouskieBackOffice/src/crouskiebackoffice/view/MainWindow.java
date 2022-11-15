@@ -50,8 +50,8 @@ public class MainWindow extends javax.swing.JFrame {
         setTitle("Crouskie BackOffice");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(400, 157));
-        setPreferredSize(new java.awt.Dimension(720, 480));
+        setMinimumSize(new java.awt.Dimension(900, 500));
+        setPreferredSize(new java.awt.Dimension(900, 500));
         getContentPane().add(headerPanel1, java.awt.BorderLayout.NORTH);
 
         mainPane.setLayout(new java.awt.CardLayout());

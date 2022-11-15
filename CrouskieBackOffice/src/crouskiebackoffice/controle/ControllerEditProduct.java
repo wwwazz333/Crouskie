@@ -2,6 +2,7 @@ package crouskiebackoffice.controle;
 
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Collection;
+import crouskiebackoffice.model.CollectionModelComboBox;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.DAOCollection;
 import crouskiebackoffice.model.DAOProduct;
@@ -32,12 +33,8 @@ public class ControllerEditProduct {
         daoCollection = new DAOCollection();
         daoProduct = new DAOProduct();
 
-        List<Collection> collectionList;
         try {
-            collectionList = daoCollection.getAllData();
-            collectionList.add(new Collection(-1, ""));
-            collectionComboBoxModel = new DefaultComboBoxModel();
-            collectionComboBoxModel.addAll(collectionList);
+            collectionComboBoxModel = new CollectionModelComboBox(daoCollection.getAllData());
         } catch (SQLException ex) {
             Logger.getLogger(ControllerEditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }

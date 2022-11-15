@@ -15,6 +15,22 @@ public class Product {
     private List<Tag> tags;
     private Collection collection;
 
+    public void setExistingColor(List<Color> existingColor) {
+        this.existingColor = existingColor;
+    }
+
+    public void setExistingSize(List<ClothSize> existingSize) {
+        this.existingSize = existingSize;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
+    }
+
     public Product(int id, String name, String description, float price, Collection collection) {
         this.id = id;
         this.name = name;
@@ -84,6 +100,7 @@ public class Product {
     public void setPrice(float price) {
         this.price = price;
     }
+    
 
     public Boolean isLinkedToDB() {
         return id != -1;

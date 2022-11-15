@@ -14,14 +14,14 @@ public class DAOProduct extends DAO<Product> {
         //  les taille existante qui sont concaténer en une String sous la form  :  idsize, namesize;;;idsize2, namesize2
         //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
         return "SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION,\n"
-                + "case \n"
-                + "	when IDCOLLECTION is null then null\n"
-                + "	else namecollection\n"
-                + "    end as NAMECOLLECTION,\n"
-                + "(SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
-                + "(SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,\n"
-                + "(SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags\n"
-                + "FROM `PRODUCT` P1 NATURAL JOIN EXISTINGSIZE NATURAL JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION";
+                + "                case \n"
+                + "                	when IDCOLLECTION is null then null\n"
+                + "                	else namecollection\n"
+                + "                    end as NAMECOLLECTION,\n"
+                + "                (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
+                + "                (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,\n"
+                + "                (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags\n"
+                + "                FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION";
     }
 
     @Override
@@ -90,12 +90,60 @@ public class DAOProduct extends DAO<Product> {
     @Override
     public Boolean insertOrUpdate(Product product) throws SQLException {
         if (exist(product)) {
-            Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getId()};
-            return super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ? WHERE idprod = ?", args) == 0;
+            int res = 0;
+            Object[] idArg = {product.getId()};
+            res += super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg);
+            res += super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
+            res += super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
+            if (res == 0) {
+                Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(), product.getId()};
+                res += super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ? WHERE idprod = ?", args2);
+                return res == 0 && insertAll(product);
+            }
+
         } else {
+            insertAll(product);
+
             Object[] args = {product.getName(), product.getDescription(), product.getPrice()};
             return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod) VALUES (?, ?, ?)", args) == 0;
         }
+        return false;
+    }
+
+    private Boolean insertAll(Product product) throws SQLException {
+        List<Integer> idsTag = new LinkedList<>();
+        for (Tag tag : product.getTags()) {
+            idsTag.add(tag.getId());
+        }
+
+        List<Integer> idsSize = new LinkedList<>();
+        for (ClothSize clothSize : product.getExistingSize()) {
+            idsSize.add(clothSize.getId());
+        }
+
+        return insertAll(product.getId(), "TAGS_PRODUCT", "idtag", idsTag.toArray())
+                && insertAll(product.getId(), "EXISTINGSIZE", "idsize", idsSize.toArray())
+                && insertAll(product.getId(), "EXISTINGCOLOR", "namecolor", product.getExistingColor().toArray());
+    }
+
+    public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException {
+        if (valuesName.length <= 0) {
+            return true;
+        }
+        StringBuilder ptsInterogration = new StringBuilder();
+
+        Object[] args = new Object[valuesName.length + 1];
+        for (int i = 0; i < valuesName.length; i++) {
+            if (i == 0) {
+                ptsInterogration.append("?");
+            } else {
+                ptsInterogration.append(", ?");
+            }
+
+            args[i] = valuesName[i].toString();
+        }
+        args[valuesName.length] = id;
+        return super.execute("INSERT INTO " + nameTable + " (" + name + ", idprod) values (" + ptsInterogration.toString() + ")", args) == 0;
     }
 
     @Override

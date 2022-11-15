@@ -9,6 +9,7 @@ public abstract class DAO<T> {
 
     /**
      * get a list of rows returned by the request that has for arguments args
+     *
      * @param request the SQL request to send
      * @param args arguments that replace "?"
      * @return A list of rows returned by the request
@@ -86,10 +87,14 @@ public abstract class DAO<T> {
         return datas;
     }
 
+    public Boolean romoveWhere(String condition, Object[] args) throws SQLException {
+        return execute("DELTE FROM " + getTableName() + " WHERE " + condition, args) == 0;
+    }
+
     protected String getRequestForAllData() {
         return "SELECT * FROM " + getTableName();
     }
-    
+
     public abstract Boolean remove(T obj) throws SQLException;
 
     public abstract Boolean exist(T obj) throws SQLException;

@@ -2,8 +2,9 @@ package crouskiebackoffice.model;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
-public class DAOTag extends DAO<Tag> {
+public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
 
     @Override
     public Boolean insertOrUpdate(Tag obj) throws SQLException {
@@ -14,6 +15,26 @@ public class DAOTag extends DAO<Tag> {
             Object[] args = {obj.getName()};
             return super.execute("INSERT INTO " + getTableName() + " (nametag) values (?)", args) == 0;
         }
+    }
+
+    @Override
+    public Boolean insertAll(List<Tag> list) throws SQLException {
+        if (list.size() <= 0) {
+            return true;
+        }
+        StringBuilder ptsInterogration = new StringBuilder();
+
+        Object[] args = new Object[list.size()];
+        for (int i = 0; i < args.length; i++) {
+            if (i == 0) {
+                ptsInterogration.append("?");
+            } else {
+                ptsInterogration.append(", ?");
+            }
+
+            args[i] = list.get(i).getName();
+        }
+        return super.execute("INSERT INTO " + getTableName() + " (nametag) values (" + ptsInterogration.toString() + ")", args) == 0;
     }
 
     @Override

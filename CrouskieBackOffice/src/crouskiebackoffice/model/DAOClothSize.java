@@ -2,8 +2,9 @@ package crouskiebackoffice.model;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 
-public class DAOClothSize extends DAO<ClothSize> {
+public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<ClothSize> {
 
     @Override
     public Boolean insertOrUpdate(ClothSize clothSize) throws SQLException {
@@ -35,5 +36,25 @@ public class DAOClothSize extends DAO<ClothSize> {
     public Boolean remove(ClothSize obj) throws SQLException {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE idsize = ? ", args) == 0;
+    }
+
+    @Override
+    public Boolean insertAll(List<ClothSize> list) throws SQLException {
+        if (list.size() <= 0) {
+            return true;
+        }
+        StringBuilder ptsInterogration = new StringBuilder();
+
+        Object[] args = new Object[list.size()];
+        for (int i = 0; i < args.length; i++) {
+            if (i == 0) {
+                ptsInterogration.append("?");
+            } else {
+                ptsInterogration.append(", ?");
+            }
+
+            args[i] = list.get(i).getName();
+        }
+        return super.execute("INSERT INTO " + getTableName() + " (namesize) values (" + ptsInterogration.toString() + ")", args) == 0;
     }
 }

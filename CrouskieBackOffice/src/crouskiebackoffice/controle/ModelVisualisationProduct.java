@@ -4,7 +4,6 @@ import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.view.EditProduct;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.*;
@@ -25,7 +24,6 @@ public class ModelVisualisationProduct extends AbstractTableModel {
 
         try {
             rowData = dao.getAllData("nameprod");
-            ConnectionDB.getInstance().close();
         } catch (SQLException ex) {
             Logger.getLogger(ModelVisualisationProduct.class.getName()).log(Level.SEVERE, null, ex);
         }

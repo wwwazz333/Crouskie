@@ -46,7 +46,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crouskie BackOffice");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
@@ -154,4 +154,5 @@ public class MainWindow extends javax.swing.JFrame {
 
         Navigator.getInstance().init(mainPane, "tabPane");
     }
+
 }

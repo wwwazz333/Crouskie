@@ -66,7 +66,7 @@ public class DAOProduct extends DAO<Product> {
 
     public Boolean setNameOf(int idProduct, String newName) throws SQLException {
         Object[] args = {newName, idProduct};
-        return super.execute("UPDATE " + getTableName() + " SET nameprod = ? WHERE idprod = ?", args) == 1;
+        return super.execute("UPDATE " + getTableName() + " SET nameprod = ? WHERE idprod = ?", args) == 0;
     }
 
     public Boolean setDescriptionOf(Product product, String newDescription) throws SQLException {
@@ -75,7 +75,7 @@ public class DAOProduct extends DAO<Product> {
 
     public Boolean setDescriptionOf(int idProduct, String newDescription) throws SQLException {
         Object[] args = {newDescription, idProduct};
-        return super.execute("UPDATE " + getTableName() + " SET descriptionprod = ? WHERE idprod = ?", args) == 1;
+        return super.execute("UPDATE " + getTableName() + " SET descriptionprod = ? WHERE idprod = ?", args) == 0;
     }
 
     public Boolean setPriceOf(Product product, Float newPrice) throws SQLException {
@@ -84,17 +84,17 @@ public class DAOProduct extends DAO<Product> {
 
     public Boolean setPriceOf(int idProduct, Float newPrice) throws SQLException {
         Object[] args = {newPrice, idProduct};
-        return super.execute("UPDATE " + getTableName() + " SET priceprod = ? WHERE idprod = ?", args) == 1;
+        return super.execute("UPDATE " + getTableName() + " SET priceprod = ? WHERE idprod = ?", args) == 0;
     }
 
     @Override
     public Boolean insertOrUpdate(Product product) throws SQLException {
         if (exist(product)) {
             Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getId()};
-            return super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ? WHERE idprod = ?", args) == 1;
+            return super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ? WHERE idprod = ?", args) == 0;
         } else {
             Object[] args = {product.getName(), product.getDescription(), product.getPrice()};
-            return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod) VALUES (?, ?, ?)", args) == 1;
+            return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod) VALUES (?, ?, ?)", args) == 0;
         }
     }
 
@@ -106,6 +106,6 @@ public class DAOProduct extends DAO<Product> {
     @Override
     public Boolean remove(Product obj) throws SQLException {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM " + getTableName() + " WHERE idprod = ? ", args) == 1;
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idprod = ? ", args) == 0;
     }
 }

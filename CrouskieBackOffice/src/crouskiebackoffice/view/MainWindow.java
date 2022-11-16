@@ -1,12 +1,13 @@
 package crouskiebackoffice.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
+import crouskiebackoffice.model.DAOTag;
+import crouskiebackoffice.model.Tag;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class MainWindow extends javax.swing.JFrame {
@@ -26,6 +27,8 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+
+        System.out.println((new AddingController<Tag>(new DAOTag(), this)).newValue().toString());
     }
 
     /**

@@ -68,7 +68,7 @@ public class ControllerEditProduct {
             public void mouseClicked(MouseEvent evt) {
                 JList list = (JList) evt.getSource();
                 int index = list.locationToIndex(evt.getPoint());
-                Object obj = colorsListModel.get(index);
+                Object obj = tagsListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
 
                 }
@@ -81,7 +81,7 @@ public class ControllerEditProduct {
             public void mouseClicked(MouseEvent evt) {
                 JList list = (JList) evt.getSource();
                 int index = list.locationToIndex(evt.getPoint());
-                Object obj = colorsListModel.get(index);
+                Object obj = sizesListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
 
                 }

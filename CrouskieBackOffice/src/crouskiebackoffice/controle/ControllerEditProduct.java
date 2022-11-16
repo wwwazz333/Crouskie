@@ -9,6 +9,7 @@ import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.DAOTag;
 import crouskiebackoffice.model.DynamicListModel;
 import crouskiebackoffice.model.Product;
+import crouskiebackoffice.model.Tag;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -84,6 +85,7 @@ public class ControllerEditProduct {
                 Object obj = sizesListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
 
+                    (new AddingController<Tag>(new DAOTag())).newValue();
                 }
             }
         };

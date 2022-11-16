@@ -1,7 +1,6 @@
 package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.ControllerProductTable;
-import crouskiebackoffice.model.ModelVisualisationProduct;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;

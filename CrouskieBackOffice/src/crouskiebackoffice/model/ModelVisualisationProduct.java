@@ -1,15 +1,10 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.controle.ControllerProductTable;
 import crouskiebackoffice.controle.Navigator;
-import crouskiebackoffice.model.ConnectionDB;
-import crouskiebackoffice.model.DAOProduct;
-import crouskiebackoffice.model.Product;
 import crouskiebackoffice.view.EditProduct;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
@@ -19,8 +14,10 @@ public class ModelVisualisationProduct extends AbstractTableModel {
     private final Class[] columnClass = {String.class, String.class, Float.class, String.class, String.class, String.class, String.class, JButton.class};
 
     private List<Product> rowData = new LinkedList<>();
+    ControllerProductTable controller;
 
-    public ModelVisualisationProduct(List<Product> allData) {
+    public ModelVisualisationProduct(ControllerProductTable controller, List<Product> allData) {
+        this.controller = controller;
         rowData = allData;
     }
 
@@ -84,7 +81,7 @@ public class ModelVisualisationProduct extends AbstractTableModel {
                 b.addActionListener((java.awt.event.ActionEvent evt) -> {
                     //go to edit for this row
                     System.out.println("row = " + rowIndex);
-                    Navigator.getInstance().goTo(new EditProduct(currentProduct), "editProduct");
+                    controller.goToEdit(currentProduct);
                 });
                 res = b;
                 break;

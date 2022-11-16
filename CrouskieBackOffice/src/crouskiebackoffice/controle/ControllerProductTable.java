@@ -3,10 +3,10 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.DAO;
 import crouskiebackoffice.model.DAOProduct;
 import crouskiebackoffice.model.ModelVisualisationProduct;
+import crouskiebackoffice.model.Product;
+import crouskiebackoffice.view.EditProduct;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -20,14 +20,18 @@ public class ControllerProductTable {
     public ControllerProductTable() {
         dao = new DAOProduct();
         try {
-            modelVisualisationProduct = new ModelVisualisationProduct(dao.getAllData("nameprod"));
+            modelVisualisationProduct = new ModelVisualisationProduct(this, dao.getAllData("nameprod"));
         } catch (SQLException ex) {
-            modelVisualisationProduct = new ModelVisualisationProduct(new LinkedList<>());
+            modelVisualisationProduct = new ModelVisualisationProduct(this, new LinkedList<>());
         }
     }
 
     public ModelVisualisationProduct getModelVisualisationProduct() {
         return modelVisualisationProduct;
+    }
+
+    public void goToEdit(Product currentProduct) {
+        Navigator.getInstance().goTo(new EditProduct(currentProduct), "editProduct");
     }
 
 }

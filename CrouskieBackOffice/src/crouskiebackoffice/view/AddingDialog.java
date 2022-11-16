@@ -4,18 +4,23 @@ import crouskiebackoffice.controle.AddingController;
 
 public class AddingDialog<T> extends javax.swing.JDialog {
 
-    private T restult;
+    private boolean submited = false;
     private AddingController addingController;
 
-    public AddingDialog(java.awt.Frame parent, AddingController addingController) {
-        super(parent, true);
+    public AddingDialog(AddingController addingController) {
+        super(MainWindow.instance);
+        setModal(true);
         this.addingController = addingController;
         initComponents();
     }
 
     public T getResult() {
         setVisible(true);
-        return (T) comboBoxChooser.getSelectedItem();
+        if (submited) {
+            return (T) comboBoxChooser.getSelectedItem();
+        } else {
+            return null;
+        }
     }
 
     private void updateComboBoxChooser() {
@@ -109,6 +114,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
     }//GEN-LAST:event_addingBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        submited = true;
         dispose();
     }//GEN-LAST:event_submitBtnActionPerformed
 

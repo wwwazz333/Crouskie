@@ -1,16 +1,15 @@
 package crouskiebackoffice.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
-import crouskiebackoffice.model.DAOTag;
-import crouskiebackoffice.model.Tag;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
 
 public class MainWindow extends javax.swing.JFrame {
+
+    public static MainWindow instance;
 
     @Override
     public void dispose() {
@@ -26,9 +25,8 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
+        instance = this;
         initComponents();
-
-        System.out.println((new AddingController<Tag>(new DAOTag(), this)).newValue().toString());
     }
 
     /**

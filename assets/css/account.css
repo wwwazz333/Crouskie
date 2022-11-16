@@ -32,6 +32,12 @@
 .content .info *
 {
     margin-top: 2.5rem;
+    height: fit-content;
+    width: fit-content;
+    background-color: white;
+    padding-bottom: 1rem;
+    font-weight: var(--font-medium);
+    
 }
 
 #identity h2

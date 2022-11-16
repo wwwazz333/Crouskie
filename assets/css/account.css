@@ -5,12 +5,36 @@
 
 #menu
 {
-    padding-bottom:10rem;
-    padding-left:5rem;
+    margin-top: -50px;
+    padding-bottom:20rem;
+    /* padding-left:3rem; */
     background-color: whitesmoke;
 }
 
 #menu a
 {
-    padding: 2rem;
+    padding: 2.5rem;
+}
+
+#menu h2
+{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+
+/* -------- page info -------- */
+.content .info
+{
+    margin-left: 3rem;
+}
+
+.content .info *
+{
+    margin-top: 2.5rem;
+}
+
+#identity h2
+{
+    margin-right: 2rem;
 }

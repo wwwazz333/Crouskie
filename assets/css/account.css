@@ -1,11 +1,16 @@
-#menu
-{
-    padding-top:10rem;
-    padding-bottom:10rem;
-    padding-left:5rem;
+.content{
+    margin-top: 130px;
+    min-height: 50vh;
 }
 
-a
+#menu
+{
+    padding-bottom:10rem;
+    padding-left:5rem;
+    background-color: whitesmoke;
+}
+
+#menu a
 {
     padding: 2rem;
 }

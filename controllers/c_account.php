@@ -11,8 +11,8 @@ if (isset($_GET['selected'])) {
 }
 
 if ($selectedPage == "info") {
-    $DAO = new UtilisateurDAO(DEBUG);
-    $data = $DAO->getUser($email);
+    $nom = $user->getLastName();
+    echo "<h1>$nom</h1>";
 }
 
 require_once(PATH_VIEWS . $page . '.php');

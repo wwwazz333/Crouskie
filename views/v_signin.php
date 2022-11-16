@@ -17,10 +17,10 @@ require_once(PATH_VIEWS . 'head.php');
         <p>Entrez votre mot de passe afin de vous connecter.</p>
     </div>
     <form action="index.php?page=signin" method="post" class="card flex column center shadow rounded">
-        <input type="hidden" name="email" id="email" value="<?= $_GET['email']?>">
-        <a href="index.php?page=portal"><?=$_GET['email']?><iconify-icon icon="material-symbols:edit"></iconify-icon></a>
+        <input type="hidden" name="email" id="email" value="<?= $email?>">
+        <a href="index.php?page=portal"><?=$email?><iconify-icon icon="material-symbols:edit"></iconify-icon></a>
         <input type="password" name="password" id="password" placeholder="Mot de passe" class="icon rounded shadow-small" required>
-        <input type="submit" id="form-confirm" value="<?= CONNEXION_INSCRIPTION ?>" class="valid circle">
+        <input type="submit" id="form-confirm" value="<?= CONNEXION ?>" class="valid circle">
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>

@@ -27,16 +27,23 @@ if (isset($_POST['password'])) {
             header('Location: index.php');
             exit();
         }else{
-            // Mot de passe incorrect
+            // require_once(PATH_VIEWS . $page . '.php');
+            header("Location: index.php?page=signin&email=$email");
+            exit();
         }
     }else{
-        // identifiant introuvable
+        header('Location: index.php?page=portal');
+        exit();
     }    
 }
 
 // On vérifie que l'email est bien présente dans l'URL avant d'afficher la page de connexion
 if (isset($_GET['email'])) {
-    //On affiche la page
+    $email = $_GET['email'];
+}
+
+if (isset($email)) {
+    //On affiche la page de connexion
     require_once(PATH_VIEWS . $page . '.php');
 }else{
     // Dans le cas contraire on le redirige vers la page portal pour lui redemander son email

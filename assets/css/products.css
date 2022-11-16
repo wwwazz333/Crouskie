@@ -26,17 +26,27 @@ a{
     height: fit-content;
     background-color: white;
     align-items:center;
-    gap: 1rem;
     padding-bottom: 1rem;
     font-weight: var(--font-medium);
 }
-
+    .product-item .image-container{
+        position: relative;
+    }
     .product-item img{
         height:250px;
         width: 250px;
         object-fit: cover;
     }
 
+    .product-item a.icon-button{
+        position: absolute;
+        top: 0.5rem;
+        color: white;
+        right: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
     .product-item .details{
         gap: 0.5rem;
+        padding-top: 1rem;
     }

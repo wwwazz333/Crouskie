@@ -120,6 +120,8 @@ body{
     border-radius: 35px;
 }
 
+
+
 /*============ Styles ============*/
 
 a.underlined,
@@ -285,6 +287,12 @@ iconify-icon{
     color: inherit;
 }
 
+.icon-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+}
 /* Hero */
 .hero{
     height: 100vh;
@@ -304,6 +312,7 @@ iconify-icon{
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 10;
 
     padding: 1rem;
     background-color: white;

@@ -12,7 +12,6 @@ if (isset($_GET['selected'])) {
 
 if ($selectedPage == "info") {
     $nom = $user->getLastName();
-    echo "<h1>$nom</h1>";
 }
 
 require_once(PATH_VIEWS . $page . '.php');

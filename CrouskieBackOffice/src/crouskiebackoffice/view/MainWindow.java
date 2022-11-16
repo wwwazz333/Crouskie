@@ -16,7 +16,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             ConnectionDB.getInstance().close();
         } catch (SQLException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Failed to close connection");
         }
         super.dispose();
     }

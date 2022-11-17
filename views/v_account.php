@@ -7,7 +7,7 @@ require_once(PATH_VIEWS . 'header.php');
 <!-- affichage menu -->
 <div class="flex row content">
     <div class="flex column wrap right" id="menu">
-        <h2> Bonjour <?php echo "$nom"?> </h2>
+        <h2> Bonjour <?= $user->getLastName() ?> </h2>
         <a href="index.php?page=account&selected=info">
             <p>Information du compte</p>
         </a>

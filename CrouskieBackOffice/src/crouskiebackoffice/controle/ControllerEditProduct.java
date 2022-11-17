@@ -1,7 +1,9 @@
 package crouskiebackoffice.controle;
 
+import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.CollectionModelComboBox;
+import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.DAOClothSize;
 import crouskiebackoffice.model.DAOCollection;
 import crouskiebackoffice.model.DAOColor;
@@ -30,7 +32,9 @@ public class ControllerEditProduct {
     private Product product;
     private DAOCollection daoCollection;
     private DAOProduct daoProduct;
-    private DefaultListModel tagsListModel, colorsListModel, sizesListModel;
+    private DynamicListModel<Tag> tagsListModel;
+    private DynamicListModel<Color> colorsListModel;
+    private DynamicListModel<ClothSize> sizesListModel;
     private DefaultComboBoxModel collectionComboBoxModel;
 
     public ControllerEditProduct(Product product) {
@@ -44,9 +48,9 @@ public class ControllerEditProduct {
             Logger.getLogger(ControllerEditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        tagsListModel = new DynamicListModel(product.getTags(), new DAOTag());
-        colorsListModel = new DynamicListModel(product.getExistingColor(), new DAOColor());
-        sizesListModel = new DynamicListModel(product.getExistingSize(), new DAOClothSize());
+        tagsListModel = new DynamicListModel<>(product.getTags(), new DAOTag());
+        colorsListModel = new DynamicListModel<>(product.getExistingColor(), new DAOColor());
+        sizesListModel = new DynamicListModel<>(product.getExistingSize(), new DAOClothSize());
     }
 
     public void save(String name, String description, String price) throws NumberFormatException, SQLException {
@@ -56,7 +60,11 @@ public class ControllerEditProduct {
         product.setDescription(description);
         product.setCollection((Collection) collectionComboBoxModel.getSelectedItem());
 
-        daoProduct.insertOrUpdate(product);
+        product.setExistingColor(colorsListModel.getNamedList());
+        product.setExistingSize(sizesListModel.getNamedList());
+        product.setTags(tagsListModel.getNamedList());
+
+        System.out.println(daoProduct.insertOrUpdate(product));
     }
 
     public ComboBoxModel getCollectionComboBox() {
@@ -71,7 +79,8 @@ public class ControllerEditProduct {
                 int index = list.locationToIndex(evt.getPoint());
                 Object obj = tagsListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
-
+                    tagsListModel.add(tagsListModel.getSize() - 1,
+                            (new AddingController<Tag>(new DAOTag())).newValue());
                 }
             }
         };
@@ -84,8 +93,9 @@ public class ControllerEditProduct {
                 int index = list.locationToIndex(evt.getPoint());
                 Object obj = sizesListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
-
-                    (new AddingController<Tag>(new DAOTag())).newValue();
+                    ClothSize clothSize = (new AddingController<ClothSize>(new DAOClothSize())).newValue();
+                    System.out.println(clothSize);
+                    sizesListModel.add(sizesListModel.getSize() - 1, clothSize);
                 }
             }
         };
@@ -98,7 +108,8 @@ public class ControllerEditProduct {
                 int index = list.locationToIndex(evt.getPoint());
                 Object obj = colorsListModel.get(index);
                 if (obj == DynamicListModel.ajoutLabel) {
-
+                    colorsListModel.add(colorsListModel.getSize() - 1,
+                            (new AddingController<Color>(new DAOColor())).newValue());
                 }
             }
         };

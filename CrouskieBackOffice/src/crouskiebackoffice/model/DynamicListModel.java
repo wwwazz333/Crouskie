@@ -2,25 +2,30 @@ package crouskiebackoffice.model;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JComboBox;
 
-public class DynamicListModel extends DefaultListModel<Object> {
+public class DynamicListModel<T extends HasName> extends DefaultListModel<Object> {
 
     public static final String ajoutLabel = "Ajouté...";
 
-    public DynamicListModel(List<? extends HasName> namedList, DAO daoForAdding) {
+    private List<T> namedList;
+
+    public DynamicListModel(List<T> namedList, DAO daoForAdding) {
+        this.namedList = namedList;
         for (HasName named : namedList) {
             addElement(named.getName());
         }
-//        JComboBox comboBoxAdding = new javax.swing.JComboBox<>();
-//
-//        comboBoxAdding.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"...", "Item 2", "Item 3", "Item 4"}));
-//        addElement(comboBoxAdding);
-        
 
         addElement(DynamicListModel.ajoutLabel);
     }
-    
-    
+
+    @Override
+    public void add(int index, Object element) {
+        namedList.add((T) element);
+        super.add(index, element);
+    }
+
+    public List<T> getNamedList() {
+        return namedList;
+    }
 
 }

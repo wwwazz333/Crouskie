@@ -49,6 +49,7 @@ public abstract class DAO<T> {
      */
     protected int execute(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
+        System.out.println(request);
         if (args != null) {
             for (int i = 0; i < args.length; i++) {
                 pstmt.setObject(i + 1, args[i]);
@@ -72,7 +73,8 @@ public abstract class DAO<T> {
 
     /**
      *
-     * @param orderby ordered by it (ex : "SELECT * FROM ... ORDER BY [orderby]")
+     * @param orderby ordered by it (ex : "SELECT * FROM ... ORDER BY
+     * [orderby]")
      * @return All the data of the concerned table as a List
      * @throws SQLException an Exception may happen due to the request
      */

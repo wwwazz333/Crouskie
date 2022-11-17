@@ -1,6 +1,11 @@
-package crouskiebackoffice.model;
+package crouskiebackoffice.model.dao;
 
 import crouskiebackoffice.exceptions.CantEditException;
+import crouskiebackoffice.model.ClothSize;
+import crouskiebackoffice.model.Color;
+import crouskiebackoffice.model.Product;
+import crouskiebackoffice.model.ProductBought;
+import crouskiebackoffice.model.ProductColorSize;
 import java.sql.SQLException;
 import java.util.HashMap;
 

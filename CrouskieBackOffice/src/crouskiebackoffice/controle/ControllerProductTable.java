@@ -1,7 +1,7 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.DAO;
-import crouskiebackoffice.model.DAOProduct;
+import crouskiebackoffice.model.dao.DAO;
+import crouskiebackoffice.model.dao.DAOProduct;
 import crouskiebackoffice.model.ModelVisualisationProduct;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.view.EditProduct;

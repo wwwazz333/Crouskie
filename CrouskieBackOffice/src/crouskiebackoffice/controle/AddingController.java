@@ -1,6 +1,6 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.DAO;
+import crouskiebackoffice.model.dao.DAO;
 import crouskiebackoffice.view.AddingDialog;
 import java.sql.SQLException;
 import java.util.LinkedList;

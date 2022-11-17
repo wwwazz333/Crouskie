@@ -1,18 +1,27 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.model.dao.DAOCollection;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 public class CollectionModelComboBox extends DefaultComboBoxModel {
 
-    List<Object> objectList;
+    public CollectionModelComboBox(Product product) {
 
-    public CollectionModelComboBox(List<Collection> collectionList) {
-        this.objectList = new LinkedList<>(collectionList);
-        this.objectList.add(new Collection(-1, ""));//un collection vide pour lui attribué acune collection
+        try {
+            List<Object> objectList = new LinkedList<>(new DAOCollection().getAllData());
+            objectList.add(new Collection(-1, ""));//un collection vide pour lui attribué acune collection
 
-        addAll(this.objectList);
+            addAll(objectList);
+
+            setSelectedItem(product.getCollection());
+        } catch (SQLException ex) {
+            Logger.getLogger(CollectionModelComboBox.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

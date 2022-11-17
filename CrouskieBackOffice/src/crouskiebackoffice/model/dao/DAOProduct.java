@@ -1,6 +1,12 @@
-package crouskiebackoffice.model;
+package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.model.ClothSize;
+import crouskiebackoffice.model.Collection;
+import crouskiebackoffice.model.Color;
+import crouskiebackoffice.model.Product;
+import crouskiebackoffice.model.Tag;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -110,6 +116,8 @@ public class DAOProduct extends DAO<Product> {
 
     private Boolean insertAll(Product product) throws SQLException {
         List<Integer> idsTag = new LinkedList<>();
+
+        System.out.println(Arrays.toString(product.getTags().toArray()));
         for (Tag tag : product.getTags()) {
             idsTag.add(tag.getId());
         }

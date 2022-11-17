@@ -43,7 +43,6 @@ public class MainWindow extends javax.swing.JFrame {
         tabPane = new javax.swing.JTabbedPane();
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
         addingPanel1 = new crouskiebackoffice.view.AddingPanel();
-        editionPanel1 = new crouskiebackoffice.view.EditionPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
@@ -72,19 +71,6 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         tabPane.addTab("Ajouter", addingPanel1);
-
-        javax.swing.GroupLayout editionPanel1Layout = new javax.swing.GroupLayout(editionPanel1);
-        editionPanel1.setLayout(editionPanel1Layout);
-        editionPanel1Layout.setHorizontalGroup(
-            editionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
-        );
-        editionPanel1Layout.setVerticalGroup(
-            editionPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
-        );
-
-        tabPane.addTab("Éditer", editionPanel1);
 
         mainPane.add(tabPane, "tabPane");
 
@@ -137,7 +123,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private crouskiebackoffice.view.AddingPanel addingPanel1;
-    private crouskiebackoffice.view.EditionPanel editionPanel1;
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

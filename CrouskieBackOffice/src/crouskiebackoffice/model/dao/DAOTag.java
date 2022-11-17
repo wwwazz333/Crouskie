@@ -1,5 +1,7 @@
-package crouskiebackoffice.model;
+package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.model.MultipleInsertSQL;
+import crouskiebackoffice.model.Tag;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;

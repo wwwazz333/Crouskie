@@ -1,7 +1,7 @@
 package crouskiebackoffice;
 
 import crouskiebackoffice.model.ConnectionDB;
-import crouskiebackoffice.model.DAOProduct;
+import crouskiebackoffice.model.dao.DAOProduct;
 import java.sql.SQLException;
 
 public class CrouskieBackOffice {

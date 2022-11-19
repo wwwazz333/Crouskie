@@ -8,6 +8,7 @@ import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
 import crouskiebackoffice.model.listmodel.DynamicListSizeModel;
 import crouskiebackoffice.model.listmodel.DynamicListTagModel;
+import java.awt.GridBagConstraints;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,14 +27,31 @@ public class EditProduct extends javax.swing.JPanel {
         this.controller = new ControllerEditProduct(prod);
 
         initComponents();
+        listTag = new ListDynamicPanel(controller.getAddDelListIem());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        add(listTag, gridBagConstraints);
+
+        listSize = new ListDynamicPanel(controller.getAddDelListIem());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        add(listSize, gridBagConstraints);
+
+        listColor = new ListDynamicPanel(controller.getAddDelListIem());
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
+        add(listColor, gridBagConstraints);
+
+        listTag.setModel(new DynamicListTagModel(product));
+        listColor.setModel(new DynamicListColorModel(product));
+        listSize.setModel(new DynamicListSizeModel(product));
 
         nameInput.setText(prod.getName());
         descriptionInput.setText(prod.getDescription());
         priceInput.setText(prod.getPrice() + "");
-
-        tagsList.addMouseListener(controller.getMouseListenerForList());
-        colorList.addMouseListener(controller.getMouseListenerForList());
-        sizeList.addMouseListener(controller.getMouseListenerForList());
     }
 
     /**
@@ -54,15 +72,9 @@ public class EditProduct extends javax.swing.JPanel {
         submitBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         LabelTags = new javax.swing.JLabel();
-        jScrollPanTag = new javax.swing.JScrollPane();
-        tagsList = new javax.swing.JList<>();
         collectionLabel = new javax.swing.JLabel();
         sizeLabel = new javax.swing.JLabel();
-        jScrollPaneSize = new javax.swing.JScrollPane();
-        sizeList = new javax.swing.JList<>();
         jLabel8 = new javax.swing.JLabel();
-        jScrollPaneList = new javax.swing.JScrollPane();
-        colorList = new javax.swing.JList<>();
         nameInput = new javax.swing.JTextField();
         priceInput = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -122,16 +134,6 @@ public class EditProduct extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         add(LabelTags, gridBagConstraints);
 
-        tagsList.setModel(new DynamicListTagModel(product)
-        );
-        tagsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPanTag.setViewportView(tagsList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        add(jScrollPanTag, gridBagConstraints);
-
         collectionLabel.setText("collection");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -144,29 +146,11 @@ public class EditProduct extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         add(sizeLabel, gridBagConstraints);
 
-        sizeList.setModel(new DynamicListSizeModel(product));
-        sizeList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPaneSize.setViewportView(sizeList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        add(jScrollPaneSize, gridBagConstraints);
-
         jLabel8.setText("couleur");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         add(jLabel8, gridBagConstraints);
-
-        colorList.setModel(new DynamicListColorModel(product));
-        colorList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPaneList.setViewportView(colorList);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        add(jScrollPaneList, gridBagConstraints);
 
         nameInput.setText("jTextField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -208,7 +192,7 @@ public class EditProduct extends javax.swing.JPanel {
 
             controller.save(nameInput.getText(), descriptionInput.getText(),
                     priceInput.getText(), collectionComboBox.getModel(),
-                    (DynamicListModel) colorList.getModel(), (DynamicListModel) sizeList.getModel(), (DynamicListModel) tagsList.getModel());
+                    (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel());
             Navigator.getInstance().goBack();
         } catch (NumberFormatException ex) {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
@@ -223,23 +207,21 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> collectionComboBox;
     private javax.swing.JLabel collectionLabel;
-    private javax.swing.JList<Object> colorList;
     private javax.swing.JTextArea descriptionInput;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPanTag;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPaneList;
-    private javax.swing.JScrollPane jScrollPaneSize;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jlabelsd;
     private javax.swing.JTextField nameInput;
     private javax.swing.JFormattedTextField priceInput;
     private javax.swing.JLabel sizeLabel;
-    private javax.swing.JList<Object> sizeList;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JList<Object> tagsList;
     // End of variables declaration//GEN-END:variables
+    private ListDynamicPanel listTag;
+    private ListDynamicPanel listColor;
+    private ListDynamicPanel listSize;
+
 }

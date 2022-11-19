@@ -6,32 +6,25 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
-public abstract class DynamicListModel<T extends HasName> extends DefaultListModel<Object> {
+public abstract class DynamicListModel<Object> extends DefaultListModel<Object> {
 
-    public static final String ajoutLabel = "Ajouté...";
     protected DAO dao;
 
-    List<T> listData;
-
-    public DynamicListModel(List<T> list) {
-        listData = new LinkedList<>(list);
-        for (HasName named : listData) {
-            addElement(named.getName());
+    public DynamicListModel(List<Object> list) {
+        List<Object> listData = new LinkedList<>(list);
+        for (Object named : listData) {
+            addElement(named);
         }
-        addElement(DynamicListModel.ajoutLabel);
-
     }
 
-    @Override
-    public void add(int index, Object element) {
-        listData.add((T) element);
-        super.add(index, element);
-    }
-
-    public List<T> getNamedList() {
+    public List<Object> getData() {
+        List<Object> listData = new LinkedList<>();
+        for (int i = 0; i < getSize(); i++) {
+            listData.add(getElementAt(i));
+        }
         return listData;
     }
 
-    public abstract void add();
+    public abstract void addItem();
 
 }

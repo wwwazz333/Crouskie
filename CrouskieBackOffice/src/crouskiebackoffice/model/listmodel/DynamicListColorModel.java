@@ -3,7 +3,6 @@ package crouskiebackoffice.model.listmodel;
 import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.Product;
-import crouskiebackoffice.model.Tag;
 import crouskiebackoffice.model.dao.DAOColor;
 
 public class DynamicListColorModel extends DynamicListModel<Color> {
@@ -15,10 +14,10 @@ public class DynamicListColorModel extends DynamicListModel<Color> {
     }
 
     @Override
-    public void add() {
-        add(getSize() - 1, (new AddingController<Tag>(dao)).newValue());
+    public void addItem() {
+        add(getSize(), (new AddingController<Color>(dao)).newValue());
     }
-    
+
     @Override
     public String toString() {
         return "DynamicListColorModel";

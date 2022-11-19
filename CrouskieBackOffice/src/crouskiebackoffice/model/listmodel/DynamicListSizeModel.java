@@ -3,7 +3,6 @@ package crouskiebackoffice.model.listmodel;
 import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Product;
-import crouskiebackoffice.model.Tag;
 import crouskiebackoffice.model.dao.DAOClothSize;
 
 public class DynamicListSizeModel extends DynamicListModel<ClothSize> {
@@ -15,8 +14,8 @@ public class DynamicListSizeModel extends DynamicListModel<ClothSize> {
     }
 
     @Override
-    public void add() {
-        add(getSize() - 1, (new AddingController<Tag>(dao)).newValue());
+    public void addItem() {
+        add(getSize(), (new AddingController<ClothSize>(dao)).newValue());
     }
 
     @Override

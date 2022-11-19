@@ -14,8 +14,8 @@ public class DynamicListTagModel extends DynamicListModel<Tag> {
     }
 
     @Override
-    public void add() {
-        add(getSize() - 1, (new AddingController<Tag>(dao)).newValue());
+    public void addItem() {
+        add(getSize(), (new AddingController<Tag>(dao)).newValue());
     }
 
     @Override

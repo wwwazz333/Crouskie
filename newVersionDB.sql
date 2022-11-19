@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2022 at 06:11 PM
--- Server version: 10.3.32-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Nov 19, 2022 at 10:43 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,48 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `p2100284`
+-- Database: `test`
 --
-
-DELIMITER $$
---
--- Functions
---
-CREATE DEFINER=`p2100284`@`%` FUNCTION `customer_connection` (`mail` VARCHAR(255) CHARSET utf8, `password_hash` VARCHAR(255) CHARSET utf8) RETURNS INT(1) COMMENT '1: connected, 0: wrong pwd or mail, -1:to many try' BEGIN
-	DECLARE pwd varchar(255) DEFAULT null;
-    DECLARE counter int(11) DEFAULT null;
-    DECLARE last_date TIMESTAMP;
-    select `password`, counter_connection, last_connection_try into pwd, counter, last_date from CUSTOMER WHERE mail_address = mail;
-    
-    if pwd is null or counter is null THEN -- pas de correspondance avec le mail trouvé
-    	return 0;
-    end if;
-    
-    -- correspondance avec le mail trouvé
-    if counter < 3 or (SELECT customer_delay_passed(mail)) = 1 THEN
-        IF pwd = password_hash THEN
-            UPDATE CUSTOMER SET counter_connection = 0, last_connection_try = CURRENT_TIMESTAMP() WHERE mail_address = mail;
-            return 1;
-        ELSE
-            UPDATE CUSTOMER SET counter_connection = counter_connection + 1, last_connection_try = CURRENT_TIMESTAMP() WHERE mail_address = mail;
-            return 0;
-    	END IF;
-    end if;
-    return -1;
-END$$
-
-CREATE DEFINER=`p2100284`@`%` FUNCTION `customer_delay_passed` (`mail` VARCHAR(255) CHARSET utf8) RETURNS INT(1) UNSIGNED  BEGIN
-    DECLARE last_date TIMESTAMP;
-    select last_connection_try into last_date from CUSTOMER WHERE mail_address = mail;
-
-    if CURRENT_TIMESTAMP() >= DATE_ADD(last_date,INTERVAL 1 HOUR) THEN -- reinitialise counter_connection si tps attente passé
-        UPDATE CUSTOMER SET counter_connection = 0, last_connection_try = CURRENT_DATE() WHERE mail_address = mail;	
-        return 1;
-    end if;
-    return 0;
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -202,11 +162,9 @@ CREATE TABLE `EXISTINGCOLOR` (
 --
 
 INSERT INTO `EXISTINGCOLOR` (`IDPROD`, `NAMECOLOR`) VALUES
-(1, 'jaune'),
-(1, 'orange'),
-(1, 'rouge'),
 (2, 'orange'),
-(2, 'vert');
+(2, 'vert'),
+(4, 'jaune');
 
 -- --------------------------------------------------------
 
@@ -224,12 +182,10 @@ CREATE TABLE `EXISTINGSIZE` (
 --
 
 INSERT INTO `EXISTINGSIZE` (`IDPROD`, `IDSIZE`) VALUES
-(1, 1),
-(1, 2),
-(1, 3),
 (2, 2),
 (2, 3),
-(2, 4);
+(2, 4),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -385,7 +341,10 @@ CREATE TABLE `TAGS_PRODUCT` (
 --
 
 INSERT INTO `TAGS_PRODUCT` (`IDPROD`, `IDTAG`) VALUES
-(2, 2);
+(1, 1),
+(2, 1),
+(2, 2),
+(3, 1);
 
 --
 -- Indexes for dumped tables
@@ -477,151 +436,10 @@ ALTER TABLE `PRODUCTBOUGHT`
   ADD KEY `FK_SOLDPROD` (`IDPROD`);
 
 --
--- Indexes for table `STOCKED`
---
-ALTER TABLE `STOCKED`
-  ADD PRIMARY KEY (`IDPROD`,`NAMECOLOR`,`IDSIZE`),
-  ADD KEY `FK_STOCKED2` (`NAMECOLOR`),
-  ADD KEY `FK_STOCKED3` (`IDSIZE`);
-
---
--- Indexes for table `TAG`
---
-ALTER TABLE `TAG`
-  ADD PRIMARY KEY (`idtag`);
-
---
 -- Indexes for table `TAGS_PRODUCT`
 --
 ALTER TABLE `TAGS_PRODUCT`
-  ADD PRIMARY KEY (`IDPROD`,`IDTAG`),
-  ADD KEY `FK_CONSTRAINT_TAGS_PRODUCT2` (`IDTAG`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `CLOTH_SIZE`
---
-ALTER TABLE `CLOTH_SIZE`
-  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `CMD`
---
-ALTER TABLE `CMD`
-  MODIFY `NUMORDER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `COLLECTION`
---
-ALTER TABLE `COLLECTION`
-  MODIFY `IDCOLLECTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `CUSTOMER`
---
-ALTER TABLE `CUSTOMER`
-  MODIFY `IDCUSTOMER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `PRODUCT`
---
-ALTER TABLE `PRODUCT`
-  MODIFY `IDPROD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `PRODUCTBOUGHT`
---
-ALTER TABLE `PRODUCTBOUGHT`
-  MODIFY `IDPP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `TAG`
---
-ALTER TABLE `TAG`
-  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `CART`
---
-ALTER TABLE `CART`
-  ADD CONSTRAINT `FK_CART` FOREIGN KEY (`IDCUSTOMER`) REFERENCES `CUSTOMER` (`IDCUSTOMER`),
-  ADD CONSTRAINT `FK_CART2` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
-
---
--- Constraints for table `CMD`
---
-ALTER TABLE `CMD`
-  ADD CONSTRAINT `FK_ORDERED` FOREIGN KEY (`IDCUSTOMER`) REFERENCES `CUSTOMER` (`IDCUSTOMER`);
-
---
--- Constraints for table `COLLECTION`
---
-ALTER TABLE `COLLECTION`
-  ADD CONSTRAINT `FK_REPRESENTATIONOF` FOREIGN KEY (`PATHPICTURE`) REFERENCES `PICTURE` (`PATHPICTURE`);
-
---
--- Constraints for table `EXISTINGCOLOR`
---
-ALTER TABLE `EXISTINGCOLOR`
-  ADD CONSTRAINT `FK_EXISTINGCOLOR` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `FK_EXISTINGCOLOR2` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`);
-
---
--- Constraints for table `EXISTINGSIZE`
---
-ALTER TABLE `EXISTINGSIZE`
-  ADD CONSTRAINT `FK_EXISTINGSIZE` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `FK_EXISTINGSIZE2` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`);
-
---
--- Constraints for table `FAVORITE`
---
-ALTER TABLE `FAVORITE`
-  ADD CONSTRAINT `FK_FAVORITE` FOREIGN KEY (`IDCUSTOMER`) REFERENCES `CUSTOMER` (`IDCUSTOMER`),
-  ADD CONSTRAINT `FK_FAVORITE2` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
-
---
--- Constraints for table `PICTURE`
---
-ALTER TABLE `PICTURE`
-  ADD CONSTRAINT `FK_LOOKS_LIKE` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
-
---
--- Constraints for table `PRODUCT`
---
-ALTER TABLE `PRODUCT`
-  ADD CONSTRAINT `FK_PARTOF` FOREIGN KEY (`IDCOLLECTION`) REFERENCES `COLLECTION` (`IDCOLLECTION`);
-
---
--- Constraints for table `PRODUCTBOUGHT`
---
-ALTER TABLE `PRODUCTBOUGHT`
-  ADD CONSTRAINT `FK_BOUGHT` FOREIGN KEY (`NUMORDER`) REFERENCES `CMD` (`NUMORDER`),
-  ADD CONSTRAINT `FK_COLORCHOOSEN` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`),
-  ADD CONSTRAINT `FK_SIZECHOOSEN` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`),
-  ADD CONSTRAINT `FK_SOLDPROD` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
-
---
--- Constraints for table `STOCKED`
---
-ALTER TABLE `STOCKED`
-  ADD CONSTRAINT `FK_STOCKED` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `FK_STOCKED2` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`),
-  ADD CONSTRAINT `FK_STOCKED3` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`);
-
---
--- Constraints for table `TAGS_PRODUCT`
---
-ALTER TABLE `TAGS_PRODUCT`
-  ADD CONSTRAINT `FK_CONSTRAINT_TAGS_PRODUCT` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `FK_CONSTRAINT_TAGS_PRODUCT2` FOREIGN KEY (`IDTAG`) REFERENCES `TAG` (`idtag`);
+  ADD PRIMARY KEY (`IDPROD`,`IDTAG`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import javax.swing.ComboBoxModel;
 import javax.swing.JList;
 
-
 public class ControllerEditProduct {
 
     private Product product;
@@ -37,27 +36,29 @@ public class ControllerEditProduct {
         product.setDescription(description);
         product.setCollection((Collection) comboBoxModel.getSelectedItem());
 
-        product.setExistingColor(colorsListModel.getNamedList());
-        product.setExistingSize(sizesListModel.getNamedList());
-        product.setTags(tagsListModel.getNamedList());
+        product.setExistingColor(colorsListModel.getData());
+        product.setExistingSize(sizesListModel.getData());
+        product.setTags(tagsListModel.getData());
 
         ProductManager.getInstance().save(product);
     }
 
-    public MouseListener getMouseListenerForList() {
-        return new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                JList list = (JList) evt.getSource();
-                if (list.getModel() instanceof DynamicListModel) {
-                    DynamicListModel model = (DynamicListModel) list.getModel();
-                    int index = list.locationToIndex(evt.getPoint());
-                    System.out.println(model);
-                    Object obj = model.get(index);
-                    if (obj == DynamicListModel.ajoutLabel) {
-                        model.add();
-                    }
+    public AddDelListIem getAddDelListIem() {
+        return new AddDelListIem() {
+            @Override
+            public void add(JList jlist) {
+                if (jlist.getModel() instanceof DynamicListModel) {
+                    DynamicListModel model = (DynamicListModel) jlist.getModel();
+                    model.addItem();
                 }
+            }
 
+            @Override
+            public void del(JList jlist) {
+                if (jlist.getSelectedIndex() != -1 && jlist.getModel() instanceof DynamicListModel) {
+                    DynamicListModel model = (DynamicListModel) jlist.getModel();
+                    model.remove(jlist.getSelectedIndex());
+                }
             }
         };
     }

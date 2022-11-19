@@ -2,6 +2,7 @@ package crouskiebackoffice.model.listmodel;
 
 import crouskiebackoffice.model.HasName;
 import crouskiebackoffice.model.dao.DAO;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -13,8 +14,8 @@ public abstract class DynamicListModel<T extends HasName> extends DefaultListMod
     List<T> listData;
 
     public DynamicListModel(List<T> list) {
-        listData = list;
-        for (HasName named : list) {
+        listData = new LinkedList<>(list);
+        for (HasName named : listData) {
             addElement(named.getName());
         }
         addElement(DynamicListModel.ajoutLabel);

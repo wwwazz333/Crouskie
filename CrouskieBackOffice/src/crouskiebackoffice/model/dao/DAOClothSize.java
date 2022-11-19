@@ -12,10 +12,10 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
     public Boolean insertOrUpdate(ClothSize clothSize) throws SQLException {
         if (exist(clothSize)) {
             Object[] args = {clothSize.getName(), clothSize.getId()};
-            return super.execute("UPDATE " + getTableName() + " SET namesize = ? WHERE idsize = ?", args) == 0;
+            return super.execute("UPDATE " + getTableName() + " SET namesize = ? WHERE idsize = ?", args) == 1;
         } else {
             Object[] args = {clothSize.getName()};
-            return super.execute("INSERT INTO " + getTableName() + " (namesize) VALUES (?)", args) == 0;
+            return super.execute("INSERT INTO " + getTableName() + " (namesize) VALUES (?)", args) == 1;
         }
     }
 
@@ -37,7 +37,7 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
     @Override
     public Boolean remove(ClothSize obj) throws SQLException {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM " + getTableName() + " WHERE idsize = ? ", args) == 0;
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idsize = ? ", args) == 1;
     }
 
     @Override
@@ -57,6 +57,6 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
 
             args[i] = list.get(i).getName();
         }
-        return super.execute("INSERT INTO " + getTableName() + " (namesize) values (" + ptsInterogration.toString() + ")", args) == 0;
+        return super.execute("INSERT INTO " + getTableName() + " (namesize) values (" + ptsInterogration.toString() + ")", args) == 1;
     }
 }

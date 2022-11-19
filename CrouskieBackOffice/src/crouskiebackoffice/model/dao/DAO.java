@@ -98,6 +98,28 @@ public abstract class DAO<T> {
         return "SELECT * FROM " + getTableName();
     }
 
+    public void startTransaction() throws SQLException {
+        execute("SET autocommit = 0; START TRANSACTION; SAVEPOINT ?;", null);
+    }
+
+    public void endTransaction() throws SQLException {
+        execute("SET autocommit = 1; COMMIT;", null);
+    }
+
+    public void setSavePoint(String name) throws SQLException {
+        if (name != null) {
+            Object[] args = {name};
+            execute("SAVEPOINT ?", args);
+        }
+    }
+
+    public void rollbackTo(String name) throws SQLException {
+        if (name != null) {
+            Object[] args = {name};
+            execute("ROLLBACK TO SAVEPOINT ?", args);
+        }
+    }
+
     public abstract Boolean remove(T obj) throws SQLException;
 
     public abstract Boolean exist(T obj) throws SQLException;

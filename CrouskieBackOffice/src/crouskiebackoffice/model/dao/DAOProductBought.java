@@ -25,7 +25,7 @@ public class DAOProductBought extends DAO<ProductBought> {
         } else {
             Object[] args = {obj.getNumOrder(), obj.getProductColorSize().getProduct().getId(), obj.getProductColorSize().getColor().getName(),
                 obj.getProductColorSize().getSize().getId(), obj.getProductColorSize().getQuantity()};
-            return super.execute("INSERT INTO PRODUCTBOUGHT (numorder, idprod, namecolor, idsize, quantitybought) VALUES (?, ?, ?, ?, ?)", args) == 0;
+            return super.execute("INSERT INTO PRODUCTBOUGHT (numorder, idprod, namecolor, idsize, quantitybought) VALUES (?, ?, ?, ?, ?)", args) == 1;
         }
     }
 
@@ -52,7 +52,7 @@ public class DAOProductBought extends DAO<ProductBought> {
     @Override
     public Boolean remove(ProductBought obj) throws SQLException {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM " + "PRODUCTBOUGHT" + " WHERE idpp = ? ", args) == 0;
+        return super.execute("DELETE FROM " + "PRODUCTBOUGHT" + " WHERE idpp = ? ", args) == 1;
     }
 
 }

@@ -95,23 +95,33 @@ public class DAOProduct extends DAO<Product> {
 
     @Override
     public Boolean insertOrUpdate(Product product) throws SQLException {
+        startTransaction();
+        setSavePoint("edit_product");
+        boolean succes = false;
         if (exist(product)) {
             Object[] idArg = {product.getId()};
-            super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg);
-            super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
-            super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
-            Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
-                (product.getCollection() != null ? product.getCollection().getId() : null),
-                product.getId()};
-            super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2);
-            return insertAll(product);
+            succes = super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg) == 1
+                    && super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg) == 1
+                    && super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg) == 1;
+            if (succes) {
+                Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
+                    (product.getCollection() != null ? product.getCollection().getId() : null),
+                    product.getId()};
+                succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2) == 1
+                        && insertAll(product);
+            }
 
         } else {
-            insertAll(product);
 
             Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getCollection().getId()};
-            return super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) == 0;
+            succes = insertAll(product)
+                    && super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) == 1;
         }
+        if (!succes) {
+            rollbackTo("edit_product");
+        }
+        endTransaction();
+        return succes;
     }
 
     private Boolean insertAll(Product product) throws SQLException {
@@ -127,10 +137,9 @@ public class DAOProduct extends DAO<Product> {
             idsSize.add(clothSize.getId());
         }
 
-        insertAll(product.getId(), "TAGS_PRODUCT", "idtag", idsTag.toArray());
-        insertAll(product.getId(), "EXISTINGSIZE", "idsize", idsSize.toArray());
-        insertAll(product.getId(), "EXISTINGCOLOR", "namecolor", product.getExistingColor().toArray());
-        return true;
+        return insertAll(product.getId(), "TAGS_PRODUCT", "idtag", idsTag.toArray())
+                && insertAll(product.getId(), "EXISTINGSIZE", "idsize", idsSize.toArray())
+                && insertAll(product.getId(), "EXISTINGCOLOR", "namecolor", product.getExistingColor().toArray());
     }
 
     public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException {

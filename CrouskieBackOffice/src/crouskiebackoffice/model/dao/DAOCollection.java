@@ -23,17 +23,17 @@ public class DAOCollection extends DAO<Collection> {
     public Boolean insertOrUpdate(Collection obj) throws SQLException {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getPathPicture(), obj.getId()};
-            return super.execute("UPDATE " + getTableName() + " SET namecollection = ?, PATHPICTURE = ? WHERE idcollection = ?", args) == 0;
+            return super.execute("UPDATE " + getTableName() + " SET namecollection = ?, PATHPICTURE = ? WHERE idcollection = ?", args) == 1;
         } else {
             Object[] args = {obj.getName(), obj.getPathPicture()};
-            return super.execute("INSERT INTO " + getTableName() + " ( namecollection , PATHPICTURE ) VALUES (?, ?)", args) == 0;
+            return super.execute("INSERT INTO " + getTableName() + " ( namecollection , PATHPICTURE ) VALUES (?, ?)", args) == 1;
         }
     }
 
     @Override
     public Boolean remove(Collection obj) throws SQLException {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM" + getTableName() + " WHERE idcollection = ?", args) == 0;
+        return super.execute("DELETE FROM" + getTableName() + " WHERE idcollection = ?", args) == 1;
     }
 
     @Override

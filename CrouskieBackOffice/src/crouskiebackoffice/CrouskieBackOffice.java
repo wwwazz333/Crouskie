@@ -1,6 +1,7 @@
 package crouskiebackoffice;
 
 import crouskiebackoffice.model.ConnectionDB;
+import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.dao.DAOProduct;
 import java.sql.SQLException;
 
@@ -12,6 +13,7 @@ public class CrouskieBackOffice {
             for (var pr : dao.getAllData()) {
                 System.out.println(pr);
             }
+            System.out.println(dao.remove(new Product(123, "", ", ", 1f, null)));
 
 //            new DAOProductBought().insertOrUpdate(
 //                    new ProductBought(

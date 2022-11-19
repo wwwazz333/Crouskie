@@ -25,11 +25,11 @@ public class DAOStock extends DAO<ProductColorSize> {
         if (exist(productColorSize)) {
             Object[] args = {productColorSize.getQuantity(), productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId()};
 
-            return super.execute("UPDATE STOCKED SET quantitystocked = ? WHERE idprod = ? and namecolor = ? and idsize = ?", args) == 0;
+            return super.execute("UPDATE STOCKED SET quantitystocked = ? WHERE idprod = ? and namecolor = ? and idsize = ?", args) == 1;
 
         } else {
             Object[] args = {productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId(), productColorSize.getQuantity()};
-            return super.execute("INSERT INTO STOCKED (idprod, namecolor, idsize, quantitystocked) VALUES (?, ?, ?, ?)", args) == 0;
+            return super.execute("INSERT INTO STOCKED (idprod, namecolor, idsize, quantitystocked) VALUES (?, ?, ?, ?)", args) == 1;
         }
     }
 
@@ -51,7 +51,7 @@ public class DAOStock extends DAO<ProductColorSize> {
     @Override
     public Boolean remove(ProductColorSize obj) throws SQLException {
         Object[] args = {obj.getProduct().getId(), obj.getColor().getName(), obj.getSize().getId()};
-        return super.execute("DELETE FROM " + "STOCKED" + " WHERE idpp = ? and namecolor = ? and idsize = ? ", args) == 0;
+        return super.execute("DELETE FROM " + "STOCKED" + " WHERE idpp = ? and namecolor = ? and idsize = ? ", args) == 1;
     }
 
 }

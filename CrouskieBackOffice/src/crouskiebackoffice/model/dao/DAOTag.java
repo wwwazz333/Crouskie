@@ -12,10 +12,10 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
     public Boolean insertOrUpdate(Tag obj) throws SQLException {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getId()};
-            return super.execute("UPDATE TABLE " + getTableName() + " SET  nametag = ? WHERE idtag = ?", args) == 0;
+            return super.execute("UPDATE TABLE " + getTableName() + " SET  nametag = ? WHERE idtag = ?", args) == 1;
         } else {
             Object[] args = {obj.getName()};
-            return super.execute("INSERT INTO " + getTableName() + " (nametag) values (?)", args) == 0;
+            return super.execute("INSERT INTO " + getTableName() + " (nametag) values (?)", args) == 1;
         }
     }
 
@@ -36,7 +36,7 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
 
             args[i] = list.get(i).getName();
         }
-        return super.execute("INSERT INTO " + getTableName() + " (nametag) values (" + ptsInterogration.toString() + ")", args) == 0;
+        return super.execute("INSERT INTO " + getTableName() + " (nametag) values (" + ptsInterogration.toString() + ")", args) == 1;
     }
 
     @Override
@@ -57,6 +57,6 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
     @Override
     public Boolean remove(Tag obj) throws SQLException {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM " + getTableName() + " WHERE idtag = ? ", args) == 0;
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idtag = ? ", args) == 1;
     }
 }

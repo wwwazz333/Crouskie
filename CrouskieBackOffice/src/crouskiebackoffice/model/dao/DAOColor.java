@@ -18,14 +18,14 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
     @Override
     public Boolean insertOrUpdate(Color color) throws SQLException {
         Object[] args = {color.getName()};
-        return super.execute("INSERT INTO " + getTableName() + " (namecolor) VALUES (?)", args) == 0;
+        return super.execute("INSERT INTO " + getTableName() + " (namecolor) VALUES (?)", args) == 1;
 
     }
 
     @Override
     public Boolean exist(Color obj) throws SQLException {
         Object[] args = {obj.getName()};
-        return ((long) super.selectAll("SELECT count(*) as nbr FROM " + getTableName() + " WHERE namecolor = ?", args).get(0).get("nbr")) == 0;
+        return ((long) super.selectAll("SELECT count(*) as nbr FROM " + getTableName() + " WHERE namecolor = ?", args).get(0).get("nbr")) == 1;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
     @Override
     public Boolean remove(Color obj) throws SQLException {
         Object[] args = {obj.getName()};
-        return super.execute("DELETE FROM " + getTableName() + " WHERE namecolor = ? ", args) == 0;
+        return super.execute("DELETE FROM " + getTableName() + " WHERE namecolor = ? ", args) == 1;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
 
             args[i] = list.get(i).getName();
         }
-        return super.execute("INSERT INTO " + getTableName() + " (namecolor) values (" + ptsInterogration.toString() + ")", args) == 0;
+        return super.execute("INSERT INTO " + getTableName() + " (namecolor) values (" + ptsInterogration.toString() + ")", args) == 1;
     }
 
 }

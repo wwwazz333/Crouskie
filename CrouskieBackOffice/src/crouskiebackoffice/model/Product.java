@@ -1,8 +1,9 @@
 package crouskiebackoffice.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
-public class Product implements HasName{
+public class Product implements HasName {
 
     private int id;
 
@@ -29,6 +30,18 @@ public class Product implements HasName{
 
     public void setCollection(Collection collection) {
         this.collection = collection;
+    }
+
+    public Product(Product other) {
+        this.id = other.id;
+        this.name = other.name;
+        this.description = other.description;
+        this.price = other.price;
+        this.existingColor = new LinkedList<>(other.existingColor);
+        this.existingSize = new LinkedList<>(other.existingSize);
+        this.tags = new LinkedList<>(other.tags);
+        this.collection = new Collection(other.collection);
+
     }
 
     public Product(int id, String name, String description, float price, Collection collection) {
@@ -101,7 +114,6 @@ public class Product implements HasName{
     public void setPrice(float price) {
         this.price = price;
     }
-    
 
     public Boolean isLinkedToDB() {
         return id != -1;
@@ -119,7 +131,6 @@ public class Product implements HasName{
         return tags;
     }
 
-    
     public Collection getCollection() {
         return collection;
     }
@@ -128,7 +139,4 @@ public class Product implements HasName{
     public String toString() {
         return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", collection=" + collection + '}';
     }
-
-   
-
 }

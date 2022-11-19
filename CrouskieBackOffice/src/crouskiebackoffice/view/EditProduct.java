@@ -23,6 +23,7 @@ public class EditProduct extends javax.swing.JPanel {
      * @param prod le produit à édité
      */
     public EditProduct(Product prod) {
+        System.out.println(prod);
         product = prod;
         this.controller = new ControllerEditProduct(prod);
 

@@ -10,7 +10,7 @@ public class CrouskieBackOffice {
     public static void main(String[] args) {
         try {
             DAOProduct dao = new DAOProduct();
-            for (var pr : dao.getAllData()) {
+            for (Product pr : dao.getAllData()) {
                 System.out.println(pr);
             }
             System.out.println(dao.remove(new Product(123, "", ", ", 1f, null)));

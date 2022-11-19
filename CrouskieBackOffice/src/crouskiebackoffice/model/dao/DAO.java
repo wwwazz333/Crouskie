@@ -2,6 +2,7 @@ package crouskiebackoffice.model.dao;
 
 import crouskiebackoffice.model.ConnectionDB;
 import java.sql.*;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,6 +52,7 @@ public abstract class DAO<T> {
     protected int execute(String request, Object[] args) throws SQLException {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
         System.out.println(request);
+        System.out.println(Arrays.toString(args));
         if (args != null) {
             for (int i = 0; i < args.length; i++) {
                 pstmt.setObject(i + 1, args[i]);
@@ -99,24 +101,24 @@ public abstract class DAO<T> {
     }
 
     public void startTransaction() throws SQLException {
-        execute("SET autocommit = 0; START TRANSACTION; SAVEPOINT ?;", null);
+        execute("SET autocommit = 0", null);
+        execute("START TRANSACTION", null);
     }
 
     public void endTransaction() throws SQLException {
-        execute("SET autocommit = 1; COMMIT;", null);
+        execute("SET autocommit = 1", null);
+        execute("COMMIT", null);
     }
 
     public void setSavePoint(String name) throws SQLException {
         if (name != null) {
-            Object[] args = {name};
-            execute("SAVEPOINT ?", args);
+            execute("SAVEPOINT " + name, null);
         }
     }
 
     public void rollbackTo(String name) throws SQLException {
         if (name != null) {
-            Object[] args = {name};
-            execute("ROLLBACK TO SAVEPOINT ?", args);
+            execute("ROLLBACK TO SAVEPOINT " + name, null);
         }
     }
 

@@ -100,22 +100,20 @@ public class DAOProduct extends DAO<Product> {
         boolean succes = false;
         if (exist(product)) {
             Object[] idArg = {product.getId()};
-            succes = super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg) == 1
-                    && super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg) == 1
-                    && super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg) == 1;
-            if (succes) {
-                Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
-                    (product.getCollection() != null ? product.getCollection().getId() : null),
-                    product.getId()};
-                succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2) == 1
-                        && insertAll(product);
-            }
+            super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
+            Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
+                (product.getCollection() != null ? product.getCollection().getId() : null),
+                product.getId()};
+            succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2) == 1
+                    && insertAll(product);
 
         } else {
 
             Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getCollection().getId()};
             succes = insertAll(product)
-                    && super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) == 1;
+                    && super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) != 0;
         }
         if (!succes) {
             rollbackTo("edit_product");
@@ -159,8 +157,9 @@ public class DAOProduct extends DAO<Product> {
             args[i * 2] = valuesName[i].toString();
             args[i * 2 + 1] = id;
         }
-
-        return super.execute("INSERT INTO " + nameTable + " (" + name + ", idprod) values " + ptsInterogration.toString(), args) == 1;
+        boolean a = super.execute("INSERT INTO " + nameTable + " (" + name + ", idprod) values " + ptsInterogration.toString(), args) != 0;
+        System.out.println(a);
+        return a;
     }
 
     @Override

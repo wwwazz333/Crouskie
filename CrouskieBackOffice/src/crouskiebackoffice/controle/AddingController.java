@@ -1,5 +1,6 @@
 package crouskiebackoffice.controle;
 
+import crouskiebackoffice.model.creation.ICreateWithName;
 import crouskiebackoffice.model.dao.DAO;
 import crouskiebackoffice.view.AddingDialog;
 import java.sql.SQLException;
@@ -10,10 +11,13 @@ import java.util.logging.Logger;
 
 public class AddingController<T> {
 
-    DAO dao;
+    private DAO dao;
+    private ICreateWithName createWithName;
+    private AddingDialog<T> addingDialog;
 
-    public AddingController(DAO dao) {
+    public AddingController(DAO dao, ICreateWithName createWithName) {
         this.dao = dao;
+        this.createWithName = createWithName;
     }
 
     public void setDao(DAO dao) {
@@ -21,7 +25,7 @@ public class AddingController<T> {
     }
 
     public T newValue() {
-        AddingDialog<T> addingDialog = new AddingDialog<>(this);
+        addingDialog = new AddingDialog<>(this, createWithName);
         return addingDialog.getResult();
     }
 
@@ -32,5 +36,23 @@ public class AddingController<T> {
             Logger.getLogger(AddingController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new LinkedList<>();
+    }
+
+    /**
+     *
+     * @param name the name for the new Value
+     * @return true if the new Value has been succesfully created
+     */
+    public boolean createValue(String name) {
+        if (name != null && !name.isBlank()) {
+            try {
+                dao.insertOrUpdate(createWithName.createWithName(name));
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(AddingController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return false;
     }
 }

@@ -3,6 +3,7 @@ package crouskiebackoffice.model.listmodel;
 import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.Tag;
+import crouskiebackoffice.model.creation.CreateTag;
 import crouskiebackoffice.model.dao.DAOTag;
 
 public class DynamicListTagModel extends DynamicListModel<Tag> {
@@ -15,7 +16,7 @@ public class DynamicListTagModel extends DynamicListModel<Tag> {
 
     @Override
     public void addItem() {
-        add(getSize(), (new AddingController<Tag>(dao)).newValue());
+        add(getSize(), (new AddingController<Tag>(dao, new CreateTag())).newValue());
     }
 
     @Override

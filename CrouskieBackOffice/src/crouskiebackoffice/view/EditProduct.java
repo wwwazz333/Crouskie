@@ -153,7 +153,11 @@ public class EditProduct extends javax.swing.JPanel {
         gridBagConstraints.gridy = 3;
         add(jLabel8, gridBagConstraints);
 
-        nameInput.setText("jTextField1");
+        nameInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameInputActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -201,6 +205,10 @@ public class EditProduct extends javax.swing.JPanel {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameInputActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

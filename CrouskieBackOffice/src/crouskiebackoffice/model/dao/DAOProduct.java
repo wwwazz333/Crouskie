@@ -5,6 +5,7 @@ import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.Tag;
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -112,8 +113,16 @@ public class DAOProduct extends DAO<Product> {
         } else {
 
             Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getCollection().getId()};
-            succes = insertAll(product)
-                    && super.execute("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)", args) != 0;
+            List<HashMap<String, Object>> generatedKeys = super.insert("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)",
+                    "idprod", args);
+            if (generatedKeys != null) {
+                BigInteger bi = (BigInteger) generatedKeys.get(0).get("generated_key");
+                product.setId(bi.intValue());
+
+                succes = insertAll(product);
+            } else {
+                succes = false;
+            }
         }
         if (!succes) {
             rollbackTo("edit_product");

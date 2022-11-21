@@ -9,6 +9,23 @@ import java.util.List;
 
 public abstract class DAO<T> {
 
+    private List<HashMap<String, Object>> restultSet2HashMap(ResultSet resultSet) throws SQLException {
+        ResultSetMetaData metaData = resultSet.getMetaData();
+
+        final int columnCount = resultSet.getMetaData().getColumnCount();
+
+        List<HashMap<String, Object>> results = new LinkedList<>();
+        while (resultSet.next()) {
+            HashMap<String, Object> row = new HashMap<>();
+            for (int i = 1; i <= columnCount; i++) {
+                row.put(metaData.getColumnName(i).toLowerCase(), resultSet.getObject(i));
+            }
+            results.add(row);
+        }
+
+        return results;
+    }
+
     /**
      * get a list of rows returned by the request that has for arguments args
      *
@@ -26,17 +43,10 @@ public abstract class DAO<T> {
             }
         }
         ResultSet resultSet = pstmt.executeQuery();
-        ResultSetMetaData metaData = resultSet.getMetaData();
-        final int columnCount = resultSet.getMetaData().getColumnCount();
 
-        List<HashMap<String, Object>> results = new LinkedList<>();
-        while (resultSet.next()) {
-            HashMap<String, Object> row = new HashMap<>();
-            for (int i = 1; i <= columnCount; i++) {
-                row.put(metaData.getColumnName(i).toLowerCase(), resultSet.getObject(i));
-            }
-            results.add(row);
-        }
+        List<HashMap<String, Object>> results = restultSet2HashMap(resultSet);
+
+        resultSet.close();
 
         pstmt.close();
         return results;
@@ -61,6 +71,32 @@ public abstract class DAO<T> {
         int nbrEditedRow = pstmt.executeUpdate();
         pstmt.close();
         return nbrEditedRow;
+    }
+
+    /**
+     *
+     * @param request the request to send
+     * @param idToReturn the name of the column to return
+     * @param args the arguments of the request
+     * @return the generated key or null if the insert crached
+     * @throws SQLException an Exception may happen due to the request
+     */
+    public List<HashMap<String, Object>> insert(String request, String idToReturn, Object[] args) throws SQLException {
+        PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request, new String[]{idToReturn});
+        System.out.println(request);
+        System.out.println(Arrays.toString(args));
+        if (args != null) {
+            for (int i = 0; i < args.length; i++) {
+                pstmt.setObject(i + 1, args[i]);
+            }
+        }
+        int nbrEditedRow = pstmt.executeUpdate();
+         var generatedKeys = restultSet2HashMap(pstmt.getGeneratedKeys());
+        pstmt.close();
+        if(nbrEditedRow == 0){
+            return null;
+        }
+        return generatedKeys;
     }
 
     public abstract Boolean insertOrUpdate(T obj) throws SQLException;

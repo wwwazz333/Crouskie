@@ -28,7 +28,7 @@ public class ControllerEditProduct {
             DynamicListModel sizesListModel,
             DynamicListModel tagsListModel) throws NumberFormatException, SQLException {
 
-        product.setPrice(Float.parseFloat(price));
+        product.setPrice(Float.parseFloat(price.replaceAll(",", ".")));
         product.setName(name);
         product.setDescription(description);
         product.setCollection((Collection) comboBoxModel.getSelectedItem());

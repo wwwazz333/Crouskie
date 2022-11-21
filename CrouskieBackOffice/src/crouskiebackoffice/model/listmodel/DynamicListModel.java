@@ -1,6 +1,5 @@
 package crouskiebackoffice.model.listmodel;
 
-import crouskiebackoffice.model.HasName;
 import crouskiebackoffice.model.dao.DAO;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +10,13 @@ public abstract class DynamicListModel<Object> extends DefaultListModel<Object> 
     protected DAO dao;
 
     public DynamicListModel(List<Object> list) {
-        List<Object> listData = new LinkedList<>(list);
+        List<Object> listData;
+        if(list != null){
+             listData = new LinkedList<>(list);
+        }else{
+            listData = new LinkedList<>();
+        }
+        
         for (Object named : listData) {
             addElement(named);
         }

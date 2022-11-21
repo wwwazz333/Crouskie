@@ -3,6 +3,7 @@ package crouskiebackoffice.view;
 import com.formdev.flatlaf.FlatLightLaf;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
+import crouskiebackoffice.model.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.imageio.ImageIO;
@@ -27,6 +28,9 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         instance = this;
         initComponents();
+
+        addProductPanel = new EditProduct(new Product("", "", 10f, null));
+        tabPane.addTab("Ajouter", addProductPanel);
     }
 
     /**
@@ -42,7 +46,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainPane = new javax.swing.JPanel();
         tabPane = new javax.swing.JTabbedPane();
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
-        addingPanel1 = new crouskiebackoffice.view.AddingPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
@@ -58,19 +61,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainPane.setLayout(new java.awt.CardLayout());
 
         tabPane.addTab("Visualiser", visualisationPanel);
-
-        javax.swing.GroupLayout addingPanel1Layout = new javax.swing.GroupLayout(addingPanel1);
-        addingPanel1.setLayout(addingPanel1Layout);
-        addingPanel1Layout.setHorizontalGroup(
-            addingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
-        );
-        addingPanel1Layout.setVerticalGroup(
-            addingPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
-        );
-
-        tabPane.addTab("Ajouter", addingPanel1);
 
         mainPane.add(tabPane, "tabPane");
 
@@ -122,7 +112,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private crouskiebackoffice.view.AddingPanel addingPanel1;
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -131,6 +120,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabPane;
     private crouskiebackoffice.view.VisualisationPanel visualisationPanel;
     // End of variables declaration//GEN-END:variables
+    private EditProduct addProductPanel;
 
     private void initSettings() {
         try {

@@ -6,6 +6,7 @@ import crouskiebackoffice.model.dao.DAOProduct;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.ProductManager;
+import crouskiebackoffice.view.EditProduct;
 import java.sql.SQLException;
 import javax.swing.ComboBoxModel;
 import javax.swing.JList;
@@ -15,8 +16,10 @@ public class ControllerEditProduct {
     private Product product;
     private DAOCollection daoCollection;
     private DAOProduct daoProduct;
+    private EditProduct editProduct;
 
-    public ControllerEditProduct(Product product) {
+    public ControllerEditProduct(EditProduct editProduct, Product product) {
+        this.editProduct = editProduct;
         this.product = product;
         daoCollection = new DAOCollection();
         daoProduct = new DAOProduct();
@@ -27,17 +30,18 @@ public class ControllerEditProduct {
             DynamicListModel colorsListModel,
             DynamicListModel sizesListModel,
             DynamicListModel tagsListModel) throws NumberFormatException, SQLException {
+        if (!name.isBlank() && !description.isBlank() && !price.isBlank()) {
+            product.setPrice(Float.parseFloat(price.replaceAll(",", ".")));
+            product.setName(name);
+            product.setDescription(description);
+            product.setCollection((Collection) comboBoxModel.getSelectedItem());
 
-        product.setPrice(Float.parseFloat(price.replaceAll(",", ".")));
-        product.setName(name);
-        product.setDescription(description);
-        product.setCollection((Collection) comboBoxModel.getSelectedItem());
+            product.setExistingColor(colorsListModel.getData());
+            product.setExistingSize(sizesListModel.getData());
+            product.setTags(tagsListModel.getData());
 
-        product.setExistingColor(colorsListModel.getData());
-        product.setExistingSize(sizesListModel.getData());
-        product.setTags(tagsListModel.getData());
-
-        ProductManager.getInstance().save(product);
+            ProductManager.getInstance().save(product);
+        }
     }
 
     public AddDelListIem getAddDelListIem() {
@@ -58,6 +62,22 @@ public class ControllerEditProduct {
                 }
             }
         };
+    }
+
+    public void clearAll() {
+        editProduct.getNameInput().setText("");
+        editProduct.getDescriptionInput().setText("");
+        editProduct.getPriceInput().setText("");
+
+        editProduct.getCollectionComboBox().setSelectedIndex(editProduct.getCollectionComboBox().getModel().getSize() - 1);//selection le dernier (vide)
+
+        DynamicListModel model = (DynamicListModel) editProduct.getListColor().getModel();
+        model.removeAllElements();
+        model = (DynamicListModel) editProduct.getListColor().getModel();
+        model.removeAllElements();
+        model = (DynamicListModel) editProduct.getListTag().getModel();
+        model.removeAllElements();
+
     }
 
 }

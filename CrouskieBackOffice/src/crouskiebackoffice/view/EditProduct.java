@@ -12,6 +12,10 @@ import java.awt.GridBagConstraints;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class EditProduct extends javax.swing.JPanel {
 
@@ -25,7 +29,7 @@ public class EditProduct extends javax.swing.JPanel {
     public EditProduct(Product prod) {
         System.out.println(prod);
         product = prod;
-        this.controller = new ControllerEditProduct(prod);
+        this.controller = new ControllerEditProduct(this, prod);
 
         initComponents();
         listTag = new ListDynamicPanel(controller.getAddDelListIem());
@@ -54,6 +58,41 @@ public class EditProduct extends javax.swing.JPanel {
         descriptionInput.setText(prod.getDescription());
         priceInput.setText(prod.getPrice() + "");
     }
+
+    private void clearAll() {
+        controller.clearAll();
+        
+    }
+
+    public JComboBox<String> getCollectionComboBox() {
+        return collectionComboBox;
+    }
+
+    public JTextArea getDescriptionInput() {
+        return descriptionInput;
+    }
+
+    public JTextField getNameInput() {
+        return nameInput;
+    }
+
+    public JFormattedTextField getPriceInput() {
+        return priceInput;
+    }
+
+    public ListDynamicPanel getListTag() {
+        return listTag;
+    }
+
+    public ListDynamicPanel getListColor() {
+        return listColor;
+    }
+
+    public ListDynamicPanel getListSize() {
+        return listSize;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,6 +229,7 @@ public class EditProduct extends javax.swing.JPanel {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         Navigator.getInstance().goBack();
+        clearAll();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
@@ -204,6 +244,7 @@ public class EditProduct extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
+        clearAll();
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed

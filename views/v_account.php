@@ -17,6 +17,9 @@ require_once(PATH_VIEWS . 'header.php');
         <a href="index.php?page=account">
             <p>Mes favoris</p>
         </a>
+        <a href="index.php?page=logout">
+            <p>Se déconnecter</p>
+        </a>
     </div>
 
 

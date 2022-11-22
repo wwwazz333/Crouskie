@@ -40,5 +40,14 @@ class ProductDAO extends DAO{
         return $product == false ? false : $product;
     }
 
+    public function getStockStatus(int $id) : bool
+    {
+        $stock = $this->queryAll("Select count(*) from product natural join stocked where idprod=?",array($id));
+        if ($stock["count(*)"]>0){
+            return true;
+        }
+        else{return false;}
+    }
+
     
 }

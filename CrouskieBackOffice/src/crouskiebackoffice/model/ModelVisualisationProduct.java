@@ -1,8 +1,6 @@
 package crouskiebackoffice.model;
 
 import crouskiebackoffice.controle.ControllerProductTable;
-import crouskiebackoffice.controle.Navigator;
-import crouskiebackoffice.view.EditProduct;
 import java.util.LinkedList;
 import java.util.*;
 import javax.swing.JButton;
@@ -98,6 +96,10 @@ public class ModelVisualisationProduct extends AbstractTableModel {
         } else {
             super.setValueAt(aValue, rowIndex, columnIndex);
         }
+    }
+
+    public void setData(List<Product> data) {
+        rowData = data;
     }
 
 }

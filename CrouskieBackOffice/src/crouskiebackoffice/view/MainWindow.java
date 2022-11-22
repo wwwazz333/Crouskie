@@ -31,6 +31,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         addProductPanel = new EditProduct(new Product("", "", 10f, null));
         tabPane.addTab("Ajouter", addProductPanel);
+
+        tabPane.addChangeListener((ce) -> {
+            if (tabPane.getSelectedComponent() == visualisationPanel) {
+                visualisationPanel.update();
+            }
+        });
     }
 
     /**

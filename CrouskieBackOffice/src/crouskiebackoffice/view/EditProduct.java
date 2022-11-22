@@ -3,6 +3,7 @@ package crouskiebackoffice.view;
 import crouskiebackoffice.controle.ControllerEditProduct;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.CollectionModelComboBox;
+import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
@@ -61,7 +62,7 @@ public class EditProduct extends javax.swing.JPanel {
 
     private void clearAll() {
         controller.clearAll();
-        
+
     }
 
     public JComboBox<String> getCollectionComboBox() {
@@ -91,8 +92,6 @@ public class EditProduct extends javax.swing.JPanel {
     public ListDynamicPanel getListSize() {
         return listSize;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -234,7 +233,6 @@ public class EditProduct extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         try {
-
             controller.save(nameInput.getText(), descriptionInput.getText(),
                     priceInput.getText(), collectionComboBox.getModel(),
                     (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel());
@@ -245,6 +243,7 @@ public class EditProduct extends javax.swing.JPanel {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         clearAll();
+        DataProduct.getInstance().notif();
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed

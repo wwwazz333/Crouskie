@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2022 at 12:10 AM
+-- Generation Time: Nov 22, 2022 at 02:12 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -168,7 +168,8 @@ INSERT INTO `EXISTINGCOLOR` (`IDPROD`, `NAMECOLOR`) VALUES
 (1, 'rouge'),
 (2, 'orange'),
 (2, 'vert'),
-(4, 'jaune');
+(4, 'jaune'),
+(11, 'Bleu');
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,10 @@ INSERT INTO `PRODUCT` (`IDPROD`, `IDCOLLECTION`, `NAMEPROD`, `DESCRIPTIONPROD`, 
 (1, 1, 'string', 'des', 12.45),
 (2, NULL, '[value-TEst]', '[value-Des]', 21.00),
 (3, NULL, 'nameprodTestId', 'super description', 100.00),
-(4, 1, 'name Product isnerted', 'sldfkj', 424.00);
+(4, 1, 'name Product isnerted', 'sldfkj', 424.00),
+(7, 1, 'nom', 'dessss', 11.00),
+(8, 1, 'nom', 'dessss', 11.00),
+(11, 1, '???', '???', 10.01);
 
 -- --------------------------------------------------------
 
@@ -352,7 +356,8 @@ INSERT INTO `TAGS_PRODUCT` (`IDPROD`, `IDTAG`) VALUES
 (1, 2),
 (1, 3),
 (2, 1),
-(3, 1);
+(3, 1),
+(11, 1);
 
 --
 -- Indexes for dumped tables
@@ -496,7 +501,7 @@ ALTER TABLE `CUSTOMER`
 -- AUTO_INCREMENT for table `PRODUCT`
 --
 ALTER TABLE `PRODUCT`
-  MODIFY `IDPROD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDPROD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `PRODUCTBOUGHT`

@@ -112,7 +112,8 @@ public class DAOProduct extends DAO<Product> {
 
         } else {
 
-            Object[] args = {product.getName(), product.getDescription(), product.getPrice(), product.getCollection().getId()};
+            Object[] args = {product.getName(), product.getDescription(), product.getPrice(),
+                (product.getCollection() != null ? product.getCollection().getId() : null)};
             List<HashMap<String, Object>> generatedKeys = super.insert("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)",
                     "idprod", args);
             if (generatedKeys != null) {

@@ -1,29 +1,23 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.dao.DAO;
-import crouskiebackoffice.model.dao.DAOProduct;
+import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.ModelVisualisationProduct;
+import crouskiebackoffice.model.Observer;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.view.EditProduct;
-import java.sql.SQLException;
-import java.util.LinkedList;
 
 /**
  *
  * @author wwwazz
  */
-public class ControllerProductTable {
+public class ControllerProductTable implements Observer {
 
     ModelVisualisationProduct modelVisualisationProduct;
-    DAO dao;
 
     public ControllerProductTable() {
-        dao = new DAOProduct();
-        try {
-            modelVisualisationProduct = new ModelVisualisationProduct(this, dao.getAllData("nameprod"));
-        } catch (SQLException ex) {
-            modelVisualisationProduct = new ModelVisualisationProduct(this, new LinkedList<>());
-        }
+        DataProduct.getInstance().registerObserver(this);
+        modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData());
+        
     }
 
     public ModelVisualisationProduct getModelVisualisationProduct() {
@@ -32,6 +26,11 @@ public class ControllerProductTable {
 
     public void goToEdit(Product currentProduct) {
         Navigator.getInstance().goTo(new EditProduct(currentProduct), "editProduct");
+    }
+
+    @Override
+    public void update() {
+        modelVisualisationProduct.setData(DataProduct.getInstance().getData());
     }
 
 }

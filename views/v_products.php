@@ -14,9 +14,9 @@ require_once(PATH_VIEWS . 'header.php');
             <div class='flex column rounded shadow-small product-item'>
                 <div class="image-container">
                     <img class='rounded shadow-small' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background">
-                    <a href="#" class="circle icon-button">
-                        <iconify-icon  icon="mdi:cards-heart-outline"></iconify-icon>
-                    </a>
+                    <div class="circle icon-button">
+                        <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon>
+                    </div>
 
                 </div>
 

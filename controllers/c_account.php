@@ -10,8 +10,4 @@ if (isset($_GET['selected'])) {
     $selectedPage = "info";
 }
 
-if ($selectedPage == "info") {
-    $nom = $user->getLastName();
-}
-
 require_once(PATH_VIEWS . $page . '.php');

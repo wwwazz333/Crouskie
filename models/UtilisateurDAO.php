@@ -15,7 +15,7 @@ class UtilisateurDAO extends DAO
 
     public function addUser(string $email, string $password,string $firstName,string $lastName){
         $result = $this->queryBdd("INSERT INTO customer (first_name,last_name,mail_address,password) VALUES (?,?,?,?)",array(
-            $lastName,$firstName,$email,$password
+            $firstName,$lastName,$email,$password
         ));
         return $result;
     }

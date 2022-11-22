@@ -10,6 +10,7 @@ public class Product implements HasName {
     private String name;
     private String description;
     private float price;
+    private boolean enVente;
 
     private List<Color> existingColor;
     private List<ClothSize> existingSize;
@@ -60,23 +61,26 @@ public class Product implements HasName {
         this.collection = collection;
     }
 
-    public Product(String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
+    public Product(String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
         this.id = -1;
         this.name = name;
         this.description = description;
         this.price = price;
         this.collection = collection;
+        this.enVente = enVente;
+
         this.existingColor = existingColor;
         this.existingSize = existingSize;
         this.tags = tags;
     }
 
-    public Product(int id, String name, String description, float price, Collection collection, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
+    public Product(int id, String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.collection = collection;
+        this.enVente = enVente;
         this.existingColor = existingColor;
         this.existingSize = existingSize;
         this.tags = tags;
@@ -133,6 +137,14 @@ public class Product implements HasName {
 
     public Collection getCollection() {
         return collection;
+    }
+
+    public boolean isEnVente() {
+        return enVente;
+    }
+
+    public void setEnVente(boolean enVente) {
+        this.enVente = enVente;
     }
 
     @Override

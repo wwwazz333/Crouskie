@@ -149,6 +149,7 @@ public class Product implements HasName {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", collection=" + collection + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", enVente=" + enVente + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", collection=" + collection + '}';
     }
+
 }

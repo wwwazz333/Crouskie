@@ -26,7 +26,9 @@ public class ControllerEditProduct {
 
     }
 
-    public boolean save(String name, String description, String price, ComboBoxModel comboBoxModel,
+    public boolean save(String name, String description, String price,
+            boolean enVente,
+            ComboBoxModel comboBoxModel,
             DynamicListModel colorsListModel,
             DynamicListModel sizesListModel,
             DynamicListModel tagsListModel) throws NumberFormatException, SQLException {
@@ -35,6 +37,8 @@ public class ControllerEditProduct {
             product.setName(name);
             product.setDescription(description);
             product.setCollection((Collection) comboBoxModel.getSelectedItem());
+
+            product.setEnVente(enVente);
 
             product.setExistingColor(colorsListModel.getData());
             product.setExistingSize(sizesListModel.getData());

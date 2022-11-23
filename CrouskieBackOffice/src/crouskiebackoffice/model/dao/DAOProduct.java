@@ -20,15 +20,16 @@ public class DAOProduct extends DAO<Product> {
         //  la collection (id, name) ces valeurs seront null si il n'appartien au aucun collection
         //  les taille existante qui sont concaténer en une String sous la form  :  idsize, namesize;;;idsize2, namesize2
         //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
-        return "SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, enVente,\n"
-                + "                                case \n"
-                + "                                	when IDCOLLECTION is null then null\n"
-                + "                                	else namecollection\n"
-                + "                                    end as NAMECOLLECTION,\n"
-                + "                                (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,\n"
-                + "                                (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,\n"
-                + "                                (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags\n"
-                + "                                FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION";
+        return """
+               SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, ENVENTE,
+                                               case 
+                                               \twhen IDCOLLECTION is null then null
+                                               \telse namecollection
+                                                   end as NAMECOLLECTION,
+                                               (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,
+                                               (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,
+                                               (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags
+                                               FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION""";
     }
 
     @Override
@@ -107,15 +108,18 @@ public class DAOProduct extends DAO<Product> {
             super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
             Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
                 (product.getCollection() != null ? product.getCollection().getId() : null),
-                product.getId()};
-            succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ? WHERE idprod = ?", args2) == 1
+                product.isEnVente(),
+                product.getId()
+            };
+            succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ?, envente = ? WHERE idprod = ?", args2) == 1
                     && insertAll(product);
 
         } else {
 
             Object[] args = {product.getName(), product.getDescription(), product.getPrice(),
-                (product.getCollection() != null ? product.getCollection().getId() : null)};
-            List<HashMap<String, Object>> generatedKeys = super.insert("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection) VALUES (?, ?, ?, ?)",
+                (product.getCollection() != null ? product.getCollection().getId() : null),
+                product.isEnVente()};
+            List<HashMap<String, Object>> generatedKeys = super.insert("INSERT INTO " + getTableName() + " (nameprod, descriptionprod, priceprod, idcollection, envente) VALUES (?, ?, ?, ?, ?)",
                     "idprod", args);
             if (generatedKeys != null) {
                 BigInteger bi = (BigInteger) generatedKeys.get(0).get("generated_key");

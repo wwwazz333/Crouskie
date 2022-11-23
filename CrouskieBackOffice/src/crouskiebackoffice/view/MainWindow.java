@@ -3,7 +3,6 @@ package crouskiebackoffice.view;
 import com.formdev.flatlaf.FlatLightLaf;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
-import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Product;
 import java.io.IOException;
 import java.sql.SQLException;

@@ -9,7 +9,6 @@ import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
 import crouskiebackoffice.model.listmodel.DynamicListSizeModel;
 import crouskiebackoffice.model.listmodel.DynamicListTagModel;
-import java.awt.GridBagConstraints;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,23 +33,16 @@ public class EditProduct extends javax.swing.JPanel {
         this.controller = new ControllerEditProduct(this, prod);
 
         initComponents();
-        listTag = new ListDynamicPanel(controller.getAddDelListIem());
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        add(listTag, gridBagConstraints);
 
-        listSize = new ListDynamicPanel(controller.getAddDelListIem());
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        add(listSize, gridBagConstraints);
+        listSize = new ListDynamicPanel("Taille", controller.getAddDelListIem());
+        row3.add(listSize);
 
-        listColor = new ListDynamicPanel(controller.getAddDelListIem());
-        gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 3;
-        add(listColor, gridBagConstraints);
+        listColor = new ListDynamicPanel("Couleurs", controller.getAddDelListIem());
+        row3.add(listColor);
+
+        listTag = new ListDynamicPanel("Tags", controller.getAddDelListIem());
+        row3.add(listTag);
+        
 
         listTag.setModel(new DynamicListTagModel(product));
         listColor.setModel(new DynamicListColorModel(product));
@@ -108,112 +100,63 @@ public class EditProduct extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        row1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
-        descriptionLabel = new javax.swing.JLabel();
-        prixLabel = new javax.swing.JLabel();
-        submitBtn = new javax.swing.JButton();
-        cancelBtn = new javax.swing.JButton();
-        tagLabel = new javax.swing.JLabel();
-        collectionLabel = new javax.swing.JLabel();
-        sizeLabel = new javax.swing.JLabel();
-        couleurLabel = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
-        priceInput = new javax.swing.JFormattedTextField();
-        descriptionScrollArea = new javax.swing.JScrollPane();
-        descriptionInput = new javax.swing.JTextArea();
+        collectionLabel = new javax.swing.JLabel();
         collectionComboBox = new javax.swing.JComboBox<>();
         enVenteCheckBox = new javax.swing.JCheckBox();
+        row2 = new javax.swing.JPanel();
+        descriptionLabel = new javax.swing.JLabel();
+        descriptionScrollArea = new javax.swing.JScrollPane();
+        descriptionInput = new javax.swing.JTextArea();
+        prixLabel = new javax.swing.JLabel();
+        priceInput = new javax.swing.JFormattedTextField();
+        row3 = new javax.swing.JPanel();
+        row4 = new javax.swing.JPanel();
+        submitBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+        add(filler2);
+
+        row1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 5));
 
         nameLabel.setText("name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 15;
-        add(nameLabel, gridBagConstraints);
-
-        descriptionLabel.setText("description");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        add(descriptionLabel, gridBagConstraints);
-
-        prixLabel.setText("prix (en €)");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        add(prixLabel, gridBagConstraints);
-
-        submitBtn.setText("Valider");
-        submitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        add(submitBtn, gridBagConstraints);
-
-        cancelBtn.setText("Annuler");
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        add(cancelBtn, gridBagConstraints);
-
-        tagLabel.setText("tags");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        add(tagLabel, gridBagConstraints);
-
-        collectionLabel.setText("collection");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        add(collectionLabel, gridBagConstraints);
-
-        sizeLabel.setText("taille");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        add(sizeLabel, gridBagConstraints);
-
-        couleurLabel.setText("couleur");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        add(couleurLabel, gridBagConstraints);
+        row1.add(nameLabel);
 
         nameInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameInputActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        add(nameInput, gridBagConstraints);
+        row1.add(nameInput);
 
-        priceInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        add(priceInput, gridBagConstraints);
+        collectionLabel.setText("collection");
+        row1.add(collectionLabel);
+
+        collectionComboBox.setModel(new CollectionModelComboBox(product));
+        row1.add(collectionComboBox);
+
+        enVenteCheckBox.setSelected(true);
+        enVenteCheckBox.setText("produit en vente");
+        row1.add(enVenteCheckBox);
+
+        add(row1);
+
+        row2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 5));
+
+        descriptionLabel.setText("description");
+        row2.add(descriptionLabel);
 
         descriptionScrollArea.setMinimumSize(new java.awt.Dimension(200, 40));
 
@@ -222,20 +165,39 @@ public class EditProduct extends javax.swing.JPanel {
         descriptionInput.setMinimumSize(new java.awt.Dimension(200, 40));
         descriptionScrollArea.setViewportView(descriptionInput);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        add(descriptionScrollArea, gridBagConstraints);
+        row2.add(descriptionScrollArea);
 
-        collectionComboBox.setModel(new CollectionModelComboBox(product));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        add(collectionComboBox, gridBagConstraints);
+        prixLabel.setText("prix (en €)");
+        row2.add(prixLabel);
 
-        enVenteCheckBox.setSelected(true);
-        enVenteCheckBox.setText("produit en vente");
-        add(enVenteCheckBox, new java.awt.GridBagConstraints());
+        priceInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        row2.add(priceInput);
+
+        add(row2);
+
+        row3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 20));
+        add(row3);
+
+        row4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
+
+        submitBtn.setText("Valider");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
+        row4.add(submitBtn);
+
+        cancelBtn.setText("Annuler");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+        row4.add(cancelBtn);
+
+        add(row4);
+        add(filler1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -276,20 +238,23 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> collectionComboBox;
     private javax.swing.JLabel collectionLabel;
-    private javax.swing.JLabel couleurLabel;
     private javax.swing.JTextArea descriptionInput;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JScrollPane descriptionScrollArea;
     private javax.swing.JCheckBox enVenteCheckBox;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JFormattedTextField priceInput;
     private javax.swing.JLabel prixLabel;
-    private javax.swing.JLabel sizeLabel;
+    private javax.swing.JPanel row1;
+    private javax.swing.JPanel row2;
+    private javax.swing.JPanel row3;
+    private javax.swing.JPanel row4;
     private javax.swing.JButton submitBtn;
-    private javax.swing.JLabel tagLabel;
     // End of variables declaration//GEN-END:variables
     private ListDynamicPanel listTag;
     private ListDynamicPanel listColor;

@@ -11,16 +11,18 @@ public class ListDynamicPanel extends javax.swing.JPanel {
 
     private AddDelListIem addDel;
 
-    public ListDynamicPanel(AddDelListIem addDel) {
+    public ListDynamicPanel(String title, AddDelListIem addDel) {
         initComponents();
 
         this.addDel = addDel;
+        this.title.setText(title);
     }
 
     public void setModel(ListModel listModel) {
         list.setModel(listModel);
     }
-    public ListModel getModel(){
+
+    public ListModel getModel() {
         return list.getModel();
     }
 
@@ -32,14 +34,18 @@ public class ListDynamicPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         delBtn = new javax.swing.JButton();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        title.setText("jLabel1");
+        add(title);
 
         list.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -47,13 +53,12 @@ public class ListDynamicPanel extends javax.swing.JPanel {
             public String getElementAt(int i) { return strings[i]; }
         });
         list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        list.setMaximumSize(new java.awt.Dimension(20, 105));
+        list.setMinimumSize(new java.awt.Dimension(20, 105));
+        list.setPreferredSize(new java.awt.Dimension(20, 105));
         jScrollPane1.setViewportView(list);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        add(jScrollPane1, gridBagConstraints);
+        add(jScrollPane1);
 
         addBtn.setText("+");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -61,10 +66,7 @@ public class ListDynamicPanel extends javax.swing.JPanel {
                 addBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        add(addBtn, gridBagConstraints);
+        jPanel1.add(addBtn);
 
         delBtn.setText("-");
         delBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -72,10 +74,9 @@ public class ListDynamicPanel extends javax.swing.JPanel {
                 delBtnActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        add(delBtn, gridBagConstraints);
+        jPanel1.add(delBtn);
+
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -90,7 +91,9 @@ public class ListDynamicPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton delBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list;
+    private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

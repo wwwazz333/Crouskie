@@ -54,7 +54,7 @@ public class MainWindow extends javax.swing.JFrame {
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        statusbarPanel1 = new crouskiebackoffice.view.StatusbarPanel();
+        statusbar = new crouskiebackoffice.view.StatusbarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crouskie BackOffice");
@@ -92,7 +92,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainPane.add(jPanel1, "editProduct");
 
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
-        getContentPane().add(statusbarPanel1, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(statusbar, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel mainPane;
-    private crouskiebackoffice.view.StatusbarPanel statusbarPanel1;
+    private crouskiebackoffice.view.StatusbarPanel statusbar;
     private javax.swing.JTabbedPane tabPane;
     private crouskiebackoffice.view.VisualisationPanel visualisationPanel;
     // End of variables declaration//GEN-END:variables
@@ -137,5 +137,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         Navigator.getInstance().init(mainPane, "tabPane");
     }
+
+    public StatusbarPanel getStatusbar() {
+        return statusbar;
+    }
+    
+    
+    
 
 }

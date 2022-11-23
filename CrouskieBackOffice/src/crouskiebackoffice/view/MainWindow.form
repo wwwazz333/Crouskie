@@ -107,7 +107,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="crouskiebackoffice.view.StatusbarPanel" name="statusbarPanel1">
+    <Component class="crouskiebackoffice.view.StatusbarPanel" name="statusbar">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="South"/>

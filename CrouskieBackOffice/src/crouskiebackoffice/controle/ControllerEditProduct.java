@@ -26,7 +26,7 @@ public class ControllerEditProduct {
 
     }
 
-    public void save(String name, String description, String price, ComboBoxModel comboBoxModel,
+    public boolean save(String name, String description, String price, ComboBoxModel comboBoxModel,
             DynamicListModel colorsListModel,
             DynamicListModel sizesListModel,
             DynamicListModel tagsListModel) throws NumberFormatException, SQLException {
@@ -40,8 +40,9 @@ public class ControllerEditProduct {
             product.setExistingSize(sizesListModel.getData());
             product.setTags(tagsListModel.getData());
 
-            ProductManager.getInstance().save(product);
+            return ProductManager.getInstance().save(product);
         }
+        return false;
     }
 
     public AddDelListIem getAddDelListIem() {

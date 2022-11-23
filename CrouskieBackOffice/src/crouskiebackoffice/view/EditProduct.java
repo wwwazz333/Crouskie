@@ -105,9 +105,9 @@ public class EditProduct extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jlabelsd = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        descriptionLabel = new javax.swing.JLabel();
+        prixLabel = new javax.swing.JLabel();
         submitBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         LabelTags = new javax.swing.JLabel();
@@ -126,24 +126,24 @@ public class EditProduct extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("name");
+        nameLabel.setText("name");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
-        add(jLabel3, gridBagConstraints);
+        add(nameLabel, gridBagConstraints);
 
-        jLabel5.setText("description");
+        descriptionLabel.setText("description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        add(jLabel5, gridBagConstraints);
+        add(descriptionLabel, gridBagConstraints);
 
-        jlabelsd.setText("prix (en €)");
+        prixLabel.setText("prix (en €)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        add(jlabelsd, gridBagConstraints);
+        add(prixLabel, gridBagConstraints);
 
         submitBtn.setText("Valider");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -232,18 +232,27 @@ public class EditProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        MainWindow.instance.getStatusbar().showMsg("Envoi des données");
+        MainWindow.instance.getStatusbar().setLoading(true);
+        boolean succes = false;
         try {
-            controller.save(nameInput.getText(), descriptionInput.getText(),
+            succes = controller.save(nameInput.getText(), descriptionInput.getText(),
                     priceInput.getText(), collectionComboBox.getModel(),
                     (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel());
-            Navigator.getInstance().goBack();
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            if (succes) {
+                clearAll();
+                Navigator.getInstance().goBack();
+                DataProduct.getInstance().notif();
+            }
+
+        } catch (NumberFormatException | SQLException ex) {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
-        clearAll();
-        DataProduct.getInstance().notif();
+        MainWindow.instance.getStatusbar().setLoading(false);
+        if (succes)
+            MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
+        else
+            MainWindow.instance.getStatusbar().showMsg("Echec lors de l'envoi des données", 2000);
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
@@ -257,15 +266,15 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> collectionComboBox;
     private javax.swing.JLabel collectionLabel;
     private javax.swing.JTextArea descriptionInput;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel descriptionLabel;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel jlabelsd;
     private javax.swing.JTextField nameInput;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JFormattedTextField priceInput;
+    private javax.swing.JLabel prixLabel;
     private javax.swing.JLabel sizeLabel;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables

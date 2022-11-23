@@ -20,8 +20,8 @@ public class ProductManager {
         return instance;
     }
 
-    public void save(Product product) throws SQLException {
-        daoProduct.insertOrUpdate(product);
+    public boolean save(Product product) throws SQLException {
+        return daoProduct.insertOrUpdate(product);
     }
 
 }

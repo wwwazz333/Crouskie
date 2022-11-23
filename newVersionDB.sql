@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2022 at 02:12 PM
+-- Generation Time: Nov 22, 2022 at 03:43 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -63,7 +63,8 @@ INSERT INTO `CLOTH_SIZE` (`IDSIZE`, `NAMESIZE`) VALUES
 (3, 'M'),
 (4, 'L'),
 (5, 'XL'),
-(6, 'Grand');
+(6, 'Grand'),
+(7, 'superGrand');
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,8 @@ INSERT INTO `EXISTINGCOLOR` (`IDPROD`, `NAMECOLOR`) VALUES
 (2, 'orange'),
 (2, 'vert'),
 (4, 'jaune'),
-(11, 'Bleu');
+(11, 'Bleu'),
+(13, 'orange');
 
 -- --------------------------------------------------------
 
@@ -193,7 +195,9 @@ INSERT INTO `EXISTINGSIZE` (`IDPROD`, `IDSIZE`) VALUES
 (2, 2),
 (2, 3),
 (2, 4),
-(4, 1);
+(4, 1),
+(12, 1),
+(13, 6);
 
 -- --------------------------------------------------------
 
@@ -245,21 +249,25 @@ CREATE TABLE `PRODUCT` (
   `IDCOLLECTION` int(11) DEFAULT NULL,
   `NAMEPROD` varchar(255) NOT NULL,
   `DESCRIPTIONPROD` varchar(255) DEFAULT NULL,
-  `PRICEPROD` float(10,2) NOT NULL
+  `PRICEPROD` float(10,2) NOT NULL,
+  `enVente` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `PRODUCT`
 --
 
-INSERT INTO `PRODUCT` (`IDPROD`, `IDCOLLECTION`, `NAMEPROD`, `DESCRIPTIONPROD`, `PRICEPROD`) VALUES
-(1, 1, 'string', 'des', 12.45),
-(2, NULL, '[value-TEst]', '[value-Des]', 21.00),
-(3, NULL, 'nameprodTestId', 'super description', 100.00),
-(4, 1, 'name Product isnerted', 'sldfkj', 424.00),
-(7, 1, 'nom', 'dessss', 11.00),
-(8, 1, 'nom', 'dessss', 11.00),
-(11, 1, '???', '???', 10.01);
+INSERT INTO `PRODUCT` (`IDPROD`, `IDCOLLECTION`, `NAMEPROD`, `DESCRIPTIONPROD`, `PRICEPROD`, `enVente`) VALUES
+(1, 1, 'string', 'des', 12.45, 1),
+(2, NULL, '[value-TEst]', '[value-Des]', 21.00, 1),
+(3, NULL, 'nameprodTestId', 'super description', 100.00, 1),
+(4, 1, 'name Product isnerted', 'sldfkj', 424.00, 1),
+(7, 1, 'nom', 'dessss', 11.00, 1),
+(8, 1, 'nom', 'dessss', 11.00, 1),
+(11, 1, '???', '???', 10.01, 1),
+(12, 1, 'ertyu', 'dfg', 10.00, 1),
+(13, NULL, 'Observer', 'il t\'observe', 99.00, 1),
+(14, NULL, 'Add', 'sf', 10.00, 1);
 
 -- --------------------------------------------------------
 
@@ -335,7 +343,8 @@ CREATE TABLE `TAG` (
 INSERT INTO `TAG` (`idtag`, `nametag`) VALUES
 (1, 'pull'),
 (2, 't-shirt'),
-(3, 'autreXd');
+(3, 'autreXd'),
+(4, 'observer');
 
 -- --------------------------------------------------------
 
@@ -353,11 +362,14 @@ CREATE TABLE `TAGS_PRODUCT` (
 --
 
 INSERT INTO `TAGS_PRODUCT` (`IDPROD`, `IDTAG`) VALUES
+(1, 1),
 (1, 2),
 (1, 3),
 (2, 1),
 (3, 1),
-(11, 1);
+(8, 1),
+(11, 1),
+(13, 4);
 
 --
 -- Indexes for dumped tables
@@ -477,7 +489,7 @@ ALTER TABLE `TAGS_PRODUCT`
 -- AUTO_INCREMENT for table `CLOTH_SIZE`
 --
 ALTER TABLE `CLOTH_SIZE`
-  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `CMD`
@@ -501,7 +513,7 @@ ALTER TABLE `CUSTOMER`
 -- AUTO_INCREMENT for table `PRODUCT`
 --
 ALTER TABLE `PRODUCT`
-  MODIFY `IDPROD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IDPROD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `PRODUCTBOUGHT`
@@ -513,7 +525,7 @@ ALTER TABLE `PRODUCTBOUGHT`
 -- AUTO_INCREMENT for table `TAG`
 --
 ALTER TABLE `TAG`
-  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

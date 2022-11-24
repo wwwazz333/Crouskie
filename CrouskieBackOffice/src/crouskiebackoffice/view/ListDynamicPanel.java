@@ -35,6 +35,7 @@ public class ListDynamicPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         list = new javax.swing.JList<>();
@@ -44,8 +45,12 @@ public class ListDynamicPanel extends javax.swing.JPanel {
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        title.setText("jLabel1");
-        add(title);
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Title");
+        jPanel2.add(title);
+        title.getAccessibleContext().setAccessibleName("titleLabel");
+
+        add(jPanel2);
 
         list.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -92,6 +97,7 @@ public class ListDynamicPanel extends javax.swing.JPanel {
     private javax.swing.JButton addBtn;
     private javax.swing.JButton delBtn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> list;
     private javax.swing.JLabel title;

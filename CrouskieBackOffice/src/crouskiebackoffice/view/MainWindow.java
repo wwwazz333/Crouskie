@@ -1,6 +1,7 @@
 package crouskiebackoffice.view;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.Product;
@@ -136,6 +137,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
 
         Navigator.getInstance().init(mainPane, "tabPane");
+        ErrorHandeler.getInstance().init(this);
     }
 
     public StatusbarPanel getStatusbar() {

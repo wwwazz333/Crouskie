@@ -1,13 +1,11 @@
 package crouskiebackoffice.exceptions;
 
-import crouskiebackoffice.model.CallbackState;
+import crouskiebackoffice.model.OnCrash;
 
-public abstract class ErrorHandelabelAdapter extends Exception implements CallbackState {
-
-    @Override
-    public  void succes(){}
+public abstract class ErrorHandelabelAdapter extends Exception implements OnCrash {
 
     @Override
-    public  void crashed(){}
+    public void crashed() {
+    }
 
 }

@@ -1,8 +1,7 @@
 package crouskiebackoffice.model;
 
-public interface CallbackState {
+public interface OnCrash {
 
     public void crashed();
 
-    public void succes();
 }

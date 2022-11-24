@@ -1,6 +1,7 @@
 package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.ControllerEditProduct;
+import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.CollectionModelComboBox;
 import crouskiebackoffice.model.DataProduct;
@@ -42,7 +43,6 @@ public class EditProduct extends javax.swing.JPanel {
 
         listTag = new ListDynamicPanel("Tags", controller.getAddDelListIem());
         row3.add(listTag);
-        
 
         listTag.setModel(new DynamicListTagModel(product));
         listColor.setModel(new DynamicListColorModel(product));
@@ -208,6 +208,7 @@ public class EditProduct extends javax.swing.JPanel {
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         MainWindow.instance.getStatusbar().showMsg("Envoi des données");
         MainWindow.instance.getStatusbar().setLoading(true);
+
         boolean succes = false;
         try {
             succes = controller.save(nameInput.getText(), descriptionInput.getText(),

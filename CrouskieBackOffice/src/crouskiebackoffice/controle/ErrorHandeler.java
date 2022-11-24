@@ -3,12 +3,13 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.CanCrash;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ErrorHandeler {
 
     public static ErrorHandeler instance;
 
-    public ErrorHandeler getInstance() {
+    public static ErrorHandeler getInstance() {
         if (instance == null) {
             instance = new ErrorHandeler();
         }
@@ -34,7 +35,10 @@ public class ErrorHandeler {
             canCrash.run();
         } catch (ErrorHandelabelAdapter error) {
 
+            JOptionPane.showMessageDialog(parent, error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            error.crashed();
         } catch (Exception error) {
+            JOptionPane.showMessageDialog(parent, error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 
         }
     }

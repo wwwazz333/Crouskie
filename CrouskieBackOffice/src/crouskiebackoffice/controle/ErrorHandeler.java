@@ -27,6 +27,10 @@ public class ErrorHandeler {
         inisialized = true;
     }
 
+    /**
+     * ErrorHandeler doit être initializer a l'aide de {@link init}
+     * @param canCrash Se qu'il faut tester
+     */
     public void exec(CanCrash canCrash) {
         if (!inisialized) {
             throw new RuntimeException("ErrorHandeler n'a pas été initializer");

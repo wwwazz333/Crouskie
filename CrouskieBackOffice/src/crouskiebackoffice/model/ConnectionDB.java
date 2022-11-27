@@ -1,5 +1,7 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.exceptions.ErrorConnectionSQL;
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,13 +16,18 @@ public class ConnectionDB {
         return con;
     }
 
-    private ConnectionDB() throws SQLException {
+    private ConnectionDB() throws SQLException, ErrorHandelabelAdapter {
         System.out.println("Ouverture de la connection sql");
-        con = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
+        } catch (com.mysql.cj.jdbc.exceptions.CommunicationsException e) {
+            throw new ErrorConnectionSQL();
+        }
+
 //        con = DriverManager.getConnection("jdbc:mysql://iutdoua-web.univ-lyon1.fr/p2100284", "p2100284", "613689");
     }
 
-    public static ConnectionDB getInstance() throws SQLException {
+    public static ConnectionDB getInstance() throws SQLException, ErrorHandelabelAdapter  {
         if (instance == null) {
             instance = new ConnectionDB();
         }

@@ -3,3 +3,4 @@ CrouskieBackOffice/nbproject/private/private.properties
 
 *.class
 CrouskieBackOffice/build/*
+/CrouskieBackOffice/dist/

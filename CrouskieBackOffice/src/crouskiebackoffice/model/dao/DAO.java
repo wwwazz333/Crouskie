@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ConnectionDB;
 import java.sql.*;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public abstract class DAO<T> {
      * @return A list of rows returned by the request
      * @throws SQLException an Exception may happen due to the request
      */
-    protected List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException {
+    protected List<HashMap<String, Object>> selectAll(String request, Object[] args) throws SQLException, ErrorHandelabelAdapter {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
 
         if (args != null) {
@@ -59,7 +60,7 @@ public abstract class DAO<T> {
      * @return the numbers of edited row
      * @throws SQLException an Exception may happen due to the request
      */
-    protected int execute(String request, Object[] args) throws SQLException {
+    protected int execute(String request, Object[] args) throws SQLException, ErrorHandelabelAdapter {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request);
         System.out.println(request);
         System.out.println(Arrays.toString(args));
@@ -81,7 +82,7 @@ public abstract class DAO<T> {
      * @return the generated key or null if the insert crached
      * @throws SQLException an Exception may happen due to the request
      */
-    public List<HashMap<String, Object>> insert(String request, String idToReturn, Object[] args) throws SQLException {
+    public List<HashMap<String, Object>> insert(String request, String idToReturn, Object[] args) throws SQLException, ErrorHandelabelAdapter {
         PreparedStatement pstmt = ConnectionDB.getInstance().getConnection().prepareStatement(request, new String[]{idToReturn});
         System.out.println(request);
         System.out.println(Arrays.toString(args));
@@ -91,22 +92,22 @@ public abstract class DAO<T> {
             }
         }
         int nbrEditedRow = pstmt.executeUpdate();
-         var generatedKeys = restultSet2HashMap(pstmt.getGeneratedKeys());
+        var generatedKeys = restultSet2HashMap(pstmt.getGeneratedKeys());
         pstmt.close();
-        if(nbrEditedRow == 0){
+        if (nbrEditedRow == 0) {
             return null;
         }
         return generatedKeys;
     }
 
-    public abstract Boolean insertOrUpdate(T obj) throws SQLException;
+    public abstract Boolean insertOrUpdate(T obj) throws SQLException, ErrorHandelabelAdapter;
 
     /**
      *
      * @return All the data of the concerned table as a List
      * @throws SQLException an Exception may happen due to the request
      */
-    public List<T> getAllData() throws SQLException {
+    public List<T> getAllData() throws SQLException, ErrorHandelabelAdapter {
         return getAllData(null);
     }
 
@@ -117,7 +118,7 @@ public abstract class DAO<T> {
      * @return All the data of the concerned table as a List
      * @throws SQLException an Exception may happen due to the request
      */
-    public final List<T> getAllData(String orderby) throws SQLException {
+    public final List<T> getAllData(String orderby) throws SQLException, ErrorHandelabelAdapter {
         List<HashMap<String, Object>> res = selectAll(getRequestForAllData() + ((orderby != null) ? " ORDER BY " + orderby : ""), null);
         List<T> datas = new LinkedList<>();
 
@@ -128,7 +129,7 @@ public abstract class DAO<T> {
         return datas;
     }
 
-    public Boolean romoveWhere(String condition, Object[] args) throws SQLException {
+    public Boolean romoveWhere(String condition, Object[] args) throws SQLException, ErrorHandelabelAdapter {
         return execute("DELTE FROM " + getTableName() + " WHERE " + condition, args) == 0;
     }
 
@@ -136,31 +137,31 @@ public abstract class DAO<T> {
         return "SELECT * FROM " + getTableName();
     }
 
-    public void startTransaction() throws SQLException {
+    public void startTransaction() throws SQLException, ErrorHandelabelAdapter {
         execute("SET autocommit = 0", null);
         execute("START TRANSACTION", null);
     }
 
-    public void endTransaction() throws SQLException {
+    public void endTransaction() throws SQLException, ErrorHandelabelAdapter {
         execute("SET autocommit = 1", null);
         execute("COMMIT", null);
     }
 
-    public void setSavePoint(String name) throws SQLException {
+    public void setSavePoint(String name) throws SQLException, ErrorHandelabelAdapter {
         if (name != null) {
             execute("SAVEPOINT " + name, null);
         }
     }
 
-    public void rollbackTo(String name) throws SQLException {
+    public void rollbackTo(String name) throws SQLException, ErrorHandelabelAdapter {
         if (name != null) {
             execute("ROLLBACK TO SAVEPOINT " + name, null);
         }
     }
 
-    public abstract Boolean remove(T obj) throws SQLException;
+    public abstract Boolean remove(T obj) throws SQLException, ErrorHandelabelAdapter;
 
-    public abstract Boolean exist(T obj) throws SQLException;
+    public abstract Boolean exist(T obj) throws SQLException, ErrorHandelabelAdapter;
 
     protected abstract T parseData(HashMap<String, Object> obj);
 

@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.MultipleInsertSQL;
 import java.sql.SQLException;
@@ -16,14 +17,14 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
      * @throws SQLException an Exception may happen due to the request
      */
     @Override
-    public Boolean insertOrUpdate(Color color) throws SQLException {
+    public Boolean insertOrUpdate(Color color) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {color.getName()};
         return super.execute("INSERT INTO " + getTableName() + " (namecolor) VALUES (?)", args) == 1;
 
     }
 
     @Override
-    public Boolean exist(Color obj) throws SQLException {
+    public Boolean exist(Color obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getName()};
         return ((long) super.selectAll("SELECT count(*) as nbr FROM " + getTableName() + " WHERE namecolor = ?", args).get(0).get("nbr")) == 1;
     }
@@ -39,13 +40,13 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
     }
 
     @Override
-    public Boolean remove(Color obj) throws SQLException {
+    public Boolean remove(Color obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getName()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE namecolor = ? ", args) == 1;
     }
 
     @Override
-    public Boolean insertAll(List<Color> list) throws SQLException {
+    public Boolean insertAll(List<Color> list) throws SQLException, ErrorHandelabelAdapter {
         if (list.size() <= 0) {
             return true;
         }

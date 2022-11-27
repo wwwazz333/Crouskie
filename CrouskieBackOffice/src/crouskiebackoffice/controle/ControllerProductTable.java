@@ -5,22 +5,26 @@ import crouskiebackoffice.model.ModelVisualisationProduct;
 import crouskiebackoffice.model.Observer;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.view.EditProduct;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author wwwazz
- */
 public class ControllerProductTable implements Observer {
 
     ModelVisualisationProduct modelVisualisationProduct;
 
     public ControllerProductTable() {
-        DataProduct.getInstance().registerObserver(this);
-        modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData());
-        
+        ErrorHandeler.getInstance().exec(() -> {
+            DataProduct.getInstance().registerObserver(this);
+            modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData());
+        });
+
     }
 
     public ModelVisualisationProduct getModelVisualisationProduct() {
+        if (modelVisualisationProduct == null) {
+            return new ModelVisualisationProduct(this, new LinkedList<>());
+        }
         return modelVisualisationProduct;
     }
 
@@ -30,7 +34,10 @@ public class ControllerProductTable implements Observer {
 
     @Override
     public void update() {
-        modelVisualisationProduct.setData(DataProduct.getInstance().getData());
+        ErrorHandeler.getInstance().exec(() -> {
+            modelVisualisationProduct.setData(DataProduct.getInstance().getData());
+        });
+
     }
 
 }

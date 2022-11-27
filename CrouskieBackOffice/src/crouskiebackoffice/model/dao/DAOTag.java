@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.MultipleInsertSQL;
 import crouskiebackoffice.model.Tag;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import java.util.List;
 public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
 
     @Override
-    public Boolean insertOrUpdate(Tag obj) throws SQLException {
+    public Boolean insertOrUpdate(Tag obj) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getId()};
             return super.execute("UPDATE TABLE " + getTableName() + " SET  nametag = ? WHERE idtag = ?", args) == 1;
@@ -20,7 +21,7 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
     }
 
     @Override
-    public Boolean insertAll(List<Tag> list) throws SQLException {
+    public Boolean insertAll(List<Tag> list) throws SQLException, ErrorHandelabelAdapter {
         if (list.size() <= 0) {
             return true;
         }
@@ -55,7 +56,7 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
     }
 
     @Override
-    public Boolean remove(Tag obj) throws SQLException {
+    public Boolean remove(Tag obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE idtag = ? ", args) == 1;
     }

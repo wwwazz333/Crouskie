@@ -15,7 +15,7 @@ public abstract class Notifier {
      * Notify all the observers super.notif() must be called at the end of the
      * override
      */
-    public void notif() {
+    public void notif() throws Exception {
         for (Observer observer : observers) {
             observer.update();
         }

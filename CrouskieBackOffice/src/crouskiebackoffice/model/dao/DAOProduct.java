@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.Color;
@@ -69,35 +70,35 @@ public class DAOProduct extends DAO<Product> {
                 color_existing, size_existing, tags);
     }
 
-    public Boolean setNameOf(Product product, String newName) throws SQLException {
+    public Boolean setNameOf(Product product, String newName) throws SQLException, ErrorHandelabelAdapter {
         return setNameOf(product.getId(), newName);
     }
 
-    public Boolean setNameOf(int idProduct, String newName) throws SQLException {
+    public Boolean setNameOf(int idProduct, String newName) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {newName, idProduct};
         return super.execute("UPDATE " + getTableName() + " SET nameprod = ? WHERE idprod = ?", args) == 1;
     }
 
-    public Boolean setDescriptionOf(Product product, String newDescription) throws SQLException {
+    public Boolean setDescriptionOf(Product product, String newDescription) throws SQLException, ErrorHandelabelAdapter {
         return setDescriptionOf(product.getId(), newDescription);
     }
 
-    public Boolean setDescriptionOf(int idProduct, String newDescription) throws SQLException {
+    public Boolean setDescriptionOf(int idProduct, String newDescription) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {newDescription, idProduct};
         return super.execute("UPDATE " + getTableName() + " SET descriptionprod = ? WHERE idprod = ?", args) == 1;
     }
 
-    public Boolean setPriceOf(Product product, Float newPrice) throws SQLException {
+    public Boolean setPriceOf(Product product, Float newPrice) throws SQLException, ErrorHandelabelAdapter {
         return setPriceOf(product.getId(), newPrice);
     }
 
-    public Boolean setPriceOf(int idProduct, Float newPrice) throws SQLException {
+    public Boolean setPriceOf(int idProduct, Float newPrice) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {newPrice, idProduct};
         return super.execute("UPDATE " + getTableName() + " SET priceprod = ? WHERE idprod = ?", args) == 1;
     }
 
     @Override
-    public Boolean insertOrUpdate(Product product) throws SQLException {
+    public Boolean insertOrUpdate(Product product) throws SQLException, ErrorHandelabelAdapter {
         startTransaction();
         setSavePoint("edit_product");
         boolean succes = false;
@@ -137,7 +138,7 @@ public class DAOProduct extends DAO<Product> {
         return succes;
     }
 
-    private Boolean insertAll(Product product) throws SQLException {
+    private Boolean insertAll(Product product) throws SQLException, ErrorHandelabelAdapter {
         List<Integer> idsTag = new LinkedList<>();
 
         System.out.println(Arrays.toString(product.getTags().toArray()));
@@ -155,7 +156,7 @@ public class DAOProduct extends DAO<Product> {
                 && insertAll(product.getId(), "EXISTINGCOLOR", "namecolor", product.getExistingColor().toArray());
     }
 
-    public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException {
+    public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException, ErrorHandelabelAdapter {
         if (valuesName.length <= 0) {
             return true;
         }
@@ -183,7 +184,7 @@ public class DAOProduct extends DAO<Product> {
     }
 
     @Override
-    public Boolean remove(Product obj) throws SQLException {
+    public Boolean remove(Product obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE idprod = ? ", args) == 1;
     }

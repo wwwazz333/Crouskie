@@ -1,5 +1,6 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface MultipleInsertSQL<T> {
 
-    public Boolean insertAll(List<T> list) throws SQLException;
+    public Boolean insertAll(List<T> list) throws SQLException, ErrorHandelabelAdapter;
 }

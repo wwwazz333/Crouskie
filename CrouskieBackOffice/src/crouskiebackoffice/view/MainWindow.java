@@ -3,6 +3,7 @@ package crouskiebackoffice.view;
 import com.formdev.flatlaf.FlatLightLaf;
 import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.controle.Navigator;
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ConnectionDB;
 import crouskiebackoffice.model.Product;
 import java.io.IOException;
@@ -17,10 +18,11 @@ public class MainWindow extends javax.swing.JFrame {
     public void dispose() {
         try {
             ConnectionDB.getInstance().close();
-        } catch (SQLException ex) {
+        } catch (SQLException | ErrorHandelabelAdapter ex) {
             System.err.println("Failed to close connection");
         }
         super.dispose();
+        System.exit(0);
     }
 
     /**
@@ -28,7 +30,9 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         instance = this;
+        ErrorHandeler.getInstance().init(this);
         initComponents();
+        initSettings();
 
         addProductPanel = new EditProduct(new Product("", "", 10f, null));
         tabPane.addTab("Ajouter", addProductPanel);
@@ -113,7 +117,6 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             MainWindow mainWindow = new MainWindow();
-            mainWindow.initSettings();
             mainWindow.setVisible(true);
         });
     }
@@ -137,7 +140,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
 
         Navigator.getInstance().init(mainPane, "tabPane");
-        ErrorHandeler.getInstance().init(this);
     }
 
     public StatusbarPanel getStatusbar() {

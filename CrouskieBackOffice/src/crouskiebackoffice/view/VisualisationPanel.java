@@ -1,5 +1,6 @@
 package crouskiebackoffice.view;
 
+import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Observer;
 
@@ -10,7 +11,10 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer {
      */
     public VisualisationPanel() {
         initComponents();
-        DataProduct.getInstance().registerObserver(this);
+        ErrorHandeler.getInstance().exec(() -> {
+            DataProduct.getInstance().registerObserver(this);
+        });
+
     }
 
     /**

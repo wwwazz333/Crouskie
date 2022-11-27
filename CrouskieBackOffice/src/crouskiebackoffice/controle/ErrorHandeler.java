@@ -29,21 +29,24 @@ public class ErrorHandeler {
 
     /**
      * ErrorHandeler doit être initializer a l'aide de {@link init}
+     *
      * @param canCrash Se qu'il faut tester
      */
-    public void exec(CanCrash canCrash) {
+    public boolean exec(CanCrash canCrash) {
         if (!inisialized) {
             throw new RuntimeException("ErrorHandeler n'a pas été initializer");
         }
         try {
             canCrash.run();
         } catch (ErrorHandelabelAdapter error) {
-
             JOptionPane.showMessageDialog(parent, error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             error.crashed();
+            return false;
         } catch (Exception error) {
             JOptionPane.showMessageDialog(parent, error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            return false;
 
         }
+        return true;
     }
 }

@@ -217,7 +217,10 @@ public class EditProduct extends javax.swing.JPanel {
             if (succes) {
                 clearAll();
                 Navigator.getInstance().goBack();
-                DataProduct.getInstance().notif();
+                ErrorHandeler.getInstance().exec(() -> {
+                    DataProduct.getInstance().notif();
+                });
+
             }
 
         } catch (NumberFormatException | SQLException ex) {

@@ -1,11 +1,8 @@
 package crouskiebackoffice.model;
 
 import crouskiebackoffice.model.dao.DAOProduct;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DataProduct extends Notifier {
 
@@ -14,25 +11,21 @@ public class DataProduct extends Notifier {
     DAOProduct daoProduct;
     List<Product> data = new LinkedList<>();
 
-    public static DataProduct getInstance() {
+    public static DataProduct getInstance() throws Exception {
         if (instance == null) {
             instance = new DataProduct();
         }
         return instance;
     }
 
-    private DataProduct() {
+    private DataProduct() throws Exception {
         daoProduct = new DAOProduct();
         notif();
     }
 
     @Override
-    public void notif() {
-        try {
-            data = daoProduct.getAllData("nameprod");
-        } catch (SQLException ex) {
-            Logger.getLogger(DataProduct.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void notif() throws Exception  {
+        data = daoProduct.getAllData("nameprod");
 
         super.notif();
     }

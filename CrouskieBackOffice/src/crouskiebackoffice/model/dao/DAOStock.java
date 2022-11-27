@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.Product;
@@ -21,7 +22,7 @@ public class DAOStock extends DAO<ProductColorSize> {
      * @throws SQLException SQLException an Exception may happen due to the request (ex : if the product doesn't exist)
      */
     @Override
-    public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException {
+    public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException, ErrorHandelabelAdapter {
         if (exist(productColorSize)) {
             Object[] args = {productColorSize.getQuantity(), productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId()};
 
@@ -49,7 +50,7 @@ public class DAOStock extends DAO<ProductColorSize> {
     }
 
     @Override
-    public Boolean remove(ProductColorSize obj) throws SQLException {
+    public Boolean remove(ProductColorSize obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getProduct().getId(), obj.getColor().getName(), obj.getSize().getId()};
         return super.execute("DELETE FROM " + "STOCKED" + " WHERE idpp = ? and namecolor = ? and idsize = ? ", args) == 1;
     }

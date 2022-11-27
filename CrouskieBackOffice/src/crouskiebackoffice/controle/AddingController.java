@@ -29,13 +29,17 @@ public class AddingController<T> {
         return addingDialog.getResult();
     }
 
+    List<T> data = new LinkedList<>();
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
     public List<T> getData() {
-        try {
-            return dao.getAllData();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return new LinkedList<>();
+        ErrorHandeler.getInstance().exec(() -> {
+            setData(dao.getAllData());
+        });
+        return data;
     }
 
     /**
@@ -45,13 +49,9 @@ public class AddingController<T> {
      */
     public boolean createValue(String name) {
         if (name != null && !name.isBlank()) {
-            try {
+            return ErrorHandeler.getInstance().exec(() -> {
                 dao.insertOrUpdate(createWithName.createWithName(name));
-                return true;
-            } catch (SQLException ex) {
-                Logger.getLogger(AddingController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            });
         }
         return false;
     }

@@ -1,5 +1,6 @@
 package crouskiebackoffice.model.dao;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.MultipleInsertSQL;
 import java.sql.SQLException;
@@ -9,7 +10,7 @@ import java.util.List;
 public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<ClothSize> {
 
     @Override
-    public Boolean insertOrUpdate(ClothSize clothSize) throws SQLException {
+    public Boolean insertOrUpdate(ClothSize clothSize) throws SQLException, ErrorHandelabelAdapter {
         if (exist(clothSize)) {
             Object[] args = {clothSize.getName(), clothSize.getId()};
             return super.execute("UPDATE " + getTableName() + " SET namesize = ? WHERE idsize = ?", args) == 1;
@@ -35,13 +36,13 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
     }
 
     @Override
-    public Boolean remove(ClothSize obj) throws SQLException {
+    public Boolean remove(ClothSize obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE idsize = ? ", args) == 1;
     }
 
     @Override
-    public Boolean insertAll(List<ClothSize> list) throws SQLException {
+    public Boolean insertAll(List<ClothSize> list) throws SQLException, ErrorHandelabelAdapter {
         if (list.size() <= 0) {
             return true;
         }

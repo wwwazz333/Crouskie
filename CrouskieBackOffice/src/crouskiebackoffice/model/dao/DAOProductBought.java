@@ -1,6 +1,7 @@
 package crouskiebackoffice.model.dao;
 
 import crouskiebackoffice.exceptions.CantEditException;
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.Product;
@@ -19,7 +20,7 @@ public class DAOProductBought extends DAO<ProductBought> {
      * @throws SQLException an Exception may happen due to the request or the incapability to edit values
      */
     @Override
-    public Boolean insertOrUpdate(ProductBought obj) throws SQLException {
+    public Boolean insertOrUpdate(ProductBought obj) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             throw new CantEditException("Command of customer");
         } else {
@@ -50,7 +51,7 @@ public class DAOProductBought extends DAO<ProductBought> {
     }
 
     @Override
-    public Boolean remove(ProductBought obj) throws SQLException {
+    public Boolean remove(ProductBought obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + "PRODUCTBOUGHT" + " WHERE idpp = ? ", args) == 1;
     }

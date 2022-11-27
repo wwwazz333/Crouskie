@@ -23,9 +23,6 @@ require_once(PATH_VIEWS . 'header.php');
                 <div class='flex column center details'>
                     <p><?= $product->getName() ?></p>
                     <p><?= $product->getPrice() ?>€</p>
-                <?php if($product->getStockStatus($product->getId())){
-                    echo("<p style='color:var(--primary-color);'>Hors Stock</p>");
-                } ?>
                 </div>
             </div>
         </a>

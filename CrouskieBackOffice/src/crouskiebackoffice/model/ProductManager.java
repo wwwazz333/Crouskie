@@ -1,5 +1,6 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.dao.DAOProduct;
 import java.sql.SQLException;
 
@@ -20,7 +21,7 @@ public class ProductManager {
         return instance;
     }
 
-    public boolean save(Product product) throws SQLException {
+    public boolean save(Product product) throws SQLException, ErrorHandelabelAdapter {
         return daoProduct.insertOrUpdate(product);
     }
 

@@ -5,6 +5,7 @@ import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.CollectionModelComboBox;
 import crouskiebackoffice.model.DataProduct;
+import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
@@ -18,6 +19,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class EditProduct extends javax.swing.JPanel {
 

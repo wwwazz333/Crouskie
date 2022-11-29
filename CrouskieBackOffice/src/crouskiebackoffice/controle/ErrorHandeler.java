@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class ErrorHandeler {
 
-    public static ErrorHandeler instance;
+    private static ErrorHandeler instance;
 
     public static ErrorHandeler getInstance() {
         if (instance == null) {

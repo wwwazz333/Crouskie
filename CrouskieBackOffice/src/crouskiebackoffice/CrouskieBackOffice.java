@@ -1,8 +1,6 @@
 package crouskiebackoffice;
 
 import com.google.gson.Gson;
-import crouskiebackoffice.model.DataProduct;
-import crouskiebackoffice.model.Product;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

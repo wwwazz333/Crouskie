@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2022 at 02:00 PM
+-- Generation Time: Nov 29, 2022 at 01:52 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -51,7 +51,7 @@ INSERT INTO `CART` (`IDCUSTOMER`, `IDPROD`, `QUANTITYCART`) VALUES
 CREATE TABLE `CLOTH_SIZE` (
   `IDSIZE` int(11) NOT NULL,
   `NAMESIZE` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `CLOTH_SIZE`
@@ -64,7 +64,8 @@ INSERT INTO `CLOTH_SIZE` (`IDSIZE`, `NAMESIZE`) VALUES
 (4, 'L'),
 (5, 'XL'),
 (6, 'Grand'),
-(7, 'superGrand');
+(7, 'superGrand'),
+(8, 'c;;;qsdfk;;;;;;sdf');
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,7 @@ INSERT INTO `COLLECTION` (`NAMECOLLECTION`, `IDCOLLECTION`, `PATHPICTURE`) VALUE
 
 CREATE TABLE `COLOR` (
   `NAMECOLOR` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `COLOR`
@@ -336,7 +337,7 @@ INSERT INTO `STOCKED` (`IDPROD`, `NAMECOLOR`, `IDSIZE`, `QUANTITYSTOCKED`) VALUE
 CREATE TABLE `TAG` (
   `idtag` int(11) NOT NULL,
   `nametag` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `TAG`
@@ -491,7 +492,7 @@ ALTER TABLE `TAGS_PRODUCT`
 -- AUTO_INCREMENT for table `CLOTH_SIZE`
 --
 ALTER TABLE `CLOTH_SIZE`
-  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `CMD`
@@ -527,7 +528,7 @@ ALTER TABLE `PRODUCTBOUGHT`
 -- AUTO_INCREMENT for table `TAG`
 --
 ALTER TABLE `TAG`
-  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

@@ -65,7 +65,6 @@ public class EditProduct extends javax.swing.JPanel {
 
     private void clearAll() {
         controller.clearAll();
-
     }
 
     public JComboBox<String> getCollectionComboBox() {

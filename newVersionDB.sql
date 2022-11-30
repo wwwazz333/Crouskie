@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2022 at 02:00 PM
+-- Generation Time: Nov 30, 2022 at 08:09 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -229,7 +229,7 @@ CREATE TABLE `PICTURE` (
   `PATHPICTURE` varchar(255) NOT NULL,
   `IDPROD` int(11) DEFAULT NULL,
   `ALTPICTURE` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- Dumping data for table `PICTURE`

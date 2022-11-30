@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2022 at 01:52 PM
+-- Generation Time: Nov 30, 2022 at 08:23 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `CART`
 --
 
+DROP TABLE IF EXISTS `CART`;
 CREATE TABLE `CART` (
   `IDCUSTOMER` int(11) NOT NULL,
   `IDPROD` int(11) NOT NULL,
@@ -48,10 +49,11 @@ INSERT INTO `CART` (`IDCUSTOMER`, `IDPROD`, `QUANTITYCART`) VALUES
 -- Table structure for table `CLOTH_SIZE`
 --
 
+DROP TABLE IF EXISTS `CLOTH_SIZE`;
 CREATE TABLE `CLOTH_SIZE` (
   `IDSIZE` int(11) NOT NULL,
   `NAMESIZE` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- Dumping data for table `CLOTH_SIZE`
@@ -64,8 +66,7 @@ INSERT INTO `CLOTH_SIZE` (`IDSIZE`, `NAMESIZE`) VALUES
 (4, 'L'),
 (5, 'XL'),
 (6, 'Grand'),
-(7, 'superGrand'),
-(8, 'c;;;qsdfk;;;;;;sdf');
+(7, 'superGrand');
 
 -- --------------------------------------------------------
 
@@ -73,6 +74,7 @@ INSERT INTO `CLOTH_SIZE` (`IDSIZE`, `NAMESIZE`) VALUES
 -- Table structure for table `CMD`
 --
 
+DROP TABLE IF EXISTS `CMD`;
 CREATE TABLE `CMD` (
   `DATEORDER` timestamp NULL DEFAULT NULL,
   `NUMORDER` int(11) NOT NULL,
@@ -92,6 +94,7 @@ INSERT INTO `CMD` (`DATEORDER`, `NUMORDER`, `IDCUSTOMER`) VALUES
 -- Table structure for table `COLLECTION`
 --
 
+DROP TABLE IF EXISTS `COLLECTION`;
 CREATE TABLE `COLLECTION` (
   `NAMECOLLECTION` varchar(255) NOT NULL,
   `IDCOLLECTION` int(11) NOT NULL,
@@ -111,9 +114,10 @@ INSERT INTO `COLLECTION` (`NAMECOLLECTION`, `IDCOLLECTION`, `PATHPICTURE`) VALUE
 -- Table structure for table `COLOR`
 --
 
+DROP TABLE IF EXISTS `COLOR`;
 CREATE TABLE `COLOR` (
   `NAMECOLOR` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- Dumping data for table `COLOR`
@@ -132,6 +136,7 @@ INSERT INTO `COLOR` (`NAMECOLOR`) VALUES
 -- Table structure for table `CUSTOMER`
 --
 
+DROP TABLE IF EXISTS `CUSTOMER`;
 CREATE TABLE `CUSTOMER` (
   `IDCUSTOMER` int(11) NOT NULL,
   `FIRST_NAME` varchar(255) NOT NULL,
@@ -156,6 +161,7 @@ INSERT INTO `CUSTOMER` (`IDCUSTOMER`, `FIRST_NAME`, `LAST_NAME`, `MAIL_ADDRESS`,
 -- Table structure for table `EXISTINGCOLOR`
 --
 
+DROP TABLE IF EXISTS `EXISTINGCOLOR`;
 CREATE TABLE `EXISTINGCOLOR` (
   `IDPROD` int(11) NOT NULL,
   `NAMECOLOR` varchar(255) NOT NULL
@@ -180,6 +186,7 @@ INSERT INTO `EXISTINGCOLOR` (`IDPROD`, `NAMECOLOR`) VALUES
 -- Table structure for table `EXISTINGSIZE`
 --
 
+DROP TABLE IF EXISTS `EXISTINGSIZE`;
 CREATE TABLE `EXISTINGSIZE` (
   `IDPROD` int(11) NOT NULL,
   `IDSIZE` int(11) NOT NULL
@@ -207,6 +214,7 @@ INSERT INTO `EXISTINGSIZE` (`IDPROD`, `IDSIZE`) VALUES
 -- Table structure for table `FAVORITE`
 --
 
+DROP TABLE IF EXISTS `FAVORITE`;
 CREATE TABLE `FAVORITE` (
   `IDCUSTOMER` int(11) NOT NULL,
   `IDPROD` int(11) NOT NULL
@@ -226,11 +234,12 @@ INSERT INTO `FAVORITE` (`IDCUSTOMER`, `IDPROD`) VALUES
 -- Table structure for table `PICTURE`
 --
 
+DROP TABLE IF EXISTS `PICTURE`;
 CREATE TABLE `PICTURE` (
   `PATHPICTURE` varchar(255) NOT NULL,
   `IDPROD` int(11) DEFAULT NULL,
   `ALTPICTURE` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- Dumping data for table `PICTURE`
@@ -246,6 +255,7 @@ INSERT INTO `PICTURE` (`PATHPICTURE`, `IDPROD`, `ALTPICTURE`) VALUES
 -- Table structure for table `PRODUCT`
 --
 
+DROP TABLE IF EXISTS `PRODUCT`;
 CREATE TABLE `PRODUCT` (
   `IDPROD` int(11) NOT NULL,
   `IDCOLLECTION` int(11) DEFAULT NULL,
@@ -278,6 +288,7 @@ INSERT INTO `PRODUCT` (`IDPROD`, `IDCOLLECTION`, `NAMEPROD`, `DESCRIPTIONPROD`, 
 -- Table structure for table `PRODUCTBOUGHT`
 --
 
+DROP TABLE IF EXISTS `PRODUCTBOUGHT`;
 CREATE TABLE `PRODUCTBOUGHT` (
   `IDPP` int(11) NOT NULL,
   `NAMECOLOR` varchar(255) NOT NULL,
@@ -309,6 +320,7 @@ INSERT INTO `PRODUCTBOUGHT` (`IDPP`, `NAMECOLOR`, `IDPROD`, `IDSIZE`, `NUMORDER`
 -- Table structure for table `STOCKED`
 --
 
+DROP TABLE IF EXISTS `STOCKED`;
 CREATE TABLE `STOCKED` (
   `IDPROD` int(11) NOT NULL,
   `NAMECOLOR` varchar(255) NOT NULL,
@@ -334,10 +346,11 @@ INSERT INTO `STOCKED` (`IDPROD`, `NAMECOLOR`, `IDSIZE`, `QUANTITYSTOCKED`) VALUE
 -- Table structure for table `TAG`
 --
 
+DROP TABLE IF EXISTS `TAG`;
 CREATE TABLE `TAG` (
   `idtag` int(11) NOT NULL,
   `nametag` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ;
 
 --
 -- Dumping data for table `TAG`
@@ -355,6 +368,7 @@ INSERT INTO `TAG` (`idtag`, `nametag`) VALUES
 -- Table structure for table `TAGS_PRODUCT`
 --
 
+DROP TABLE IF EXISTS `TAGS_PRODUCT`;
 CREATE TABLE `TAGS_PRODUCT` (
   `IDPROD` int(11) NOT NULL,
   `IDTAG` int(11) NOT NULL
@@ -492,7 +506,7 @@ ALTER TABLE `TAGS_PRODUCT`
 -- AUTO_INCREMENT for table `CLOTH_SIZE`
 --
 ALTER TABLE `CLOTH_SIZE`
-  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `CMD`
@@ -528,7 +542,7 @@ ALTER TABLE `PRODUCTBOUGHT`
 -- AUTO_INCREMENT for table `TAG`
 --
 ALTER TABLE `TAG`
-  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

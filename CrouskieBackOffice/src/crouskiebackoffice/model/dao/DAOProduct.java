@@ -23,14 +23,15 @@ public class DAOProduct extends DAO<Product> {
         //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
         return """
                SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, ENVENTE,
-                                               case 
-                                               \twhen IDCOLLECTION is null then null
-                                               \telse namecollection
-                                                   end as NAMECOLLECTION,
-                                               (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,
-                                               (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,
-                                               (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags
-                                               FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION""";
+                    case 
+                      when IDCOLLECTION is null then null
+                      else namecollection
+                        end as NAMECOLLECTION,
+                    (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,
+                    (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,
+                    (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags,
+                    (SELECT group_concat(CONCAT(PATHPICTURE, ',,,', ALTPICTURE) SEPARATOR';;;') FROM  PICTURE WHERE P1.IDPROD = IDPROD ) as pictures 
+                    FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION""";
     }
 
     @Override

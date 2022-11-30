@@ -44,7 +44,10 @@ public class ControllerEditProduct {
             product.setExistingSize(sizesListModel.getData());
             product.setTags(tagsListModel.getData());
 
-            return ProductManager.getInstance().save(product);
+            return ErrorHandeler.getInstance().exec(() -> {
+                return ProductManager.getInstance().save(product);
+            });
+
         }
         return false;
     }

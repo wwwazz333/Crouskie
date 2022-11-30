@@ -13,6 +13,7 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer {
         initComponents();
         ErrorHandeler.getInstance().exec(() -> {
             DataProduct.getInstance().registerObserver(this);
+            return true;
         });
 
     }

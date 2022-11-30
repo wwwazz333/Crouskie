@@ -226,18 +226,19 @@ public class EditProduct extends javax.swing.JPanel {
                 Navigator.getInstance().goBack();
                 ErrorHandeler.getInstance().exec(() -> {
                     DataProduct.getInstance().notif();
+                    return true;
                 });
 
+                MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
+
+            } else {
+                MainWindow.instance.getStatusbar().showMsg("Echec lors de l'envoi des données", 2000);
             }
 
         } catch (NumberFormatException | SQLException ex) {
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         MainWindow.instance.getStatusbar().setLoading(false);
-        if (succes)
-            MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
-        else
-            MainWindow.instance.getStatusbar().showMsg("Echec lors de l'envoi des données", 2000);
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed

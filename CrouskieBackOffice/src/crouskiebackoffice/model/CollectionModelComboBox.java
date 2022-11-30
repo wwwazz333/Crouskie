@@ -17,6 +17,7 @@ public class CollectionModelComboBox extends DefaultComboBoxModel {
             addAll(objectList);
 
             setSelectedItem(product.getCollection());
+            return true;
         });
 
     }

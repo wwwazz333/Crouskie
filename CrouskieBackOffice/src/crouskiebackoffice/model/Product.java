@@ -15,6 +15,7 @@ public class Product implements HasName {
     private List<Color> existingColor;
     private List<ClothSize> existingSize;
     private List<Tag> tags;
+    private List<Picture> pictures;
     private Collection collection;
 
     public void setExistingColor(List<Color> existingColor) {
@@ -61,7 +62,7 @@ public class Product implements HasName {
         this.collection = collection;
     }
 
-    public Product(String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
+    public Product(String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags, List<Picture> pictures) {
         this.id = -1;
         this.name = name;
         this.description = description;
@@ -72,9 +73,11 @@ public class Product implements HasName {
         this.existingColor = existingColor;
         this.existingSize = existingSize;
         this.tags = tags;
+
+        this.pictures = pictures;
     }
 
-    public Product(int id, String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags) {
+    public Product(int id, String name, String description, float price, Collection collection, boolean enVente, List<Color> existingColor, List<ClothSize> existingSize, List<Tag> tags, List<Picture> pictures) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -84,6 +87,8 @@ public class Product implements HasName {
         this.existingColor = existingColor;
         this.existingSize = existingSize;
         this.tags = tags;
+
+        this.pictures = pictures;
     }
 
     public int getId() {
@@ -147,9 +152,17 @@ public class Product implements HasName {
         this.enVente = enVente;
     }
 
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", enVente=" + enVente + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", collection=" + collection + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", enVente=" + enVente + ", existingColor=" + existingColor + ", existingSize=" + existingSize + ", tags=" + tags + ", pictures=" + pictures + ", collection=" + collection + '}';
     }
 
 }

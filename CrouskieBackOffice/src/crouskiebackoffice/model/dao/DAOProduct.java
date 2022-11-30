@@ -4,6 +4,7 @@ import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.ClothSize;
 import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.Color;
+import crouskiebackoffice.model.Picture;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.Tag;
 import java.math.BigInteger;
@@ -21,6 +22,7 @@ public class DAOProduct extends DAO<Product> {
         //  la collection (id, name) ces valeurs seront null si il n'appartien au aucun collection
         //  les taille existante qui sont concaténer en une String sous la form  :  idsize, namesize;;;idsize2, namesize2
         //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
+        //On fait comme sa pour minimiser le nombre de requet.
         return """
                SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, ENVENTE,
                     case 
@@ -30,7 +32,7 @@ public class DAOProduct extends DAO<Product> {
                     (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,
                     (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,
                     (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags,
-                    (SELECT group_concat(CONCAT(PATHPICTURE, ',,,', ALTPICTURE) SEPARATOR';;;') FROM  PICTURE WHERE P1.IDPROD = IDPROD ) as pictures 
+                    (SELECT group_concat(CONCAT(PATHPICTURE, ',,,', ALTPICTURE, ',,,', IDPROD) SEPARATOR';;;') FROM  PICTURE WHERE P1.IDPROD = IDPROD ) as pictures 
                     FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION""";
     }
 
@@ -44,31 +46,48 @@ public class DAOProduct extends DAO<Product> {
         List<ClothSize> size_existing = new LinkedList<>();
         List<Color> color_existing = new LinkedList<>();
         List<Tag> tags = new LinkedList<>();
+        List<Picture> pictures = new LinkedList<>();
+
+        String spliteurObject = ";;;";
+        String spliteurAtribut = ",,,";
 
         if (obj.get("size_existing") != null) {
-            for (String sizeLine : obj.get("size_existing").toString().split(";;;")) {
-                int id = Integer.parseInt(sizeLine.split(",")[0]);
-                String name = sizeLine.split(",,,")[1];
+            for (String sizeLine : obj.get("size_existing").toString().split(spliteurObject)) {
+                int id = Integer.parseInt(sizeLine.split(spliteurAtribut)[0]);
+                String name = sizeLine.split(spliteurAtribut)[1];
                 size_existing.add(new ClothSize(id, name));
             }
         }
         if (obj.get("color_existing") != null) {
-            for (String name : obj.get("color_existing").toString().split(";;;")) {
+            for (String name : obj.get("color_existing").toString().split(spliteurObject)) {
                 color_existing.add(new Color(name));
             }
         }
         if (obj.get("tags") != null) {
-            for (String sizeLine : obj.get("tags").toString().split(";;;")) {
-                int id = Integer.parseInt(sizeLine.split(",")[0]);
-                String name = sizeLine.split(",,,")[1];
+            for (String sizeLine : obj.get("tags").toString().split(spliteurObject)) {
+                int id = Integer.parseInt(sizeLine.split(spliteurAtribut)[0]);
+                String name = sizeLine.split(spliteurAtribut)[1];
                 tags.add(new Tag(id, name));
+            }
+        }
+        if (obj.get("pictures") != null) {
+            for (String picLine : obj.get("pictures").toString().split(spliteurObject)) {
+                System.out.println(picLine);
+                String path = picLine.split(spliteurAtribut)[0];
+                String altPicture = picLine.split(spliteurAtribut)[1];
+                Integer idProd = null;
+                if (!picLine.split(spliteurAtribut)[2].isBlank()) {
+                    idProd = Integer.parseInt(picLine.split(spliteurAtribut)[2]);
+                }
+
+                pictures.add(new Picture(path, altPicture, idProd));
             }
         }
 
         return new Product((int) obj.get("idprod"), obj.get("nameprod").toString(), obj.get("descriptionprod").toString(), (float) obj.get("priceprod"),
                 (obj.get("idcollection") != null) ? new Collection((int) obj.get("idcollection"), obj.get("namecollection").toString()) : null,
                 (boolean) obj.get("envente"),
-                color_existing, size_existing, tags);
+                color_existing, size_existing, tags, pictures);
     }
 
     public Boolean setNameOf(Product product, String newName) throws SQLException, ErrorHandelabelAdapter {
@@ -108,13 +127,15 @@ public class DAOProduct extends DAO<Product> {
             super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
             super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg);
             super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM PICTURE WHERE idprod = ?", idArg);
+
             Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
                 (product.getCollection() != null ? product.getCollection().getId() : null),
                 product.isEnVente(),
                 product.getId()
             };
             succes = super.execute("UPDATE " + getTableName() + " SET nameprod = ?, descriptionprod = ?, priceprod = ?, idcollection = ?, envente = ? WHERE idprod = ?", args2) == 1
-                    && insertAll(product);
+                    && insertAll(product) && insertAllPictures(product);
 
         } else {
 
@@ -128,6 +149,9 @@ public class DAOProduct extends DAO<Product> {
                 product.setId(bi.intValue());
 
                 succes = insertAll(product);
+                if (succes) {
+                    succes = insertAllPictures(product);
+                }
             } else {
                 succes = false;
             }
@@ -137,6 +161,27 @@ public class DAOProduct extends DAO<Product> {
         }
         endTransaction();
         return succes;
+    }
+
+    private boolean insertAllPictures(Product product) throws SQLException, ErrorHandelabelAdapter {
+
+        Object[] args = new Object[product.getPictures().size() * 3];
+        StringBuilder ptsInterogration = new StringBuilder();
+        var it = product.getPictures().iterator();
+        for (int i = 0; i < product.getPictures().size() && it.hasNext(); i++) {
+            if (i == 0) {
+                ptsInterogration.append("(?, ?, ?)");
+            } else {
+                ptsInterogration.append(", (?, ?, ?)");
+            }
+            Picture pic = it.next();
+            int curr = 2 * i;
+            args[curr] = pic.getPath();
+            args[curr + 1] = pic.getIdProd();
+            args[curr + 2] = pic.getAlt();
+        }
+
+        return super.execute("INSERT INTO " + getTableName() + "(pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
     }
 
     private Boolean insertAll(Product product) throws SQLException, ErrorHandelabelAdapter {

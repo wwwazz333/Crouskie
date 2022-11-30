@@ -37,7 +37,7 @@ public class ErrorHandeler {
             throw new RuntimeException("ErrorHandeler n'a pas été initializer");
         }
         try {
-            canCrash.run();
+            return canCrash.run();
         } catch (ErrorHandelabelAdapter error) {
             JOptionPane.showMessageDialog(parent, error.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             error.crashed();
@@ -47,6 +47,5 @@ public class ErrorHandeler {
             return false;
 
         }
-        return true;
     }
 }

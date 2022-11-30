@@ -17,6 +17,7 @@ public class ControllerProductTable implements Observer {
         ErrorHandeler.getInstance().exec(() -> {
             DataProduct.getInstance().registerObserver(this);
             modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData());
+            return true;
         });
 
     }
@@ -36,6 +37,7 @@ public class ControllerProductTable implements Observer {
     public void update() {
         ErrorHandeler.getInstance().exec(() -> {
             modelVisualisationProduct.setData(DataProduct.getInstance().getData());
+            return true;
         });
 
     }

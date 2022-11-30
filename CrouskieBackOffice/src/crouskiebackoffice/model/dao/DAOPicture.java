@@ -18,8 +18,8 @@ public class DAOPicture extends DAO<Picture> {
             Object[] args = {obj.getAlt(), obj.getPath()};
             return super.execute("UPDATE TABLE " + getTableName() + " SET  altpicture = ? WHERE pathpicture = ?", args) == 1;
         } else {
-            Object[] args = {obj.getPath(), obj.getAlt()};
-            return super.execute("INSERT INTO " + getTableName() + " (pathpicture, altpicture) VALUES (?, ?)", args) == 1;
+            Object[] args = {obj.getPath(), obj.getAlt(), obj.getIdProd()};
+            return super.execute("INSERT INTO " + getTableName() + " (pathpicture, altpicture, idprod) VALUES (?, ?, ?)", args) == 1;
         }
     }
 
@@ -37,7 +37,7 @@ public class DAOPicture extends DAO<Picture> {
 
     @Override
     protected Picture parseData(HashMap<String, Object> obj) {
-        return new Picture(obj.get("pathpicture").toString(), obj.get("altpicture").toString());
+        return new Picture(obj.get("pathpicture").toString(), obj.get("altpicture").toString(), (int) obj.get("idprod"));
     }
 
 }

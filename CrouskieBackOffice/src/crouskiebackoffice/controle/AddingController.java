@@ -38,6 +38,7 @@ public class AddingController<T> {
     public List<T> getData() {
         ErrorHandeler.getInstance().exec(() -> {
             setData(dao.getAllData());
+            return true;
         });
         return data;
     }
@@ -51,6 +52,7 @@ public class AddingController<T> {
         if (name != null && !name.isBlank()) {
             return ErrorHandeler.getInstance().exec(() -> {
                 dao.insertOrUpdate(createWithName.createWithName(name));
+                return true;
             });
         }
         return false;

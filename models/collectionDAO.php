@@ -2,7 +2,7 @@
 require_once(PATH_MODELS . 'DAO.php');
 require_once(PATH_ENTITY.'Collection.php');
 
-class collectionDAO extends DAO
+class CollectionDAO extends DAO
 {
     public function resultToCollectionArray(array $result){
         $collection = [];
@@ -37,7 +37,7 @@ class collectionDAO extends DAO
         return $collection == false ? false : $collection;
     }
     public function getLastCollection(){
-        $lastCollection = $this->queryRow("SELECT * FROM collection WHERE IDCOLLECTION = max(IDCOLLECTION)");
+        $lastCollection = $this->queryRow("SELECT * FROM collection order by IDCOLLECTION desc");
         return $lastCollection;
     }
 }

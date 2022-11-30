@@ -1,11 +1,11 @@
 package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.ControllerEditProduct;
+import crouskiebackoffice.controle.ControllerImageProduct;
 import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.CollectionModelComboBox;
 import crouskiebackoffice.model.DataProduct;
-import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
@@ -19,17 +19,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class EditProduct extends javax.swing.JPanel {
 
     private ControllerEditProduct controller;
+    private ControllerImageProduct controllerImage;
     private Product product;
 
     /**
@@ -40,8 +34,8 @@ public class EditProduct extends javax.swing.JPanel {
         System.out.println(prod);
         product = prod;
         this.controller = new ControllerEditProduct(this, prod);
-
         initComponents();
+        this.controllerImage = new ControllerImageProduct(imagesPane, product, addImage);
 
         listSize = new ListDynamicPanel("Taille", controller.getAddDelListIem());
         row3.add(listSize);
@@ -61,6 +55,7 @@ public class EditProduct extends javax.swing.JPanel {
         nameInput.setText(prod.getName());
         descriptionInput.setText(prod.getDescription());
         priceInput.setText(prod.getPrice() + "");
+
     }
 
     private void clearAll() {
@@ -110,6 +105,8 @@ public class EditProduct extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        splitPane = new javax.swing.JSplitPane();
+        leftPane = new javax.swing.JPanel();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         row1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
@@ -128,13 +125,21 @@ public class EditProduct extends javax.swing.JPanel {
         submitBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
+        imagesPane = new javax.swing.JPanel();
+        addImage = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
-        add(filler2);
+
+        splitPane.setBackground(new java.awt.Color(0, 0, 0));
+        splitPane.setDividerSize(3);
+        splitPane.setForeground(new java.awt.Color(255, 255, 255));
+
+        leftPane.setLayout(new javax.swing.BoxLayout(leftPane, javax.swing.BoxLayout.Y_AXIS));
+        leftPane.add(filler2);
 
         row1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 5));
 
@@ -158,7 +163,7 @@ public class EditProduct extends javax.swing.JPanel {
         enVenteCheckBox.setText("produit en vente");
         row1.add(enVenteCheckBox);
 
-        add(row1);
+        leftPane.add(row1);
 
         row2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 40, 5));
 
@@ -180,10 +185,10 @@ public class EditProduct extends javax.swing.JPanel {
         priceInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         row2.add(priceInput);
 
-        add(row2);
+        leftPane.add(row2);
 
         row3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 20));
-        add(row3);
+        leftPane.add(row3);
 
         row4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
 
@@ -203,8 +208,22 @@ public class EditProduct extends javax.swing.JPanel {
         });
         row4.add(cancelBtn);
 
-        add(row4);
-        add(filler1);
+        leftPane.add(row4);
+        leftPane.add(filler1);
+
+        splitPane.setLeftComponent(leftPane);
+
+        addImage.setText("ajouté une image");
+        addImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addImageActionPerformed(evt);
+            }
+        });
+        imagesPane.add(addImage);
+
+        splitPane.setRightComponent(imagesPane);
+
+        add(splitPane);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
@@ -245,8 +264,13 @@ public class EditProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameInputActionPerformed
 
+    private void addImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addImageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addImageActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addImage;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> collectionComboBox;
     private javax.swing.JLabel collectionLabel;
@@ -256,8 +280,10 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.JCheckBox enVenteCheckBox;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
+    private javax.swing.JPanel imagesPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JPanel leftPane;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JFormattedTextField priceInput;
@@ -266,6 +292,7 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.JPanel row2;
     private javax.swing.JPanel row3;
     private javax.swing.JPanel row4;
+    private javax.swing.JSplitPane splitPane;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
     private ListDynamicPanel listTag;

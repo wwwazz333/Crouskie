@@ -12,10 +12,11 @@ public class Product implements HasName {
     private float price;
     private boolean enVente;
 
-    private List<Color> existingColor;
-    private List<ClothSize> existingSize;
-    private List<Tag> tags;
-    private List<Picture> pictures;
+    private List<Color> existingColor = new LinkedList<>();
+    private List<ClothSize> existingSize = new LinkedList<>();
+
+    private List<Tag> tags = new LinkedList<>();
+    private List<Picture> pictures = new LinkedList<>();
     private Collection collection;
 
     public void setExistingColor(List<Color> existingColor) {

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import javax.imageio.ImageIO;
 
 public class MainWindow extends javax.swing.JFrame {
-    
+
     public static MainWindow instance;
 
     @Override

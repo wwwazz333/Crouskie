@@ -164,7 +164,9 @@ public class DAOProduct extends DAO<Product> {
     }
 
     private boolean insertAllPictures(Product product) throws SQLException, ErrorHandelabelAdapter {
-
+        if (product.getPictures().isEmpty()) {
+            return true;
+        }
         Object[] args = new Object[product.getPictures().size() * 3];
         StringBuilder ptsInterogration = new StringBuilder();
         var it = product.getPictures().iterator();
@@ -181,7 +183,7 @@ public class DAOProduct extends DAO<Product> {
             args[curr + 2] = pic.getAlt();
         }
 
-        return super.execute("INSERT INTO " + getTableName() + "(pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
+        return super.execute("INSERT INTO PICTURE (pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
     }
 
     private Boolean insertAll(Product product) throws SQLException, ErrorHandelabelAdapter {

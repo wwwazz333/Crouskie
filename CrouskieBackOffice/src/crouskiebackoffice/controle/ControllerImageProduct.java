@@ -50,8 +50,8 @@ public class ControllerImageProduct implements ActionListener {
 
             bfrImage = FileDownloader.downloadImageFromUrl(new URL(pic.getPath()), partOfUrl[partOfUrl.length - 1]);
 
-            double ratio = bfrImage.getWidth() / bfrImage.getHeight();
-            System.out.println("widt " + bfrImage.getWidth() + " hei " + bfrImage.getHeight());
+            double ratio = (double) bfrImage.getWidth() / (double) bfrImage.getHeight();
+            System.out.println(ratio);
 
             ImageIcon img = new ImageIcon(getScaledImage(new ImageIcon(bfrImage).getImage(), 200, (int) (200 / ratio)));
             img.setDescription(pic.getAlt());

@@ -1,11 +1,10 @@
 package crouskiebackoffice.model;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.bind.util.ISO8601Utils;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import crouskiebackoffice.exceptions.ErrorDownloadImage;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,10 +19,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class FileDownloader {
+
+    public final static String SERVER_ADRESSE = "http://localhost";
 
     public static String downloadFromUrl(URL url, String localFilename) throws IOException {
         InputStream is = null;
@@ -62,9 +63,10 @@ public class FileDownloader {
         }
     }
 
-    public static BufferedImage downloadImageFromUrl(URL url, String localFilename) throws ErrorDownloadImage {
+    public static BufferedImage downloadImageFromUrl(String url, String localFilename) throws ErrorDownloadImage {
         try {
-            String result = FileDownloader.downloadFromUrl(url, localFilename);
+            System.out.println("try download : " + SERVER_ADRESSE + url);
+            String result = FileDownloader.downloadFromUrl(new URL(SERVER_ADRESSE + url), localFilename);
             File file = new File(result);
             return ImageIO.read(file);
         } catch (IOException e) {
@@ -76,19 +78,15 @@ public class FileDownloader {
         HashMap<String, String> jsonMap = new HashMap<>();
         Gson gson = new Gson();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        
-        
+
         ImageIO.write(image, "png", byteArrayOutputStream);
 
         String base64Image = Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
 
-        
-
         jsonMap.put("action", "upload");
         jsonMap.put("image", base64Image);
-        
 
-        URI uri = new URI("http://localhost/api.php");
+        URI uri = new URI(SERVER_ADRESSE + "/api.php");
         HttpRequest post = HttpRequest.newBuilder().uri(uri)
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonMap))).header("Content-Type", "application/json").build();
 
@@ -96,6 +94,11 @@ public class FileDownloader {
 
         var res = cl.send(post, HttpResponse.BodyHandlers.ofString());
 
-        return res.body();
+        //resultat
+        Map<String, JsonElement> map = JsonParser.parseString(res.body()).getAsJsonObject().asMap();
+        if (map.get("success").getAsBoolean()) {
+            return map.get("result").getAsString();
+        }
+        return null;
     }
 }

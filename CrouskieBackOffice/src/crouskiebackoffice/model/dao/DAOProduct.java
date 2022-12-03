@@ -177,7 +177,7 @@ public class DAOProduct extends DAO<Product> {
                 ptsInterogration.append(", (?, ?, ?)");
             }
             Picture pic = it.next();
-            int curr = 2 * i;
+            int curr = 3 * i;
             args[curr] = pic.getPath();
             args[curr + 1] = pic.getIdProd();
             args[curr + 2] = pic.getAlt();

@@ -1,6 +1,8 @@
 package crouskiebackoffice;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Product;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.net.http.*;
+import java.util.Map;
 
 public class CrouskieBackOffice {
 
@@ -27,7 +30,6 @@ public class CrouskieBackOffice {
     public static HashMap<String, String> jj = new HashMap<>();
 
     public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, URISyntaxException, InterruptedException, SQLException, Exception {
-        
 
         for (Product p : DataProduct.getInstance().getData()) {
             System.out.println(p.toString());
@@ -45,7 +47,8 @@ public class CrouskieBackOffice {
 
         var res = cl.send(post, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(res.body());
+        Map<String, JsonElement> map = JsonParser.parseString(res.body()).getAsJsonObject().asMap();
+        System.out.println(map);
 //        HttpRequest request = HttpRequest.newBuilder()
 //                .uri(URI.create("https://alpha-vantage.p.rapidapi.com/query?symbol=MSFT&function=TIME_SERIES_INTRADAY&interval=5min&output_size=compact&datatype=json"))
 //                .header("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")

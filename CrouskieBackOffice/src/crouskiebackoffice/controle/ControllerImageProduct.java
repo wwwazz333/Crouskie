@@ -9,19 +9,14 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.EventListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class ControllerImageProduct implements ActionListener {
@@ -31,6 +26,9 @@ public class ControllerImageProduct implements ActionListener {
     private JButton addBtn;
 
     private BufferedImage bfrImage;
+    private List<Picture> pictures = new LinkedList<>();
+
+    private ControllerUploadFile controllerUploadFile;
 
     public ControllerImageProduct(JPanel panel, Product product, JButton addBtn) {
         this.product = product;
@@ -38,20 +36,25 @@ public class ControllerImageProduct implements ActionListener {
         this.addBtn = addBtn;
 
         this.addBtn.addActionListener(this);
+        controllerUploadFile = new ControllerUploadFile(panel);
 
         for (Picture pic : product.getPictures()) {
             addPicture(pic);
         }
     }
 
+    public List<Picture> getPictures() {
+        return pictures;
+    }
+
     private void addPicture(Picture pic) {
+        pictures.add(pic);
         ErrorHandeler.getInstance().exec(() -> {
             String[] partOfUrl = pic.getPath().split("/");
 
-            bfrImage = FileDownloader.downloadImageFromUrl(new URL(pic.getPath()), partOfUrl[partOfUrl.length - 1]);
+            bfrImage = FileDownloader.downloadImageFromUrl(pic.getPath(), partOfUrl[partOfUrl.length - 1]);
 
             double ratio = (double) bfrImage.getWidth() / (double) bfrImage.getHeight();
-            System.out.println(ratio);
 
             ImageIcon img = new ImageIcon(getScaledImage(new ImageIcon(bfrImage).getImage(), 200, (int) (200 / ratio)));
             img.setDescription(pic.getAlt());
@@ -59,7 +62,7 @@ public class ControllerImageProduct implements ActionListener {
             JLabel imageDisplay = new JLabel(img);
 
             this.panel.add(imageDisplay);
-            System.out.println("ajouté");
+
             return true;
         });
     }
@@ -77,10 +80,24 @@ public class ControllerImageProduct implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        try {
-            FileDownloader.uploadImage(bfrImage);
-        } catch (URISyntaxException | IOException | InterruptedException ex) {
-            Logger.getLogger(ControllerImageProduct.class.getName()).log(Level.SEVERE, null, ex);
+        String pathToImage = controllerUploadFile.choose();
+        if (pathToImage != null) {
+            ErrorHandeler.getInstance().exec(() -> {
+                BufferedImage image = ImageIO.read(new File(pathToImage));
+                String urlRelativeToOnlineImage = FileDownloader.uploadImage(image);
+                System.out.println(urlRelativeToOnlineImage);
+                if (urlRelativeToOnlineImage != null) {
+                    String descriptionImage = JOptionPane.showInputDialog("Description de l'image");
+                    if (descriptionImage == null) {
+                        descriptionImage = "";
+                    }
+                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, product.getId());
+                    addPicture(pic);
+                    panel.revalidate();
+                }
+                return true;
+            });
+
         }
     }
 

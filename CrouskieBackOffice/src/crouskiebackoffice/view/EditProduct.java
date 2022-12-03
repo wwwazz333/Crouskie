@@ -239,7 +239,8 @@ public class EditProduct extends javax.swing.JPanel {
         try {
             succes = controller.save(nameInput.getText(), descriptionInput.getText(),
                     priceInput.getText(), enVenteCheckBox.isSelected(), collectionComboBox.getModel(),
-                    (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel());
+                    (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel(),
+                    controllerImage.getPictures());
             if (succes) {
                 clearAll();
                 Navigator.getInstance().goBack();

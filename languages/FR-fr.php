@@ -5,7 +5,7 @@ define('LOGO', 'Logo crouskie'); // Affiché si image non trouvée
 define('SHOPPINGBAG','logo panier');
 define('CROUKIE_GEANT','crouskie géant en arrière plan');
 
-//accueil
+// Accueil
 define('COLLECTION_DISCOVER','Découvrez la nouvelle collection');
 define('DISCOVER','Découvrir');
 
@@ -33,3 +33,7 @@ define('INSTRUCTIONS_PORTAL','Saisissez votre e-mail pour vous<br>connecter ou c
 define('INSTRUCTIONS_SIGNUP','Saisissez vos informatons pour<br>créer un compte');
 define('INSTRUCTIONS_SIGNIN','Saisissez votre e-mail pour vous<br>connecter ou créer un compte');
 define('GERER_COOKIES','Gérer mes croukies');
+
+// Page compte
+define('CHANGER_INFORMATIONS','Modifier mes informations');
+define('CHANGER_MDP','Changer mon mot de passe');

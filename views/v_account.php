@@ -9,7 +9,7 @@ require_once(PATH_VIEWS . 'header.php');
     <div class="flex column wrap right" id="menu">
         <h2> Bonjour <?= $user->getLastName() ?> </h2>
         <a href="index.php?page=account&selected=info">
-            <p>Information du compte</p>
+            <p>Informations du compte</p>
         </a>
         <a href="index.php?page=account">
             <p>Mes commandes</p>

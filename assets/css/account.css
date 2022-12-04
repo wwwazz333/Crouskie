@@ -19,28 +19,28 @@
 #menu h2
 {
     margin-top: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
 
 /* -------- page info -------- */
-.content .info
+content form h2
 {
+    width: 18rem;
+    font-size: 20px;
+}
+
+.content .contenu  {
     margin-left: 3rem;
 }
 
-/* .content .info *
-{
-    margin-top: 2.5rem;
-    height: fit-content;
-    width: fit-content;
-    background-color: white;
-    padding-bottom: 1rem;
-    font-weight: var(--font-medium);
-    
-} */
+.content form {
+    margin-bottom: 2rem;
+}
 
-#identity h2
-{
-    margin-right: 2rem;
+.content .contenu input[type="button"] {
+    margin: 5vh 0px;
+    height: 4rem;
+    width: 80%;
 }

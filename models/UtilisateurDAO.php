@@ -19,4 +19,11 @@ class UtilisateurDAO extends DAO
         ));
         return $result;
     }
+
+    public function changeUserInfos(string $firstName,string $lastName, string $email, int $id){
+        $result = $this->queryBdd("UPDATE customer SET FIRST_NAME = ?, LAST_NAME = ?, MAIL_ADDRESS = ? where IDCUSTOMER = ?",array(
+            $firstName,$lastName,$email,$id
+        ));
+        return $result;
+    }
 }

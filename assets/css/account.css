@@ -6,14 +6,13 @@
 #menu
 {
     margin-top: -50px;
-    padding-bottom:20rem;
-    /* padding-left:3rem; */
+    width: 25rem ;
     background-color: whitesmoke;
 }
 
 #menu a
 {
-    padding: 2.5rem;
+    margin: 2.5rem;
 }
 
 #menu h2
@@ -25,22 +24,28 @@
 
 
 /* -------- page info -------- */
-content form h2
+.contenu form h2
 {
-    width: 18rem;
+    width: 15rem;
     font-size: 20px;
 }
 
-.content .contenu  {
+.contenu  {
     margin-left: 3rem;
 }
 
-.content form {
-    margin-bottom: 2rem;
+.contenu form {
+    margin: 2rem;
 }
 
-.content .contenu input[type="button"] {
+.contenu input[type="button"] {
     margin: 5vh 0px;
     height: 4rem;
-    width: 80%;
+    width: 30%;
+    
+}
+
+#form-info{
+    margin-right: 3rem;
+    margin-left: -3rem;
 }

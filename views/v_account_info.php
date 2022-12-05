@@ -1,6 +1,6 @@
-<div class="flex row">
+<div class="flex column">
 
-    <div class="flex column wrap right contenu">
+    <div class="flex row wrap right contenu">
 
         <form action="index.php?page=account" method="post" class="card flex row center shadow rounded">
             <h2>Nom :</h2>
@@ -20,13 +20,10 @@
 
     </div>
 
-    <div class="flex column wrap right contenu">
-    <form>
-    <input type="button" id="form-confirm" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">
+    <form class="flex row wrap right contenu center">
+    <input type="button" id="form-info" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">
     
-    <input type="button" id="form-confirm" value="<?= CHANGER_MDP ?>" class="valid circle">
+    <input type="button" id="form-mdp" value="<?= CHANGER_MDP ?>" class="valid circle">
     </form>
-
-    </div>
 
 </div>

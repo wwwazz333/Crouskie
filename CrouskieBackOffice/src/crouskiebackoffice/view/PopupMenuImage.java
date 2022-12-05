@@ -10,7 +10,7 @@ public class PopupMenuImage extends JPopupMenu {
     private JMenuItem deleteItem;
     private JMenuItem editItem;
 
-    public PopupMenuImage(Picture picture) {
+    public PopupMenuImage(Picture picture, Runnable edit, Runnable remove) {
         this.picture = picture;
 
         editItem = new JMenuItem("Éditer");
@@ -18,10 +18,10 @@ public class PopupMenuImage extends JPopupMenu {
         
         
         editItem.addActionListener((ae) -> {
-            System.out.println("édite...");
+            edit.run();
         });
         deleteItem.addActionListener((ae) -> {
-            System.out.println("suppr...");
+            remove.run();
         });
         
         

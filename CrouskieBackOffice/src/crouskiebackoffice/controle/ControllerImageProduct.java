@@ -72,7 +72,16 @@ public class ControllerImageProduct implements ActionListener {
                     if (evt.getButton() == MouseEvent.BUTTON3) {
                         Point mousePos = evt.getPoint();
 
-                        (new PopupMenuImage(pic)).show(imageDisplay, mousePos.x, mousePos.y);
+                        var popup = new PopupMenuImage(pic,
+                                () -> {
+                                    String descriptionImage = getDescriptionImage(pic.getAlt());
+                                    if (descriptionImage != null){
+                                        pic.setAlt(descriptionImage);
+                                    }
+                                }, () -> {
+                                    removePicture(imageDisplay, pic);
+                                });
+                        popup.show(imageDisplay, mousePos.x, mousePos.y);
                     }
                 }
             });
@@ -81,6 +90,12 @@ public class ControllerImageProduct implements ActionListener {
 
             return true;
         });
+    }
+    private void removePicture(JLabel image, Picture pic){
+        this.panel.remove(image);
+        pictures.remove(pic);
+//        panel.revalidate();
+        panel.repaint();
     }
 
     private Image getScaledImage(Image srcImg, int w, int h) {
@@ -101,9 +116,8 @@ public class ControllerImageProduct implements ActionListener {
             ErrorHandeler.getInstance().exec(() -> {
                 BufferedImage image = ImageIO.read(new File(pathToImage));
                 String urlRelativeToOnlineImage = FileDownloader.uploadImage(image);
-                System.out.println(urlRelativeToOnlineImage);
                 if (urlRelativeToOnlineImage != null) {
-                    String descriptionImage = JOptionPane.showInputDialog("Description de l'image");
+                    String descriptionImage = getDescriptionImage();
                     if (descriptionImage == null) {
                         descriptionImage = "";
                     }
@@ -115,6 +129,13 @@ public class ControllerImageProduct implements ActionListener {
             });
 
         }
+    }
+    
+    private String getDescriptionImage(){
+        return JOptionPane.showInputDialog("Description de l'image");
+    }
+    private String getDescriptionImage(String defaultValue){
+        return JOptionPane.showInputDialog("Description de l'image", defaultValue);
     }
 
 }

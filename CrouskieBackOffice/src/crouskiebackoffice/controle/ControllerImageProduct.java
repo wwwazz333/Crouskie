@@ -75,7 +75,7 @@ public class ControllerImageProduct implements ActionListener {
                         var popup = new PopupMenuImage(pic,
                                 () -> {
                                     String descriptionImage = getDescriptionImage(pic.getAlt());
-                                    if (descriptionImage != null){
+                                    if (descriptionImage != null) {
                                         pic.setAlt(descriptionImage);
                                     }
                                 }, () -> {
@@ -91,11 +91,11 @@ public class ControllerImageProduct implements ActionListener {
             return true;
         });
     }
-    private void removePicture(JLabel image, Picture pic){
+
+    private void removePicture(JLabel image, Picture pic) {
         this.panel.remove(image);
         pictures.remove(pic);
-//        panel.revalidate();
-        panel.repaint();
+        updatePanel();
     }
 
     private Image getScaledImage(Image srcImg, int w, int h) {
@@ -123,19 +123,25 @@ public class ControllerImageProduct implements ActionListener {
                     }
                     Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, product.getId());
                     addPicture(pic);
-                    panel.revalidate();
+                    updatePanel();
                 }
                 return true;
             });
 
         }
     }
-    
-    private String getDescriptionImage(){
+
+    private String getDescriptionImage() {
         return JOptionPane.showInputDialog("Description de l'image");
     }
-    private String getDescriptionImage(String defaultValue){
+
+    private String getDescriptionImage(String defaultValue) {
         return JOptionPane.showInputDialog("Description de l'image", defaultValue);
+    }
+
+    private void updatePanel() {
+        panel.revalidate();
+        panel.repaint();
     }
 
 }

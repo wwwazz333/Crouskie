@@ -3,11 +3,15 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Picture;
 import crouskiebackoffice.model.Product;
+import crouskiebackoffice.view.PopupMenuImage;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.LinkedList;
@@ -41,6 +45,7 @@ public class ControllerImageProduct implements ActionListener {
         for (Picture pic : product.getPictures()) {
             addPicture(pic);
         }
+
     }
 
     public List<Picture> getPictures() {
@@ -60,6 +65,17 @@ public class ControllerImageProduct implements ActionListener {
             img.setDescription(pic.getAlt());
 
             JLabel imageDisplay = new JLabel(img);
+
+            imageDisplay.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent evt) {
+                    if (evt.getButton() == MouseEvent.BUTTON3) {
+                        Point mousePos = evt.getPoint();
+
+                        (new PopupMenuImage(pic)).show(imageDisplay, mousePos.x, mousePos.y);
+                    }
+                }
+            });
 
             this.panel.add(imageDisplay);
 

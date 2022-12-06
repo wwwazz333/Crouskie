@@ -1,0 +1,28 @@
+#collections {
+    min-height: 70vh;
+    margin-top: 2rem;
+    gap: 2rem;
+
+    padding: 2rem 0 2rem 0;
+}
+
+.collection-content {
+    position: relative;
+}
+
+.collection-content p {
+    position: absolute;
+    top: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.collection-content img {
+    background-size: cover;
+    width: 70vw;
+    height: 60vh;
+}

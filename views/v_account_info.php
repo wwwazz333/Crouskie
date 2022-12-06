@@ -22,7 +22,9 @@
 
     <form class="flex row wrap right contenu center">
     <input type="button" id="form-info" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">
-    
+
+    <input type="button" id="form-enregistrer" value="<?= ENREGISTRER_INFORMATIONS ?>" class="valid circle">
+
     <input type="button" id="form-mdp" value="<?= CHANGER_MDP ?>" class="valid circle">
     </form>
 

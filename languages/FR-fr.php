@@ -36,4 +36,5 @@ define('GERER_COOKIES','Gérer mes croukies');
 
 // Page compte
 define('CHANGER_INFORMATIONS','Modifier mes informations');
+define('ENREGISTRER_INFORMATIONS','Enregistrer mes informations');
 define('CHANGER_MDP','Changer mon mot de passe');

@@ -11,13 +11,13 @@ require_once(PATH_VIEWS . 'header.php');
         <a href="index.php?page=account&selected=info">
             <p>Informations du compte</p>
         </a>
-        <a href="index.php?page=account">
+        <a href="index.php?page=account&selected=commande">
             <p>Mes commandes</p>
         </a>
-        <a href="index.php?page=account">
+        <a href="index.php?page=account&selected=favori">
             <p>Mes favoris</p>
         </a>
-        <a href="index.php?page=logout">
+        <a href="index.php?page=logout&selected=info">
             <p>Se déconnecter</p>
         </a>
     </div>

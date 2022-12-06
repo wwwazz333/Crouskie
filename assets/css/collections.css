@@ -19,10 +19,12 @@
     right: 0;
     text-align: center;
     color: var(--text-color);
+    font-weight: var(--font-medium);
+    font-size: var(--h3-font-size);
 }
 
 .collection-content img {
     background-size: cover;
-    width: 70vw;
-    height: 60vh;
+    width: 100vh;
+    height: 50vh;
 }

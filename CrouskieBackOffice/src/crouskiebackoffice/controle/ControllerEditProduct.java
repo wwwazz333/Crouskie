@@ -57,7 +57,7 @@ public class ControllerEditProduct {
         return false;
     }
 
-    public AddDelListIem getAddDelListIem() {
+    public AddDelListIem getAddDelListItem() {
         return new AddDelListIem() {
             @Override
             public void add(JList jlist) {

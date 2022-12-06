@@ -3,11 +3,8 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.creation.ICreateWithName;
 import crouskiebackoffice.model.dao.DAO;
 import crouskiebackoffice.view.AddingDialog;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AddingController<T> {
 

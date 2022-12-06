@@ -7,6 +7,7 @@ import crouskiebackoffice.controle.Navigator;
 import crouskiebackoffice.model.CollectionModelComboBox;
 import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Product;
+import crouskiebackoffice.model.ProductAttachImage;
 import crouskiebackoffice.model.listmodel.DynamicListColorModel;
 import crouskiebackoffice.model.listmodel.DynamicListModel;
 import crouskiebackoffice.model.listmodel.DynamicListSizeModel;
@@ -35,15 +36,15 @@ public class EditProduct extends javax.swing.JPanel {
         product = prod;
         this.controller = new ControllerEditProduct(this, prod);
         initComponents();
-        this.controllerImage = new ControllerImageProduct(imagesPane, product, addImage);
+        this.controllerImage = new ControllerImageProduct(imagesPane, new ProductAttachImage(product), addImage);
 
-        listSize = new ListDynamicPanel("Taille", controller.getAddDelListIem());
+        listSize = new ListDynamicPanel("Taille", controller.getAddDelListItem());
         row3.add(listSize);
 
-        listColor = new ListDynamicPanel("Couleurs", controller.getAddDelListIem());
+        listColor = new ListDynamicPanel("Couleurs", controller.getAddDelListItem());
         row3.add(listColor);
 
-        listTag = new ListDynamicPanel("Tags", controller.getAddDelListIem());
+        listTag = new ListDynamicPanel("Tags", controller.getAddDelListItem());
         row3.add(listTag);
 
         listTag.setModel(new DynamicListTagModel(product));
@@ -112,7 +113,9 @@ public class EditProduct extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         nameInput = new javax.swing.JTextField();
         collectionLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         collectionComboBox = new javax.swing.JComboBox<>();
+        addCollection = new javax.swing.JButton();
         enVenteCheckBox = new javax.swing.JCheckBox();
         row2 = new javax.swing.JPanel();
         descriptionLabel = new javax.swing.JLabel();
@@ -156,8 +159,18 @@ public class EditProduct extends javax.swing.JPanel {
         collectionLabel.setText("collection");
         row1.add(collectionLabel);
 
-        collectionComboBox.setModel(new CollectionModelComboBox(product));
-        row1.add(collectionComboBox);
+        collectionComboBox.setModel(new CollectionModelComboBox(product, addCollection));
+        jPanel1.add(collectionComboBox);
+
+        addCollection.setText("+");
+        addCollection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCollectionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addCollection);
+
+        row1.add(jPanel1);
 
         enVenteCheckBox.setSelected(true);
         enVenteCheckBox.setText("produit en vente");
@@ -269,8 +282,13 @@ public class EditProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_addImageActionPerformed
 
+    private void addCollectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCollectionActionPerformed
+        
+    }//GEN-LAST:event_addCollectionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCollection;
     private javax.swing.JButton addImage;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<String> collectionComboBox;
@@ -282,6 +300,7 @@ public class EditProduct extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.JPanel imagesPane;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel leftPane;

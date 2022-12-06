@@ -1,5 +1,6 @@
 package crouskiebackoffice.controle;
 
+import crouskiebackoffice.model.AttachImage;
 import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Picture;
 import crouskiebackoffice.model.Product;
@@ -25,24 +26,26 @@ import javax.swing.JPanel;
 
 public class ControllerImageProduct implements ActionListener {
 
-    private Product product;
+    private AttachImage attachPicture;
     private JPanel panel;
     private JButton addBtn;
 
     private BufferedImage bfrImage;
     private List<Picture> pictures = new LinkedList<>();
+    private List<JLabel> imagesLabel = new LinkedList<>();
 
     private ControllerUploadFile controllerUploadFile;
 
-    public ControllerImageProduct(JPanel panel, Product product, JButton addBtn) {
-        this.product = product;
+
+    public ControllerImageProduct(JPanel panel, AttachImage attachPicture, JButton addBtn) {
+        this.attachPicture = attachPicture;
         this.panel = panel;
         this.addBtn = addBtn;
 
         this.addBtn.addActionListener(this);
         controllerUploadFile = new ControllerUploadFile(panel);
 
-        for (Picture pic : product.getPictures()) {
+        for (Picture pic : attachPicture.getPictures()) {
             addPicture(pic);
         }
 
@@ -53,6 +56,11 @@ public class ControllerImageProduct implements ActionListener {
     }
 
     private void addPicture(Picture pic) {
+        if (attachPicture.isSingleAttach()) {
+            for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
+                removePicture(imagesLabel.get(i), pictures.get(i));
+            }
+        }
         pictures.add(pic);
         ErrorHandeler.getInstance().exec(() -> {
             String[] partOfUrl = pic.getPath().split("/");
@@ -65,6 +73,7 @@ public class ControllerImageProduct implements ActionListener {
             img.setDescription(pic.getAlt());
 
             JLabel imageDisplay = new JLabel(img);
+            imagesLabel.add(imageDisplay);
 
             imageDisplay.addMouseListener(new MouseAdapter() {
                 @Override
@@ -95,6 +104,7 @@ public class ControllerImageProduct implements ActionListener {
     private void removePicture(JLabel image, Picture pic) {
         this.panel.remove(image);
         pictures.remove(pic);
+        imagesLabel.remove(image);
         updatePanel();
     }
 
@@ -121,7 +131,9 @@ public class ControllerImageProduct implements ActionListener {
                     if (descriptionImage == null) {
                         descriptionImage = "";
                     }
-                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, product.getId());
+                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, -1);
+                    this.attachPicture.attachPicture(pic);
+//                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, product.getId());
                     addPicture(pic);
                     updatePanel();
                 }

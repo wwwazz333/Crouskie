@@ -37,6 +37,14 @@ public class Collection {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPathPicture(String pathPicture) {
+        this.pathPicture = pathPicture;
+    }
+
     @Override
     public String toString() {
         return name;

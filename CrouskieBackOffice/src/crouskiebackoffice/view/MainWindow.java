@@ -32,6 +32,7 @@ public class MainWindow extends javax.swing.JFrame {
         instance = this;
         ErrorHandeler.getInstance().init(this);
         initComponents();
+        stockTable.init();
         initSettings();
 
         addProductPanel = new EditProduct(new Product("", "", 10f, null));
@@ -55,10 +56,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         headerPanel1 = new crouskiebackoffice.view.HeaderPanel();
         mainPane = new javax.swing.JPanel();
+        onglets = new javax.swing.JTabbedPane();
         tabPane = new javax.swing.JTabbedPane();
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        stockTable = new crouskiebackoffice.view.StockTableView();
         statusbar = new crouskiebackoffice.view.StatusbarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,28 +76,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         tabPane.addTab("Visualiser", visualisationPanel);
 
-        mainPane.add(tabPane, "tabPane");
+        onglets.addTab("Produits", tabPane);
 
-        jLabel1.setText("jLabel1");
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(582, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(94, 94, 94))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jLabel1)
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
+        stockTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(stockTable);
 
-        mainPane.add(jPanel1, "editProduct");
+        jPanel2.add(jScrollPane2, java.awt.BorderLayout.PAGE_START);
+
+        onglets.addTab("Stock", jPanel2);
+
+        mainPane.add(onglets, "card4");
 
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
         getContentPane().add(statusbar, java.awt.BorderLayout.SOUTH);
@@ -123,10 +126,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel mainPane;
+    private javax.swing.JTabbedPane onglets;
     private crouskiebackoffice.view.StatusbarPanel statusbar;
+    private crouskiebackoffice.view.StockTableView stockTable;
     private javax.swing.JTabbedPane tabPane;
     private crouskiebackoffice.view.VisualisationPanel visualisationPanel;
     // End of variables declaration//GEN-END:variables

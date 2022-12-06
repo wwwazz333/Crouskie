@@ -16,8 +16,6 @@
             <h2>Adresse mail :</h2>
             <input type="email" name="email" id="email" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getEmail()?>">
         </form>
-
-
     </div>
 
     <form class="flex row wrap right contenu center">
@@ -27,5 +25,9 @@
 
     <input type="button" id="form-mdp" value="<?= CHANGER_MDP ?>" class="valid circle">
     </form>
-
+    <?php
+		if (isset($page) && is_file(PATH_SCRIPTS.$page.".js")) {
+			echo("<script src=\"".PATH_SCRIPTS.$page."_".$selectedPage.".js\"></script>");
+		}
+	?>
 </div>

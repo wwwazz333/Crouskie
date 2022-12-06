@@ -7,21 +7,29 @@ require_once(PATH_VIEWS . 'header.php');
 <!-- affichage menu -->
 <div class="flex row content">
     <div class="flex column wrap right" id="menu">
-        <h2> Bonjour <?= $user->getLastName() ?> </h2>
+        <h2> Bonjour <?= $user->getFirstName() ?> </h2>
         <a href="index.php?page=account&selected=info">
-            <p>Informations du compte</p>
+            <p id="info">Informations du compte</p>
         </a>
         <a href="index.php?page=account&selected=commande">
-            <p>Mes commandes</p>
+            <p id="commande">Mes commandes</p>
         </a>
         <a href="index.php?page=account&selected=favori">
-            <p>Mes favoris</p>
+            <p id="favori">Mes favoris</p>
         </a>
         <a href="index.php?page=logout&selected=info">
             <p>Se déconnecter</p>
         </a>
     </div>
 
+    
+    <script>
+        var page = <?php echo json_encode($selectedPage); ?>;
+        console.log(page)
+        const textePage = document.getElementById(page)
+        textePage.style.color = "#E10512"
+        textePage.style.fontWeight = "bold";
+    </script>
 
     <!-- require_once view $selectedpage -->
     <?php

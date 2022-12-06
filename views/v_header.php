@@ -17,7 +17,7 @@
 			<div class="flex row right">
 				<!-- Bouton pour le panier -->
 				<!-- Ajouter la class 'counter' pour afficher le nombre d'articles dans le panier -->
-				<a href="index.php?page=panier" class="icon" data-number=0>
+				<a href="index.php?page=cart" class="icon" data-number=0>
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
 				<button onclick="window.location.assign('index.php?page=<?= $isLogged ? 'account' : 'portal' ?>');" 

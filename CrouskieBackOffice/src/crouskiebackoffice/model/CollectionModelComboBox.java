@@ -1,13 +1,13 @@
 package crouskiebackoffice.model;
 
 import crouskiebackoffice.controle.ErrorHandeler;
-import crouskiebackoffice.model.dao.DAO;
 import crouskiebackoffice.model.dao.DAOCollection;
+import crouskiebackoffice.view.CollectionSelectionView;
+import crouskiebackoffice.view.MainWindow;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 public class CollectionModelComboBox extends DefaultComboBoxModel {
 
@@ -22,14 +22,12 @@ public class CollectionModelComboBox extends DefaultComboBoxModel {
             setSelectedItem(product.getCollection());
             return true;
         });
-        
-        
+
         addingBtn.addActionListener((ae) -> {
-            String nameNewCollection = JOptionPane.showInputDialog("Nom de la nouvelle collection");
-            if (nameNewCollection != null){
-                
-                DAO dao = new DAOCollection();
-//                dao.insertOrUpdate(new Collection ())
+            Collection collectionToSelect = new Collection(-1, null);
+            new CollectionSelectionView(MainWindow.instance, true).setVisible(true);
+            if (collectionToSelect.getId() != -1) {
+                setSelectedItem(collectionToSelect);
             }
         });
 

@@ -1,9 +1,11 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.AttachImage;
+import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Picture;
+import crouskiebackoffice.model.dao.DAOCollection;
 import crouskiebackoffice.view.PopupMenuImage;
+import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
@@ -23,56 +25,73 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ControllerImageProduct implements ActionListener {
+public class ControllerImageCollection implements ActionListener {
 
-    private AttachImage attachPicture;
-    private JPanel panel;
+    class Tuple {
+
+        Picture pic;
+        JLabel image;
+        Collection collection;
+
+        public Tuple(Picture pic, JLabel image, Collection collection) {
+            this.pic = pic;
+            this.image = image;
+            this.collection = collection;
+        }
+
+    }
+
+    private Container panel;
     private JButton addBtn;
 
     private BufferedImage bfrImage;
-    private List<Picture> pictures = new LinkedList<>();
-    private List<JLabel> imagesLabel = new LinkedList<>();
+    private List<Tuple> elements = new LinkedList<>();
 
     private ControllerUploadFile controllerUploadFile;
 
+    private DAOCollection dao = new DAOCollection();
 
-    public ControllerImageProduct(JPanel panel, AttachImage attachPicture, JButton addBtn) {
-        this.attachPicture = attachPicture;
+    public ControllerImageCollection(Container panel, JButton addBtn) {
         this.panel = panel;
         this.addBtn = addBtn;
 
         this.addBtn.addActionListener(this);
         controllerUploadFile = new ControllerUploadFile(panel);
 
-        for (Picture pic : attachPicture.getPictures()) {
-            addPicture(pic);
-        }
+        ErrorHandeler.getInstance().exec(() -> {
+            List<Collection> collections = dao.getAllData();
+            for (Collection coll : collections) {
+                Picture pic = new Picture(coll.getPathPicture(), coll.getName(), null);
+                addPicture(new Tuple(pic, null, coll));
+            }
+            return true;
+        });
 
     }
 
     public List<Picture> getPictures() {
+        List<Picture> pictures = new LinkedList<>();
+
+        for (Tuple elem : elements) {
+            pictures.add(elem.pic);
+        }
         return pictures;
     }
 
-    private void addPicture(Picture pic) {
-        if (attachPicture.isSingleAttach()) {
-            for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
-                removePicture(imagesLabel.get(i), pictures.get(i));
-            }
-        }
-        pictures.add(pic);
+    private void addPicture(Tuple tuple) {
+        elements.add(tuple);
         ErrorHandeler.getInstance().exec(() -> {
-            String[] partOfUrl = pic.getPath().split("/");
+            String[] partOfUrl = tuple.pic.getPath().split("/");
 
-            bfrImage = FileDownloader.downloadImageFromUrl(pic.getPath(), partOfUrl[partOfUrl.length - 1]);
+            bfrImage = FileDownloader.downloadImageFromUrl(tuple.pic.getPath(), partOfUrl[partOfUrl.length - 1]);
 
             double ratio = (double) bfrImage.getWidth() / (double) bfrImage.getHeight();
 
             ImageIcon img = new ImageIcon(getScaledImage(new ImageIcon(bfrImage).getImage(), 200, (int) (200 / ratio)));
-            img.setDescription(pic.getAlt());
+            img.setDescription(tuple.pic.getAlt());
 
             JLabel imageDisplay = new JLabel(img);
-            imagesLabel.add(imageDisplay);
+            tuple.image = imageDisplay;
 
             imageDisplay.addMouseListener(new MouseAdapter() {
                 @Override
@@ -80,14 +99,14 @@ public class ControllerImageProduct implements ActionListener {
                     if (evt.getButton() == MouseEvent.BUTTON3) {
                         Point mousePos = evt.getPoint();
 
-                        var popup = new PopupMenuImage(pic,
+                        var popup = new PopupMenuImage(tuple.pic,
                                 () -> {
-                                    String descriptionImage = getDescriptionImage(pic.getAlt());
+                                    String descriptionImage = getDescriptionImage(tuple.pic.getAlt());
                                     if (descriptionImage != null) {
-                                        pic.setAlt(descriptionImage);
+                                        tuple.pic.setAlt(descriptionImage);
                                     }
                                 }, () -> {
-                                    removePicture(imageDisplay, pic);
+                                    removePicture(tuple);
                                 });
                         popup.show(imageDisplay, mousePos.x, mousePos.y);
                     }
@@ -96,15 +115,20 @@ public class ControllerImageProduct implements ActionListener {
 
             this.panel.add(imageDisplay);
 
+            updatePanel();
             return true;
         });
     }
 
-    private void removePicture(JLabel image, Picture pic) {
-        this.panel.remove(image);
-        pictures.remove(pic);
-        imagesLabel.remove(image);
-        updatePanel();
+    private void removePicture(Tuple tuple) {
+        ErrorHandeler.getInstance().exec(() -> {
+            dao.remove(tuple.collection);
+            this.panel.remove(tuple.image);
+            elements.remove(tuple);
+            updatePanel();
+            return true;
+        });
+
     }
 
     private Image getScaledImage(Image srcImg, int w, int h) {
@@ -126,14 +150,14 @@ public class ControllerImageProduct implements ActionListener {
                 BufferedImage image = ImageIO.read(new File(pathToImage));
                 String urlRelativeToOnlineImage = FileDownloader.uploadImage(image);
                 if (urlRelativeToOnlineImage != null) {
-                    String descriptionImage = getDescriptionImage();
-                    if (descriptionImage == null) {
-                        descriptionImage = "";
+                    String nomCollection = getDescriptionImage();
+                    if (nomCollection == null) {
+                        nomCollection = "";
                     }
-                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, -1);
-                    this.attachPicture.attachPicture(pic);
-//                    Picture pic = new Picture(urlRelativeToOnlineImage, descriptionImage, product.getId());
-                    addPicture(pic);
+                    Picture pic = new Picture(urlRelativeToOnlineImage, nomCollection, null);
+                    Collection collection = new Collection(-1, nomCollection, urlRelativeToOnlineImage);
+                    dao.insertOrUpdate(collection);
+                    addPicture(new Tuple(pic, null, collection));
                     updatePanel();
                 }
                 return true;
@@ -143,11 +167,11 @@ public class ControllerImageProduct implements ActionListener {
     }
 
     private String getDescriptionImage() {
-        return JOptionPane.showInputDialog("Description de l'image");
+        return JOptionPane.showInputDialog("Nom de la collection");
     }
 
     private String getDescriptionImage(String defaultValue) {
-        return JOptionPane.showInputDialog("Description de l'image", defaultValue);
+        return JOptionPane.showInputDialog("Nom de la collection", defaultValue);
     }
 
     private void updatePanel() {

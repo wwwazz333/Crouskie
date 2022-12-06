@@ -39,14 +39,20 @@ public class ControllerEditProduct {
             product.setPrice(Float.parseFloat(price.replaceAll(",", ".")));
             product.setName(name);
             product.setDescription(description);
-            product.setCollection((Collection) comboBoxModel.getSelectedItem());
+
+            Collection currCollection = (Collection) comboBoxModel.getSelectedItem();
+            if (new DAOCollection().exist(currCollection)) {
+                product.setCollection(currCollection);
+            } else {
+                product.setCollection(null);
+            }
 
             product.setEnVente(enVente);
 
             product.setExistingColor(colorsListModel.getData());
             product.setExistingSize(sizesListModel.getData());
             product.setTags(tagsListModel.getData());
-            
+
             product.setPictures(pictures);
 
             return ErrorHandeler.getInstance().exec(() -> {

@@ -21,9 +21,9 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class ControllerImageCollection implements ActionListener {
 
@@ -42,6 +42,7 @@ public class ControllerImageCollection implements ActionListener {
     }
 
     private Container panel;
+    private JDialog parent;
     private JButton addBtn;
 
     private BufferedImage bfrImage;
@@ -50,10 +51,13 @@ public class ControllerImageCollection implements ActionListener {
     private ControllerUploadFile controllerUploadFile;
 
     private DAOCollection dao = new DAOCollection();
+    private Collection collectionSelect;
 
-    public ControllerImageCollection(Container panel, JButton addBtn) {
-        this.panel = panel;
+    public ControllerImageCollection(JDialog parent, JButton addBtn, Collection collectionSelect) {
+        this.panel = parent.getContentPane();
+        this.parent = parent;
         this.addBtn = addBtn;
+        this.collectionSelect = collectionSelect;
 
         this.addBtn.addActionListener(this);
         controllerUploadFile = new ControllerUploadFile(panel);
@@ -61,6 +65,7 @@ public class ControllerImageCollection implements ActionListener {
         ErrorHandeler.getInstance().exec(() -> {
             List<Collection> collections = dao.getAllData();
             for (Collection coll : collections) {
+                System.out.println(coll.getPathPicture());
                 Picture pic = new Picture(coll.getPathPicture(), coll.getName(), null);
                 addPicture(new Tuple(pic, null, coll));
             }
@@ -96,15 +101,27 @@ public class ControllerImageCollection implements ActionListener {
             imageDisplay.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent evt) {
-                    if (evt.getButton() == MouseEvent.BUTTON3) {
+                    if (evt.getButton() == MouseEvent.BUTTON1) {
+                        collectionSelect.setName(tuple.collection.getName());
+                        collectionSelect.setPathPicture(tuple.collection.getPathPicture());
+                        collectionSelect.setId(tuple.collection.getId());
+                        parent.dispose();
+                    } else if (evt.getButton() == MouseEvent.BUTTON3) {
                         Point mousePos = evt.getPoint();
 
                         var popup = new PopupMenuImage(tuple.pic,
                                 () -> {
-                                    String descriptionImage = getDescriptionImage(tuple.pic.getAlt());
-                                    if (descriptionImage != null) {
-                                        tuple.pic.setAlt(descriptionImage);
+                                    String nameCollection = getDescriptionImage(tuple.collection.getName());
+                                    if (nameCollection != null) {
+                                        tuple.collection.setName(nameCollection);
+
+                                        ErrorHandeler.getInstance().exec(() -> {
+                                            dao.insertOrUpdate(tuple.collection);
+                                            return true;
+
+                                        });
                                     }
+
                                 }, () -> {
                                     removePicture(tuple);
                                 });
@@ -122,10 +139,12 @@ public class ControllerImageCollection implements ActionListener {
 
     private void removePicture(Tuple tuple) {
         ErrorHandeler.getInstance().exec(() -> {
+            System.out.println("Suppression de l'image...");
             dao.remove(tuple.collection);
             this.panel.remove(tuple.image);
             elements.remove(tuple);
             updatePanel();
+            System.out.println("Image supprimer.");
             return true;
         });
 

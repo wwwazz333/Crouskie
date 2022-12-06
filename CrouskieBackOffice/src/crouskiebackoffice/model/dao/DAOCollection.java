@@ -34,7 +34,7 @@ public class DAOCollection extends DAO<Collection> {
     @Override
     public Boolean remove(Collection obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM" + getTableName() + " WHERE idcollection = ?", args) == 1;
+        return super.execute("DELETE FROM " + getTableName() + " WHERE idcollection = ?", args) == 1;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DAOCollection extends DAO<Collection> {
 
     @Override
     protected Collection parseData(HashMap<String, Object> obj) {
-        return new Collection((int) obj.get("idcollection"), obj.get("namecollection").toString());
+        return new Collection((int) obj.get("idcollection"), obj.get("namecollection").toString(), obj.get("pathpicture").toString());
     }
 
 }

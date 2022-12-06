@@ -11,10 +11,14 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer {
      */
     public VisualisationPanel() {
         initComponents();
-        ErrorHandeler.getInstance().exec(() -> {
-            DataProduct.getInstance().registerObserver(this);
-            return true;
-        });
+        try {
+            ErrorHandeler.getInstance().exec(() -> {
+                DataProduct.getInstance().registerObserver(this);
+                return true;
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

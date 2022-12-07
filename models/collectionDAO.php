@@ -5,9 +5,9 @@ require_once(PATH_ENTITY.'Collection.php');
 class CollectionDAO extends DAO
 {
     public function resultToCollectionArray(array $result){
-        $collection = [];
+        $collections = [];
         foreach($result as $collection){
-            array_push($collection, 
+            array_push($collections, 
                 new Collection(
                     $collection['NAMECOLLECTION'],
                     $collection['IDCOLLECTION'],
@@ -15,7 +15,7 @@ class CollectionDAO extends DAO
                 )
             );
         }
-        return $collection;
+        return $collections;
     }
     
     // Obtenir tout les produits associé à un nom

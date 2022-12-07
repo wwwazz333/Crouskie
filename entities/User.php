@@ -17,7 +17,7 @@ class User{
     /*
     Constructeur de l'utilisateur
     */
-    function __construct(string $first_name, string $last_name, string $email, int $id){
+    function __construct(string $first_name, string $last_name, string $email, $id){
         $this -> _first_name = $first_name;
         $this -> _last_name = $last_name;
         $this -> _email = $email;
@@ -45,7 +45,8 @@ class User{
     }
 
     //Obtenir l'ID
-    public function getId(){
+    public function getIdUser()
+    {
         return $this->_id;
     }
 }

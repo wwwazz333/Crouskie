@@ -2,8 +2,8 @@
 require_once(PATH_MODELS . 'CartDAO.php');
 
 $cartDAO = new CartDAO(DEBUG);
-$userId = $user->getId();
-$cart = $cartDAO->getCartByCustomerId($userId);
+// $userId = $user->getIdUser();
+// $cart = $cartDAO->getCartByCustomerId($userId);
 
 
 

@@ -5,8 +5,12 @@ require_once(PATH_VIEWS . 'header.php');
 ?>
 
 <?php
-    echo "$cart";
+    // echo "$cart";
 ?>
+
+<div class="card flex row center shadow rounded content">
+
+</div>
 
 
 <!--  Pied de page -->

@@ -2,7 +2,7 @@
 require_once(PATH_MODELS . 'DAO.php');
 require_once(PATH_ENTITY.'Cart.php');
 
-class cartDAO extends DAO
+class CartDAO extends DAO
 {
 
     public function resultToCartArray(array $result){
@@ -19,7 +19,7 @@ class cartDAO extends DAO
         return $cart;
     }
     
-      //get all the existing collections
+      //get all the existing carted items
       public function getCartByCustomerId(int $id)
       {
           $cart = $this->queryAll("SELECT * FROM cart where IDCUSTOMER = ?",array($id));

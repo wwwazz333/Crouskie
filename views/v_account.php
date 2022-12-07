@@ -24,8 +24,9 @@ require_once(PATH_VIEWS . 'header.php');
 
     
     <script>
+        // transforme la variable selectedPage PHP en variable page JavaScript
         var page = <?php echo json_encode($selectedPage); ?>;
-        console.log(page)
+        // console.log(page)
         const textePage = document.getElementById(page)
         textePage.style.color = "#E10512"
         textePage.style.fontWeight = "bold";

@@ -1,4 +1,5 @@
 <?php
+
 /*
 Représentation objet d'un utilisateur du site web
 */
@@ -7,6 +8,7 @@ class User{
     private string $_first_name;
     private string $_last_name;
     private string $_email;
+    private int $_id;
 
     // Je pense faire d'autres classes pour :
     // Commands
@@ -15,10 +17,11 @@ class User{
     /*
     Constructeur de l'utilisateur
     */
-    function __construct(string $first_name, string $last_name, string $email){
+    function __construct(string $first_name, string $last_name, string $email, int $id){
         $this -> _first_name = $first_name;
         $this -> _last_name = $last_name;
         $this -> _email = $email;
+        $this -> _id = $id;
     }
 
     /*============ Getters ============*/
@@ -41,5 +44,9 @@ class User{
         return $this->_email;
     }
 
+    //Obtenir l'ID
+    public function getId(){
+        return $this->_id;
+    }
 }
 ?>

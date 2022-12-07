@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2022 at 08:09 AM
+-- Generation Time: Dec 07, 2022 at 11:26 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -51,7 +51,7 @@ INSERT INTO `CART` (`IDCUSTOMER`, `IDPROD`, `QUANTITYCART`) VALUES
 CREATE TABLE `CLOTH_SIZE` (
   `IDSIZE` int(11) NOT NULL,
   `NAMESIZE` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `CLOTH_SIZE`
@@ -64,7 +64,8 @@ INSERT INTO `CLOTH_SIZE` (`IDSIZE`, `NAMESIZE`) VALUES
 (4, 'L'),
 (5, 'XL'),
 (6, 'Grand'),
-(7, 'superGrand');
+(7, 'superGrand'),
+(8, 'taille');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ CREATE TABLE `COLLECTION` (
 --
 
 INSERT INTO `COLLECTION` (`NAMECOLLECTION`, `IDCOLLECTION`, `PATHPICTURE`) VALUES
-('crooskieverre', 1, 'cheminVersLimageDeTest');
+('crouskievert', 1, './assets/images/uploads/qX68fyZxVPOCxn7P.png');
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,7 @@ INSERT INTO `COLLECTION` (`NAMECOLLECTION`, `IDCOLLECTION`, `PATHPICTURE`) VALUE
 
 CREATE TABLE `COLOR` (
   `NAMECOLOR` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `COLOR`
@@ -196,8 +197,6 @@ INSERT INTO `EXISTINGSIZE` (`IDPROD`, `IDSIZE`) VALUES
 (2, 3),
 (2, 4),
 (4, 1),
-(12, 1),
-(12, 4),
 (13, 6);
 
 -- --------------------------------------------------------
@@ -229,15 +228,14 @@ CREATE TABLE `PICTURE` (
   `PATHPICTURE` varchar(255) NOT NULL,
   `IDPROD` int(11) DEFAULT NULL,
   `ALTPICTURE` varchar(255) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `PICTURE`
 --
 
 INSERT INTO `PICTURE` (`PATHPICTURE`, `IDPROD`, `ALTPICTURE`) VALUES
-('cheminVersLimageDeTest', 1, 'pull très stylé'),
-('cheminVersLimageDeTest2ndVersion', 2, 'pull encore plus stylé');
+('./assets/images/uploads/qX68fyZxVPOCxn7P.png', 14, 'xwcv');
 
 -- --------------------------------------------------------
 
@@ -259,16 +257,16 @@ CREATE TABLE `PRODUCT` (
 --
 
 INSERT INTO `PRODUCT` (`IDPROD`, `IDCOLLECTION`, `NAMEPROD`, `DESCRIPTIONPROD`, `PRICEPROD`, `enVente`) VALUES
-(1, 1, 'ertyu', 'dfg', 10.00, 12),
+(1, 1, 'ertyu', 'dfg', 10.00, 1),
 (2, NULL, '[value-TEst]', '[value-Des]', 21.00, 1),
 (3, NULL, 'nameprodTestId', 'super descripti', 100.00, 1),
-(4, 1, 'name Product isnerted', 'sldfkj', 424.00, 1),
+(4, NULL, 'name Product isnerted', 'sldfkj', 424.00, 1),
 (7, 1, 'nom', 'dessss', 11.00, 1),
 (8, 1, 'nom', 'dessss', 11.00, 1),
 (11, 1, '???', '????smdk\n', 10.01, 1),
 (12, 1, 'ertyu', 'dfg', 10.00, 1),
 (13, NULL, 'Observer', 'il t\'observe', 99.00, 1),
-(14, NULL, 'Add', 'sf', 10.00, 0),
+(14, NULL, 'Add', 'sf', 10.00, 1),
 (15, NULL, 'test??', 'c\'est meiux ?', 10.00, 1);
 
 -- --------------------------------------------------------
@@ -336,7 +334,7 @@ INSERT INTO `STOCKED` (`IDPROD`, `NAMECOLOR`, `IDSIZE`, `QUANTITYSTOCKED`) VALUE
 CREATE TABLE `TAG` (
   `idtag` int(11) NOT NULL,
   `nametag` varchar(255) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `TAG`
@@ -491,7 +489,7 @@ ALTER TABLE `TAGS_PRODUCT`
 -- AUTO_INCREMENT for table `CLOTH_SIZE`
 --
 ALTER TABLE `CLOTH_SIZE`
-  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDSIZE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `CMD`
@@ -503,7 +501,7 @@ ALTER TABLE `CMD`
 -- AUTO_INCREMENT for table `COLLECTION`
 --
 ALTER TABLE `COLLECTION`
-  MODIFY `IDCOLLECTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `IDCOLLECTION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `CUSTOMER`
@@ -527,26 +525,20 @@ ALTER TABLE `PRODUCTBOUGHT`
 -- AUTO_INCREMENT for table `TAG`
 --
 ALTER TABLE `TAG`
-  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtag` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `EXISTINGCOLOR`
---
-ALTER TABLE `EXISTINGCOLOR`
-  ADD CONSTRAINT `Fk2_EXISTINGCOLOR` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`),
-  ADD CONSTRAINT `Fk2_existing_color` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `Fk_EXISTINGCOLOR` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
-
---
 -- Constraints for table `EXISTINGSIZE`
 --
 ALTER TABLE `EXISTINGSIZE`
   ADD CONSTRAINT `Fk2_existing_size` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`),
-  ADD CONSTRAINT `Fk_existing_size` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
+  ADD CONSTRAINT `Fk2_existing_size2` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`),
+  ADD CONSTRAINT `Fk_existing_size` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
+  ADD CONSTRAINT `Fk_existing_size2` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`);
 
 --
 -- Constraints for table `FAVORITE`
@@ -566,23 +558,6 @@ ALTER TABLE `PICTURE`
 --
 ALTER TABLE `PRODUCT`
   ADD CONSTRAINT `Fk_product` FOREIGN KEY (`IDCOLLECTION`) REFERENCES `COLLECTION` (`IDCOLLECTION`);
-
---
--- Constraints for table `PRODUCTBOUGHT`
---
-ALTER TABLE `PRODUCTBOUGHT`
-  ADD CONSTRAINT `Fk3_EXISTINGCOLOR` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`),
-  ADD CONSTRAINT `Fk4_EXISTINGCOLOR` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`),
-  ADD CONSTRAINT `Fk5_EXISTINGCOLOR` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `Fk6_EXISTINGCOLOR` FOREIGN KEY (`NUMORDER`) REFERENCES `CMD` (`NUMORDER`);
-
---
--- Constraints for table `STOCKED`
---
-ALTER TABLE `STOCKED`
-  ADD CONSTRAINT `Fk2_STocked` FOREIGN KEY (`NAMECOLOR`) REFERENCES `COLOR` (`NAMECOLOR`),
-  ADD CONSTRAINT `Fk3_STocked` FOREIGN KEY (`IDPROD`) REFERENCES `PRODUCT` (`IDPROD`),
-  ADD CONSTRAINT `Fk_STocked` FOREIGN KEY (`IDSIZE`) REFERENCES `CLOTH_SIZE` (`IDSIZE`);
 
 --
 -- Constraints for table `TAGS_PRODUCT`

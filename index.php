@@ -4,7 +4,7 @@ require_once('./config/configuration.php');
 require_once(PATH_TEXTES.LANG.'.php');
 
 // besoin de require avant de serialiser / deserialiser
-require_once(PATH_ENTITY . 'Utilisateur.php');
+require_once(PATH_ENTITY . 'User.php');
 // Initialisation du système de session
 session_name('crouskie');
 session_start();

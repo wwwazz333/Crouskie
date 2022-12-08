@@ -22,7 +22,6 @@ foreach ($cart as $productCart) {
     // print_r($product);
     // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
     $nomProduct = $product['NAMEPROD'];
-    echo "$nomProduct \n";
 
     $infosProdsCart[$id] = [$product['NAMEPROD'], $productCart['QUANTITYCART'], $product['PRICEPROD']];
     $montantTotal += $product['PRICEPROD'];

@@ -13,6 +13,7 @@ require_once(PATH_VIEWS . 'header.php');
     <h3>Mon panier</h3> 
     <center><hr width="80%" color="black" size="0.5"></center>
 
+    <!-- Affichage à régler  -->
     <?php foreach ($infosProdsCart as $product) { ?>
         
             <div class='flex column rounded shadow product-item'>

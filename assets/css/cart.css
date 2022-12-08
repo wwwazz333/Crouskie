@@ -1,5 +1,5 @@
-.content{
-    width: 20rem;
-    background-color: red;
-    height: 20rem;
+.content { 
+    min-height: 70vh;
+    margin: 3rem;
+    text-align: center;
 }

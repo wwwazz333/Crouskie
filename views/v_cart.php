@@ -8,7 +8,23 @@ require_once(PATH_VIEWS . 'header.php');
     // echo "$cart";
 ?>
 
-<div class="card flex row center shadow rounded content">
+<div class="card center shadow rounded content">
+
+    <h3>Mon panier</h3> 
+    <center><hr width="80%" color="black" size="0.5"></center>
+
+    <?php foreach ($infosProdsCart as $product) { ?>
+        
+            <div class='flex column rounded shadow product-item'>
+                <div class='flex column center details'>
+                    <p>Nom <?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
+                    <p>Quantité <?php $info = $product['QUANTITYCART']; echo "$info"; ?></p>
+                    <p>Prix <?php $info = $product['PRICEPROD']; echo "$info"; ?></p>
+                </div>
+                <?= print_r($product); ?>
+            </div>
+        
+    <?php } ?>
 
 </div>
 

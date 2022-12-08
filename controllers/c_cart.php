@@ -10,8 +10,9 @@ $cart = $cartDAO->getCartByCustomerId($userId);
 
 $productDAO = new ProductDAO(DEBUG);
 
-// Tableau contenant toutes les informations destinées à la vue
+// Informations destinées à la vue
 $infosProdsCart = [];
+$montantTotal = 0;
 
 // On récupère le nom des produits du panier à partir de leur id 
 // Pour ensuite pouvoir les afficher dans la vue
@@ -24,6 +25,7 @@ foreach ($cart as $productCart) {
     echo "$nomProduct \n";
 
     $infosProdsCart[$id] = [$product['NAMEPROD'], $productCart['QUANTITYCART'], $product['PRICEPROD']];
+    $montantTotal += $product['PRICEPROD'];
 }
 
 require_once(PATH_VIEWS . $page . '.php');

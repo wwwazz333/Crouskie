@@ -26,6 +26,8 @@ require_once(PATH_VIEWS . 'header.php');
         
     <?php } ?>
 
+    <h2>Montant total à payer : <?php echo "$montantTotal"; ?> €</h2>
+
 </div>
 
 

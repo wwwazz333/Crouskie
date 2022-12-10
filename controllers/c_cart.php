@@ -19,12 +19,18 @@ $montantTotal = 0;
 foreach ($cart as $productCart) { 
     $id = $productCart['IDPROD'];
     $product = $productDAO->getProductByID($id);
-    // print_r($product);
+    
     // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
     $nomProduct = $product['NAMEPROD'];
-
-    $infosProdsCart[$id] = [$product['NAMEPROD'], $productCart['QUANTITYCART'], $product['PRICEPROD']];
+    
     $montantTotal += $product['PRICEPROD'];
+
+    // Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier
+    $infosProdsCart[$id] = [
+        "NAMEPROD" => $product['NAMEPROD'],
+        "QUANTITYCART" => $productCart['QUANTITYCART'],
+        "PRICEPROD" => $product['PRICEPROD']
+    ];
 }
 
 require_once(PATH_VIEWS . $page . '.php');

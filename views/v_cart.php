@@ -17,12 +17,12 @@ require_once(PATH_VIEWS . 'header.php');
     <?php foreach ($infosProdsCart as $product) { ?>
         
             <div class='flex column rounded shadow product-item'>
-                <div class='flex column center details'>
-                    <p>Nom <?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
-                    <p>Quantité <?php $info = $product['QUANTITYCART']; echo "$info"; ?></p>
-                    <p>Prix <?php $info = $product['PRICEPROD']; echo "$info"; ?></p>
+                <div class='flex column center'>
+                    <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
+                    <p>Nom : <?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
+                    <p>Quantité : <?php $info = $product['QUANTITYCART']; echo "$info"; ?></p>
+                    <p>Prix : <?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p>
                 </div>
-                <?= print_r($product); ?>
             </div>
         
     <?php } ?>

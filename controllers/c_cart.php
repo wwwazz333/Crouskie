@@ -6,8 +6,6 @@ require_once(PATH_MODELS . 'ProductDAO.php');
 $cartDAO = new CartDAO(DEBUG);
 $userId = $user->getIdUser();
 $cart = $cartDAO->getCartByCustomerId($userId);
-// print_r($cartDAO->getCartByCustomerId(3));
-
 $productDAO = new ProductDAO(DEBUG);
 
 // Informations destinées à la vue
@@ -20,12 +18,10 @@ foreach ($cart as $productCart) {
     $id = $productCart['IDPROD'];
     $product = $productDAO->getProductByID($id);
     
-    // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
-    $nomProduct = $product['NAMEPROD'];
-    
     $montantTotal += $product['PRICEPROD'];
 
     // Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier
+    // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
     $infosProdsCart[$id] = [
         "NAMEPROD" => $product['NAMEPROD'],
         "QUANTITYCART" => $productCart['QUANTITYCART'],

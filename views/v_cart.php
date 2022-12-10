@@ -22,6 +22,7 @@ require_once(PATH_VIEWS . 'header.php');
                     <p>Nom : <?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
                     <p>Quantité : <?php $info = $product['QUANTITYCART']; echo "$info"; ?></p>
                     <p>Prix : <?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p>
+                    <p>Prix total : <?php $info = $product['PRICETOTAL']; echo "$info"; ?> €</p>
                 </div>
             </div>
         

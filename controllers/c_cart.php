@@ -18,14 +18,15 @@ foreach ($cart as $productCart) {
     $id = $productCart['IDPROD'];
     $product = $productDAO->getProductByID($id);
     
-    $montantTotal += $product['PRICEPROD'];
+    $montantTotal = $montantTotal + $product['PRICEPROD'] * $productCart['QUANTITYCART'];
 
     // Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier
     // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
     $infosProdsCart[$id] = [
         "NAMEPROD" => $product['NAMEPROD'],
         "QUANTITYCART" => $productCart['QUANTITYCART'],
-        "PRICEPROD" => $product['PRICEPROD']
+        "PRICEPROD" => $product['PRICEPROD'],
+        "PRICETOTAL" => $product['PRICEPROD'] * $productCart['QUANTITYCART']
     ];
 }
 

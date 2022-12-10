@@ -40,5 +40,7 @@ define('ENREGISTRER_INFORMATIONS','Enregistrer mes informations');
 define('CHANGER_MDP','Changer mon mot de passe');
 
 // Page panier
+define('MONTANT_TOTAL','Montant total du panier : ');
 define('PASSER_COMMANDE','Passer ma commande');
 define('VIDER_PANIER','Vider mon panier');
+define('PANIER_VIDE','Votre panier est vide !');

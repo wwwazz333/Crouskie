@@ -22,7 +22,7 @@ require_once(PATH_VIEWS . 'header.php');
         </a>
     </div>
 
-    
+    <!-- Changement de couleur dans le menu indiquant la page -->
     <script>
         // transforme la variable selectedPage PHP en variable page JavaScript
         var page = <?php echo json_encode($selectedPage); ?>;

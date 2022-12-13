@@ -1,5 +1,55 @@
-.content{
-    width: 20rem;
-    background-color: red;
-    height: 20rem;
+.content, #panier-vide { 
+    min-height: 70vh;
+    margin: 3rem;
+    margin-top: 18vh;
+    text-align: center;
+}
+
+.content .liste-panier, .content .legende {
+    margin: 0.6rem 0px;
+    justify-content: space-between; 
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.content h2 {
+    margin-bottom: 2.5rem;
+}
+.content h3 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+.content p, .content iconify-icon {
+    padding: 0px 1.5rem;
+}
+.content p {
+    color: black;
+}
+.content .legende p {
+    font-weight: bold;
+}
+
+.contenu form {
+    margin: 1.5rem;
+}
+.contenu input[type="button"] {
+    margin: 1.5rem;
+    height: 3.5rem;
+    width: 19rem;
+}
+
+
+/* Gestion du cas où le panier est vide */
+
+#panier-pas-vide {
+    display: block;
+}
+#panier-vide {
+    display: none;
+    min-height: 50vh;
+}
+#panier-vide h1 {
+    margin-top: 7rem;
+    color: black;
 }

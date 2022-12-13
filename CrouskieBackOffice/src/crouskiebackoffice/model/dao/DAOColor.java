@@ -36,7 +36,7 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
 
     @Override
     protected String getTableName() {
-        return "COLOR";
+        return "color";
     }
 
     @Override

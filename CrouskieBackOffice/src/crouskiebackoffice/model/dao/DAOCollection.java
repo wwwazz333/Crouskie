@@ -17,17 +17,18 @@ public class DAOCollection extends DAO<Collection> {
 
     @Override
     protected String getTableName() {
-        return "COLLECTION";
+        return "collection";
     }
 
     @Override
     public Boolean insertOrUpdate(Collection obj) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getPathPicture(), obj.getId()};
-            return super.execute("UPDATE " + getTableName() + " SET namecollection = ?, PATHPICTURE = ? WHERE idcollection = ?", args) == 1;
+            return super.execute("UPDATE " + getTableName() + " SET namecollection = ?, pathpicture"
+                    + " = ? WHERE idcollection = ?", args) == 1;
         } else {
             Object[] args = {obj.getName(), obj.getPathPicture()};
-            return super.execute("INSERT INTO " + getTableName() + " ( namecollection , PATHPICTURE ) VALUES (?, ?)", args) == 1;
+            return super.execute("INSERT INTO " + getTableName() + " ( namecollection , pathpicture ) VALUES (?, ?)", args) == 1;
         }
     }
 

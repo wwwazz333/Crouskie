@@ -9,7 +9,7 @@ public class DAOPicture extends DAO<Picture> {
 
     @Override
     protected String getTableName() {
-        return "PICTURE";
+        return "picture";
     }
 
     @Override

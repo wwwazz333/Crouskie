@@ -11,9 +11,7 @@ import java.sql.SQLException;
 
 public class CrouskieBackOffice {
 
-    public static void test(Collection coll) {
-        coll.setName("bricole");
-    }
+  
 
     public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, URISyntaxException, InterruptedException, SQLException, Exception {
         DAO dao = new DAOStock();

@@ -32,7 +32,7 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
 
     @Override
     protected String getTableName() {
-        return "CLOTH_SIZE";
+        return "cloth_size";
     }
 
     @Override

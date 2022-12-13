@@ -52,7 +52,7 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
 
     @Override
     protected String getTableName() {
-        return "TAG";
+        return "tag";
     }
 
     @Override

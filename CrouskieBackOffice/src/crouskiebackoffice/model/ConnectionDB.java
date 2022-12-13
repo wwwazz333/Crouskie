@@ -19,7 +19,7 @@ public class ConnectionDB {
     private ConnectionDB() throws SQLException, ErrorHandelabelAdapter {
         System.out.println("Ouverture de la connection sql");
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://menardbediant.fr:8002/crouskie", "root", "thesaurus-cranberry-reptile");
         } catch (com.mysql.cj.jdbc.exceptions.CommunicationsException e) {
             throw new ErrorConnectionSQL();
         }

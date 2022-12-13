@@ -24,21 +24,21 @@ public class DAOProduct extends DAO<Product> {
         //  les couleur existante qui sont concaténer en une String sous la form :  namecolor;;;namecolor2
         //On fait comme sa pour minimiser le nombre de requet.
         return """
-               SELECT DISTINCT IDPROD, NAMEPROD, DESCRIPTIONPROD, PRICEPROD, IDCOLLECTION, ENVENTE,
-                    case 
-                      when IDCOLLECTION is null then null
-                      else namecollection
-                        end as NAMECOLLECTION,
-                    (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGSIZE NATURAL JOIN CLOTH_SIZE WHERE P1.IDPROD = IDPROD) as size_existing,
-                    (SELECT group_concat(namecolor SEPARATOR';;;') FROM PRODUCT NATURAL JOIN EXISTINGCOLOR WHERE P1.IDPROD = IDPROD) as color_existing,
-                    (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM PRODUCT NATURAL JOIN TAGS_PRODUCT NATURAL JOIN TAG WHERE P1.IDPROD = IDPROD) as tags,
-                    (SELECT group_concat(CONCAT(PATHPICTURE, ',,,', ALTPICTURE, ',,,', IDPROD) SEPARATOR';;;') FROM  PICTURE WHERE P1.IDPROD = IDPROD ) as pictures 
-                    FROM `PRODUCT` P1 NATURAL LEFT OUTER JOIN EXISTINGSIZE NATURAL LEFT OUTER JOIN EXISTINGCOLOR NATURAL LEFT OUTER JOIN COLLECTION""";
+              SELECT DISTINCT idprod, nameprod, descriptionprod, priceprod, idcollection, envente,
+                                  case 
+                                    when idcollection is null then null
+                                    else namecollection
+                                      end as namecollection,
+                                  (SELECT group_concat(CONCAT(idsize, ',,,', namesize) SEPARATOR';;;') FROM product NATURAL JOIN existingsize NATURAL JOIN cloth_size WHERE P1.idprod = idprod) as size_existing,
+                                  (SELECT group_concat(namecolor SEPARATOR';;;') FROM product NATURAL JOIN existingcolor WHERE P1.idprod = idprod) as color_existing,
+                                  (SELECT group_concat(CONCAT(idtag, ',,,', nametag) SEPARATOR';;;') FROM product NATURAL JOIN tags_product NATURAL JOIN tag WHERE P1.idprod = idprod) as tags,
+                                  (SELECT group_concat(CONCAT(pathpicture, ',,,', altpicture, ',,,', idprod) SEPARATOR';;;') FROM  picture WHERE P1.idprod = idprod ) as pictures 
+                                  FROM `product` P1 NATURAL LEFT OUTER JOIN existingsize NATURAL LEFT OUTER JOIN existingcolor NATURAL LEFT OUTER JOIN `collection`""";
     }
 
     @Override
     protected String getTableName() {
-        return "PRODUCT";
+        return "product";
     }
 
     @Override
@@ -124,10 +124,10 @@ public class DAOProduct extends DAO<Product> {
         boolean succes = false;
         if (exist(product)) {
             Object[] idArg = {product.getId()};
-            super.execute("DELETE FROM EXISTINGSIZE WHERE idprod = ?", idArg);
-            super.execute("DELETE FROM TAGS_PRODUCT WHERE idprod = ?", idArg);
-            super.execute("DELETE FROM EXISTINGCOLOR WHERE idprod = ?", idArg);
-            super.execute("DELETE FROM PICTURE WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM existingsize WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM tags_product WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM existingcolor WHERE idprod = ?", idArg);
+            super.execute("DELETE FROM picture WHERE idprod = ?", idArg);
 
             Object[] args2 = {product.getName(), product.getDescription(), product.getPrice(),
                 (product.getCollection() != null ? product.getCollection().getId() : null),
@@ -183,7 +183,7 @@ public class DAOProduct extends DAO<Product> {
             args[curr + 2] = pic.getAlt();
         }
 
-        return super.execute("INSERT INTO PICTURE (pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
+        return super.execute("INSERT INTO picture (pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
     }
 
     private Boolean insertAll(Product product) throws SQLException, ErrorHandelabelAdapter {
@@ -199,9 +199,9 @@ public class DAOProduct extends DAO<Product> {
             idsSize.add(clothSize.getId());
         }
 
-        return insertAll(product.getId(), "TAGS_PRODUCT", "idtag", idsTag.toArray())
-                && insertAll(product.getId(), "EXISTINGSIZE", "idsize", idsSize.toArray())
-                && insertAll(product.getId(), "EXISTINGCOLOR", "namecolor", product.getExistingColor().toArray());
+        return insertAll(product.getId(), "tags_product", "idtag", idsTag.toArray())
+                && insertAll(product.getId(), "existingsize", "idsize", idsSize.toArray())
+                && insertAll(product.getId(), "existingcolor", "namecolor", product.getExistingColor().toArray());
     }
 
     public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException, ErrorHandelabelAdapter {

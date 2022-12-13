@@ -1,3 +1,4 @@
+
 package crouskiebackoffice.model.dao;
 
 import crouskiebackoffice.exceptions.CantEditException;
@@ -26,7 +27,7 @@ public class DAOProductBought extends DAO<ProductBought> {
         } else {
             Object[] args = {obj.getNumOrder(), obj.getProductColorSize().getProduct().getId(), obj.getProductColorSize().getColor().getName(),
                 obj.getProductColorSize().getSize().getId(), obj.getProductColorSize().getQuantity()};
-            return super.execute("INSERT INTO PRODUCTBOUGHT (numorder, idprod, namecolor, idsize, quantitybought) VALUES (?, ?, ?, ?, ?)", args) == 1;
+            return super.execute("INSERT INTO productbought (numorder, idprod, namecolor, idsize, quantitybought) VALUES (?, ?, ?, ?, ?)", args) == 1;
         }
     }
 
@@ -47,13 +48,13 @@ public class DAOProductBought extends DAO<ProductBought> {
 
     @Override
     protected String getTableName() {
-        return "PRODUCTBOUGHT natural join CMD natural join PRODUCT natural join CLOTH_SIZE natural join COLOR";
+        return "productbought natural join CMD natural join product natural join cloth_size natural join color";
     }
 
     @Override
     public Boolean remove(ProductBought obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};
-        return super.execute("DELETE FROM " + "PRODUCTBOUGHT" + " WHERE idpp = ? ", args) == 1;
+        return super.execute("DELETE FROM " + "productbought" + " WHERE idpp = ? ", args) == 1;
     }
 
 }

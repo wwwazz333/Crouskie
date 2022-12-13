@@ -1,7 +1,15 @@
 package crouskiebackoffice.model;
 
+import crouskiebackoffice.controle.ErrorHandeler;
+import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
+import crouskiebackoffice.model.dao.DAOStock;
+import crouskiebackoffice.view.MainWindow;
+import crouskiebackoffice.view.StatusbarPanel;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 public class ModelStockTable extends AbstractTableModel {
@@ -40,10 +48,37 @@ public class ModelStockTable extends AbstractTableModel {
         return columnIndex == getColumnCount() - 1;
     }
 
-//    @Override
-//    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-//        super.setValueAt(aValue, rowIndex, columnIndex);
-//    }
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        super.setValueAt(aValue, rowIndex, columnIndex);
+        ProductColorSize productColorSize = rowData.get(rowIndex);
+        int previousQuatity = productColorSize.getQuantity();
+
+        MainWindow.instance.getStatusbar().setLoading(true);
+        MainWindow.instance.getStatusbar().showMsg("Envoi des données");
+        boolean succes = ErrorHandeler.getInstance().exec(() -> {
+
+            productColorSize.setQuantity(Integer.parseInt(aValue.toString()));
+
+            DAOStock dao = new DAOStock();
+            dao.insertOrUpdate(productColorSize);
+            return true;
+        });
+        MainWindow.instance.getStatusbar().setLoading(false);
+        if (succes) {
+            MainWindow.instance.getStatusbar().showMsg("Succes", 1000);
+        } else {
+            MainWindow.instance.getStatusbar().showMsg("Erreur de l'envoi des données", 2000);
+            productColorSize.setQuantity(previousQuatity);
+        }
+
+        //s'assure que l'ui est à jour
+        ErrorHandeler.getInstance().exec(() -> {
+            DataStock.getInstance().notif();
+            return true;
+        });
+
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {

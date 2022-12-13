@@ -43,6 +43,9 @@ public class Navigator {
             path.pop();
             pathName.pop();
             cardLayout.show(cardPanel, pathName.lastElement());
+        } else {
+            System.out.println("impoosible d'aller en arrière, il n'y a plus rien de la pile");
+
         }
     }
 }

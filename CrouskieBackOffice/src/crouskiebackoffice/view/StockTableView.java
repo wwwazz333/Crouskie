@@ -12,15 +12,16 @@ public class StockTableView extends JTable implements Observer {
     }
 
     void init() {
+        update();
+    }
+  
+
+    @Override
+    public void update() {
         ErrorHandeler.getInstance().exec(() -> {
             setModel(new ModelStockTable(DataStock.getInstance().getData()));
             return true;
         });
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

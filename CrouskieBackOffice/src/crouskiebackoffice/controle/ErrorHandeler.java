@@ -30,6 +30,8 @@ public class ErrorHandeler {
     /**
      * ErrorHandeler doit être initializer a l'aide de {@link init}
      *
+     * 
+     * renvoi le retour de la fonction canCrash ou false si il y à une erreur
      * @param canCrash Se qu'il faut tester
      */
     public boolean exec(CanCrash canCrash) {

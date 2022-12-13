@@ -144,7 +144,7 @@ public class MainWindow extends javax.swing.JFrame {
             System.err.println("Error : can't load software Ico");
         }
 
-        Navigator.getInstance().init(mainPane, "tabPane");
+        Navigator.getInstance().init(mainPane, "main");
     }
 
     public StatusbarPanel getStatusbar() {

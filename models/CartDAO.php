@@ -32,4 +32,11 @@ class CartDAO extends DAO
         $result = $this->queryBdd("DELETE from cart where IDCUSTOMER = ?", array($userId));
         return $result;
     }
+
+    // delete a defined product from the cart of an user
+    public function deleteProductFromCart(int $userId, int $productId)
+    {
+        $result = $this->queryBdd("DELETE from cart where IDCUSTOMER = ? and IDPROD = ?", array($userId,$productId));
+        return $result;
+    }
 }

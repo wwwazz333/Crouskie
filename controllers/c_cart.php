@@ -37,7 +37,18 @@ if($cart == null) {
             "PRICETOTAL" => $product['PRICEPROD'] * $productCart['QUANTITYCART']
         ];
     }
+
+    // Vider le panier
+    function viderPanier($cartDAO,$userId) {
+        $cartDAO->deleteCart($userId);
+        $isCartEmpty = true;
+        return true;
+    }
+    
 }
+
+// Test pour vider le panier
+// $isCartEmpty = viderPanier($cartDAO,$userId);
 
 require_once(PATH_VIEWS . $page . '.php');
 

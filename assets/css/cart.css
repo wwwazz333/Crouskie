@@ -7,7 +7,6 @@
 
 .content .liste-panier, .content .legende {
     margin: 0.6rem 0px;
-    justify-content: space-between; 
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -19,9 +18,6 @@
     margin-top: 3rem;
     margin-bottom: 1rem;
     color: black;
-}
-.content p, .content iconify-icon {
-    padding: 0px 1.5rem;
 }
 .content p {
     color: black;
@@ -52,4 +48,23 @@
 #panier-vide h1, #panier-pas-connecte h1 {
     margin-top: 7rem;
     color: black;
+}
+
+/* Positionnement des éléments */
+.content table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.content td {
+    /* border: solid black 1px; */
+    width: 33%;
+}
+.content .col1 {
+    text-align: left;
+}
+.content .col2 {
+    width: 20%;
+}
+.content .col3 td {
+    width: 25%;
 }

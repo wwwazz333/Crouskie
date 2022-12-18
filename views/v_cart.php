@@ -13,17 +13,26 @@ require_once(PATH_VIEWS . 'header.php');
     <h2>Mon panier</h2> 
 
     <div class='flex row legende'>
-        <div class='flex row'>
-            <p>Article</p>
-        </div>
-        <div class='flex row center'>
-            <p>Couleur</p>
-            <p>Taille</p>
-        </div>
-        <div class='flex row'>
-            <p>Prix</p>
-            <p>Quantité</p>
-        </div>
+        <table><tr> 
+        <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
+            <td class="col1">
+                <p>Article</p>
+            </td>
+            <td class="col2">
+                <table><tr> 
+                <td><p>Couleur</p></td>
+                <td><p>Taille</p></td>
+                </tr></table>
+            </td>
+            <td class="col3">
+                <table><tr> 
+                <td></td>
+                <td><p>Prix</p></td>
+                <td><p>Quantité</p></td>
+                <td></td>
+                </tr></table>
+            </td> 
+        </tr></table>
     </div>
     <center><hr width="90%" color="#565656" size="0.5"></center>
 
@@ -32,19 +41,30 @@ require_once(PATH_VIEWS . 'header.php');
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
+               <table><tr> 
                 <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
-                <div class='flex row'>
-                    <p><?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
-                </div>
-                <div class='flex row center'>
-                    <p><?php $info = $product['COLOR']; echo "$info"; ?></p>
-                    <p><?php $info = $product['SIZE']; echo "$info"; ?></p>
-                </div>
-                <div class='flex row'>
-                    <p><?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p>
-                    <p><?php $info = $product['QUANTITYCART']; echo "$info"; ?></p>
-                    <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour supprimer -->
-                </div>
+                    <td class="col1">
+                        <p><?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
+                    </td>
+                    <td class="col2">
+                        <table><tr> 
+                        <td><p><?php $info = $product['COLOR']; echo "$info"; ?></p></td>
+                        <td><p><?php $info = $product['SIZE']; echo "$info"; ?></p></td>
+                        </tr></table>
+                    </td>
+                    <td class="col3">
+                        <table><tr> 
+                        <td></td>
+                        <td><p><?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p></td>
+                        <td><p><?php $info = $product['QUANTITYCART']; echo "$info"; ?></p></td>
+                        <td>
+                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour ajouter 1 -->
+                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour enlever 1 -->
+                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour supprimer -->
+                        </td>
+                        </tr></table>
+                    </td> 
+                </tr></table>
             </div>
             <center><hr width="90%" color="#565656" size="0.5"></center>
             

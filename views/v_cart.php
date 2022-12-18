@@ -28,7 +28,7 @@ require_once(PATH_VIEWS . 'header.php');
     <center><hr width="90%" color="#565656" size="0.5"></center>
 
     <!-- Affichage à régler  -->
-    <?php if(!$isCartEmpty) { ?>
+    <?php if(!$isCartEmpty && $isLogged) { ?>
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
@@ -63,18 +63,29 @@ require_once(PATH_VIEWS . 'header.php');
 <div class="card center shadow rounded panier-vide" id="panier-vide">
     <h1><?= PANIER_VIDE ?></h1>
 </div>
+<div class="card center shadow rounded panier-vide" id="panier-pas-connecte">
+    <h1><?= PANIER_PAS_CONNECTE ?></h1>
+</div>
 
 <!-- Affichage selon si le panier est vide ou non -->
 <script>
         // transforme la variable isCartEmpty PHP en variable page JavaScript
         var estVide = <?php echo json_encode($isCartEmpty); ?>;
+        var estConnecte = <?php echo json_encode($isLogged); ?>;
         const divPanier = document.getElementById("panier-non-vide")
         const divPanierVide = document.getElementById("panier-vide")
-        if (estVide) {
+        const divPanierPasConnecte = document.getElementById("panier-pas-connecte")
+        if (!estConnecte) {
             divPanier.style.display = "none"
+            divPanierVide.style.display = "none"
+            divPanierPasConnecte.style.display = "block"
+        } else if (estVide) {
+            divPanier.style.display = "none"
+            divPanierPasConnecte.style.display = "none"
             divPanierVide.style.display = "block"
         } else {
             divPanier.style.display = "block"
+            divPanierPasConnecte.style.display = "none"
             divPanierVide.style.display = "none"
         }
 </script>

@@ -1,4 +1,4 @@
-.content, #panier-vide { 
+.content, #panier-vide, #panier-pas-connecte { 
     min-height: 70vh;
     margin: 3rem;
     margin-top: 18vh;
@@ -40,16 +40,16 @@
 }
 
 
-/* Gestion du cas où le panier est vide */
+/* Gestion du cas où le panier est vide et du cas où l'utilisateur n'est pas connecté */
 
 #panier-pas-vide {
     display: block;
 }
-#panier-vide {
+#panier-vide, #panier-pas-connecte {
     display: none;
     min-height: 50vh;
 }
-#panier-vide h1 {
+#panier-vide h1, #panier-pas-connecte h1 {
     margin-top: 7rem;
     color: black;
 }

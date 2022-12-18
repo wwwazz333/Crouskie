@@ -44,3 +44,4 @@ define('MONTANT_TOTAL','Montant total du panier : ');
 define('PASSER_COMMANDE','Passer ma commande');
 define('VIDER_PANIER','Vider mon panier');
 define('PANIER_VIDE','Votre panier est vide !');
+define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');

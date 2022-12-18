@@ -37,8 +37,8 @@ require_once(PATH_VIEWS . 'header.php');
                     <p><?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
                 </div>
                 <div class='flex row center'>
-                    <p>Jaune</p>
-                    <p>M</p>
+                    <p><?php $info = $product['COLOR']; echo "$info"; ?></p>
+                    <p><?php $info = $product['SIZE']; echo "$info"; ?></p>
                 </div>
                 <div class='flex row'>
                     <p><?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p>
@@ -71,10 +71,12 @@ require_once(PATH_VIEWS . 'header.php');
 <script>
         // transforme la variable isCartEmpty PHP en variable page JavaScript
         var estVide = <?php echo json_encode($isCartEmpty); ?>;
+        // transforme la variable isLogged PHP en variable page JavaScript
         var estConnecte = <?php echo json_encode($isLogged); ?>;
         const divPanier = document.getElementById("panier-non-vide")
         const divPanierVide = document.getElementById("panier-vide")
         const divPanierPasConnecte = document.getElementById("panier-pas-connecte")
+        // gestion de l'affichage de la bonne div
         if (!estConnecte) {
             divPanier.style.display = "none"
             divPanierVide.style.display = "none"

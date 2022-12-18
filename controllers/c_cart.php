@@ -35,6 +35,8 @@ if($isLogged) {
             // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
             $infosProdsCart[$id] = [
                 "NAMEPROD" => $product['NAMEPROD'],
+                "COLOR" => $productCart['COLOR'],
+                "SIZE" => $productCart['SIZE'],
                 "QUANTITYCART" => $productCart['QUANTITYCART'],
                 "PRICEPROD" => $product['PRICEPROD'],
                 "PRICETOTAL" => $product['PRICEPROD'] * $productCart['QUANTITYCART']

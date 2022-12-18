@@ -41,4 +41,21 @@ class CartDAO extends DAO
         $result = $this->queryBdd("DELETE from cart where IDCUSTOMER = ? and IDPROD = ?", array($userId,$productId));
         return $result;
     }
+
+    // increase quantity of 1 for a defined product from the cart of an user
+    public function increaseQuantityProductFromCart(int $userId, int $productId)
+    {
+        $result = $this->queryBdd("UPDATE from cart set QUANTITYCART = QUANTITYCART + 1 where IDCUSTOMER = ? and IDPROD = ?", 
+        array($userId,$productId));
+        return $result;
+    }
+
+    // decrease quantity of 1 for a defined product from the cart of an user
+    public function decreaseQuantityProductFromCart(int $userId, int $productId)
+    {
+        $result = $this->queryBdd("UPDATE from cart set QUANTITYCART = QUANTITYCART - 1 where IDCUSTOMER = ? and IDPROD = ?", 
+        array($userId,$productId));
+        return $result;
+    }
+    
 }

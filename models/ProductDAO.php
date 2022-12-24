@@ -9,11 +9,11 @@ class ProductDAO extends DAO{
         foreach($result as $product){
             array_push($products, 
                 new Product(
-                    $product['IDPROD'],
-                    $product['IDCOLLECTION'] == null ? 'NULL' : $product['IDCOLLECTION'],
-                    $product['NAMEPROD'],
-                    $product['DESCRIPTIONPROD'],
-                    $product['PRICEPROD']
+                    $product['idprod'],
+                    $product['idcollection'] == null ? 'NULL' : $product['idcollection'],
+                    $product['nameprod'],
+                    $product['descriptionprod'],
+                    $product['priceprod']
                 )
             );
         }
@@ -42,7 +42,7 @@ class ProductDAO extends DAO{
 
     public function getStockStatus(int $id) : bool
     {
-        $stock = $this->queryAll("Select count(*) from product natural join stocked where idprod = ?",array($id));
+        $stock = $this->queryAll("select count(*) from product natural join stocked where idprod = ?",array($id));
         if ($stock["count(*)"]>0){
             return true;
         }

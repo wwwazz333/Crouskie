@@ -44,19 +44,19 @@ require_once(PATH_VIEWS . 'header.php');
                <table><tr> 
                 <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
                     <td class="col1">
-                        <p><?php $info = $product['NAMEPROD'] ; echo "$info"; ?></p>
+                        <p><?php $info = $product['nameprod'] ; echo "$info"; ?></p>
                     </td>
                     <td class="col2">
                         <table><tr> 
-                        <td><p><?php $info = $product['COLOR']; echo "$info"; ?></p></td>
-                        <td><p><?php $info = $product['SIZE']; echo "$info"; ?></p></td>
+                        <td><p><?php $info = $product['color']; echo "$info"; ?></p></td>
+                        <td><p><?php $info = $product['size']; echo "$info"; ?></p></td>
                         </tr></table>
                     </td>
                     <td class="col3">
                         <table><tr> 
                         <td></td>
-                        <td><p><?php $info = $product['PRICEPROD']; echo "$info"; ?> €</p></td>
-                        <td><p><?php $info = $product['QUANTITYCART']; echo "$info"; ?></p></td>
+                        <td><p><?php $info = $product['priceprod']; echo "$info"; ?> €</p></td>
+                        <td><p><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
                         <td>
                             <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour ajouter 1 -->
                             <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour enlever 1 -->

@@ -18,10 +18,10 @@ if (isset($_POST['password'])) {
     if ($data) {
         if(password_verify($password,$data['password'])){
             $user = new User(
-                $data["FIRST_NAME"],
-                $data["LAST_NAME"],
-                $data["MAIL_ADDRESS"],
-                $data["IDCUSTOMER"],
+                $data["firt_name"],
+                $data["last_name"],
+                $data["mail_address"],
+                $data["idcustomer"],
             );
             $_SESSION['account'] = serialize($user);
             // redirection accueil temporaire

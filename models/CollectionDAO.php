@@ -9,9 +9,9 @@ class CollectionDAO extends DAO
         foreach($result as $collection){
             array_push($collections, 
                 new Collection(
-                    $collection['NAMECOLLECTION'],
-                    $collection['IDCOLLECTION'],
-                    $collection['PATHPICTURE']
+                    $collection['namecollection'],
+                    $collection['idcollection'],
+                    $collection['pathpicture']
                 )
             );
         }
@@ -21,7 +21,7 @@ class CollectionDAO extends DAO
     // Obtenir tout les produits associé à un nom
     public function getCollectionsByName(string $name)
     {
-        $result = $this->queryAll("SELECT * FROM collection WHERE NAMECOLLECTION LIKE ?", array('%' . $name . '%'));
+        $result = $this->queryAll("SELECT * FROM collection WHERE namecollection LIKE ?", array('%' . $name . '%'));
         return $this->resultToCollectionArray($result);
     }
     //get all the existing collections
@@ -33,11 +33,11 @@ class CollectionDAO extends DAO
     // Obtenir un produit par son ID
     public function getCollectionsByID(int $id)
     {
-        $collection = $this->queryRow("SELECT * FROM collection WHERE IDCOLLECTION = ?", array($id));
+        $collection = $this->queryRow("SELECT * FROM collection WHERE idcollection = ?", array($id));
         return $collection == false ? false : $collection;
     }
     public function getLastCollection(){
-        $lastCollection = $this->queryRow("SELECT * FROM collection order by IDCOLLECTION desc");
+        $lastCollection = $this->queryRow("SELECT * FROM collection order by idcollection desc");
         return $lastCollection;
     }
 }

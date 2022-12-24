@@ -1,5 +1,5 @@
 <?php
-require_once(PATH_MODELS . 'collectionDAO.php');
+require_once(PATH_MODELS . 'CollectionDAO.php');
 
 $DAO = new CollectionDAO(DEBUG);
 $lastCollection = $DAO->getLastCollection(); //for the DAO

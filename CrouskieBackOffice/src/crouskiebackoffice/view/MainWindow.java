@@ -97,7 +97,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         onglets.addTab("Stock", jPanel2);
 
-        mainPane.add(onglets, "card4");
+        mainPane.add(onglets, "main");
 
         getContentPane().add(mainPane, java.awt.BorderLayout.CENTER);
         getContentPane().add(statusbar, java.awt.BorderLayout.SOUTH);

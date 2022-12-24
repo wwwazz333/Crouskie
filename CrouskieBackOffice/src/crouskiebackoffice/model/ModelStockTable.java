@@ -1,15 +1,10 @@
 package crouskiebackoffice.model;
 
 import crouskiebackoffice.controle.ErrorHandeler;
-import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.dao.DAOStock;
 import crouskiebackoffice.view.MainWindow;
-import crouskiebackoffice.view.StatusbarPanel;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 
 public class ModelStockTable extends AbstractTableModel {
@@ -52,13 +47,15 @@ public class ModelStockTable extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         super.setValueAt(aValue, rowIndex, columnIndex);
         ProductColorSize productColorSize = rowData.get(rowIndex);
-        int previousQuatity = productColorSize.getQuantity();
+        Integer previousQuatity = productColorSize.getQuantity();
 
         MainWindow.instance.getStatusbar().setLoading(true);
         MainWindow.instance.getStatusbar().showMsg("Envoi des données");
         boolean succes = ErrorHandeler.getInstance().exec(() -> {
 
-            productColorSize.setQuantity(Integer.parseInt(aValue.toString()));
+            if (aValue != null) {
+                productColorSize.setQuantity(Integer.parseInt(aValue.toString()));
+            }
 
             DAOStock dao = new DAOStock();
             dao.insertOrUpdate(productColorSize);

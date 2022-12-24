@@ -5,9 +5,9 @@ public class ProductColorSize {
     private Product product;
     private Color color;
     private ClothSize size;
-    private int quantity;
+    private Integer quantity;
 
-    public ProductColorSize(Product product, Color color, ClothSize size, int quantity) {
+    public ProductColorSize(Product product, Color color, ClothSize size, Integer quantity) {
         this.product = product;
         this.color = color;
         this.size = size;
@@ -26,11 +26,11 @@ public class ProductColorSize {
         return size;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
     

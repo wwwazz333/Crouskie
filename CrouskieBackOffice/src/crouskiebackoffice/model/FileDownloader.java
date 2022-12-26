@@ -24,7 +24,9 @@ import javax.imageio.ImageIO;
 
 public class FileDownloader {
 
-    public final static String SERVER_ADRESSE = "http://localhost";
+    //le dernier slash est très important
+    //http://menardbediant.fr:8081/
+    public final static String SERVER_ADRESSE = "http://menardbediant.fr:8081/";
 
     public static String downloadFromUrl(URL url, String localFilename) throws IOException {
         InputStream is = null;
@@ -70,6 +72,7 @@ public class FileDownloader {
             File file = new File(result);
             return ImageIO.read(file);
         } catch (IOException e) {
+            e.printStackTrace();
             throw new ErrorDownloadImage(localFilename);
         }
     }

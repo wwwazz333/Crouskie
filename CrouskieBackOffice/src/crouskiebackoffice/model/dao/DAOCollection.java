@@ -40,7 +40,7 @@ public class DAOCollection extends DAO<Collection> {
 
     @Override
     public Boolean exist(Collection obj) throws SQLException {
-        return obj.getId() != -1;
+        return obj != null && obj.getId() != -1;
     }
 
     @Override

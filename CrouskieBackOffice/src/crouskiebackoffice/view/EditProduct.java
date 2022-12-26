@@ -269,6 +269,7 @@ public class EditProduct extends javax.swing.JPanel {
             }
 
         } catch (NumberFormatException | SQLException ex) {
+            MainWindow.instance.getStatusbar().showMsg("Erreur", 2000);
             Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
         MainWindow.instance.getStatusbar().setLoading(false);

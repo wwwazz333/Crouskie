@@ -20,6 +20,16 @@ class ProductDAO extends DAO{
         return $products;
     }
 
+    public function resultToProduct(array $result){
+        return new Product(
+            $result['idprod'],
+            $result['idcollection'] == null ? 'NULL' : $result['idcollection'],
+            $result['nameprod'],
+            $result['descriptionprod'],
+            $result['priceprod']
+        );
+    }
+
     // obtenir tout les produits
     public function getProducts() : array
     {

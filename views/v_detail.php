@@ -2,14 +2,16 @@
 //  En tête de page
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
+
+print_r($product);
 ?>
 <div class="flex row content">
     <div class="carousel rounded shadow-small">
-
+        <!-- <img src="./assets/images/uploads/woc4Eem9Pdaw6X5w.png" alt="" srcset="" class=""> -->
     </div>
     <form action="" class="flex column center card rounded shadow-small">
-        <h2>Pull crouskie Edition Scam</h2>
-        <p>Sweatshirt</p>
+        <h2><?= $product->getName()?></h2>
+        <p><?= $product->getDescription()?></p>
         <div class="flex column center fill-w" id="colors-container">
             <p>Couleur :</p>
             <fieldset id="color" class="flex row">
@@ -25,8 +27,12 @@ require_once(PATH_VIEWS . 'header.php');
             </fieldset>
         </div>
         <div class="flex row even center fill-w price-container">
-            <h2 id="price">45€</h2>
+            <h2 id="price"><?= $product->getPrice()?>€</h2>
             <button id="submit" class="circle" type="submit">Ajouter au panier</button>
         </div>
     </form>
 </div>
+
+<?php
+require_once(PATH_VIEWS . 'footer.php');
+?>

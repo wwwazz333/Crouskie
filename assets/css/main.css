@@ -277,6 +277,7 @@ input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    cursor: pointer;
 
     display: inline-block;
     width: 40px;

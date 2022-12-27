@@ -1,9 +1,7 @@
 #collections {
     min-height: 70vh;
-    margin-top: 2rem;
     gap: 2rem;
-
-    padding: 2rem 0 2rem 0;
+    margin-top: 130px;
 }
 
 .collection-content {

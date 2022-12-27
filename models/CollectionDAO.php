@@ -34,7 +34,7 @@ class CollectionDAO extends DAO
     public function getCollectionsByID(int $id)
     {
         $collection = $this->queryRow("SELECT * FROM collection WHERE idcollection = ?", array($id));
-        return $collection == false ? false : $collection;
+        return $collection;
     }
     public function getLastCollection(){
         $lastCollection = $this->queryRow("SELECT * FROM collection order by idcollection desc");

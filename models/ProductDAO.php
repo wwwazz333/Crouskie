@@ -36,6 +36,11 @@ class ProductDAO extends DAO{
         $result = $this->queryAll("SELECT * FROM product");
         return $result;
     }
+    public function getProductsByCollectionId(int $id)
+    {
+        $result = $this->queryAll("SELECT * FROM product WHERE idcollection = ?",array($id));
+        return $result;
+    }
 
     // Obtenir tout les produits associé à un nom
     public function getProductsByName(string $name){

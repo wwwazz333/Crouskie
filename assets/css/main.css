@@ -111,6 +111,14 @@ body{
     justify-content: center;
 }
 
+.flex.btw{
+    justify-content: space-between;
+}
+
+.flex.even{
+    justify-content: space-evenly;
+}
+
 /* Si on veut une bordure ronde sur les composants */
 .rounded{
     border-radius: var(--border-radius);
@@ -120,13 +128,25 @@ body{
     border-radius: 35px;
 }
 
+/* Layouts */
 
+.fill-h{
+    height: 100%;
+}
+
+.fill-w{
+    width: 100%;
+}
 
 /*============ Styles ============*/
 
 a.underlined,
 p.underlined{
     text-decoration: underline;
+}
+
+fieldset{
+    border: none;
 }
 
 /*============ Extra ============*/
@@ -250,6 +270,28 @@ input[type=email]:required:valid
     background-position: right;
     background-size: 30px;
 } */
+
+/* Les radio buttons */
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+
+    background-clip: content-box;
+    border: 1px solid #6D6B6B;
+    background-color: #e7e6e7;
+}
+
+input[type="radio"]:checked {
+    border: 3px solid #0e2adc;
+    background-color: #e7e6e7;
+}
 
 
 /* TODO les propriétés hover et focus du bouton et du input */

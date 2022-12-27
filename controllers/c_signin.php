@@ -18,7 +18,7 @@ if (isset($_POST['password'])) {
     if ($data) {
         if(password_verify($password,$data['password'])){
             $user = new User(
-                $data["firt_name"],
+                $data["first_name"],
                 $data["last_name"],
                 $data["mail_address"],
                 $data["idcustomer"],

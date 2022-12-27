@@ -3,27 +3,36 @@
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
 
+print_r($product);
 ?>
-
-
 <div class="flex row content">
-    <div class="carousel">
-
+    <div class="carousel rounded shadow-small">
+        <!-- <img src="./assets/images/uploads/woc4Eem9Pdaw6X5w.png" alt="" srcset="" class=""> -->
     </div>
-    <div class="flex column properties card">
-        <h2>Pull crouskie Edition Scam</h2>
-        <p>Sweatshirt</p>
-        <div class="colors-container">
-            <p>Couleurs</p>
-            <div class="colors">
-                
-            </div>
+    <form action="" class="flex column center card rounded shadow-small">
+        <h2><?= $product->getName()?></h2>
+        <p><?= $product->getDescription()?></p>
+        <div class="flex column center fill-w" id="colors-container">
+            <p>Couleur :</p>
+            <fieldset id="color" class="flex row">
+                <input type="radio" value="value1" name="color" class="circle shadow-small" style="background-color:#ff0000;" required>
+                <input type="radio" value="value2" name="color" class="circle shadow-small" style="background-color:#00ff00;" required>
+            </fieldset>
         </div>
-        <div class="flex row">
-            <h2 id="price">
-                45€
-            </h2>
-            <button class="rounded" type="submit">Ajouter au panier</button>
+        <div class="flex column center fill-w" id="sizes-container">
+            <p>Taille :</p>
+            <fieldset id="size" class="flex row" required>
+                <input type="radio" value="M" name="size" class="rounded shadow-small" data-content="M" required>
+                <input type="radio" value="L" name="size" class="rounded shadow-small" data-content="L" required>
+            </fieldset>
         </div>
-    </div>
+        <div class="flex row even center fill-w price-container">
+            <h2 id="price"><?= $product->getPrice()?>€</h2>
+            <button id="submit" class="circle" type="submit">Ajouter au panier</button>
+        </div>
+    </form>
 </div>
+
+<?php
+require_once(PATH_VIEWS . 'footer.php');
+?>

@@ -61,3 +61,21 @@
 .post-it{
     background-color: rgb(255, 255, 202);
 }
+
+
+/* -------- page commandes -------- */
+
+.commandes {
+    min-height: 70vh;
+    margin: 3rem;
+    margin-top: 0px;
+    padding: 3rem;
+    width: 100%;
+    background-color: white
+}
+.content .commandes summary {
+    font-weight: bold;
+}
+.content .commandes details {
+    margin-bottom: 1rem;
+}

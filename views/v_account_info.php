@@ -19,12 +19,13 @@
     </div>
 
     <form class="flex row wrap right contenu center">
-    <input type="button" id="form-info" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">
-
-    <input type="button" id="form-enregistrer" value="<?= ENREGISTRER_INFORMATIONS ?>" class="valid circle">
-
-    <input type="button" id="form-mdp" value="<?= CHANGER_MDP ?>" class="valid circle">
+        <input type="button" id="form-info" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">
+        <input type="button" id="form-enregistrer" value="<?= ENREGISTRER_INFORMATIONS ?>" class="valid circle">
+        <a href = "index.php?page=changepwd" id="mdp">
+            <input type="button" id="form-mdp" value="<?= CHANGER_MDP ?>" class="valid circle">
+        </a>
     </form>
+
     <?php
 		if (isset($page) && is_file(PATH_SCRIPTS.$page.".js")) {
 			echo("<script src=\"".PATH_SCRIPTS.$page."_".$selectedPage.".js\"></script>");

@@ -16,6 +16,7 @@ $commandeDAO = new CommandeDAO(DEBUG);
 $userId = $user->getIdUser();
 $commandes = $commandeDAO->getCommandeByCustomerId($userId);
 
+print_r($commandes);
 
 // On récupère le nom des produits de chaque commande à partir de l'id de la commande
 // Pour ensuite pouvoir les afficher dans la vue

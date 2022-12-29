@@ -38,10 +38,19 @@
     margin: 2rem;
 }
 
-.contenu input[type="button"] {
+
+
+.contenu > input[type="button"], #mdp{
     margin: 5vh 0px;
     height: 4rem;
     width: 30%;
+    
+}
+
+#mdp > input[type="button"]{
+    margin-top: 0;
+    padding-left: 0;
+    padding-right: 0;
     
 }
 

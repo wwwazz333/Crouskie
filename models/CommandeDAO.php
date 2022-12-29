@@ -22,7 +22,7 @@ class CommandeDAO extends DAO
     // get all the existing carted items
     public function getCommandeByCustomerId(int $id)
     {
-        $commande = $this->queryAll("SELECT * FROM cmd where idcustomer = ?", array($id));
+        $commande = $this->queryAll("SELECT * FROM cmd where idcustomer = ? order by dateorder desc", array($id));
         return $commande == false ? false : $commande;
     }
     

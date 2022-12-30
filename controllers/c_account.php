@@ -12,6 +12,7 @@ if (isset($_GET['selected'])) {
 
 // Page commandes
 require_once(PATH_MODELS . 'CommandeDAO.php');
+require_once(PATH_MODELS . 'ProductBoughtDAO.php');
 $commandeDAO = new CommandeDAO(DEBUG);
 $userId = $user->getIdUser();
 $commandes = $commandeDAO->getCommandeByCustomerId($userId);
@@ -24,16 +25,13 @@ if($commandes == null) {
 } else {
     $isCommandesEmpty = false;
 
-    // On récupère les infos sur les commandes et
-    // On récupère les infors sur les produits àcheté de chaque commande à partir de l'id de la commande
-    // Pour ensuite pouvoir les afficher dans la vue
+    // On récupère les infos sur les commandes
     foreach ($commandes as $commande) { 
         $id = $commande['numorder'];
-        //$cmd = $commande->getCommandeByID($id);
         
         //print_r($cmd);
 
-        // Récupération des information de chaque commande
+        // Récupération des information de chaque commande dans un tableau transmis à la vue
         list($date, $heure,) = explode(' ', $commande['dateorder']); 
         $listeCommande[$id] = [
             "date" => $date,
@@ -41,6 +39,12 @@ if($commandes == null) {
             "numorder" => $commande['numorder']
         ];
     }
+
+    
+    // On récupère les infos sur les produits achetés de chaque commande
+    $productBoughtDAO = new ProductBoughtDAO(DEBUG);
+    $productsBoughts = $productBoughtDAO->getProductBoughtByCustomerId($userId);
+
 }
 
 

@@ -14,7 +14,7 @@
     <h1><?= COMMANDES_VIDE ?></h1>
 </div>
 
-<!-- Affichage selon si le panier est vide ou non -->
+<!-- Affichage selon si l'utilisateur a déjà fait des commandes ou non -->
 <script>
         // transforme la variable isCommandesEmpty PHP en variable page JavaScript
         var estVide = <?php echo json_encode($isCommandesEmpty); ?>;

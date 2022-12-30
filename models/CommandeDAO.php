@@ -5,7 +5,7 @@ require_once(PATH_ENTITY . 'Commande.php');
 class CommandeDAO extends DAO
 {
 
-    public function resultToCartArray(array $result){
+    public function resultToCommandeArray(array $result){
         $commande = [];
         foreach($result as $commande){
             array_push($commande, 

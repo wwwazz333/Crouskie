@@ -56,6 +56,8 @@ class ProductDAO extends DAO{
         return $product == false ? false : $product;
     }
 
+
+    // Temporaire car je pense qu'il faudra le changer de DAO
     public function getStockStatus(int $id) : bool
     {
         $stock = $this->queryAll("SELECT count(*) FROM product NATURAL JOIN stocked WHERE idprod = ?",array($id));
@@ -64,6 +66,5 @@ class ProductDAO extends DAO{
         }
         else{return false;}
     }
-
     
 }

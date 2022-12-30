@@ -1,6 +1,6 @@
 <?php
 require_once(PATH_MODELS . 'DAO.php');
-require_once(PATH_ENTITY.'Commande.php');
+require_once(PATH_ENTITY . 'Commande.php');
 
 class CommandeDAO extends DAO
 {

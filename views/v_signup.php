@@ -29,5 +29,3 @@ require_once(PATH_VIEWS . 'head.php');
     </form>
     <a href="#" class="underlined">Gérer mes crouskies</a>
 </div>
-
-<!--  Fin de la page -->

@@ -1,6 +1,7 @@
 <?php 
 require_once(PATH_MODELS . 'CartDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
+require_once(PATH_MODELS . 'SizeDAO.php');
 
 // Si l'utilisateur est connecté
 // Récupération du panier de l'utilisateur
@@ -18,6 +19,7 @@ if($isLogged) {
         $isCartEmpty = false;
 
         $productDAO = new ProductDAO(DEBUG);
+        $sizeDAO = new SizeDAO(DEBUG);
 
         // Informations destinées à la vue
         $infosProdsCart = [];
@@ -33,14 +35,15 @@ if($isLogged) {
 
             // Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier
             // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
+            $size = $sizeDAO->getSizeBySizeId($productCart['idsize']);
             $infosProdsCart[$id] = [
                 "nameprod" => $product['nameprod'],
                 "color" => $productCart['color'],
-                "size" => $productCart['size'],
+                "size" => $size[0]['namesize'],
                 "quantitycart" => $productCart['quantitycart'],
                 "priceprod" => $product['priceprod'],
                 "pricetotal" => $product['priceprod'] * $productCart['quantitycart']
-            ];
+            ];   
         }
 
         // Vider le panier
@@ -60,4 +63,3 @@ if($isLogged) {
 // $isCartEmpty = viderPanier($cartDAO,$userId);
 
 require_once(PATH_VIEWS . $page . '.php');
-

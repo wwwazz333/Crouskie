@@ -8,7 +8,7 @@ class Cart
     private int $_color;
     private int $_size;
 
-    function __construct(int $_customer_id, int $_id_prod, int $_quantity_cart, string $_color, char $_size)
+    function __construct(int $_customer_id, int $_id_prod, int $_quantity_cart, string $_color, int $_size)
     {
         $this->_customer_id = $_customer_id;
         $this->_id_prod = $_id_prod;

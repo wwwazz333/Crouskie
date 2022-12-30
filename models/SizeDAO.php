@@ -21,4 +21,9 @@ class SizeDAO extends DAO{
         $result = $this->queryAll("SELECT * FROM existingsize NATURAL JOIN cloth_size WHERE idprod = ?",array($id));
         return $result;
     }
+
+    public function getSizeBySizeId(int $idSize){
+        $result = $this->queryAll("SELECT namesize FROM size WHERE idsize = ?",array($idSize));
+        return $result;
+    }
 }

@@ -10,17 +10,21 @@ if (isset($_GET['selected'])) {
     $selectedPage = "info";
 }
 
-// Page commandes
+
+/************************ Page commandes **************************/
+
 require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductBoughtDAO.php');
+require_once(PATH_MODELS . 'ProductDAO.php');
+require_once(PATH_MODELS . 'SizeDAO.php');
 $commandeDAO = new CommandeDAO(DEBUG);
 $userId = $user->getIdUser();
 $commandes = $commandeDAO->getCommandeByCustomerId($userId);
 
-
 // Si l'utilisateur n'a encore passé aucune commande
 if($commandes == null) {
     $isCommandesEmpty = true;
+
 // Sinon
 } else {
     $isCommandesEmpty = false;
@@ -44,15 +48,25 @@ if($commandes == null) {
     // On récupère les infos sur les produits achetés de chaque commande
     $productBoughtDAO = new ProductBoughtDAO(DEBUG);
     $productsBoughts = $productBoughtDAO->getProductBoughtByCustomerId($userId);
+    $productDAO = new ProductDAO(DEBUG);
+    $sizeDAO = new SizeDAO(DEBUG);
 
     foreach ($productsBoughts as $productsBought) { 
-        $id = $productsBought['numorder'];
+        $id = $productsBought['idpp'];
+
+        // Récupération du nom de la taille par son idsize
+        $size = $sizeDAO->getSizeBySizeId($productsBought['idsize']);
+        // Récupération du nom du produit et de son prix par son id
+        $product = $productDAO->getProductByID($productsBought['idprod']);
 
         // Récupération des information de chaque produit acheté dans un tableau transmis à la vue
-        $listeCommande[$id] = [
-            "date" => $date,
-            "heure" => $heure,
-            "numorder" => $productsBought['numorder']
+        $listeProductBought[$id] = [
+            "name" => $product['nameprod'],
+            "order" => $productsBought['numorder'],
+            "color" => $productsBought['namecolor'],
+            "size" => $size[0]['namesize'],
+            "quantity" => $productsBought['quantitybought'],
+            "price" => $product['priceprod']
         ];
     }
 
@@ -62,5 +76,3 @@ if($commandes == null) {
 
 // Vue
 require_once(PATH_VIEWS . $page . '.php');
-
-//print_r($productsBoughts);

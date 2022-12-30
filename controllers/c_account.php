@@ -45,8 +45,22 @@ if($commandes == null) {
     $productBoughtDAO = new ProductBoughtDAO(DEBUG);
     $productsBoughts = $productBoughtDAO->getProductBoughtByCustomerId($userId);
 
+    foreach ($productsBoughts as $productsBought) { 
+        $id = $productsBought['numorder'];
+
+        // Récupération des information de chaque produit acheté dans un tableau transmis à la vue
+        $listeCommande[$id] = [
+            "date" => $date,
+            "heure" => $heure,
+            "numorder" => $productsBought['numorder']
+        ];
+    }
+
+
 }
 
 
 // Vue
 require_once(PATH_VIEWS . $page . '.php');
+
+//print_r($productsBoughts);

@@ -25,7 +25,8 @@ class ProductBoughtDAO extends DAO
     // get all the existing carted items
     public function getProductBoughtByCustomerId(int $id)
     {
-        $product_bought = $this->queryAll("SELECT * FROM productbought where idcustomer = ?", array($id));
+        $product_bought = $this->queryAll("SELECT * FROM cmd c cross join productbought p where c.numorder=p.numorder and idcustomer = ?",
+        array($id));
         return $product_bought == false ? false : $product_bought;
     }
     

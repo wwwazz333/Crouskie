@@ -36,20 +36,21 @@ class ProductDAO extends DAO{
         $result = $this->queryAll("SELECT * FROM product");
         return $result;
     }
-    public function getProductsByCollectionId(int $id)
+    public function getProductsByCollectionId(int $id) : array
     {
         $result = $this->queryAll("SELECT * FROM product WHERE idcollection = ?",array($id));
         return $result;
     }
 
     // Obtenir tout les produits associé à un nom
-    public function getProductsByName(string $name){
+    public function getProductsByName(string $name) : array
+    {
         $result = $this->queryAll("SELECT * FROM product WHERE nameprod LIKE ?",array('%' . $name . '%'));
         return $result;
     }
 
     // Obtenir un produit par son ID
-    public function getProductByID(int $id)
+    public function getProductByID(int $id) : mixed
     {
         $product = $this->queryRow("SELECT * FROM product WHERE idprod = ?",array($id));
         return $product == false ? false : $product;
@@ -57,7 +58,7 @@ class ProductDAO extends DAO{
 
     public function getStockStatus(int $id) : bool
     {
-        $stock = $this->queryAll("select count(*) from product natural join stocked where idprod = ?",array($id));
+        $stock = $this->queryAll("SELECT count(*) FROM product NATURAL JOIN stocked WHERE idprod = ?",array($id));
         if ($stock["count(*)"]>0){
             return true;
         }

@@ -52,10 +52,11 @@ form{
     }
 
     #sizes-container input[type="radio"]:checked{
-        border: 3px solid #0e2adc;
+        border: 3px solid #0055ffb7;
     }
 
     #sizes-container [data-content]:before {
+        position: absolute;
         margin: auto;
         display: inline-block;
         text-align: center;

@@ -23,7 +23,6 @@ else{
 }
 
 // Vérification connexion
-// Ceci est temporaire !!
 if (isset($_SESSION['account'])) {
   $isLogged = true;
   $user = unserialize($_SESSION['account']);

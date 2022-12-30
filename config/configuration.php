@@ -4,16 +4,16 @@ const DEBUG = true; // production : false; dev : true
 
 // Accès base de données
 
-// const BD_HOST = 'menardbediant.fr:8002';
-// const BD_DBNAME = 'crouskie';
-// const BD_USER = 'root';
-// const BD_PWD = 'thesaurus-cranberry-reptile';
-
-
-const BD_HOST = 'localhost';
+const BD_HOST = 'menardbediant.fr:8002';
 const BD_DBNAME = 'crouskie';
 const BD_USER = 'root';
-const BD_PWD = '';
+const BD_PWD = 'thesaurus-cranberry-reptile';
+
+
+// const BD_HOST = 'localhost';
+// const BD_DBNAME = 'crouskie';
+// const BD_USER = 'root';
+// const BD_PWD = '';
 
 
 // Langue du site

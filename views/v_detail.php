@@ -3,7 +3,6 @@
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
 
-print_r($product);
 ?>
 <div class="flex row content">
     <div class="carousel rounded shadow-small">

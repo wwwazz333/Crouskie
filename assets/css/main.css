@@ -290,7 +290,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-    border: 3px solid #0e2adc;
+    border: 3px solid #0055ffb7;
     background-color: #e7e6e7;
 }
 

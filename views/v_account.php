@@ -37,5 +37,5 @@ require_once(PATH_VIEWS . 'header.php');
     require_once(PATH_VIEWS . $page . "_" . $selectedPage . '.php');
     ?>
 </div>
-<!--  Pied de page -->
+
 <?php require_once(PATH_VIEWS . 'footer.php') ?>

@@ -24,5 +24,3 @@ require_once(PATH_VIEWS . 'head.php');
     </form>
     <a href="#" class="underlined"><?= GERER_COOKIES ?></a>
 </div>
-
-<!--  Fin de la page -->

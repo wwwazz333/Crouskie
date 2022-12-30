@@ -15,8 +15,5 @@ require_once(PATH_VIEWS . 'header.php');
         </a>
     <?php } ?>
 </div>
-<!--  Fin de la page -->
 
-
-<!--  Pied de page -->
 <?php require_once(PATH_VIEWS . 'footer.php') ?>

@@ -40,6 +40,10 @@ form{
         padding: 0;
     }
 
+    #colors-container input[type="radio"]:checked{
+        padding: 6px;
+    }
+
     #sizes-container{
         gap: 0.5rem;
     }

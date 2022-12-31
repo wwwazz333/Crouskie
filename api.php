@@ -43,6 +43,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['action'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
+    require_once(PATH_MODELS . 'StockDAO.php');
     try {
         switch ($data['action']) {
             case 'check':
@@ -57,6 +58,8 @@ if (isset($data['action'])) {
                     $DAO = new ProductDAO(DEBUG);
                     $res = $DAO->getProductsByName(htmlspecialchars($data['name']));
                     sendJson($res);
+                }else{
+                    throw new Exception("Name argument is required");
                 }
                 break;
             case 'upload':
@@ -64,7 +67,26 @@ if (isset($data['action'])) {
                     $file_name = PATH_IMAGES . 'uploads/' . random_str(16) . '.png';
                     file_put_contents($file_name, base64_decode($data['image']));
                     sendJson($file_name);
+                }else{
+                    throw new Exception("Image argument is required");
                 }
+                break;
+            case 'stock':
+                if (isset($data['id'])) {
+                    $DAO = new StockDAO(DEBUG);
+                    if (isset($data['color'])) {
+                        $res = $DAO->getSizesWithColor($data['id'],$data['color']);
+                    }elseif (isset($data['size'])) {
+                        $res = $DAO->getColorsWithSize($data['id'],$data['size']);
+                    }else{
+                        throw new Exception("color or size argument is required");
+                    }
+                    sendJson($res);
+                    break;
+                }
+                throw new Exception("id argument is required");
+            case 'user':
+                // TODO
                 break;
             default:
                 sendJson("Unknow action",false);

@@ -8,7 +8,7 @@
 .carousel{
     flex: 2;
     background-color: white;
-    max-height: 400px;
+    max-height: 440px;
     max-width: 700px;
 
     background-image: url("/assets/images/uploads/woc4Eem9Pdaw6X5w.png");
@@ -32,8 +32,10 @@ form{
         gap: 0.5rem;
     }
 
-    #colors-container{
-        gap: 0.5rem;
+    .scrollable-fieldset{
+        max-width: 360px;
+        overflow-x: auto;
+        padding: 0.4rem;
     }
 
     #colors-container input[type="radio"] {
@@ -42,10 +44,6 @@ form{
 
     #colors-container input[type="radio"]:checked{
         padding: 6px;
-    }
-
-    #sizes-container{
-        gap: 0.5rem;
     }
 
     #sizes-container input[type="radio"] {
@@ -60,7 +58,7 @@ form{
     }
 
     #sizes-container [data-content]:before {
-        position: absolute;
+        position: sticky;
         margin: auto;
         display: inline-block;
         text-align: center;
@@ -76,5 +74,5 @@ form{
     #submit{
         margin-top: 0;
         width: fit-content;
-        padding: 0.7rem 1rem 0.7rem 1rem;
+        padding: 1rem;
     }

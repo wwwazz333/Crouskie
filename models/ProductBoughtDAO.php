@@ -9,7 +9,7 @@ class ProductBoughtDAO extends DAO
         $product_bought = [];
         foreach($result as $product_bought){
             array_push($product_bought, 
-                new PoductBought(
+                new ProductBought(
                     $product_bought['idpp'],
                     $product_bought['namecolor'],
                     $product_bought['idprod'],

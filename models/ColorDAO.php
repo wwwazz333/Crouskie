@@ -9,9 +9,8 @@ class ColorDAO extends DAO{
         foreach($result as $color){
             array_push($colors, 
                 new Color(
-                    0,
                     $color['namecolor'],
-                    "" 
+                    $color['code']
                 )
             );
         }

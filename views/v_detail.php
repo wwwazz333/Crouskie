@@ -23,7 +23,7 @@ require_once(PATH_VIEWS . 'header.php');
             <fieldset id="color" class="flex row">
                 <?php foreach ($colors as $color) { ?>
                     <!-- TODO : ajouter l'ID de la couleur pour pouvoir la transmettre au panier -->
-                    <input type="radio" value="<?= $color->getName() ?>" name="color" class="circle shadow-small" style="background-color:<?= $color->getName() ?>;" required>
+                    <input type="radio" value="<?= $color->getName() ?>" name="color" class="circle shadow-small" style="background-color:<?= $color->getCode() ?>;" required>
                 <?php } ?>
             </fieldset>
         </div>

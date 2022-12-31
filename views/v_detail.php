@@ -9,7 +9,7 @@ require_once(PATH_VIEWS . 'header.php');
     <div class="carousel rounded shadow-small">
         <!-- <img src="./assets/images/uploads/woc4Eem9Pdaw6X5w.png" alt="" srcset="" class=""> -->
     </div>
-    <form action="" class="flex column center card rounded shadow-small">
+    <form action="" class="flex column center card rounded shadow-small" data-id="<?= $product->getId()?>">
         <h2><?= $product->getName()?></h2>
         <p><?= $product->getDescription()?></p>
         <!-- Section des couleurs -->
@@ -23,7 +23,7 @@ require_once(PATH_VIEWS . 'header.php');
             <fieldset id="color" class="flex row">
                 <?php foreach ($colors as $color) { ?>
                     <!-- TODO : ajouter l'ID de la couleur pour pouvoir la transmettre au panier -->
-                    <input type="radio" value="<?= $color->getName() ?>" name="color" class="circle shadow-small" style="background-color:<?= $color->getCode() ?>;" required>
+                    <input type="radio" value="<?= $color->getName() ?>" title="<?= $color->getName() ?>" name="color" class="circle shadow-small" style="background-color:<?= $color->getCode() ?>;" required>
                 <?php } ?>
             </fieldset>
         </div>
@@ -37,7 +37,7 @@ require_once(PATH_VIEWS . 'header.php');
             <p>Taille :</p>
             <fieldset id="size" class="flex row" required>
                 <?php foreach ($sizes as $size) { ?>
-                    <input type="radio" value="<?= $size->getName() ?>" name="size" class="rounded shadow-small" data-content="<?= $size->getName() ?>" required>
+                    <input type="radio" value="<?= $size->getId() ?>" name="size" class="rounded shadow-small" data-content="<?= $size->getName() ?>" required>
                 <?php } ?>
             </fieldset>
         </div>

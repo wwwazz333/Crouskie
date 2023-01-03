@@ -65,7 +65,7 @@ function PopUp(type,title,message) {
   container.classList.add('flex','center');
 
   const card = document.createElement('div');
-  card.classList.add('rounded','flex','column');
+  card.classList.add('rounded','flex','column','shadow');
   container.appendChild(card);
 
   const icon_container = document.createElement('div');

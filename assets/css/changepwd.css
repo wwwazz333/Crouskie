@@ -1,0 +1,44 @@
+body{
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* background-image: url(); */
+}
+
+.background{
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    z-index: -1;
+}
+
+.logo{
+    margin-top: 0.5rem;
+}
+
+.instruction{
+    gap: 1rem;
+}
+
+.content{
+    width: fit-content;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+form{
+    width: 450px;
+    height: 475px;
+    gap: 2rem;
+}
+
+form .valid{
+    height: 60px;
+}
+
+form .flex.row{
+    gap: 1rem;
+}
+
+a{
+    font-weight: var(--font-light);
+}

@@ -23,15 +23,15 @@ require_once(PATH_MODELS . 'SizeDAO.php');
 $commandeDAO = new CommandeDAO(DEBUG);
 $userId = $user->getIdUser();
 $commandesPhp = $commandeDAO->getCommandeByCustomerId($userId); // Récupération des commandes de l'utilisateur -> type : objet php
-$commandes = $commandeDAO->resultToCommandesArray($commandesPhp); // Conversion du type objet php en type objet Commande
 
 // Si l'utilisateur n'a encore passé aucune commande
-if($commandes == null) {
+if($commandesPhp == null) {
     $isCommandesEmpty = true;
 
 // Sinon
 } else {
     $isCommandesEmpty = false;
+    $commandes = $commandeDAO->resultToCommandesArray($commandesPhp); // Conversion du type objet php en type objet Commande
 
     // On récupère les infos sur les commandes
     foreach ($commandes as $commande) { 

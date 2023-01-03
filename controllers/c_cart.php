@@ -9,14 +9,14 @@ if($isLogged) {
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
-    $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
 
     // Si le panier est vide
-    if($cart == null) {
+    if($cartPhp == null) {
         $isCartEmpty = true;
     // Sinon
-    } else if ($cart != null || $isLogged == true){
+    } else if ($cartPhp != null || $isLogged == true){
         $isCartEmpty = false;
+        $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
 
         $productDAO = new ProductDAO(DEBUG);
         $sizeDAO = new SizeDAO(DEBUG);

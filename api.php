@@ -86,7 +86,13 @@ if (isset($data['action'])) {
                 }
                 throw new Exception("id argument is required");
             case 'user':
-                // TODO
+                if (isset($data['id']) && isset($data['firstname']) && isset($data['lastname']) && isset($data['email'])) {
+                    $DAO = new UtilisateurDAO(DEBUG);
+                    $res = $DAO->changeUserInfos($data['id'],$data['firstname'],$data['lastname'],$data['email']);
+                    sendJson($res);
+                }else{
+                    throw new ErrorException("Arguments are missing");
+                }
                 break;
             default:
                 sendJson("Unknow action",false);

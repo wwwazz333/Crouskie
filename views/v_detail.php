@@ -19,7 +19,7 @@ require_once(PATH_VIEWS . 'header.php');
             <input type="radio" value="value2" name="color" class="circle shadow-small" style="background-color:#00ff00;" required>
         -->
         <div class="flex column center fill-w" id="colors-container">
-            <p>Couleur :</p>
+            <p><?=COULEUR?></p>
             <div class="scrollable-fieldset">
                 <fieldset id="color" class="flex row">
                     <?php foreach ($colors as $color) { ?>
@@ -37,7 +37,7 @@ require_once(PATH_VIEWS . 'header.php');
          -->
         
         <div class="flex column center fill-w" id="sizes-container">
-            <p>Taille :</p>
+            <p><?=TAILLE?></p>
             <div class="scrollable-fieldset">
                 <fieldset id="size" class="flex row" required>
                     <?php foreach ($sizes as $size) { ?>
@@ -49,7 +49,7 @@ require_once(PATH_VIEWS . 'header.php');
         <!-- Section prix -->
         <div class="flex row even center fill-w price-container">
             <h2 id="price"><?= $product->getPrice()?>€</h2>
-            <button id="submit" class="circle" type="submit">Ajouter au panier</button>
+            <button id="submit" class="circle" type="submit"><?=AJOUTER_PANIER?></button>
         </div>
     </form>
 </div>

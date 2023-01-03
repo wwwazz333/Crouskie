@@ -49,5 +49,9 @@ define('PANIER_VIDE','Votre panier est vide !');
 define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');
 
 // Page Produits
+define('RECHERCHER','Rechercher...');
 
 // Page Détails
+define('COULEUR','Couleur :');
+define('TAILLE','Taille :');
+define('AJOUTER_PANIER','Ajouter au panier');

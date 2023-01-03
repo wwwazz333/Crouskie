@@ -6,7 +6,7 @@ require_once(PATH_VIEWS . 'header.php');
 ?>
 <!--  Début de la page -->
 <div class="flex row center search">
-    <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="Rechercher...">
+    <input type="text" name="search" id="input-search" class="rounded shadow-small" placeholder="<?=RECHERCHER?>">
 </div>
 <div class="flex row wrap center" id="products">
     <?php foreach ($products as $product) { ?>
@@ -18,7 +18,6 @@ require_once(PATH_VIEWS . 'header.php');
                         <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon>
                     </div>
                 </div>
-
                 <div class='flex column center details'>
                     <p><?= $product->getName() ?></p>
                     <p><?= $product->getPrice() ?>€</p>

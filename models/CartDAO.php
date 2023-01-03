@@ -6,9 +6,9 @@ class CartDAO extends DAO
 {
 
     public function resultToCartArray(array $result){
-        $cart = [];
+        $list = [];
         foreach($result as $cart){
-            array_push($cart, 
+            array_push($list, 
                 new Cart(
                     $cart['idcustomer'],
                     $cart['idprod'],
@@ -18,7 +18,7 @@ class CartDAO extends DAO
                 )
             );
         }
-        return $cart;
+        return $list;
     }
     
     // get all the existing carted items

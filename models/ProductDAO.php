@@ -5,9 +5,9 @@ require_once(PATH_ENTITY . 'Product.php');
 class ProductDAO extends DAO{
 
     public function resultToProductsArray(array $result){
-        $products = [];
+        $list = [];
         foreach($result as $product){
-            array_push($products, 
+            array_push($list, 
                 new Product(
                     $product['idprod'],
                     $product['idcollection'] == null ? 'NULL' : $product['idcollection'],
@@ -17,7 +17,7 @@ class ProductDAO extends DAO{
                 )
             );
         }
-        return $products;
+        return $list;
     }
 
     public function resultToProduct(array $result){
@@ -50,7 +50,7 @@ class ProductDAO extends DAO{
     }
 
     // Obtenir un produit par son ID
-    public function getProductByID(int $id) : mixed
+    public function getProductByID(int $id) // : mixed
     {
         $product = $this->queryRow("SELECT * FROM product WHERE idprod = ?",array($id));
         return $product == false ? false : $product;

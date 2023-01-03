@@ -26,4 +26,9 @@ class SizeDAO extends DAO{
         $result = $this->queryAll("SELECT namesize FROM size WHERE idsize = ?",array($idSize));
         return $result;
     }
+
+    public function getFullSizeBySizeId(int $idSize){
+        $result = $this->queryAll("SELECT * FROM size WHERE idsize = ?",array($idSize));
+        return $result;
+    }
 }

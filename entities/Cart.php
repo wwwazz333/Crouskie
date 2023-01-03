@@ -5,10 +5,10 @@ class Cart
     private int $_customer_id;
     private int $_id_prod;
     private int $_quantity_cart;
-    private int $_color;
+    private String $_color;
     private int $_size;
 
-    function __construct(int $_customer_id, int $_id_prod, int $_quantity_cart, string $_color, int $_size)
+    function __construct(int $_customer_id, int $_id_prod, int $_quantity_cart, String $_color, int $_size)
     {
         $this->_customer_id = $_customer_id;
         $this->_id_prod = $_id_prod;

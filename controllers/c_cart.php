@@ -8,8 +8,8 @@ require_once(PATH_MODELS . 'SizeDAO.php');
 if($isLogged) {
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
-    $cart = $cartDAO->getCartByCustomerId($userId);
-
+    $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
+    $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
 
     // Si le panier est vide
     if($cart == null) {
@@ -28,21 +28,24 @@ if($isLogged) {
         // On récupère le nom des produits du panier à partir de leur id 
         // Pour ensuite pouvoir les afficher dans la vue
         foreach ($cart as $productCart) { 
-            $id = $productCart['idprod'];
-            $product = $productDAO->getProductByID($id);
+            $id = $productCart->getIdProd(); 
+            $productPhp = $productDAO->getProductByID($id); // Récupération du produit par l'id -> type : objet php
+            $product = $productDAO->resultToProductsArray(["productPhp" => $productPhp]); // Conversion type objet php en type objet Product
             
-            $montantTotal = $montantTotal + $product['priceprod'] * $productCart['quantitycart'];
+            $montantTotal = $montantTotal + $product[0]->getPrice() * $productCart->getQuantityCart();
 
-            // Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier
-            // $nomProduct = $product->getName();   // Ca fait une erreur j'ai pas compris pourquoi
-            $size = $sizeDAO->getSizeBySizeId($productCart['idsize']);
+            // On va chercher le nom de la taille du produit avec l'idsize
+            $sizePhp = $sizeDAO->getFullSizeBySizeId($productCart->getSizeCart());
+            $size = $sizeDAO->resultToSizesArray($sizePhp);
+            
+            // Enregistrement des informations dans un tableau traité par la vue
             $infosProdsCart[$id] = [
-                "nameprod" => $product['nameprod'],
-                "color" => $productCart['color'],
-                "size" => $size[0]['namesize'],
-                "quantitycart" => $productCart['quantitycart'],
-                "priceprod" => $product['priceprod'],
-                "pricetotal" => $product['priceprod'] * $productCart['quantitycart']
+                "nameprod" => $product[0]->getName(),
+                "color" => $productCart->getColorCart(),
+                "size" => $size[0]->getName(),
+                "quantitycart" => $productCart->getQuantityCart(),
+                "priceprod" => $product[0]->getPrice(),
+                "pricetotal" => $product[0]->getPrice() * $productCart->getQuantityCart()
             ];   
         }
 
@@ -51,9 +54,9 @@ if($isLogged) {
             $cartDAO->deleteCart($userId);
             $isCartEmpty = true;
             return true;
-        }
-        
+        } 
     }
+    
 } else {
     // Si l'utilisateur n'est pas connecté
     $isCartEmpty = true;

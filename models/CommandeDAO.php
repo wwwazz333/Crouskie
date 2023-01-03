@@ -5,10 +5,10 @@ require_once(PATH_ENTITY . 'Commande.php');
 class CommandeDAO extends DAO
 {
 
-    public function resultToCommandeArray(array $result){
-        $commande = [];
+    public function resultToCommandesArray(array $result){
+        $list = [];
         foreach($result as $commande){
-            array_push($commande, 
+            array_push($list, 
                 new Commande(
                     $commande['dateorder'],
                     $commande['numorder'],
@@ -16,7 +16,7 @@ class CommandeDAO extends DAO
                 )
             );
         }
-        return $commande;
+        return $list;
     }
     
     // get all the existing carted items

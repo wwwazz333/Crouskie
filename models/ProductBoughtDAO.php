@@ -5,10 +5,10 @@ require_once(PATH_ENTITY . 'ProductBought.php');
 class ProductBoughtDAO extends DAO
 {
 
-    public function resultToProductBoughtArray(array $result){
-        $product_bought = [];
+    public function resultToProductBoughtsArray(array $result){
+        $list = [];
         foreach($result as $product_bought){
-            array_push($product_bought, 
+            array_push($list, 
                 new ProductBought(
                     $product_bought['idpp'],
                     $product_bought['namecolor'],
@@ -19,7 +19,7 @@ class ProductBoughtDAO extends DAO
                 )
             );
         }
-        return $product_bought;
+        return $list;
     }
     
     // get all the existing carted items

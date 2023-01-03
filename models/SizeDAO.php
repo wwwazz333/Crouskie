@@ -5,16 +5,16 @@ require_once(PATH_ENTITY . 'Size.php');
 class SizeDAO extends DAO{
 
     public function resultToSizesArray(array $result){
-        $sizes = [];
+        $list = [];
         foreach($result as $size){
-            array_push($sizes, 
+            array_push($list, 
                 new Size(
                     $size['idsize'],
                     $size['namesize']
                 )
             );
         }
-        return $sizes;
+        return $list;
     }
 
     public function getSizesByProductID(int $id){

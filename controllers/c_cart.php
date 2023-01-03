@@ -26,11 +26,10 @@ if($isLogged) {
         $montantTotal = 0;
 
         // On récupère le nom des produits du panier à partir de leur id 
-        // Pour ensuite pouvoir les afficher dans la vue
         foreach ($cart as $productCart) { 
             $id = $productCart->getIdProd(); 
-            $productPhp = $productDAO->getProductByID($id); // Récupération du produit par l'id -> type : objet php
-            $product = $productDAO->resultToProductsArray(["productPhp" => $productPhp]); // Conversion type objet php en type objet Product
+            $productPhp = $productDAO->getProductByID($id); // type objet php
+            $product = $productDAO->resultToProductsArray(["productPhp" => $productPhp]); // type objet Product
             
             $montantTotal = $montantTotal + $product[0]->getPrice() * $productCart->getQuantityCart();
 

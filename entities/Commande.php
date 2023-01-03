@@ -2,11 +2,11 @@
 class Commande
 {
     // properties
-    private date $_date_order;
+    private string $_date_order;
     private int $_num_order;
     private int $_id_customer;
 
-    function __construct(date $_date_order, int $_num_order, int $_id_customer)
+    function __construct(string $_date_order, int $_num_order, int $_id_customer)
     {
         $this->_date_order = $_date_order;
         $this->_num_order = $_num_order;

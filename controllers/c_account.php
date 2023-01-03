@@ -1,5 +1,7 @@
 <?php
 
+/************************ Page informations **************************/
+
 // Informations du compte: info
 require_once(PATH_MODELS . 'UtilisateurDAO.php');
 
@@ -17,9 +19,11 @@ require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductBoughtDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
 require_once(PATH_MODELS . 'SizeDAO.php');
+
 $commandeDAO = new CommandeDAO(DEBUG);
 $userId = $user->getIdUser();
-$commandes = $commandeDAO->getCommandeByCustomerId($userId);
+$commandesPhp = $commandeDAO->getCommandeByCustomerId($userId); // Récupération des commandes de l'utilisateur -> type : objet php
+$commandes = $commandeDAO->resultToCommandesArray($commandesPhp); // Conversion du type objet php en type objet Commande
 
 // Si l'utilisateur n'a encore passé aucune commande
 if($commandes == null) {
@@ -31,48 +35,49 @@ if($commandes == null) {
 
     // On récupère les infos sur les commandes
     foreach ($commandes as $commande) { 
-        $id = $commande['numorder'];
-        
-        //print_r($cmd);
+       
+        $id = $commande->getNumOrder();
 
         // Récupération des information de chaque commande dans un tableau transmis à la vue
-        list($date, $heure,) = explode(' ', $commande['dateorder']); 
+        list($date, $heure,) = explode(' ', $commande->getDateOrder()); 
         $listeCommande[$id] = [
             "date" => $date,
             "heure" => $heure,
-            "numorder" => $commande['numorder']
+            "numorder" => $id
         ];
     }
 
     
     // On récupère les infos sur les produits achetés de chaque commande
     $productBoughtDAO = new ProductBoughtDAO(DEBUG);
-    $productsBoughts = $productBoughtDAO->getProductBoughtByCustomerId($userId);
     $productDAO = new ProductDAO(DEBUG);
     $sizeDAO = new SizeDAO(DEBUG);
 
+    $productsBoughtsPhp = $productBoughtDAO->getProductBoughtByCustomerId($userId); // type objet php
+    $productsBoughts = $productBoughtDAO->resultToProductBoughtsArray($productsBoughtsPhp); // type objet ProductBought
+    
     foreach ($productsBoughts as $productsBought) { 
-        $id = $productsBought['idpp'];
+        $id = $productsBought->getIdpp();
 
         // Récupération du nom de la taille par son idsize
-        $size = $sizeDAO->getSizeBySizeId($productsBought['idsize']);
+        $sizePhp = $sizeDAO->getFullSizeBySizeId($productsBought->getIdSize());
+        $size = $sizeDAO->resultToSizesArray($sizePhp);
         // Récupération du nom du produit et de son prix par son id
-        $product = $productDAO->getProductByID($productsBought['idprod']);
+        $productPhp = $productDAO->getProductByID($productsBought->getIdProd());
+        $product = $productDAO->resultToProductsArray(["productPhp" => $productPhp]);
 
         // Récupération des information de chaque produit acheté dans un tableau transmis à la vue
         $listeProductBought[$id] = [
-            "name" => $product['nameprod'],
-            "order" => $productsBought['numorder'],
-            "color" => $productsBought['namecolor'],
-            "size" => $size[0]['namesize'],
-            "quantity" => $productsBought['quantitybought'],
-            "price" => $product['priceprod']
+            "name" => $product[0]->getName(),
+            "order" => $productsBought->getNumOrder(),
+            "color" => $productsBought->getNameColor(),
+            "size" => $size[0]->getName(),
+            "quantity" => $productsBought->getQuantityBought(),
+            "price" => $product[0]->getPrice()
         ];
     }
 
-
 }
-
 
 // Vue
 require_once(PATH_VIEWS . $page . '.php');

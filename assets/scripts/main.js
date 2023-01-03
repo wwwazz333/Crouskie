@@ -85,7 +85,6 @@ function PopUp(type,title,message) {
   closeButton.classList.add('circle');
   closeButton.addEventListener('click',()=>{
     activePopUp.remove();
-    enableScroll();
     activePopUp = null;
   });
   card.appendChild(closeButton);
@@ -117,5 +116,4 @@ function PopUp(type,title,message) {
 
   document.body.appendChild(container);
   activePopUp = container;
-  disableScroll();
 }

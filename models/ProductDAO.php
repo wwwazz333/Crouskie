@@ -56,6 +56,12 @@ class ProductDAO extends DAO{
         return $product == false ? false : $product;
     }
 
+    public function getProductImage(int $id)
+    {
+        $result = $this->queryRow("SELECT pathpicture, altpicture FROM picture WHERE idprod = ?",array($id));
+        return $result == false ? false : $result;
+    }
+
 
     // Temporaire car je pense qu'il faudra le changer de DAO
     public function getStockStatus(int $id) : bool

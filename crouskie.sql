@@ -576,7 +576,9 @@ ALTER TABLE `tag`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `fk_cart` FOREIGN KEY (`idcustomer`) REFERENCES `customer` (`idcustomer`),
-  ADD CONSTRAINT `fk_cart2` FOREIGN KEY (`idprod`) REFERENCES `product` (`idprod`);
+  ADD CONSTRAINT `fk_cart2` FOREIGN KEY (`idprod`) REFERENCES `product` (`idprod`),
+  ADD CONSTRAINT `fk_cart3` FOREIGN KEY (`idsize`) REFERENCES `cloth_size` (`idsize`),
+  ADD CONSTRAINT `fk_cart4` FOREIGN KEY (`namecolor`) REFERENCES `color` (`namecolor`);
 
 --
 -- Constraints for table `collection`

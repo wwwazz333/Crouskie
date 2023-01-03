@@ -1,6 +1,6 @@
 <?php
 require_once(PATH_MODELS . 'DAO.php');
-require_once(PATH_ENTITY.'Cart.php');
+require_once(PATH_ENTITY . 'Cart.php');
 
 class CartDAO extends DAO
 {
@@ -14,7 +14,7 @@ class CartDAO extends DAO
                     $cart['idprod'],
                     $cart['quantitycart'],
                     $cart['color'],
-                    $cart['size']
+                    $cart['idsize']
                 )
             );
         }

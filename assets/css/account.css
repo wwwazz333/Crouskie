@@ -74,8 +74,8 @@
 
 /* -------- page commandes -------- */
 
-.commandes {
-    min-height: 70vh;
+.content .commandes, .content #commandes-vide {
+    min-height: 60vh;
     margin: 3rem;
     margin-top: 0px;
     padding: 3rem;
@@ -87,4 +87,8 @@
 }
 .content .commandes details {
     margin-bottom: 1rem;
+}
+.content #commandes-vide h1 {
+    text-align: center;
+    margin-top: 7rem;
 }

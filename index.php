@@ -12,18 +12,18 @@ session_start();
 //vérification de la page demandée 
 if(isset($_GET['page']))
 {
-  $page = htmlspecialchars($_GET['page']); // http://.../index.php?page=toto
+  // Nettoyage
+  $page = htmlspecialchars($_GET['page']);
   if(!is_file(PATH_CONTROLLERS.$_GET['page'].".php"))
   { 
     $page = '404'; //page demandée inexistante
   }
 }
 else{
-  $page='accueil'; //page d'accueil du site - http://.../index.php
+  $page='accueil'; //page par défaut si argument non spécifié
 }
 
 // Vérification connexion
-// Ceci est temporaire !!
 if (isset($_SESSION['account'])) {
   $isLogged = true;
   $user = unserialize($_SESSION['account']);

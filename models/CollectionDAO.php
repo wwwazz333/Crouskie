@@ -1,6 +1,6 @@
 <?php
 require_once(PATH_MODELS . 'DAO.php');
-require_once(PATH_ENTITY.'Collection.php');
+require_once(PATH_ENTITY . 'Collection.php');
 
 class CollectionDAO extends DAO
 {

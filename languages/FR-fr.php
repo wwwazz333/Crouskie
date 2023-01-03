@@ -38,6 +38,7 @@ define('GERER_COOKIES','Gérer mes croukies');
 define('CHANGER_INFORMATIONS','Modifier mes informations');
 define('ENREGISTRER_INFORMATIONS','Enregistrer mes informations');
 define('CHANGER_MDP','Changer mon mot de passe');
+define('COMMANDES_VIDE','Vous n\'avez encore aucune commande !');
 
 // Page panier
 define('MONTANT_TOTAL','Montant total du panier : ');

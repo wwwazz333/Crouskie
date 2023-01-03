@@ -287,11 +287,29 @@ input[type="radio"] {
     background-clip: content-box;
     border: 1px solid #6D6B6B;
     background-color: #e7e6e7;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
 }
 
 input[type="radio"]:checked {
-    border: 3px solid #0e2adc;
+    border: 3px solid #0055ffb7;
     background-color: #e7e6e7;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+}
+
+input[type="radio"]:disabled {
+    filter: grayscale(70%);
+    -webkit-filter: grayscale(70%);
+}
+input:disabled{
+    cursor: default;
 }
 
 

@@ -5,6 +5,8 @@
 
 #menu
 {
+    /* A corriger pour la taille du paneau lateral */
+    /* max-width: 350px; */
     margin-top: -50px;
     width: 25rem ;
     background-color: whitesmoke;

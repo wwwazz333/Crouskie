@@ -24,6 +24,7 @@ define('ERREUR_QUERY', 'Problème d\'accès à la base de données. Contactez l\
 // Connexion
 define('CONNEXION','Connexion');
 define('CONNECTED','Vous êtes connecté(e)');
+define('DISCONNECTED','Vous êtes connecté(e)');
 define('MON_COMPTE','Mon compte');
 
 // Page Connexion
@@ -46,3 +47,7 @@ define('PASSER_COMMANDE','Passer ma commande');
 define('VIDER_PANIER','Vider mon panier');
 define('PANIER_VIDE','Votre panier est vide !');
 define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');
+
+// Page Produits
+
+// Page Détails

@@ -1,3 +1,8 @@
+<?php
+
+//  En tête de page
+require_once(PATH_VIEWS . 'head.php');
+?>
 <div class="flex column content center">
     <div class="logo">
         <a href="index.php">

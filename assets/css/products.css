@@ -24,7 +24,6 @@ a{
 
 .product-item{
     height: fit-content;
-    background-color: white;
     align-items:center;
     padding-bottom: 1rem;
     font-weight: var(--font-medium);
@@ -34,10 +33,15 @@ a{
         position: relative;
     }
     .product-item img{
-        height:250px;
-        width: 250px;
+        height: 280px;
+        width: 230px;
         object-fit: cover;
-    }
+        border-radius: 40px;    ;
+        -webkit-border-radius: 40px;
+        -moz-border-radius: 40px;
+        -ms-border-radius: 40px;
+        -o-border-radius: 40px;
+}
 
     .product-item a.icon-button{
         position: absolute;
@@ -51,4 +55,8 @@ a{
     .product-item .details{
         gap: 0.5rem;
         padding-top: 1rem;
+    }
+
+    .product-item .details > *{
+        font-size: 1.2rem;
     }

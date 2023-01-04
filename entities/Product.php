@@ -44,4 +44,9 @@ class Product{
         return $this->_price;
     }
 
+    public function getPriceString() : string
+    {
+        return number_format((float)$this->_price, 2, '.', '');
+    }
+
 }

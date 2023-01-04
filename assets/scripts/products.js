@@ -9,3 +9,10 @@ input_search.addEventListener('input',(e)=>{
         }
     },500);
 });
+input_search.addEventListener('keydown',(e)=>{
+    if (e.key == 'Enter') {
+        window.location = input_search.value ? 
+            `index.php?page=products&q=${input_search.value}` :
+            'index.php?page=products'
+    }
+});

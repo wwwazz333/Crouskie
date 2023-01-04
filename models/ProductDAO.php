@@ -56,10 +56,10 @@ class ProductDAO extends DAO{
         return $product == false ? false : $product;
     }
 
-    public function getProductImage(int $id)
+    public function getProductImages(int $id) : array
     {
-        $result = $this->queryRow("SELECT pathpicture, altpicture FROM picture WHERE idprod = ?",array($id));
-        return $result == false ? false : $result;
+        $result = $this->queryAll("SELECT pathpicture, altpicture FROM picture WHERE idprod = ?",array($id));
+        return $result;
     }
 
 

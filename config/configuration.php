@@ -19,6 +19,7 @@ const BD_PWD = 'thesaurus-cranberry-reptile';
 
 // Langue du site
 const LANG ='FR-fr';
+// const LANG = 'EN-en';
 
 // Paramètres du site : nom de l'auteur ou des auteurs
 const AUTEUR = ''; 

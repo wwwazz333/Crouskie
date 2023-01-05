@@ -67,8 +67,8 @@ define('PANIER_PAS_CONNECTE','You are not logged in!');
 define('RECHERCHER','Search...');
 
 // Details page
-define('COULEUR','Color:');
-define('TAILLE','Size:');
+define('COULEUR','Color :');
+define('TAILLE','Size :');
 define('AJOUTER_PANIER','Add to cart');
 define('AJOUT_PANIER_SUCCES','Added to cart successfully');
 define('PRODUIT_EXISTE_PANIER','This product is already in your cart');

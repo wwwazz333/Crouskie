@@ -4,10 +4,12 @@ if (isset($_POST['email'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
     $DAO = new UtilisateurDAO(DEBUG);
 
-    $email = $_POST['email'];
-    $pass = $_POST['password'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    // Nettoyage des champs
+    $email = htmlspecialchars($_POST['email']);
+    $pass = htmlspecialchars($_POST['password']);
+    $firstname = htmlspecialchars($_POST['firstname']);
+    $lastname = htmlspecialchars($_POST['lastname']);
+    
     if($DAO->addUser(
         $email,
         password_hash($pass,PASSWORD_DEFAULT),

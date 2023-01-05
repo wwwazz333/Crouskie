@@ -10,10 +10,11 @@ if ($isLogged) {
 if (isset($_POST['email'])) {
     require_once(PATH_MODELS . 'UtilisateurDAO.php');
     
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $DAO = new UtilisateurDAO(DEBUG);
+    // Nettoyage des champs
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
 
+    $DAO = new UtilisateurDAO(DEBUG);
     $data = $DAO->getUser($email);
     if ($data) {
         if(password_verify($password,$data['password'])){
@@ -38,10 +39,9 @@ if (isset($_POST['email'])) {
     }    
 }
 
-
 // On vérifie que l'email est bien présente dans l'URL avant d'afficher la page de connexion
 if (isset($_GET['email'])) { 
-    $email = $_GET['email']; 
+    $email = htmlspecialchars($_GET['email']); 
 }
 
 // Dans le cas contraire on le redirige vers la page portal pour lui redemander son email

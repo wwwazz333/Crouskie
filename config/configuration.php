@@ -1,6 +1,6 @@
 <?php
  
-const DEBUG = true; // production : false; dev : true
+const DEBUG = false; // production : false; dev : true
 
 // Accès base de données
 

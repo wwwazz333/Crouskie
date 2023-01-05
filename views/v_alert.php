@@ -6,18 +6,18 @@ if (isset($alert)) {
 
     $_color = '#03a9f4';
     $_icon = 'mdi:information-outline';
-    switch ($type) {
+    switch ($_type) {
         case 1:
             $_color = '#82E105';
             $_icon = 'mdi:success-circle-outline';
             break;
         case 2:
-            $_color = '#82E105';
-            $_icon = 'mdi:success-circle-outline';
+            $_color = '#ffb74d';
+            $_icon = 'material-symbols:warning-outline-rounded';
             break;
         case 3:
-            $_color = '#82E105';
-            $_icon = 'mdi:success-circle-outline';
+            $_color = '#E10512';
+            $_icon = 'material-symbols:error-outline-rounded';
             break;
     }
 }

@@ -41,9 +41,14 @@ if (isset($_GET['id'])) {
                 $_POST['color'],
                 $_POST['size']
             );
-            print_r($DAO->addCart($cart));
+            
+            // TODO : Ajouter le support de la langue
+            if ($DAO->addCart($cart)) {
+                $alert = showAlert(1,"Succès","Votre article a été ajouté au panier !");
+            }else{
+                $alert = showAlert(3,"Erreur","Une erreur est survenue lors de l'ajout au panier !");
+            }
         }
-
     }else{
         header('Location: index.php?page=404');
         exit();

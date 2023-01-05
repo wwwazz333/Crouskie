@@ -48,6 +48,12 @@ function enableScroll() {
 // Méthode PopUp pour afficher une alerte à l'utilisateur
 
 var activePopUp = document.getElementById('PopUp');
+if (activePopUp) {
+  activePopUp.querySelector('a').addEventListener('click',()=>{
+    activePopUp.remove();
+    activePopUp = null;
+  });
+}
 
 /**
  * 

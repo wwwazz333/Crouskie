@@ -22,12 +22,11 @@ if (!$isLogged) {
 
 // Si l'utilisateur est connecté
 } else {
-
     require_once(PATH_MODELS . 'CommandeDAO.php');
     require_once(PATH_MODELS . 'ProductBoughtDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
     require_once(PATH_MODELS . 'SizeDAO.php');
-
+    
     $commandeDAO = new CommandeDAO(DEBUG);
     $userId = $user->getIdUser();
     $commandesPhp = $commandeDAO->getCommandeByCustomerId($userId); // Récupération des commandes de l'utilisateur -> type : objet php

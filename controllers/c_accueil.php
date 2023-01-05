@@ -1,8 +1,7 @@
 <?php
+require_once(PATH_MODELS . 'CollectionDAO.php');
 
 // Récupération de la dernière collection sortie pour l'afficher dans la page d'accueil
-
-require_once(PATH_MODELS . 'CollectionDAO.php');
 $DAO = new CollectionDAO(DEBUG);
 $lastCollection = $DAO->getLastCollection(); //for the DAO
 $lastCollection = new Collection( //create an object from the DAO
@@ -11,7 +10,7 @@ $lastCollection = new Collection( //create an object from the DAO
     $lastCollection['pathpicture']
 );
 
-// Gestion des alertes potentielles
+// ----------- Gestion des alertes potentielles ---------------
 
 // Vérification de tentative de création de compte
 if (isset($_GET['acc'])) {

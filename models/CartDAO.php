@@ -13,7 +13,7 @@ class CartDAO extends DAO
                     $cart['idcustomer'],
                     $cart['idprod'],
                     $cart['quantitycart'],
-                    $cart['color'],
+                    $cart['namecolor'],
                     $cart['idsize']
                 )
             );
@@ -28,6 +28,18 @@ class CartDAO extends DAO
         return $cart == false ? false : $cart;
     }
     
+    // add item to cart
+    public function addCart(Cart $cart){
+        $result = $this->queryBdd("INSERT INTO cart VALUES (?,?,?,?,?)", array(
+            $cart->getCustomerId(),
+            $cart->getIdProd(),
+            $cart->getQuantityCart(),
+            $cart->getSizeCart(),
+            $cart->getColorCart(),
+        ));
+        return $result;
+    }
+
     // delete all the items from the cart of an user
     public function deleteCart(int $userId)
     {

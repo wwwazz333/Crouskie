@@ -22,6 +22,28 @@ if (isset($_GET['id'])) {
         $DAO = new ColorDAO(DEBUG);
         $colors = $DAO->getColorsByProductID($product->getId());
         $colors = $DAO->resultToColorsArray($colors);
+
+        // Ajout au panier 
+        if (isset($_POST['color']) && isset($_POST['size'])) {
+            require_once(PATH_ENTITY . 'Cart.php');
+            require_once(PATH_MODELS . 'CartDAO.php');
+            
+            $DAO = new CartDAO(DEBUG);
+            if ($isLogged) {
+                
+            }else{
+                header('Location: index.php?page=portal');
+            }
+            $cart = new Cart(
+                $user->getIdUser(),
+                $product->getId(),
+                1,
+                $_POST['color'],
+                $_POST['size']
+            );
+            print_r($DAO->addCart($cart));
+        }
+
     }else{
         header('Location: index.php?page=404');
         exit();

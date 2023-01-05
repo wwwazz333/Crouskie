@@ -99,6 +99,8 @@ form.addEventListener('submit',(ev)=>{
                 //afficher message erreur
             }
         });
+    }else{
+        ev.preventDefault();
     }
-    ev.preventDefault();
+    
 });

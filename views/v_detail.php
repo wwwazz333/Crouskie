@@ -9,7 +9,7 @@ require_once(PATH_VIEWS . 'header.php');
     <div class="carousel rounded shadow-small">
         <!-- <img src="./assets/images/uploads/woc4Eem9Pdaw6X5w.png" alt="" srcset="" class=""> -->
     </div>
-    <form action="" class="flex column center card rounded shadow-small" data-id="<?= $product->getId()?>">
+    <form action="" method="POST" class="flex column center card rounded shadow-small" data-id="<?= $product->getId()?>">
         <h2><?= $product->getName()?></h2>
         <p><?= $product->getDescription()?></p>
         <!-- Section des couleurs -->

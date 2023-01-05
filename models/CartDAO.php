@@ -13,7 +13,7 @@ class CartDAO extends DAO
                     $cart['idcustomer'],
                     $cart['idprod'],
                     $cart['quantitycart'],
-                    $cart['color'],
+                    $cart['namecolor'],
                     $cart['idsize']
                 )
             );

@@ -72,9 +72,9 @@ require_once(PATH_VIEWS . 'header.php');
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
 
-        <form class="flex row wrap right contenu center">
-            <input type="button" id="form-info" value="<?= PASSER_COMMANDE ?>" class="valid circle">
-            <input type="button" id="form-enregistrer" value="<?= VIDER_PANIER ?>" class="valid circle">
+        <form action="index.php?page=cart" method="POST" class="flex row wrap right contenu center">
+            <input type="submit" id="form-commander" value="<?= PASSER_COMMANDE ?>" class="valid circle">
+            <input type="submit" id="form-vider" value="<?= VIDER_PANIER ?>" class="valid circle">
         </form>
 
     <?php } ?>

@@ -23,12 +23,12 @@ class SizeDAO extends DAO{
     }
 
     public function getSizeBySizeId(int $idSize){
-        $result = $this->queryAll("SELECT namesize FROM size WHERE idsize = ?",array($idSize));
+        $result = $this->queryAll("SELECT namesize FROM cloth_size WHERE idsize = ?",array($idSize));
         return $result;
     }
 
     public function getFullSizeBySizeId(int $idSize){
-        $result = $this->queryAll("SELECT * FROM size WHERE idsize = ?",array($idSize));
+        $result = $this->queryAll("SELECT * FROM cloth_size WHERE idsize = ?",array($idSize));
         return $result;
     }
 }

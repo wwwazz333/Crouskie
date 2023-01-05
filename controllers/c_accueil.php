@@ -23,9 +23,9 @@ if (isset($_GET['acc'])) {
 // Vérification si la personne a réussi à se connecter / déconnecté
 if (isset($_GET['log'])) {
     if ($_GET['log'] == 1) {
-        $alert = showAlert(1,"Connexion","Vous êtes maintenant connecté !");
+        $alert = showAlert(0,CONNEXION,CONNECTED);
     }else{
-        $alert = showAlert(1,"Déconnexion","Vous êtes maintenant déconnecté !");
+        $alert = showAlert(0,DISCONNECTION,DISCONNECTED);
     }
 }
 

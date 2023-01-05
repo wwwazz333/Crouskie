@@ -1,4 +1,5 @@
 <?php
+// On regarde si une alerte a été définit par un controlleur
 if (isset($alert)) {
     $_type = $alert[0];
     $_title = $alert[1];
@@ -22,7 +23,7 @@ if (isset($alert)) {
     }
 }
 ?>
-
+<!-- Si c'est le cas alors on affiche une alerte -->
 <?php if (isset($alert)){ ?>
     <div id="PopUp" class="flex center">
         <div class="rounded flex column shadow">
@@ -31,7 +32,7 @@ if (isset($alert)) {
             </div>
             <h2><?=$_title?></h2>
             <p><?=$_message?></p>
-            <a class="circle" style="background-color:<?=$_color?>;">Fermer</a>
+            <a class="circle" style="background-color:<?=$_color?>;"><?=CLOSE?></a>
         </div>
     </div>
 <?php } ?>

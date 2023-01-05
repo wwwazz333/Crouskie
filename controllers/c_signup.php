@@ -46,7 +46,7 @@ if (isset($_GET['email']) == false) {
 
 // Afficher une alerte si la création du compte a échouée
 if (isset($_GET['acc'])) {
-    $alert = showAlert(3,"Erreur","Une erreur est survenue lors de la création de votre compte !");
+    $alert = showAlert(3,ERROR,FAIL_CREATE_ACCOUNT);
 }
 
 // Dans le cas contraire on affiche la vue

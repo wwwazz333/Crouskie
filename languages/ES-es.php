@@ -67,8 +67,8 @@ define('PANIER_PAS_CONNECTE','¡No estás conectado!');
 define('RECHERCHER','Buscar...');
 
 // Página de detalles
-define('COULEUR','Color:');
-define('TAILLE','Talla:');
+define('COULEUR','Color :');
+define('TAILLE','Talla :');
 define('AJOUTER_PANIER','Añadir al carrito');
 define('AJOUT_PANIER_SUCCES','Añadido al carrito con éxito');
 define('AJOUT_PANIER_FAIL',"¡Ocurrió un error al agregar al carrito!");

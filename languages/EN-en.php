@@ -65,6 +65,7 @@ define('PANIER_PAS_CONNECTE','You are not logged in!');
 
 // Products page
 define('RECHERCHER','Search...');
+define('NO_PRODUCTS', "Unfortunately, there are no products with these criteria.");
 
 // Details page
 define('COULEUR','Color :');

@@ -65,6 +65,7 @@ define('PANIER_PAS_CONNECTE','¡No estás conectado!');
 
 // Página de productos
 define('RECHERCHER','Buscar...');
+define('NO_PRODUCTS', "Lamentablemente, no hay productos con estos criterios.");
 
 // Página de detalles
 define('COULEUR','Color :');

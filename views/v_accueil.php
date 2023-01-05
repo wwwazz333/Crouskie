@@ -2,6 +2,7 @@
 //  En tête de page
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
+require_once(PATH_VIEWS . 'alert.php');
 ?>
 <!--  Début de la page -->
 <div class="hero">
@@ -12,8 +13,6 @@ require_once(PATH_VIEWS . 'header.php');
         <p>Crousk-hiver</p>
         <button class='rounded'><?=DISCOVER?></button>
     </div>
-
-
 </div>
 
 <?php require_once(PATH_VIEWS . 'footer.php') ?>

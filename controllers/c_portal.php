@@ -3,6 +3,10 @@
 if ($isLogged) {
     header('Location: index.php');
     exit();
+}else{
+    if (isset($_GET['log'])) {
+        $alert = showAlert(2,"Attention","Vous devez être connecté(e) afin de poursuivre cette action !");
+    }
 }
 
 if (isset($_POST['email'])) {

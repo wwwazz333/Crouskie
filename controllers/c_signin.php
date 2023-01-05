@@ -25,7 +25,7 @@ if (isset($_POST['password'])) {
             );
             $_SESSION['account'] = serialize($user);
             // redirection accueil temporaire
-            header('Location: index.php?log=0');
+            header('Location: index.php?log=1');
             exit();
         }else{
             // require_once(PATH_VIEWS . $page . '.php');

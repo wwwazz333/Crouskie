@@ -2,9 +2,16 @@
 require_once(PATH_MODELS . 'DAO.php');
 require_once(PATH_ENTITY . 'ProductBought.php');
 
+/**
+ * Ce DAO représente l'intéraction avec les produits acheté
+ */
 class ProductBoughtDAO extends DAO
 {
-
+    /**
+     * Permet de convertir les requêtes PHP retournant plusieurs résultats en un tableau d'Objets (ici Product)
+     * @param array $result Le tableau des résultats fournis par les requêtes SQL via le PHP
+     * @return array La liste des objets
+     */
     public function resultToProductBoughtsArray(array $result){
         $list = [];
         foreach($result as $product_bought){

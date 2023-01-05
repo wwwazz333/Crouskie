@@ -9,4 +9,5 @@ if (isset($_GET['q'])) {
     $products = $DAO->resultToProductsArray($DAO->getProducts());
 }
 
+// Appel à la vue
 require_once(PATH_VIEWS . $page . '.php');

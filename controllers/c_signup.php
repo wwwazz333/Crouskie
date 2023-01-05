@@ -15,6 +15,20 @@ if (isset($_POST['email'])) {
         $lastname
     )){
         // Le compte a été créé
+        // On récupère les informations manquante pour effectuer la connexion
+        $data = $DAO->getUser($email);
+        if ($data) {
+            $user = new User(
+                $data["first_name"],
+                $data["last_name"],
+                $data["mail_address"],
+                $data["idcustomer"],
+            );
+            $_SESSION['account'] = serialize($user);
+        }else{
+            // Erreur de connexion
+        }
+        // redirection vers la page d'accueil
         header('Location: index.php?acc=1');
     }else{
         // Une erreur est survenue

@@ -1,6 +1,6 @@
 <?php
-
+// On supprime la session
 unset($_SESSION['account']);
-$isLogged = false;
-require_once(PATH_VIEWS . $page . '.php');
-
+// On redirige vers la page d'accueil
+header("Location: index.php?log=0");
+exit();

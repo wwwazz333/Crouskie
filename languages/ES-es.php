@@ -71,5 +71,5 @@ define('NO_PRODUCTS', "Lamentablemente, no hay productos con estos criterios.");
 define('COULEUR','Color :');
 define('TAILLE','Talla :');
 define('AJOUTER_PANIER','Añadir al carrito');
-define('AJOUT_PANIER_SUCCES','Añadido al carrito con éxito');
+define('AJOUT_PANIER_REUSSI','Añadido al carrito con éxito');
 define('AJOUT_PANIER_FAIL',"¡Ocurrió un error al agregar al carrito!");

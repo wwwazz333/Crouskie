@@ -12,25 +12,25 @@ require_once(PATH_VIEWS . 'alert.php');
 
 <div class="card center shadow rounded content" id="panier-non-vide">
 
-    <h2>Mon panier</h2> 
+    <h2><?= MON_PANIER ?></h2> 
 
     <div class='flex row legende'>
         <table><tr> 
         <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
             <td class="col1">
-                <p>Article</p>
+                <p><?= CART_ARTICLE ?></p>
             </td>
             <td class="col2">
                 <table><tr> 
-                <td><p>Couleur</p></td>
-                <td><p>Taille</p></td>
+                <td><p><?= CART_COULEUR ?></p></td>
+                <td><p><?= CART_TAILLE ?></p></td>
                 </tr></table>
             </td>
             <td class="col3">
                 <table><tr> 
                 <td></td>
-                <td><p>Prix</p></td>
-                <td><p>Quantité</p></td>
+                <td><p><?= CART_PRIX ?></p></td>
+                <td><p><?= CART_QUANTITE ?></p></td>
                 <td></td>
                 </tr></table>
             </td> 

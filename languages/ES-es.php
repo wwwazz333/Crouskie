@@ -58,6 +58,12 @@ define('CHANGER_MDP','Cambiar mi contraseña');
 define('COMMANDES_VIDE','¡Aún no tienes ningún pedido!');
 
 // Página del carrito
+define('MON_PANIER','Mi carrito');
+define('CART_ARTICLE','Poducto');
+define('CART_COULEUR','Color');
+define('CART_TAILLE','Talla');
+define('CART_PRIX','Precio');
+define('CART_QUANTITE','Cantidad');
 define('MONTANT_TOTAL','Monto total del carrito: ');
 define('PASSER_COMMANDE','Realizar mi pedido');
 define('VIDER_PANIER','Vaciar mi carrito');

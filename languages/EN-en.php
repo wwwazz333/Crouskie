@@ -58,6 +58,12 @@ define('CHANGER_MDP','Change my password');
 define('COMMANDES_VIDE','You have no orders yet!');
 
 // Cart page
+define('MON_PANIER','My cart');
+define('CART_ARTICLE','Product');
+define('CART_COULEUR','Color');
+define('CART_TAILLE','Size');
+define('CART_PRIX','Price');
+define('CART_QUANTITE','Quantity');
 define('MONTANT_TOTAL','Total amount of the cart: ');
 define('PASSER_COMMANDE','Place my order');
 define('VIDER_PANIER','Empty my cart');

@@ -26,14 +26,8 @@ if (!$isLogged) {
     require_once(PATH_MODELS . 'ProductDAO.php');
     require_once(PATH_MODELS . 'SizeDAO.php');
     
-    if(isset($_POST['nom'])){
-    
-    }
-    if(isset($_POST['prenom'])){
-        
-    }
-    if(isset($_POST['email'] && $_POST['prenom'] && $_POST['nom'])){
-        changeUserInfos(int $id, string $firstName, string $lastName, string $email) : bool 
+    if(isset($_POST['email'] )&& isset($_POST['prenom']) && isset($_POST['nom'])){
+        changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
     }
     
 

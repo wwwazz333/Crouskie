@@ -58,6 +58,12 @@ define('CHANGER_MDP','Changer mon mot de passe');
 define('COMMANDES_VIDE','Vous n\'avez encore aucune commande !');
 
 // Page panier
+define('MON_PANIER','Mon panier');
+define('CART_ARTICLE','Article');
+define('CART_COULEUR','Couleur');
+define('CART_TAILLE','Taille');
+define('CART_PRIX','Prix');
+define('CART_QUANTITE','Quantité');
 define('MONTANT_TOTAL','Montant total du panier : ');
 define('PASSER_COMMANDE','Passer ma commande');
 define('VIDER_PANIER','Vider mon panier');

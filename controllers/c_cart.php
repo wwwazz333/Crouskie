@@ -22,6 +22,7 @@ if($isLogged) {
     } else if ($cartPhp != null || $isLogged == true){
         $isCartEmpty = false;
         $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
+        $compteur = 0;
 
         $productDAO = new ProductDAO(DEBUG);
         $sizeDAO = new SizeDAO(DEBUG);
@@ -43,14 +44,15 @@ if($isLogged) {
             $size = $sizeDAO->resultToSizesArray($sizePhp);
             
             // Enregistrement des informations dans un tableau traité par la vue
-            $infosProdsCart[$id] = [
+            $infosProdsCart[$compteur] = [
                 "nameprod" => $product[0]->getName(),
                 "color" => $productCart->getColorCart(),
                 "size" => $size[0]->getName(),
                 "quantitycart" => $productCart->getQuantityCart(),
                 "priceprod" => $product[0]->getPrice(),
                 "pricetotal" => $product[0]->getPrice() * $productCart->getQuantityCart()
-            ];   
+            ];  
+            $compteur ++; 
         }
 
         // Vider le panier

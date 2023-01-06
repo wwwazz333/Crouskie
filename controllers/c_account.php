@@ -25,13 +25,19 @@ if (!$isLogged) {
     require_once(PATH_MODELS . 'ProductBoughtDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
     require_once(PATH_MODELS . 'SizeDAO.php');
-    
+
+
+    $userDAO = new UtilisateurDAO(DEBUG);
     if(isset($_POST['email'] )&& isset($_POST['prenom']) && isset($_POST['nom'])){
-        changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
+        $res = $userDAO->changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
+        if ($res) {
+            
+        } else {
+            
+        }
+        
     }
     
-
-
 
     $commandeDAO = new CommandeDAO(DEBUG);
     $userId = $user->getIdUser();

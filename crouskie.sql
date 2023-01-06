@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: crouskie
--- Generation Time: Dec 07, 2022 at 07:00 PM
+-- Generation Time: Jan 06, 2023 at 12:34 PM
 -- Server version: 10.6.11-MariaDB-1:10.6.11+maria~ubu2004
 -- PHP Version: 8.0.26
 
@@ -70,17 +70,20 @@ DELIMITER ;
 CREATE TABLE `cart` (
   `idcustomer` int(11) NOT NULL,
   `idprod` int(11) NOT NULL,
-  `quantitycart` int(11) NOT NULL
+  `quantitycart` int(11) NOT NULL,
+  `idsize` int(11) NOT NULL,
+  `namecolor` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`idcustomer`, `idprod`, `quantitycart`) VALUES
-(1, 1, 2),
-(1, 2, 5),
-(2, 1, 1);
+INSERT INTO `cart` (`idcustomer`, `idprod`, `quantitycart`, `idsize`, `namecolor`) VALUES
+(3, 2, 1, 1, 'orange'),
+(4, 2, 1, 1, 'vert'),
+(4, 13, 1, 3, 'rouge'),
+(8, 1, 2, 3, 'rouge');
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,7 @@ INSERT INTO `cart` (`idcustomer`, `idprod`, `quantitycart`) VALUES
 CREATE TABLE `cloth_size` (
   `idsize` int(11) NOT NULL,
   `namesize` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ;
 
 --
 -- Dumping data for table `cloth_size`
@@ -102,10 +105,7 @@ INSERT INTO `cloth_size` (`idsize`, `namesize`) VALUES
 (2, 'S'),
 (3, 'M'),
 (4, 'L'),
-(5, 'XL'),
-(6, 'Grand'),
-(7, 'superGrand'),
-(8, 'taille');
+(5, 'XL');
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE `collection` (
 --
 
 INSERT INTO `collection` (`namecollection`, `idcollection`, `pathpicture`) VALUES
-('crouskievert', 1, './assets/images/uploads/qX68fyZxVPOCxn7P.png');
+('crouskievert', 1, './assets/images/uploads/woc4Eem9Pdaw6X5w.png');
 
 -- --------------------------------------------------------
 
@@ -152,19 +152,20 @@ INSERT INTO `collection` (`namecollection`, `idcollection`, `pathpicture`) VALUE
 --
 
 CREATE TABLE `color` (
-  `namecolor` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;;
+  `namecolor` varchar(255) NOT NULL,
+  `code` varchar(255) NOT NULL
+) ;
 
 --
 -- Dumping data for table `color`
 --
 
-INSERT INTO `color` (`namecolor`) VALUES
-('Bleu'),
-('jaune'),
-('orange'),
-('rouge'),
-('vert');
+INSERT INTO `color` (`namecolor`, `code`) VALUES
+('bleu', '#03a9f4'),
+('jaune', '#c2c200'),
+('orange', '#ef6c00'),
+('rouge', '#E10512'),
+('vert', '#82E105');
 
 -- --------------------------------------------------------
 
@@ -187,8 +188,11 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`idcustomer`, `first_name`, `last_name`, `mail_address`, `password`, `counter_connection`, `last_connection_try`) VALUES
-(1, 'Thomas', 'Warrier', 'totot@gamil.com', 'default_password', 2, '2022-11-11 17:07:37'),
-(2, 'loic', 'pupier', 'lolo@gmail.com', 'default_password', 0, NULL);
+(1, 'Thomas', 'Warrier', 'twarrier69@gmail.com', '$2y$10$GOH3KXXt6Tv.nixKUg8.WOWVxDT1xYzW4aPXQZ.Tv9shPAkAac5j2', 2, '2022-11-11 17:07:37'),
+(3, 'Elliot', 'Casna', 'elliot.casna@gmail.com', '$2y$10$rBsI3Ac35xRQFJPT4EgNNeijrmNsqdexZjL82ofru/msI4KO8DCJi', 0, NULL),
+(4, 'Anne', 'Pass', 'louane.galois@gmail.com', '$2y$10$/0qhavFf9bp1emlX5xls9etdL0AiWxVKvJumwlILmxEI9NI0I6HfG', 0, NULL),
+(8, 'Marc', 'BERIOT', 'marcberiot@gmail.com', '$2y$10$U/lOoa3c0F3g8tpADVgd/uC.jSu5yDn1u5BIy2CduLv2QA7Ey0J9q', 0, NULL),
+(16, 'test', 'test', 'jetenqulesec@gmail.com', '$2y$10$xwhg.qkoMOBslK94jqmUmuOnOWGA.sQsyXmYEVgMB0HtMADkBPdwi', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,13 +210,14 @@ CREATE TABLE `existingcolor` (
 --
 
 INSERT INTO `existingcolor` (`idprod`, `namecolor`) VALUES
-(1, 'Bleu'),
+(1, 'bleu'),
+(1, 'orange'),
 (1, 'rouge'),
+(1, 'vert'),
 (2, 'orange'),
 (2, 'vert'),
 (4, 'jaune'),
-(11, 'Bleu'),
-(13, 'orange');
+(13, 'rouge');
 
 -- --------------------------------------------------------
 
@@ -231,13 +236,19 @@ CREATE TABLE `existingsize` (
 
 INSERT INTO `existingsize` (`idprod`, `idsize`) VALUES
 (1, 1),
-(1, 6),
+(1, 2),
+(1, 3),
+(1, 4),
 (2, 1),
 (2, 2),
 (2, 3),
 (2, 4),
 (4, 1),
-(13, 6);
+(13, 1),
+(13, 2),
+(13, 3),
+(13, 4),
+(13, 5);
 
 -- --------------------------------------------------------
 
@@ -255,8 +266,7 @@ CREATE TABLE `favorite` (
 --
 
 INSERT INTO `favorite` (`idcustomer`, `idprod`) VALUES
-(1, 1),
-(2, 1);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -268,14 +278,14 @@ CREATE TABLE `picture` (
   `pathpicture` varchar(255) NOT NULL,
   `idprod` int(11) DEFAULT NULL,
   `altpicture` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `picture`
 --
 
 INSERT INTO `picture` (`pathpicture`, `idprod`, `altpicture`) VALUES
-('./assets/images/uploads/qX68fyZxVPOCxn7P.png', 14, 'xwcv');
+('./assets/images/uploads/woc4Eem9Pdaw6X5w.png', NULL, 'collection hiver');
 
 -- --------------------------------------------------------
 
@@ -297,17 +307,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`idprod`, `idcollection`, `nameprod`, `descriptionprod`, `priceprod`, `envente`) VALUES
-(1, 1, 'ertyu', 'dfg', 10.00, 1),
-(2, NULL, '[value-TEst]', '[value-Des]', 21.00, 1),
-(3, NULL, 'nameprodTestId', 'super descripti', 100.00, 1),
-(4, NULL, 'name product isnerted', 'sldfkj', 424.00, 1),
-(7, 1, 'nom', 'dessss', 11.00, 1),
-(8, 1, 'nom', 'dessss', 11.00, 1),
-(11, 1, '???', '????smdk\n', 10.01, 1),
-(12, 1, 'ertyu', 'dfg', 10.00, 1),
-(13, NULL, 'Observer', 'il t\'observe', 99.00, 1),
-(14, NULL, 'Add', 'sf', 10.00, 1),
-(15, NULL, 'test??', 'c\'est meiux ?', 10.00, 1);
+(1, 1, 'pull classique', 'pull classique et sobre', 25.00, 1),
+(2, 1, 'T-shirt crouskie-hiver', 'T-shirt pour l''hiver', 45.00, 1),
+(4, 1, 'pull styliser', 'pull avec des motif représentant une montagne', 35.00, 1),
+(13, NULL, 'T-shirt classique', 'T-shirt classique de la marque crouskie', 20.00, 1);
 
 -- --------------------------------------------------------
 
@@ -358,12 +361,8 @@ CREATE TABLE `stocked` (
 --
 
 INSERT INTO `stocked` (`idprod`, `namecolor`, `idsize`, `quantitystocked`) VALUES
-(1, 'rouge', 2, 14),
-(1, 'rouge', 3, 100),
-(1, 'rouge', 4, 100),
-(2, 'jaune', 2, 50),
-(2, 'orange', 2, 10),
-(2, 'vert', 3, 10);
+(2, 'orange', 1, 3),
+(2, 'vert', 4, 12);
 
 -- --------------------------------------------------------
 
@@ -382,9 +381,7 @@ CREATE TABLE `tag` (
 
 INSERT INTO `tag` (`idtag`, `nametag`) VALUES
 (1, 'pull'),
-(2, 't-shirt'),
-(3, 'autreXd'),
-(4, 'observer');
+(2, 't-shirt');
 
 -- --------------------------------------------------------
 
@@ -403,13 +400,9 @@ CREATE TABLE `tags_product` (
 
 INSERT INTO `tags_product` (`idprod`, `idtag`) VALUES
 (1, 1),
-(1, 2),
-(1, 3),
-(2, 1),
-(3, 1),
-(8, 1),
-(11, 1),
-(13, 4);
+(2, 2),
+(4, 1),
+(13, 2);
 
 --
 -- Indexes for dumped tables
@@ -420,7 +413,9 @@ INSERT INTO `tags_product` (`idprod`, `idtag`) VALUES
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`idcustomer`,`idprod`),
-  ADD KEY `fk_CART2` (`idprod`);
+  ADD KEY `fk_CART2` (`idprod`),
+  ADD KEY `fk_cart3` (`idsize`),
+  ADD KEY `fk_cart4` (`namecolor`);
 
 --
 -- Indexes for table `cloth_size`
@@ -547,7 +542,7 @@ ALTER TABLE `collection`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `idcustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -576,7 +571,9 @@ ALTER TABLE `tag`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `fk_cart` FOREIGN KEY (`idcustomer`) REFERENCES `customer` (`idcustomer`),
-  ADD CONSTRAINT `fk_cart2` FOREIGN KEY (`idprod`) REFERENCES `product` (`idprod`);
+  ADD CONSTRAINT `fk_cart2` FOREIGN KEY (`idprod`) REFERENCES `product` (`idprod`),
+  ADD CONSTRAINT `fk_cart3` FOREIGN KEY (`idsize`) REFERENCES `cloth_size` (`idsize`),
+  ADD CONSTRAINT `fk_cart4` FOREIGN KEY (`namecolor`) REFERENCES `color` (`namecolor`);
 
 --
 -- Constraints for table `collection`

@@ -7,7 +7,7 @@ class Product{
     // ----------- Properties -------------
 
     private int $_id;
-    private int $_collection_id;
+    private string $_collection_id;
     private string $_name;
     private string $_description;
     private float $_price;
@@ -15,12 +15,12 @@ class Product{
     /**
      * Constructeur de la classe Product
      * @param int $id L'identifiant du produit
-     * @param int $id L'identifiant de la collection associée au produit
+     * @param string $id L'identifiant de la collection associée au produit
      * @param string $name Le nom du produit
      * @param string $description La description brève du produit
      * @param float $price le prix du produit en €
      */
-    function __construct(int $id,int $collection_id, string $name, string $description, float $price)
+    function __construct(int $id,string $collection_id, string $name, string $description, float $price)
     {
         $this->_id = $id;
         $this->_collection_id = $collection_id;
@@ -41,9 +41,9 @@ class Product{
 
     /**
      * Retourne l'identifiant du de la collection associée au produit
-     * @return int L'identifiant du de la collection associée au produit
+     * @return string L'identifiant du de la collection associée au produit
      */
-    public function getCollectionId() : int {
+    public function getCollectionId() : string {
         return $this->_collection_id;
     }
 

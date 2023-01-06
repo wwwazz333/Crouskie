@@ -1,6 +1,6 @@
 <?php
  
-const DEBUG = true; // production : false; dev : true
+const DEBUG = false; // production : false; dev : true
 
 // Accès base de données
 
@@ -18,9 +18,9 @@ const BD_PWD = 'thesaurus-cranberry-reptile';
 
 
 // Langue du site
-const LANG ='FR-fr';
+// const LANG ='FR-fr';
 // const LANG = 'EN-en';
-// const LANG = 'ES-es';
+const LANG = 'ES-es';
 
 // Paramètres du site : nom de l'auteur ou des auteurs
 const AUTEUR = ''; 

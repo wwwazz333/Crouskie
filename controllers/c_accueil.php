@@ -15,7 +15,7 @@ $lastCollection = new Collection( //create an object from the DAO
 // Vérification de tentative de création de compte
 if (isset($_GET['acc'])) {
     if ($_GET['acc']) {
-        $alert = showAlert(1,"Succès","Votre compte a bien été créé !");
+        $alert = showAlert(1,SUCCESS,SUCCESS_CREATE_ACCOUNT);
     }
 }
 

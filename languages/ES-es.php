@@ -49,6 +49,7 @@ define('FIRSTNAME','Nombre');
 define('GERER_COOKIES','Administrar mis croukies');
 define('MAUVAIS_MDP','¡Contraseña incorrecta!');
 define('FAIL_CREATE_ACCOUNT','¡Se produjo un error al crear tu cuenta!');
+define('SUCCESS_CREATE_ACCOUNT','Tu cuenta ha sido creada satisfactoriamente !');
 
 // Página de cuenta
 define('CHANGER_INFORMATIONS','Modificar mis datos');

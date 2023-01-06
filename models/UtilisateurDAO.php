@@ -9,9 +9,9 @@ class UtilisateurDAO extends DAO
     /**
      * Retourne les informations d'un utilisateur grâce à son adresse email
      * @param string $email L'email de l'utilisateur
-     * @return array Un dictionnaire
+     * @return mixed False si il ne trouve pas l'utilisateur, sinon un dictionnaire
      */
-    public function getUser($email) : array{
+    public function getUser($email) : mixed {
         $result = $this->queryRow("SELECT * FROM customer WHERE mail_address = ?",array($email));
         return $result;
     }

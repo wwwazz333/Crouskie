@@ -2,6 +2,8 @@
 //  En tête de page
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
+require_once(PATH_VIEWS . 'alert.php');
+// $alert = showAlert(3,CONNEXION,MAUVAIS_MDP);
 ?>
 
 <?php
@@ -71,12 +73,21 @@ require_once(PATH_VIEWS . 'header.php');
         <?php } ?>
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
-
-        <form action="index.php?page=cart" method="POST" class="flex row wrap right contenu center">
-            <input type="submit" id="form-commander" value="<?= PASSER_COMMANDE ?>" class="valid circle">
-            <input type="submit" id="form-vider" value="<?= VIDER_PANIER ?>" class="valid circle">
-        </form>
-
+        <?php 
+            if(isset($commande)){
+                print_r($commande);
+            }
+        ?>
+        <div class="flex row wrap right contenu center">
+            <form action="index.php?page=cart" method="POST" class="contenu center">
+                <input type="hidden" name="action" value="valider">
+                <input type="submit" id="form-commander" value="<?= PASSER_COMMANDE ?>" class="valid circle">
+            </form>
+            <form action=""form action="index.php?page=cart" method="POST" class="contenu center">
+                <input type="hidden" name="action" value="vider">
+                <input type="submit" id="form-vider" value="<?= VIDER_PANIER ?>" class="valid circle">
+            </form>
+        </div>
     <?php } ?>
 </div>
 

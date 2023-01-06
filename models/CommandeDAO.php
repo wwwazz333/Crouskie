@@ -36,5 +36,9 @@ class CommandeDAO extends DAO
         $commande = $this->queryAll("SELECT * FROM cmd where idcustomer = ? order by dateorder desc", array($id));
         return $commande;
     }
+
+    public function addCommande($date,$numorder,int $idCustomer,){
+        $commande = $this->queryBdd("INSERT INTO cmd VALUES (?,?,?)", array($date,$numorder,$idCustomer));
+    }
     
 }

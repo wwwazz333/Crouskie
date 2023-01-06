@@ -15,7 +15,7 @@ if (isset($_GET['selected'])) {
 
 /************************ Page commandes **************************/
 
-// Si l'ytilisateur n'est pas connecté
+// Si l'utilisateur n'est pas connecté
 if (!$isLogged) {
     header('Location: index.php?page=portal');
     exit();

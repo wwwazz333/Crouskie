@@ -63,6 +63,8 @@ define('PASSER_COMMANDE','Place my order');
 define('VIDER_PANIER','Empty my cart');
 define('PANIER_VIDE','Your cart is empty!');
 define('PANIER_PAS_CONNECTE','You are not logged in!');
+define('PANIER_BIEN_VIDE','Your cart has been successfuly emptied! ');
+define('PANIER_BIEN_VALIDE','Your order has been successfuly registered!');
 
 // Products page
 define('RECHERCHER','Search...');

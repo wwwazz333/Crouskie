@@ -54,6 +54,19 @@ if($isLogged) {
             $isCartEmpty = true;
             return true;
         } 
+
+        if(isset($_POST['action'])){
+            switch ($_POST['action']){
+                case 'vider':
+                    viderPanier($cartDAO, $user->getID());
+                    // $alert = showAlert(1,PANIER_BIEN_VIDE);
+                    break;
+                case 'valider':
+                    // $alert = showAlert(1,PANIER_BIEN_VALIDE);
+                    break;
+            }
+
+        }
     }
     
 } else {
@@ -62,6 +75,10 @@ if($isLogged) {
 }
 
 // Test pour vider le panier
+
+if(isset($_POST['action'])){
+    $commande = $_POST['action'];
+}
 // $isCartEmpty = viderPanier($cartDAO,$userId);
 
 require_once(PATH_VIEWS . $page . '.php');

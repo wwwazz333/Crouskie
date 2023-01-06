@@ -2,6 +2,8 @@
 //  En tête de page
 require_once(PATH_VIEWS . 'head.php');
 require_once(PATH_VIEWS . 'header.php');
+require_once(PATH_VIEWS . 'alert.php');
+// $alert = showAlert(3,CONNEXION,MAUVAIS_MDP);
 ?>
 
 <?php

@@ -63,6 +63,8 @@ define('PASSER_COMMANDE','Passer ma commande');
 define('VIDER_PANIER','Vider mon panier');
 define('PANIER_VIDE','Votre panier est vide !');
 define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');
+define('PANIER_BIEN_VIDE','Votre panier a bien été vidé! ');
+define('PANIER_BIEN_VALIDE','Votre commande a été enregistrée avec succès! ');
 
 // Page Produits
 define('RECHERCHER','Rechercher...');

@@ -25,7 +25,7 @@ require_once(PATH_VIEWS . 'header.php');
             </a>
         <?php } ?>
     <?php }else{ ?>
-        <p>Malheureusement, Il n'y a aucun produit avec ces critères.</p>
+        <p><?=NO_PRODUCTS?></p>
     <?php }?>
 </div>
 

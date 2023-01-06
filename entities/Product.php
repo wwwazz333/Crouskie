@@ -1,13 +1,25 @@
 <?php
-// représente un produit vendu par crouskie
+/**
+ * Cette classe représente un produit vendu par crouskie
+ */
 class Product{
-    // properties
+
+    // ----------- Properties -------------
+
     private int $_id;
     private string $_collection_id;
     private string $_name;
     private string $_description;
     private float $_price;
 
+    /**
+     * Constructeur de la classe Product
+     * @param int $id L'identifiant du produit
+     * @param string $id L'identifiant de la collection associée au produit
+     * @param string $name Le nom du produit
+     * @param string $description La description brève du produit
+     * @param float $price le prix du produit en €
+     */
     function __construct(int $id,string $collection_id, string $name, string $description, float $price)
     {
         $this->_id = $id;
@@ -17,33 +29,54 @@ class Product{
         $this->_price = $price;
     }
 
-    // Getters and setters
+    // ----------- Getters -------------
 
-    public function getId() : int
-    {
+    /**
+     * Retourne l'identifiant du produit
+     * @return int L'identifiant du produit
+     */
+    public function getId() : int {
         return $this->_id;
     }
 
-    public function getCollectionId() : string
-    {
+    /**
+     * Retourne l'identifiant du de la collection associée au produit
+     * @return string L'identifiant du de la collection associée au produit
+     */
+    public function getCollectionId() : string {
         return $this->_collection_id;
     }
 
-    public function getName() : string
-    {
+    /**
+     * Retourne le nom du produit
+     * @return string Le nom du produit
+     */
+    public function getName() : string {
         return $this->_name;
     }
 
+    /**
+     * Retourne la description du produit
+     * @return string La description du produit
+     */
     public function getDescription() : string
     {
         return $this->_description;
     }
 
+    /**
+     * Retourne le prix en euro du produit
+     * @return float Le prix en euro du produit
+     */
     public function getPrice() : float
     {
         return $this->_price;
     }
 
+    /**
+     * Retourne le prix en euro du produit avec un format 00.00
+     * @return string Le prix en euro du produit
+     */
     public function getPriceString() : string
     {
         return number_format((float)$this->_price, 2, '.', '');

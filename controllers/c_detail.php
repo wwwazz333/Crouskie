@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
             if ($isLogged) {
                 
             }else{
-                header('Location: index.php?page=portal');
+                header('Location: index.php?page=portal&log');
             }
             $cart = new Cart(
                 $user->getIdUser(),
@@ -44,9 +44,9 @@ if (isset($_GET['id'])) {
             
             // TODO : Ajouter le support de la langue
             if ($DAO->addCart($cart)) {
-                $alert = showAlert(1,"Succès","Votre article a été ajouté au panier !");
+                $alert = showAlert(1,SUCCESS,AJOUT_PANIER_REUSSI);
             }else{
-                $alert = showAlert(3,"Erreur","Une erreur est survenue lors de l'ajout au panier !");
+                $alert = showAlert(3,ERROR,AJOUT_PANIER_FAIL);
             }
         }
     }else{

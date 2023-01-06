@@ -11,8 +11,8 @@
 			</div>
 			<div class="flex row nav">
 				<!-- utiliser les balises ul et li -->
-				<a href="index.php?page=collections"><?= MENU_COLLECTIONS ?></a>
-				<a href="index.php?page=products"><?= MENU_PRODUITS ?></a>
+				<a href="index.php?page=collections"><?=MENU_COLLECTIONS?></a>
+				<a href="index.php?page=products"><?=MENU_PRODUITS?></a>
 			</div>
 			<div class="flex row right">
 				<!-- Bouton pour le panier -->

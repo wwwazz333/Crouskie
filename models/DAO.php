@@ -56,7 +56,7 @@ abstract class DAO
       catch(PDOException $e)
       {
         if($this->_debug)
-          die($e->getMessage);
+          die($e->getMessage());
         $this->_erreur = 'query';
         $res = false;
       }

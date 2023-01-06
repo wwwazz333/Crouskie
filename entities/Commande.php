@@ -1,29 +1,49 @@
 <?php
+/**
+ * Cette classe représente une commandé passée par un client
+ */
 class Commande
 {
-    // properties
+    // ----------- Properties -------------
+
     private string $_date_order;
     private int $_num_order;
     private int $_id_customer;
 
-    function __construct(string $_date_order, int $_num_order, int $_id_customer)
+    /**
+     * Constructeur de la classe Commande
+     * @param string $date
+     */
+    function __construct(string $date_order, int $num_order, int $id_customer)
     {
-        $this->_date_order = $_date_order;
-        $this->_num_order = $_num_order;
-        $this->_id_customer = $_id_customer;
+        $this->_date_order = $date_order;
+        $this->_num_order = $num_order;
+        $this->_id_customer = $id_customer;
     }
 
-    // getter
-    function getDateOrder()
-    {
+    // ----------- Getters -------------
+    
+    /**
+     * Retourne la date de la commande
+     * @return string La date de la commande
+     */
+    function getDateOrder() : string {
         return $this->_date_order;
     }
-    function getNumOrder()
-    {
+
+    /**
+     * Retourne le numéro de la commande
+     * @return int Le numéro de la commande
+     */
+    function getNumOrder() : int {
         return $this->_num_order;
     }
-    function getIdCustomer()
-    {
+
+    /**
+     * Retourne le numéro du client qui a passé la commande
+     * @return int L'indentifiant de l'utilisateur
+     */
+    function getIdCustomer() : int {
         return $this->_id_customer;
     }
 }

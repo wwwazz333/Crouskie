@@ -1,5 +1,4 @@
 <?php
-
 /*
 Représentation objet d'un utilisateur du site web
 */
@@ -14,9 +13,13 @@ class User{
     // Commands
     // Favorites
 
-    /*
-    Constructeur de l'utilisateur
-    */
+    /**
+     * Constructeur de la classe User
+     * @param string $first_name Le prénom de l'utilisateur
+     * @param string $last_name Le nom de famille de l'utilisateur
+     * @param string $email L'adresse email de l'utilisateur
+     * @param int L'identifiant de l'utilisateur
+     */
     function __construct(string $first_name, string $last_name, string $email,int $id){
         $this -> _first_name = $first_name;
         $this -> _last_name = $last_name;
@@ -26,28 +29,35 @@ class User{
 
     /*============ Getters ============*/
 
-    //Obtenir le prénom
-    public function getFirstName()
-    {
+    /**
+     * Retourne le prénom de l'utilisateur
+     * @return string Le prénom de l'utilisateur
+     */
+    public function getFirstName() : string {
         return $this->_first_name;
     }
 
-    //Obtenir le nom de famille
-    public function getLastName()
-    {
+    /**
+     * Retourne le nom de famille de l'utilisateur
+     * @return string Le nom de famille de l'utilisateur
+     */
+    public function getLastName() : string {
         return $this->_last_name;
     }
     
-    //Obtenir l'email
-    public function getEmail()
-    {
+    /**
+     * Retourne l'adresse email de l'utilisateur
+     * @return string L'adresse email de l'utilisateur
+     */
+    public function getEmail() : string {
         return $this->_email;
     }
 
-    //Obtenir l'ID
-    public function getIdUser()
-    {
+    /**
+     * Retourne l'identifiant de l'utilisateur
+     * @return string L'identifiant de l'utilisateur
+     */
+    public function getIdUser() : int {
         return $this->_id;
     }
 }
-?>

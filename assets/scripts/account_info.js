@@ -29,5 +29,4 @@ form_enregistrer.addEventListener("click", function(){
     nom.classList.remove('post-it')
     prenom.classList.remove('post-it')
     email.classList.remove('post-it')
-    alert('Vos informations ont bien été enregistrées')
 })

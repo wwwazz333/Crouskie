@@ -2,6 +2,7 @@
 require_once(PATH_MODELS . 'CartDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
 require_once(PATH_MODELS . 'SizeDAO.php');
+require_once(PATH_ENTITY . 'User.php');
 
 // Si l'utilisateur est connecté
 // Récupération du panier de l'utilisateur
@@ -9,6 +10,10 @@ if($isLogged) {
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
+
+    if (isset($_GET['vider'])){
+        $alert = showAlert(1, VIDER_PANIER,PANIER_BIEN_VIDE);
+    }
 
     // Si le panier est vide
     if($cartPhp == null) {
@@ -58,11 +63,11 @@ if($isLogged) {
         if(isset($_POST['action'])){
             switch ($_POST['action']){
                 case 'vider':
-                    viderPanier($cartDAO, $user->getID());
-                    // $alert = showAlert(1,PANIER_BIEN_VIDE);
+                    viderPanier($cartDAO, $userId);
+                    header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
-                    // $alert = showAlert(1,PANIER_BIEN_VALIDE);
+                    $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
                     break;
             }
 

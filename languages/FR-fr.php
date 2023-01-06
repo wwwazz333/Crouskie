@@ -56,7 +56,7 @@ define('CHANGER_INFORMATIONS','Modifier mes informations');
 define('ENREGISTRER_INFORMATIONS','Enregistrer mes informations');
 define('CHANGER_MDP','Changer mon mot de passe');
 define('COMMANDES_VIDE','Vous n\'avez encore aucune commande !');
-
+define('CHANGEMENT_INFORMATIONS_CONFIRMER',"Informations changé avec succès");
 // Page panier
 define('MON_PANIER','Mon panier');
 define('CART_ARTICLE','Article');

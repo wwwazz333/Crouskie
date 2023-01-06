@@ -62,6 +62,10 @@ if($isLogged) {
 }
 
 // Test pour vider le panier
+
+if(isset($_POST['action'])){
+    $commande = $_POST['action'];
+}
 // $isCartEmpty = viderPanier($cartDAO,$userId);
 
 require_once(PATH_VIEWS . $page . '.php');

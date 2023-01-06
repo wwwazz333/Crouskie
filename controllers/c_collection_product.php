@@ -7,7 +7,7 @@ $DAOCollection = new CollectionDAO(DEBUG);
 if (isset($_GET['id'])) {
     
     $products = $DAO->resultToProductsArray($DAO->getProductsByCollectionId($_GET['id']));
-    $collection = $DAOCollection->getCollectionsByID($_GET['id']);
+    $collection = $DAOCollection->getCollectionByID($_GET['id']);
     $collection = new Collection( //create an object from the DAO
         $collection['namecollection'],
         $collection['idcollection'],

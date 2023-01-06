@@ -64,8 +64,8 @@ define('VIDER_PANIER','Vaciar mi carrito');
 define('PANIER_VIDE','¡Tu carrito está vacío!');
 define('PANIER_PAS_CONNECTE','¡No estás conectado!');
     // à traduire
-define('PANIER_BIEN_VIDE','');
-define('PANIER_BIEN_VALIDE','');
+define('PANIER_BIEN_VIDE','a');
+define('PANIER_BIEN_VALIDE','a');
 
 // Página de productos
 define('RECHERCHER','Buscar...');

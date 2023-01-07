@@ -30,19 +30,19 @@
 
 
 /* -------- page info -------- */
-.contenu form h2
+.contenu div h2
 {
     width: 15rem;
     font-size: 20px;
 }
 
-.contenu form {
+.contenu div {
     margin: 2rem;
 }
 
 
 
-.contenu > input[type="button"], #mdp{
+.contenu > input[type="button"], #mdp, .contenu > input[type="submit"]{
     margin: 5vh 0px;
     height: 4rem;
     width: 30%;
@@ -53,7 +53,6 @@
     margin-top: 0;
     padding-left: 0;
     padding-right: 0;
-    
 }
 
 #form-enregistrer{
@@ -68,6 +67,8 @@
     margin-right: 3rem;
     margin-left: -3rem;
 }
+
+
 
 .post-it{
     background-color: rgb(255, 255, 202);

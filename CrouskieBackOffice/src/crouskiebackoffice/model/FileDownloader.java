@@ -25,8 +25,8 @@ import javax.imageio.ImageIO;
 public class FileDownloader {
 
     //le dernier slash est très important
-    //http://menardbediant.fr:8081/
-    public final static String SERVER_ADRESSE = "http://menardbediant.fr:8081/";
+    //http://menardbediant.fr:8080/
+    public final static String SERVER_ADRESSE = "http://menardbediant.fr:8080/";
 
     public static String downloadFromUrl(URL url, String localFilename) throws IOException {
         InputStream is = null;

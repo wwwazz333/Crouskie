@@ -13,13 +13,35 @@ import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.JList;
 
+/**
+ * Contrôleur utilisé pour la modification d'un produit dans l'application.
+ */
 public class ControllerEditProduct {
 
+    /**
+     * Le produit à modifier.
+     */
     private Product product;
+    /**
+     * DAO pour les collections.
+     */
     private DAOCollection daoCollection;
+    /**
+     * DAO pour les produits.
+     */
     private DAOProduct daoProduct;
+    /**
+     * Vue de modification de produit.
+     */
     private EditProduct editProduct;
 
+    /**
+     * Crée un nouveau contrôleur de modification de produit avec la vue de
+     * modification de produit et le produit à modifier.
+     *
+     * @param editProduct la vue de modification de produit
+     * @param product le produit à modifier
+     */
     public ControllerEditProduct(EditProduct editProduct, Product product) {
         this.editProduct = editProduct;
         this.product = product;
@@ -28,6 +50,22 @@ public class ControllerEditProduct {
 
     }
 
+    /**
+     * Sauvegarde les modifications apportées au produit.
+     *
+     * @param name le nom du produit
+     * @param description la description du produit
+     * @param price le prix du produit
+     * @param enVente indique si le produit est en vente
+     * @param comboBoxModel le modèle du ComboBox de sélection de collection
+     * @param colorsListModel le modèle de la liste de couleurs
+     * @param sizesListModel le modèle de la liste de tailles
+     * @param tagsListModel le modèle de la liste de tags
+     * @param pictures la liste d'images du produit
+     * @return true si la sauvegarde a réussi, false sinon
+     * @throws NumberFormatException si le prix du produit n'est pas valide
+     * @throws SQLException si une erreur SQL se produit lors de la sauvegarde
+     */
     public boolean save(String name, String description, String price,
             boolean enVente,
             ComboBoxModel comboBoxModel,
@@ -63,6 +101,11 @@ public class ControllerEditProduct {
         return false;
     }
 
+    /**
+     * Retourne une implémentation de l'interface AddDelListIem.
+     *
+     * @return une implémentation de l'interface AddDelListIem
+     */
     public AddDelListIem getAddDelListItem() {
         return new AddDelListIem() {
             @Override
@@ -83,6 +126,9 @@ public class ControllerEditProduct {
         };
     }
 
+    /**
+     * Remet à zéro tous les champs de la vue de modification de produit.
+     */
     public void clearAll() {
         editProduct.getNameInput().setText("");
         editProduct.getDescriptionInput().setText("");

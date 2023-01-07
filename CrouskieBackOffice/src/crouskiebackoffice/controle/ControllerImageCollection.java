@@ -25,14 +25,39 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/**
+ * Contrôleur pour l'affichage et la sélection d'images de collections dans une
+ * vue.
+ */
 public class ControllerImageCollection implements ActionListener {
 
+    /**
+     * Classe interne représentant une image avec son JLabel associé et sa
+     * collection.
+     */
     class Tuple {
 
+        /**
+         * L'image.
+         */
         Picture pic;
+        /**
+         * Le JLabel associé à l'image.
+         */
         JLabel image;
+        /**
+         * La collection associée à l'image.
+         */
         Collection collection;
 
+        /**
+         * Crée un nouveau tuple avec l'image, le JLabel et la collection
+         * donnés.
+         *
+         * @param pic l'image
+         * @param image le JLabel associé à l'image
+         * @param collection la collection associée à l'image
+         */
         public Tuple(Picture pic, JLabel image, Collection collection) {
             this.pic = pic;
             this.image = image;
@@ -41,18 +66,47 @@ public class ControllerImageCollection implements ActionListener {
 
     }
 
+    /**
+     * Le panneau de la vue.
+     */
     private Container panel;
+    /**
+     * La vue parente.
+     */
     private JDialog parent;
+    /**
+     * Le bouton d'ajout d'image.
+     */
     private JButton addBtn;
-
+    /**
+     * L'image en mémoire.
+     */
     private BufferedImage bfrImage;
+    /**
+     * La liste des tuples d'images de la vue.
+     */
     private List<Tuple> elements = new LinkedList<>();
-
+    /**
+     * Le contrôleur de téléchargement de fichier.
+     */
     private ControllerUploadFile controllerUploadFile;
-
+    /**
+     * Le DAO de collection.
+     */
     private DAOCollection dao = new DAOCollection();
+    /**
+     * La collection sélectionnée.
+     */
     private Collection collectionSelect;
 
+    /**
+     * Crée un nouveau contrôleur d'images de collection avec la vue parente, le
+     * bouton d'ajout et la collection sélectionnée.
+     *
+     * @param parent la vue parente
+     * @param addBtn le bouton d'ajout
+     * @param collectionSelect la collection sélectionnée
+     */
     public ControllerImageCollection(JDialog parent, JButton addBtn, Collection collectionSelect) {
         this.panel = parent.getContentPane();
         this.parent = parent;
@@ -74,6 +128,11 @@ public class ControllerImageCollection implements ActionListener {
 
     }
 
+    /**
+     * Retourne la liste des images de la vue.
+     *
+     * @return la liste des images de la vue
+     */
     public List<Picture> getPictures() {
         List<Picture> pictures = new LinkedList<>();
 
@@ -83,6 +142,11 @@ public class ControllerImageCollection implements ActionListener {
         return pictures;
     }
 
+    /**
+     * Ajoute une image à la vue.
+     *
+     * @param tuple le tuple avec l'image, le JLabel et la collection associée
+     */
     private void addPicture(Tuple tuple) {
         elements.add(tuple);
         ErrorHandeler.getInstance().exec(() -> {
@@ -137,6 +201,11 @@ public class ControllerImageCollection implements ActionListener {
         });
     }
 
+    /**
+     * Supprime une image de la vue.
+     *
+     * @param tuple le tuple avec l'image, le JLabel et la collection associée
+     */
     private void removePicture(Tuple tuple) {
         ErrorHandeler.getInstance().exec(() -> {
             System.out.println("Suppression de l'image...");
@@ -150,6 +219,14 @@ public class ControllerImageCollection implements ActionListener {
 
     }
 
+    /**
+     * Redimensionne une image.
+     *
+     * @param srcImg l'image à redimensionner
+     * @param width la largeur de l'image redimensionnée
+     * @param height la hauteur de l'image redimensionnée
+     * @return l'image redimensionnée
+     */
     private Image getScaledImage(Image srcImg, int w, int h) {
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
@@ -161,6 +238,11 @@ public class ControllerImageCollection implements ActionListener {
         return resizedImg;
     }
 
+    /**
+     * Traite les événements d'action du contrôleur.
+     *
+     * @param ae l'événement d'action
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         String pathToImage = controllerUploadFile.choose();
@@ -185,14 +267,30 @@ public class ControllerImageCollection implements ActionListener {
         }
     }
 
+    /**
+     * Demande à l'utilisateur de saisir la description d'une image.
+     *
+     * @return la description saisie par l'utilisateur ou null s'il n'a rien
+     * saisi
+     */
     private String getDescriptionImage() {
         return JOptionPane.showInputDialog("Nom de la collection");
     }
 
+    /**
+     * Demande à l'utilisateur de saisir la description d'une image.
+     *
+     * @param defaultValue la valeur par défaut
+     * @return la description saisie par l'utilisateur ou null s'il n'a rien
+     * saisi
+     */
     private String getDescriptionImage(String defaultValue) {
         return JOptionPane.showInputDialog("Nom de la collection", defaultValue);
     }
 
+    /**
+     * Met à jour le panneau de la vue en ajoutant ou en supprimant des images.
+     */
     private void updatePanel() {
         panel.revalidate();
         panel.repaint();

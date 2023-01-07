@@ -28,15 +28,13 @@ if (!$isLogged) {
 
 
     $userDAO = new UtilisateurDAO(DEBUG);
-    if(isset($_POST['email'])){
+    if(isset($_POST['email']) && isset($_POST['prenom']) && isset($_POST['nom'])){
         $res = $userDAO->changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
         if ($res) {
             $alert = showAlert(1,SUCCESS,CHANGEMENT_INFORMATIONS_CONFIRMER);
         } else {
             $alert = showAlert(3,ERROR,CHANGEMENT_INFORMATIONS_ERREUR);
         }
-    }else{
-        $alert = showAlert(2,WARNING,CHANGEMENT_INFORMATIONS_INCOMPLETE);
     }
     
 

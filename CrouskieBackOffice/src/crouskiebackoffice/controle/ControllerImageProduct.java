@@ -23,19 +23,38 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * Contrôleur pour les images associées à un produit. Gère l'ajout et la
+ * suppression d'images, ainsi que la modification de leur description.
+ * Implémente l'interface ActionListener pour réagir aux événements déclenchés
+ * par des actions de l'utilisateur.
+ */
 public class ControllerImageProduct implements ActionListener {
 
+    // AttachImage et JButton sont utilisés pour l'ajout d'images
+    // JPanel est utilisé pour afficher les images
     private AttachImage attachPicture;
     private JPanel panel;
     private JButton addBtn;
 
+    // BufferedImage est utilisé pour stocker une image téléchargée à partir d'une URL
     private BufferedImage bfrImage;
+
+    // Listes pour stocker les images et leurs labels respectifs
     private List<Picture> pictures = new LinkedList<>();
     private List<JLabel> imagesLabel = new LinkedList<>();
 
+    // Contrôleur pour le téléchargement de fichier
     private ControllerUploadFile controllerUploadFile;
 
-
+    /**
+     * Constructeur pour initialiser les attributs et ajouter un écouteur
+     * d'action au bouton d'ajout.
+     *
+     * @param panel JPanel pour afficher les images
+     * @param attachPicture AttachImage utilisé pour l'ajout d'images
+     * @param addBtn JButton utilisé pour déclencher l'ajout d'une image
+     */
     public ControllerImageProduct(JPanel panel, AttachImage attachPicture, JButton addBtn) {
         this.attachPicture = attachPicture;
         this.panel = panel;
@@ -44,33 +63,48 @@ public class ControllerImageProduct implements ActionListener {
         this.addBtn.addActionListener(this);
         controllerUploadFile = new ControllerUploadFile(panel);
 
+        // Ajouter toutes les images existantes à l'interface utilisateur
         for (Picture pic : attachPicture.getPictures()) {
             addPicture(pic);
         }
 
     }
 
+    /**
+     * Renvoie la liste des images associées au produit.
+     *
+     * @return Liste de Picture
+     */
     public List<Picture> getPictures() {
         return pictures;
     }
 
+    /**
+     * Ajoute une image à la liste et à l'interface utilisateur.
+     *
+     * @param pic Picture à ajouter
+     */
     private void addPicture(Picture pic) {
         if (attachPicture.isSingleAttach()) {
             for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
                 removePicture(imagesLabel.get(i), pictures.get(i));
             }
         }
+        // Ajouter l'image à la liste et télécharger l'image à partir de l'URL
         pictures.add(pic);
         ErrorHandeler.getInstance().exec(() -> {
             String[] partOfUrl = pic.getPath().split("/");
 
             bfrImage = FileDownloader.downloadImageFromUrl(pic.getPath(), partOfUrl[partOfUrl.length - 1]);
 
+            // Calculer le ratio de l'image pour redimensionner l'image de manière à ce qu'elle ait une hauteur de 200 pixels
             double ratio = (double) bfrImage.getWidth() / (double) bfrImage.getHeight();
 
+            // Redimensionner l'image et créer un ImageIcon à partir de cette image
             ImageIcon img = new ImageIcon(getScaledImage(new ImageIcon(bfrImage).getImage(), 200, (int) (200 / ratio)));
             img.setDescription(pic.getAlt());
 
+            // Créer un label d'image à partir de l'ImageIcon et ajouter un écouteur de souris pour afficher un menu contextuel lorsque l'utilisateur clique avec le bouton droit de la souris sur l'image
             JLabel imageDisplay = new JLabel(img);
             imagesLabel.add(imageDisplay);
 
@@ -100,6 +134,12 @@ public class ControllerImageProduct implements ActionListener {
         });
     }
 
+    /**
+     * Supprime une image de la liste et de l'interface utilisateur.
+     *
+     * @param image JLabel de l'image à supprimer
+     * @param pic Picture à supprimer
+     */
     private void removePicture(JLabel image, Picture pic) {
         this.panel.remove(image);
         pictures.remove(pic);
@@ -107,6 +147,14 @@ public class ControllerImageProduct implements ActionListener {
         updatePanel();
     }
 
+    /**
+     * Redimensionne une image.
+     *
+     * @param srcImg Image à redimensionner
+     * @param w Largeur de l'image redimensionnée
+     * @param h Hauteur de l'image redimensionnée
+     * @return Image redimensionnée
+     */
     private Image getScaledImage(Image srcImg, int w, int h) {
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = resizedImg.createGraphics();
@@ -118,6 +166,14 @@ public class ControllerImageProduct implements ActionListener {
         return resizedImg;
     }
 
+    /**
+     * Méthode appelée lorsqu'un événement ActionEvent est déclenché. Si
+     * l'événement est déclenché par le bouton d'ajout, ouvre une fenêtre de
+     * sélection de fichier pour que l'utilisateur puisse sélectionner une image
+     * à ajouter.
+     *
+     * @param e ActionEvent déclenché
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         String pathToImage = controllerUploadFile.choose();
@@ -142,14 +198,32 @@ public class ControllerImageProduct implements ActionListener {
         }
     }
 
+    /**
+     * Demande à l'utilisateur de saisir une nouvelle description pour l'image
+     * en utilisant une boîte de dialogue.
+     *
+     * @return Nouvelle description de l'image, ou null si l'utilisateur a
+     * annulé
+     */
     private String getDescriptionImage() {
         return JOptionPane.showInputDialog("Description de l'image");
     }
 
-    private String getDescriptionImage(String defaultValue) {
-        return JOptionPane.showInputDialog("Description de l'image", defaultValue);
+    /**
+     * Demande à l'utilisateur de saisir une nouvelle description pour l'image
+     * en utilisant une boîte de dialogue.
+     *
+     * @param currentAlt Description actuelle de l'image
+     * @return Nouvelle description de l'image, ou null si l'utilisateur a
+     * annulé
+     */
+    private String getDescriptionImage(String currentAlt) {
+        return JOptionPane.showInputDialog("Description de l'image", currentAlt);
     }
 
+    /**
+     * Met à jour le panel en le révalidant et en le réaffichant.
+     */
     private void updatePanel() {
         panel.revalidate();
         panel.repaint();

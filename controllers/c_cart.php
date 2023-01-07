@@ -1,12 +1,15 @@
 <?php 
 require_once(PATH_MODELS . 'CartDAO.php');
+require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
+require_once(PATH_MODELS . 'ProductBoughtDAO.php');
 require_once(PATH_MODELS . 'SizeDAO.php');
 require_once(PATH_ENTITY . 'User.php');
 
 // Si l'utilisateur est connecté
 // Récupération du panier de l'utilisateur
 if($isLogged) {
+    $commandeDAO = new CommandeDAO(DEBUG);
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
@@ -69,6 +72,12 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
+                    $dt = new \DateTime();
+                    $date->format('d/m/Y H:i:s');
+                    // Fonction pour créer un ID commande
+                    //$idOerder = fn();
+                    // $commandeDAO->addCommande($date,$idOrder,$userID);
+                    // $productBoughtDAO->buyProduct($product);
                     $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
                     break;
             }

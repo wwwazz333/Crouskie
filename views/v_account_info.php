@@ -2,6 +2,7 @@
 
     <form id="account-form" action="index.php?page=account" method="post" >
         <div class="flex row wrap right contenu">
+            
             <div class="card flex row center shadow-small rounded">
                 <h2>Nom :</h2>
                 <input type="text" name="nom" id="nom" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getLastName() ?>">

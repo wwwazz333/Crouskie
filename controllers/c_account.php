@@ -12,7 +12,6 @@ if (isset($_GET['selected'])) {
     $selectedPage = "info";
 }
 
-
 /************************ Page commandes **************************/
 
 // Si l'utilisateur n'est pas connecté
@@ -26,7 +25,19 @@ if (!$isLogged) {
     require_once(PATH_MODELS . 'ProductBoughtDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
     require_once(PATH_MODELS . 'SizeDAO.php');
+
+
+    $userDAO = new UtilisateurDAO(DEBUG);
+    if(isset($_POST['email']) && isset($_POST['prenom']) && isset($_POST['nom'])){
+        $res = $userDAO->changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
+        if ($res) {
+            $alert = showAlert(1,SUCCESS,CHANGEMENT_INFORMATIONS_CONFIRMER);
+        } else {
+            $alert = showAlert(3,ERROR,CHANGEMENT_INFORMATIONS_ERREUR);
+        }
+    }
     
+
     $commandeDAO = new CommandeDAO(DEBUG);
     $userId = $user->getIdUser();
     $commandesPhp = $commandeDAO->getCommandeByCustomerId($userId); // Récupération des commandes de l'utilisateur -> type : objet php

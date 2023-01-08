@@ -12,25 +12,25 @@ require_once(PATH_VIEWS . 'alert.php');
 
 <div class="card center shadow rounded content" id="panier-non-vide">
 
-    <h2>Mon panier</h2> 
+    <h2><?= MON_PANIER ?></h2> 
 
     <div class='flex row legende'>
         <table><tr> 
         <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
             <td class="col1">
-                <p>Article</p>
+                <p><?= CART_ARTICLE ?></p>
             </td>
             <td class="col2">
                 <table><tr> 
-                <td><p>Couleur</p></td>
-                <td><p>Taille</p></td>
+                <td><p><?= CART_COULEUR ?></p></td>
+                <td><p><?= CART_TAILLE ?></p></td>
                 </tr></table>
             </td>
             <td class="col3">
                 <table><tr> 
                 <td></td>
-                <td><p>Prix</p></td>
-                <td><p>Quantité</p></td>
+                <td><p><?= CART_PRIX ?></p></td>
+                <td><p><?= CART_QUANTITE ?></p></td>
                 <td></td>
                 </tr></table>
             </td> 
@@ -60,9 +60,10 @@ require_once(PATH_VIEWS . 'alert.php');
                         <td><p><?php $info = $product['priceprod']; echo "$info"; ?> €</p></td>
                         <td><p><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
                         <td>
-                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour ajouter 1 -->
-                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour enlever 1 -->
-                            <iconify-icon icon="mdi:cards-heart-outline"></iconify-icon> <!-- Icone pour supprimer -->
+                            <!-- Icones pour ajouter 1, enlever un, supprimer du panier -->
+                            <iconify-icon icon="ic:baseline-plus" width="34" height="34"></iconify-icon> 
+                            <iconify-icon icon="ic:baseline-minus" width="34" height="34"></iconify-icon> 
+                            <iconify-icon icon="uil:trash-alt" width="34" height="34"></iconify-icon>
                         </td>
                         </tr></table>
                     </td> 

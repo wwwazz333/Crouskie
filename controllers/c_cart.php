@@ -1,12 +1,15 @@
 <?php 
 require_once(PATH_MODELS . 'CartDAO.php');
+require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
+require_once(PATH_MODELS . 'ProductBoughtDAO.php');
 require_once(PATH_MODELS . 'SizeDAO.php');
 require_once(PATH_ENTITY . 'User.php');
 
 // Si l'utilisateur est connecté
 // Récupération du panier de l'utilisateur
 if($isLogged) {
+    $commandeDAO = new CommandeDAO(DEBUG);
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
@@ -22,6 +25,7 @@ if($isLogged) {
     } else if ($cartPhp != null || $isLogged == true){
         $isCartEmpty = false;
         $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
+        $compteur = 0;
 
         $productDAO = new ProductDAO(DEBUG);
         $sizeDAO = new SizeDAO(DEBUG);
@@ -43,14 +47,15 @@ if($isLogged) {
             $size = $sizeDAO->resultToSizesArray($sizePhp);
             
             // Enregistrement des informations dans un tableau traité par la vue
-            $infosProdsCart[$id] = [
+            $infosProdsCart[$compteur] = [
                 "nameprod" => $product[0]->getName(),
                 "color" => $productCart->getColorCart(),
                 "size" => $size[0]->getName(),
                 "quantitycart" => $productCart->getQuantityCart(),
                 "priceprod" => $product[0]->getPrice(),
                 "pricetotal" => $product[0]->getPrice() * $productCart->getQuantityCart()
-            ];   
+            ];  
+            $compteur ++; 
         }
 
         // Vider le panier
@@ -67,6 +72,12 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
+                    $dt = new \DateTime();
+                    $date->format('d/m/Y H:i:s');
+                    // Fonction pour créer un ID commande
+                    //$idOerder = fn();
+                    // $commandeDAO->addCommande($date,$idOrder,$userID);
+                    // $productBoughtDAO->buyProduct($product);
                     $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
                     break;
             }

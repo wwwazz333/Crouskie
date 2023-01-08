@@ -11,7 +11,7 @@ class UtilisateurDAO extends DAO
      * @param string $email L'email de l'utilisateur
      * @return mixed False si il ne trouve pas l'utilisateur, sinon un dictionnaire
      */
-    public function getUser($email) : mixed {
+    public function getUser($email) /*: mixed */ {
         $result = $this->queryRow("SELECT * FROM customer WHERE mail_address = ?",array($email));
         return $result;
     }

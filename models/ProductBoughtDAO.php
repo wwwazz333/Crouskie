@@ -33,7 +33,7 @@ class ProductBoughtDAO extends DAO
     /**
      * Permet de convertir les requêtes PHP retournant plusieurs résultats en un tableau d'Objets (ici Product)
      * @param array $result Le tableau des résultats fournis par les requêtes SQL via le PHP
-     * @return ProductBought Si le produit a bien été trouvé
+     * @return mixed ProductBought Si le produit a bien été trouvé
      */
     public function getProductBoughtByCustomerId(int $id)
     {
@@ -45,7 +45,7 @@ class ProductBoughtDAO extends DAO
     /**
      * Permet de convertir les requêtes PHP retournant plusieurs résultats en un tableau d'Objets (ici Product)
      * @param Product $result Le tableau des résultats fournis par les requêtes SQL via le PHP
-     * @return boolean Si le produit a bien été déplacé dans les ProductBought
+     * @return mixed Si le produit a bien été déplacé dans les ProductBought
      */
     public function buyProduct(Product $product)
     {
@@ -54,7 +54,11 @@ class ProductBoughtDAO extends DAO
         // si il reste des produits en stock
         if ($quantity > 0){
         // Ne pas oublier d'enlever du stock le produit 
-        $product_bought = $this->queryBdd("INSERT INTO ",array());
+        $product_bought = $this->queryBdd("INSERT INTO productbought VALUES (?,?,?,?,?) ",array(
+            //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
+            $product->getID(),
+
+        ));
         $product_delete = $this->queryBdd("UPDATE ", array()); 
         }
         else{

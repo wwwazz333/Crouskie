@@ -68,3 +68,7 @@ h3, h2 {
 .content .commande .produits div p {
     margin: 0.2rem;
 }
+.content .commande {
+    max-height: 40rem;
+    overflow-y: scroll;
+}

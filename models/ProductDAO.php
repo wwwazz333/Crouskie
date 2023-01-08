@@ -49,7 +49,7 @@ class ProductDAO extends DAO{
      */
     public function getProducts() : array
     {
-        $result = $this->queryAll("SELECT * FROM product");
+        $result = $this->queryAll("SELECT * FROM product WHERE envente = 1");
         return $result;
     }
 
@@ -71,7 +71,7 @@ class ProductDAO extends DAO{
      */
     public function getProductsByName(string $name) : array
     {
-        $result = $this->queryAll("SELECT * FROM product WHERE nameprod LIKE ?",array('%' . $name . '%'));
+        $result = $this->queryAll("SELECT * FROM product WHERE envente = 1 AND nameprod LIKE ?",array('%' . $name . '%'));
         return $result;
     }
 

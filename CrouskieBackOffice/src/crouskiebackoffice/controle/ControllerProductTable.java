@@ -60,9 +60,10 @@ public class ControllerProductTable implements Observer {
     }
 
     /**
- * Méthode appelée lorsque les données de produits sont mises à jour.
- * Met à jour le modèle de visualisation de produits avec les données actuelles de produits.
- */
+     * Méthode appelée lorsque les données de produits sont mises à jour. Met à
+     * jour le modèle de visualisation de produits avec les données actuelles de
+     * produits.
+     */
     @Override
     public void update() {
         ErrorHandeler.getInstance().exec(() -> {

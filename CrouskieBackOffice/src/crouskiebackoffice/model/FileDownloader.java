@@ -22,12 +22,27 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
 
+/**
+ * Classe permettant de télécharger et de charger des fichiers depuis un
+ * serveur.
+ */
 public class FileDownloader {
 
-    //le dernier slash est très important
-    //http://menardbediant.fr:8080/
+    /**
+     * Adresse du serveur. le dernier slash est très important
+     *
+     * @exemple http://menardbediant.fr:8080/
+     */
     public final static String SERVER_ADRESSE = "http://menardbediant.fr:8080/";
 
+    /**
+     * Télécharge un fichier depuis une URL donnée et l'enregistre localement.
+     * 
+     * @param url L'URL du fichier à télécharger.
+     * @param localFilename Le nom du fichier local où enregistrer le fichier téléchargé.
+     * @return Le chemin absolu du fichier local enregistré.
+     * @throws IOException Si une erreur est survenue lors de la lecture ou de l'écriture du fichier.
+     */
     public static String downloadFromUrl(URL url, String localFilename) throws IOException {
         InputStream is = null;
         FileOutputStream fos = null;
@@ -65,6 +80,13 @@ public class FileDownloader {
         }
     }
 
+    /**
+     * Télécharger une image depuis un url
+     * @param url l'url du fichier à télécharger
+     * @param localFilename nom du fichier télécharger en local
+     * @return l'image sous forme d'une {@code BufferedImage}
+     * @throws ErrorDownloadImage S'il y à une erreur lors du téléchargement de l'image
+     */
     public static BufferedImage downloadImageFromUrl(String url, String localFilename) throws ErrorDownloadImage {
         try {
             System.out.println("try download : " + SERVER_ADRESSE + url);
@@ -77,6 +99,14 @@ public class FileDownloader {
         }
     }
 
+    /**
+     * uplaoder une image sur le serveur
+     * @param image l'image à uploader
+     * @return le nom aléatoire qui à été donné à l'image
+     * @throws URISyntaxException en cas d'erreur dans le nom de l'image
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static String uploadImage(BufferedImage image) throws URISyntaxException, IOException, InterruptedException {
         HashMap<String, String> jsonMap = new HashMap<>();
         Gson gson = new Gson();

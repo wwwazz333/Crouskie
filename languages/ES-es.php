@@ -83,3 +83,15 @@ define('TAILLE','Talla :');
 define('AJOUTER_PANIER','Añadir al carrito');
 define('AJOUT_PANIER_REUSSI','Añadido al carrito con éxito');
 define('AJOUT_PANIER_FAIL',"¡Ocurrió un error al agregar al carrito!");
+
+// Página validación pedido
+define('COMPTE_ASSOCIE','Cuenta asociada');
+define('MODIFIER','Modificar');
+define('ADRESSE_LIVRAISON','Dirección de entrega');
+define('ADRESSE','Dirección');
+define('CODE_POSTAL','Código postal');
+define('VILLE','Ciudad');
+define('PAYS','País');
+define('ENREGISTRER_PAYER','Registrar mi información y pagar');
+define('COMMANDE','Pedido');
+define('TOTAL_A_PAYER','Total a pagar');

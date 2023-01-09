@@ -110,16 +110,14 @@ public class ControllerEditProduct {
         return new AddDelListIem() {
             @Override
             public void add(JList jlist) {
-                if (jlist.getModel() instanceof DynamicListModel) {
-                    DynamicListModel model = (DynamicListModel) jlist.getModel();
+                if (jlist.getModel() instanceof DynamicListModel model) {
                     model.addItem();
                 }
             }
 
             @Override
             public void del(JList jlist) {
-                if (jlist.getSelectedIndex() != -1 && jlist.getModel() instanceof DynamicListModel) {
-                    DynamicListModel model = (DynamicListModel) jlist.getModel();
+                if (jlist.getSelectedIndex() != -1 && jlist.getModel() instanceof DynamicListModel model) {
                     model.remove(jlist.getSelectedIndex());
                 }
             }

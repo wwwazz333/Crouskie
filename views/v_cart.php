@@ -43,7 +43,7 @@ require_once(PATH_VIEWS . 'alert.php');
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
-            <input type="hidden" name="email" id="email" value="<?= $product['compteur'] ?>">
+            <input type="hidden" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
                <table><tr> 
                 <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
                     <td class="col1">
@@ -59,12 +59,12 @@ require_once(PATH_VIEWS . 'alert.php');
                         <table><tr> 
                         <td></td>
                         <td><p><?php $info = $product['priceprod']; echo "$info"; ?> €</p></td>
-                        <td><p><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
+                        <td><p class="quantite"><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
                         <td>
                             <!-- Icones pour ajouter 1, enlever 1, supprimer du panier -->
-                            <iconify-icon icon="ic:baseline-plus" width="34" height="34"></iconify-icon> 
-                            <iconify-icon icon="ic:baseline-minus" width="34" height="34"></iconify-icon> 
-                            <iconify-icon icon="uil:trash-alt" width="34" height="34"></iconify-icon>
+                            <iconify-icon icon="ic:baseline-plus" width="34" height="34" class="ic-plus"></iconify-icon>
+                            <iconify-icon icon="ic:baseline-minus" width="34" height="34" class="ic-moins"></iconify-icon> 
+                            <iconify-icon icon="uil:trash-alt" width="34" height="34" class="ic-poubelle"></iconify-icon>
                         </td>
                         </tr></table>
                     </td> 

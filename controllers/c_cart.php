@@ -48,6 +48,7 @@ if($isLogged) {
             
             // Enregistrement des informations dans un tableau traité par la vue
             $infosProdsCart[$compteur] = [
+                "compteur" => $compteur,
                 "nameprod" => $product[0]->getName(),
                 "color" => $productCart->getColorCart(),
                 "size" => $size[0]->getName(),

@@ -43,6 +43,7 @@ require_once(PATH_VIEWS . 'alert.php');
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
+            <input type="hidden" name="email" id="email" value="<?= $product['compteur'] ?>">
                <table><tr> 
                 <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
                     <td class="col1">

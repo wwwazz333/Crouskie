@@ -6,6 +6,9 @@ import crouskiebackoffice.model.Tag;
 import crouskiebackoffice.model.creation.CreateTag;
 import crouskiebackoffice.model.dao.DAOTag;
 
+/**
+ * Liste dynamic pour les données de type {@link Tag}
+ */
 public class DynamicListTagModel extends DynamicListModel<Tag> {
 
     public DynamicListTagModel(Product product) {

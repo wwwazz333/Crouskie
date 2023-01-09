@@ -6,6 +6,9 @@ import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.creation.CreateSize;
 import crouskiebackoffice.model.dao.DAOClothSize;
 
+/**
+ * Liste dynamic pour les données de type {@link ClothSize}
+ */
 public class DynamicListSizeModel extends DynamicListModel<ClothSize> {
 
     public DynamicListSizeModel(Product product) {

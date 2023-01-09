@@ -1,5 +1,8 @@
 package crouskiebackoffice.model;
 
+/**
+ * Represente le stock d'un produit stocker dans la base de donnée
+ */
 public class ProductColorSize {
 
     private Product product;

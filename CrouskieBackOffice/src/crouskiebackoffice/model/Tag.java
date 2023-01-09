@@ -1,5 +1,8 @@
 package crouskiebackoffice.model;
 
+/**
+ * Represente un tag dans la base de donnée.
+ */
 public class Tag implements HasName{
 
     private int id;
@@ -28,5 +31,4 @@ public class Tag implements HasName{
     public String toString() {
         return name;
     }
-
 }

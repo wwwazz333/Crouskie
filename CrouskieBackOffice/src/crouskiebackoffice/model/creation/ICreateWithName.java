@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package crouskiebackoffice.model.creation;
 
 /**
- *
- * @author wwwazz
+ * Interface pour crée des Class avec un nom
  */
 public interface ICreateWithName<T> {
     public T createWithName(String name);

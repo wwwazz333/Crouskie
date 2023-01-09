@@ -4,6 +4,9 @@ import crouskiebackoffice.exceptions.ErrorHandelabelAdapter;
 import crouskiebackoffice.model.dao.DAOProduct;
 import java.sql.SQLException;
 
+/**
+ * Gestionnaire pour accesder au dao Produit.
+ */
 public class ProductManager {
 
     private static ProductManager instance;

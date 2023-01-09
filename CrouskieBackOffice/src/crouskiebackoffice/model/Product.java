@@ -125,6 +125,10 @@ public class Product implements HasName {
         this.price = price;
     }
 
+    /**
+     *
+     * @return true si la produit est déjà stocker dans la BD
+     */
     public Boolean isLinkedToDB() {
         return id != -1;
     }

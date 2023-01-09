@@ -1,8 +1,7 @@
 <div class="flex column">
 
-    <form id="account-form" action="index.php?page=account" method="post" >
+    <form action="index.php?page=account" method="POST" id="account-form">
         <div class="flex row wrap right contenu">
-            
             <div class="card flex row center shadow-small rounded">
                 <h2>Nom :</h2>
                 <input type="text" name="nom" id="nom" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getLastName() ?>">
@@ -17,7 +16,6 @@
                 <h2>Adresse mail :</h2>
                 <input type="email" name="email" id="email" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getEmail() ?>">
             </div>
-
         </div>
         <div class="flex row wrap right contenu center">
             <input type="button" id="form-info" value="<?= CHANGER_INFORMATIONS ?>" class="valid circle">

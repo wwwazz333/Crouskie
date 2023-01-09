@@ -71,6 +71,8 @@ define('PANIER_VIDE','Your cart is empty!');
 define('PANIER_PAS_CONNECTE','You are not logged in!');
 define('PANIER_BIEN_VIDE','Your cart has been successfuly emptied! ');
 define('PANIER_BIEN_VALIDE','Your order has been successfuly registered!');
+define('QUANTITE_INSUFFISANTE','Insufficient quantity');
+define('PAS_ASSEZ_DE_STOCK','There is not enough stock for one or multiple products of your cart');
 
 // Products page
 define('RECHERCHER','Search...');

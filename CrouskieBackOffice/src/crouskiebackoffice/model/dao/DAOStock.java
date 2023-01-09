@@ -9,25 +9,56 @@ import crouskiebackoffice.model.ProductColorSize;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+/**
+ * La classe {@code DAOStock} est une classe qui permet de gérer les opérations
+ * de base de données
+ *
+ * pour l'objet {@link ProductColorSize}.
+ */
 public class DAOStock extends DAO<ProductColorSize> {
 
+    /**
+     * Retourne le nom de la table en base de données associée à l'objet
+     * {@link ProductColorSize}.
+     *
+     * @return le nom de la table en base de données.
+     */
     @Override
     protected String getTableName() {
         return "stocked natural join product natural join color natural join cloth_size";
     }
 
+    /**
+     * Retourne la requête SQL permettant de récupérer toutes les données de la
+     * table associée à l'objet {@link ProductColorSize} en base de données.
+     *
+     * @return la requête SQL permettant de récupérer toutes les données de la
+     * table.
+     */
     @Override
     protected String getRequestForAllData() {
         return "SELECT * FROM product NATURAL JOIN existingcolor NATURAL JOIN color NATURAL JOIN existingsize NATURAL JOIN cloth_size NATURAL LEFT OUTER JOIN stocked";
     }
 
     /**
+     * Insère ou met à jour un objet {@link ProductColorSize} en base de
+     * données. Si l'objet existe
      *
-     * @param productColorSize the product has been stocked or his stock has
-     * been updated
-     * @return if action completed
-     * @throws SQLException SQLException an Exception may happen due to the
-     * request (ex : if the product doesn't exist)
+     * déjà en base de données, alors sa quantité est mise à jour. Sinon,
+     * l'objet est inséré en base
+     *
+     * de données.
+     *
+     * @param productColorSize l'objet {@link ProductColorSize} à insérer ou
+     * mettre à jour.
+     *
+     * @return {@code true} si l'opération a réussi, {@code false} sinon.
+     *
+     * @throws SQLException lorsqu'une erreur SQL est survenue lors de
+     * l'opération.
+     *
+     * @throws ErrorHandelabelAdapter lorsqu'une erreur est survenue lors de
+     * l'opération.
      */
     @Override
     public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException, ErrorHandelabelAdapter {
@@ -42,6 +73,9 @@ public class DAOStock extends DAO<ProductColorSize> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected ProductColorSize parseData(HashMap<String, Object> obj) {
         return new ProductColorSize(
@@ -50,6 +84,9 @@ public class DAOStock extends DAO<ProductColorSize> {
                 new ClothSize((int) obj.get("idsize"), obj.get("namesize").toString()), (Integer) obj.get("quantitystocked"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean exist(ProductColorSize obj) {
         if ((obj.getColor() == null || obj.getSize() == null) || obj.getProduct() == null) {
@@ -64,10 +101,12 @@ public class DAOStock extends DAO<ProductColorSize> {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean remove(ProductColorSize obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getProduct().getId(), obj.getColor().getName(), obj.getSize().getId()};
         return super.execute("DELETE FROM " + "stocked" + " WHERE idpp = ? and namecolor = ? and idsize = ? ", args) == 1;
     }
-
 }

@@ -9,6 +9,9 @@ import java.util.List;
 
 public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean insertOrUpdate(Tag obj) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
@@ -20,6 +23,9 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean insertAll(List<Tag> list) throws SQLException, ErrorHandelabelAdapter {
         if (list.size() <= 0) {
@@ -40,21 +46,33 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
         return super.execute("INSERT INTO " + getTableName() + " (nametag) values (" + ptsInterogration.toString() + ")", args) == 1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean exist(Tag obj) throws SQLException {
         return obj.getId() != -1;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected Tag parseData(HashMap<String, Object> obj) {
         return new Tag((int) obj.get("idtag"), obj.get("nametag").toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected String getTableName() {
         return "tag";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean remove(Tag obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};

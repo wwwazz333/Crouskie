@@ -14,8 +14,19 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Classe de gestion de données pour les produits.
+ *
+ * Implémente l'interface {@link DAO}.
+ */
 public class DAOProduct extends DAO<Product> {
 
+    /**
+     * Récupère la requête SQL permettant de récupérer toutes les données d'un
+     * produit.
+     *
+     * @return la requête SQL
+     */
     @Override
     protected String getRequestForAllData() {
         //set requet permet de récupérer les info d'un produit en faison la liasion avec
@@ -36,11 +47,24 @@ public class DAOProduct extends DAO<Product> {
                                   FROM `product` P1 NATURAL LEFT OUTER JOIN existingsize NATURAL LEFT OUTER JOIN existingcolor NATURAL LEFT OUTER JOIN `collection`""";
     }
 
+    /**
+     * Récupère le nom de la table contenant les produits dans la base de
+     * données.
+     *
+     * @return le nom de la table
+     */
     @Override
     protected String getTableName() {
         return "product";
     }
 
+    /**
+     * Crée un objet {@link Product} à partir des données contenues dans un
+     * {@link HashMap}.
+     *
+     * @param obj les données sous forme de {@link HashMap}
+     * @return l'objet {@link Product} créé
+     */
     @Override
     protected Product parseData(HashMap<String, Object> obj) {
         List<ClothSize> size_existing = new LinkedList<>();
@@ -117,6 +141,14 @@ public class DAOProduct extends DAO<Product> {
         return super.execute("UPDATE " + getTableName() + " SET priceprod = ? WHERE idprod = ?", args) == 1;
     }
 
+    /**
+     * Insert ou met à jous le produit
+     *
+     * @param product le produit à inserer ou mettre à jour
+     * @return si l'action à été faite avec succes
+     * @throws SQLException s'il y a une erreur SQL
+     * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
+     */
     @Override
     public Boolean insertOrUpdate(Product product) throws SQLException, ErrorHandelabelAdapter {
         startTransaction();
@@ -163,6 +195,14 @@ public class DAOProduct extends DAO<Product> {
         return succes;
     }
 
+    /**
+     * Insert toutes les images liée au prduit dans la base de donnée
+     *
+     * @param product le produit en question
+     * @return true si l'insertion c'est fait avec succes
+     * @throws SQLException s'il y a une erreur SQL
+     * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
+     */
     private boolean insertAllPictures(Product product) throws SQLException, ErrorHandelabelAdapter {
         if (product.getPictures().isEmpty()) {
             return true;
@@ -186,6 +226,14 @@ public class DAOProduct extends DAO<Product> {
         return super.execute("INSERT INTO picture (pathpicture, idprod, altpicture) VALUES " + ptsInterogration.toString(), args) != 0;
     }
 
+    /**
+     * Insert tout les tags, size et color liée à se produit
+     *
+     * @param product le produit en question
+     * @return true en cas de succes
+     * @throws SQLException s'il y a une erreur SQL
+     * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
+     */
     private Boolean insertAll(Product product) throws SQLException, ErrorHandelabelAdapter {
         List<Integer> idsTag = new LinkedList<>();
 
@@ -204,6 +252,18 @@ public class DAOProduct extends DAO<Product> {
                 && insertAll(product.getId(), "existingcolor", "namecolor", product.getExistingColor().toArray());
     }
 
+    /**
+     * Insert toutes les donnée indiquer par {@code valuesName} dans la table
+     * {@code nameTable} attacher à l'id {@code id}
+     *
+     * @param id l'id du produit lié à ces donnée
+     * @param nameTable le nom de la table
+     * @param name le champs à inserer
+     * @param valuesName le valeurs à inserer
+     * @return true en cas de succes
+     * @throws SQLException s'il y a une erreur SQL
+     * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
+     */
     public Boolean insertAll(int id, String nameTable, String name, Object[] valuesName) throws SQLException, ErrorHandelabelAdapter {
         if (valuesName.length <= 0) {
             return true;
@@ -226,11 +286,24 @@ public class DAOProduct extends DAO<Product> {
         return a;
     }
 
+    /**
+     *
+     * @param product
+     * @return true si le produit exist dans la BD
+     */
     @Override
     public Boolean exist(Product product) {
         return product != null && product.getId() != -1;
     }
 
+    /**
+     * Supprime le produit de la BD
+     *
+     * @param obj le produit
+     * @return true si succes
+     * @throws SQLException s'il y a une erreur SQL
+     * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
+     */
     @Override
     public Boolean remove(Product obj) throws SQLException, ErrorHandelabelAdapter {
         Object[] args = {obj.getId()};

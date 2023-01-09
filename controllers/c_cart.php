@@ -72,14 +72,16 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
-                    $dt = new \DateTime();
-                    $date->format('d/m/Y H:i:s');
-                    // Fonction pour créer un ID commande
-                    $idOerder = random_int(100, 1000000000000000000000000000000000000000000000000);
-                    $commandeDAO->addCommande($date,$idOrder,$userID);
-                    // $productBoughtDAO->buyProduct($product);
-                    $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
-                    break;
+                    foreach ($cart as $productCart) {
+                        $dt = new \DateTime();
+                        $date->format('d/m/Y H:i:s');
+                        // Fonction pour créer un ID commande
+                        $idOrder = random_int(100, 1000000000000000000000000000000000000000000000000);
+                        $commandeDAO->addCommande($date,$idOrder,$userID);
+                        // $productBoughtDAO->buyProduct($product);
+                        $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
+                        break;
+                    }
             }
 
         }

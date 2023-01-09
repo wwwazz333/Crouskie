@@ -82,3 +82,15 @@ define('TAILLE','Size :');
 define('AJOUTER_PANIER','Add to cart');
 define('AJOUT_PANIER_REUSSI','Added to cart successfully');
 define('AJOUT_PANIER_FAIL', "An error occurred while adding to the cart!");
+
+// Page validate order
+define('COMPTE_ASSOCIE','Associated account');
+define('MODIFIER','Modify');
+define('ADRESSE_LIVRAISON','Delivery address');
+define('ADRESSE','Address');
+define('CODE_POSTAL','Postal code');
+define('VILLE','City');
+define('PAYS','Country');
+define('ENREGISTRER_PAYER','Save my information and pay');
+define('COMMANDE','Order');
+define('TOTAL_A_PAYER','Total to be paid');

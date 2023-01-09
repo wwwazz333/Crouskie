@@ -76,6 +76,18 @@ define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');
 define('PANIER_BIEN_VIDE','Votre panier a bien été vidé! ');
 define('PANIER_BIEN_VALIDE','Votre commande a été enregistrée avec succès! ');
 
+// Page validation commande
+define('COMPTE_ASSOCIE','Compte associé');
+define('MODIFIER','Modifier');
+define('ADRESSE_LIVRAISON','Adresse de livraison');
+define('ADRESSE','Adresse');
+define('CODE_POSTAL','Code postal');
+define('VILLE','Ville');
+define('PAYS','Pays');
+define('ENREGISTRER_PAYER','Enregistrer mes informations et payer');
+define('COMMANDE','Commande');
+define('TOTAL_A_PAYER','Total à payer');
+
 // Page Produits
 define('RECHERCHER','Rechercher...');
 define('NO_PRODUCTS',"Malheureusement, Il n'y a aucun produit avec ces critères.");

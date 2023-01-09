@@ -1,0 +1,74 @@
+.content {
+    min-height: 70vh;
+    margin-top: 16vh;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 0rem 3rem;
+}
+
+.coordonnees, .livraison, .validation, .commande { 
+    text-align: center;
+    margin: 1rem 0rem;
+    padding-bottom: 0px;
+}
+
+.content .gauche {
+    width: 100%;
+}
+
+.content .commande {
+    width: 40rem;
+    margin-left: 2rem;
+}
+
+h3, h2 {
+    color: black;
+}
+
+.content p {
+    color: black;
+    /* font-weight: bold; */
+}
+
+.content .infospersos {
+    justify-content: space-between;
+}
+
+.content .infospersos :nth-child(2) {
+    margin: 0px 4rem;
+}
+
+.content .coordonnees input[type="submit"] {
+    margin: 0rem;
+    width: 10rem;
+}
+.content input[type="submit"] {
+    height: 3rem;
+    width: 25rem;
+    margin: 1rem;
+}
+
+.content .livraison form div {
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.content .livraison form input {
+    margin-bottom: 1.5rem;
+}
+
+.content .commande .produits {
+    text-align: left;
+}
+.content .commande .produits div {
+    margin: 0.5rem;
+    margin-left: 1rem;
+}
+.content .commande .produits div p {
+    margin: 0.2rem;
+}
+.content .commande > .scroll {
+    max-height: 32rem;
+    overflow-y: scroll;
+}

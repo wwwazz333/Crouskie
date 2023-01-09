@@ -60,7 +60,7 @@ require_once(PATH_VIEWS . 'alert.php');
                         <td><p><?php $info = $product['priceprod']; echo "$info"; ?> €</p></td>
                         <td><p><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
                         <td>
-                            <!-- Icones pour ajouter 1, enlever un, supprimer du panier -->
+                            <!-- Icones pour ajouter 1, enlever 1, supprimer du panier -->
                             <iconify-icon icon="ic:baseline-plus" width="34" height="34"></iconify-icon> 
                             <iconify-icon icon="ic:baseline-minus" width="34" height="34"></iconify-icon> 
                             <iconify-icon icon="uil:trash-alt" width="34" height="34"></iconify-icon>

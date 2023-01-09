@@ -75,8 +75,8 @@ if($isLogged) {
                     $dt = new \DateTime();
                     $date->format('d/m/Y H:i:s');
                     // Fonction pour créer un ID commande
-                    //$idOerder = fn();
-                    // $commandeDAO->addCommande($date,$idOrder,$userID);
+                    $idOerder = random_int(100, 1000000000000000000000000000000000000000000000000);
+                    $commandeDAO->addCommande($date,$idOrder,$userID);
                     // $productBoughtDAO->buyProduct($product);
                     $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
                     break;

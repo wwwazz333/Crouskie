@@ -53,6 +53,7 @@ class UtilisateurDAO extends DAO
         $result = $this->queryBdd("UPDATE customer SET first_name = ?, last_name = ?, mail_address = ? where idcustomer = ?",array(
             $firstName,$lastName,$email,$id
         ));
+        
         return $result;
     }
 }

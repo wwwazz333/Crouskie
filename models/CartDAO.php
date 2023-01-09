@@ -69,10 +69,13 @@ class CartDAO extends DAO
      * Permet de supprimer un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
      * @param int $userId L'identifiant de l'utilisateur
      * @param int $productId L'identifiant du produit
+     * @param int $namecolor La couleur du produit
+     * @param int $idsize La taille du produit
      * @return bool True si l'opération a réussie sinon False
      */
-    public function deleteProductFromCart(int $userId, int $productId) : bool {
-        $result = $this->queryBdd("DELETE from cart where idcustomer = ? and idprod = ?", array($userId,$productId));
+    public function deleteProductFromCart(int $userId, int $productId, int $namecolor, int $idsize) : bool {
+        $result = $this->queryBdd("DELETE from cart where idcustomer = ? and idprod = ? and namecolor = ? and idsize = ?", 
+        array($userId,$productId,$namecolor,$idsize));
         return $result;
     }
 

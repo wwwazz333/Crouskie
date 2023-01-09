@@ -54,12 +54,12 @@ require_once(PATH_VIEWS . 'alert.php');
 
 
     <!-- Récapitulatif de la commande -->
-    <div class="commande">
-        <div class="card center shadow rounded ">
-            <h3><?= COMMANDE?></h3> 
-            <center><hr width="100%" color="#7F7F7F" size="0.4" style="margin: 1rem 0rem"></center>
-            
-            <!-- Affichage des produits du panier -->
+    <div class="commande card shadow rounded">
+        <h3><?= COMMANDE?></h3> 
+        <center><hr width="100%" color="#7F7F7F" size="0.4" style="margin: 1rem 0rem"></center>
+              
+        <!-- Affichage des produits du panier -->
+        <div class="center scroll">
             <?php if(!$isCartEmpty && $isLogged) { ?>
                 <?php foreach ($infosProdsCart as $product) { ?>
                     <div class="flex row produits">
@@ -73,11 +73,11 @@ require_once(PATH_VIEWS . 'alert.php');
                         </div>
                     </div>
                     <center><hr width="100%" color="#7F7F7F" size="0.4" style="margin: 1rem 0rem"></center>
-                <!-- Total à payer -->
                 <?php } ?>
-                <div class="flex row" style="justify-content: space-between"><h3><?= TOTAL_A_PAYER?></h3><h3><?php echo "$montantTotal"; ?> €</h3></div>
-            <?php } ?>
         </div>
+        <!-- Total à payer -->
+        <?php } ?>
+            <div class="flex row" style="justify-content: space-between; margin: 1rem 0rem 2rem 0rem"><h3><?= TOTAL_A_PAYER?></h3><h3><?php echo "$montantTotal"; ?> €</h3></div>
     </div>
 </div>
 

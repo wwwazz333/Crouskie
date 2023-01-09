@@ -78,8 +78,11 @@ class CartDAO extends DAO
 
     /**
      * Permet de modifier le nombre d'un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
+     * @param int $quantity La quantité du produit
      * @param int $userId L'identifiant de l'utilisateur
      * @param int $productId L'identifiant du produit
+     * @param int $namecolor La couleur du produit
+     * @param int $idsize La taille du produit
      * @return bool True si l'opération a réussie sinon False
      */
     public function setQuantityProductFromCart(int $quantity, int $userId, int $productId, int $namecolor, int $idsize) : bool {

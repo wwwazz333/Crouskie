@@ -9,6 +9,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+/**
+ * Table pour visualisé les produits
+ */
 public class ProductVisualisationTable extends JTable {
 
     ControllerProductTable controlle;
@@ -52,11 +55,6 @@ public class ProductVisualisationTable extends JTable {
             super(new JCheckBox());
         }
 
-//        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-//            this.button = (JButton) value;
-//            button.setBackground(Color.red);
-//            return this.button;
-//        }
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             if (value instanceof JButton) {
                 JButton btn = ((JButton) value);

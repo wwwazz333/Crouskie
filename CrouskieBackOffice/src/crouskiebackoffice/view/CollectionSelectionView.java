@@ -4,8 +4,8 @@ import crouskiebackoffice.controle.ControllerImageCollection;
 import crouskiebackoffice.model.Collection;
 
 /**
- *
- * @author wwwazz
+ * fenêtre de dialogue permettant de sélectionner une collection, ou d'en
+ * ajouté.
  */
 public class CollectionSelectionView extends javax.swing.JDialog {
 

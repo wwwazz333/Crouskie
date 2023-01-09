@@ -6,6 +6,9 @@ import crouskiebackoffice.model.ModelStockTable;
 import crouskiebackoffice.model.Observer;
 import javax.swing.JTable;
 
+/**
+ * Table pour visualisé les stocks et les édité
+ */
 public class StockTableView extends JTable implements Observer {
 
     public StockTableView() {

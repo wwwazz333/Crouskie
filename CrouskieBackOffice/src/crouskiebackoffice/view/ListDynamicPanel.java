@@ -4,11 +4,13 @@ import javax.swing.ListModel;
 import crouskiebackoffice.controle.AddDelListIem;
 
 /**
- *
- * @author wwwazz
+ * Panel qui affiche un liste dynamic
  */
 public class ListDynamicPanel extends javax.swing.JPanel {
 
+    /**
+     * Les action à effectué pour l'ajout et la suppression d'un element dans la liste
+     */
     private AddDelListIem addDel;
 
     public ListDynamicPanel(String title, AddDelListIem addDel) {

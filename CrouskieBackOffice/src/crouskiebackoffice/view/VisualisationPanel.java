@@ -4,6 +4,9 @@ import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.Observer;
 
+/**
+ * Panel qui contien La table de visualisation
+ */
 public class VisualisationPanel extends javax.swing.JPanel implements Observer {
 
     /**

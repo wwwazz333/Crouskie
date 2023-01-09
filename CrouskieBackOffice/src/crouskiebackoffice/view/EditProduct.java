@@ -21,6 +21,10 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * Interface graphique permettant d'édité les donnée d'un produit (il pourra ensuite être ajouté à la BD s'il n'existe pas déjà ou juste mis à jours)
+ * Donc cette interface peut permettre d'ajouté ou édité un {@link Product}
+ */
 public class EditProduct extends javax.swing.JPanel {
 
     private ControllerEditProduct controller;

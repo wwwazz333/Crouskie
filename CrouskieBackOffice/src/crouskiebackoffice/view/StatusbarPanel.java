@@ -3,6 +3,9 @@ package crouskiebackoffice.view;
 import crouskiebackoffice.controle.CallBack;
 import javax.swing.BorderFactory;
 
+/**
+ * Bar de status pour affiche les actions en cours, les succes, les erreurs
+ */
 public class StatusbarPanel extends javax.swing.JPanel {
 
     public void showMsg(String msg) {

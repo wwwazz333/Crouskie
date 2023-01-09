@@ -2,6 +2,9 @@ package crouskiebackoffice.view;
 
 import javax.swing.JLabel;
 
+/**
+ * Animation de chargement fait avec des charachtères.
+ */
 public class LoadingAnimation extends JLabel {
 
     String[] loadingChars = {"/", "-", "\\", "|"};

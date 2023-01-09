@@ -3,12 +3,38 @@ package crouskiebackoffice.view;
 import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.model.creation.ICreateWithName;
 
+/**
+ * Cette classe représente une fenêtre de dialogue pour ajouter un élément à une
+ * liste. Elle prend en paramètre un contrôleur d'ajout et une interface
+ * {@link ICreateWithName} qui permet de créer un élément à partir d'un nom. La
+ * fenêtre est modale et bloquante jusqu'à ce que l'utilisateur appuie sur le
+ * bouton de soumission ou d'annulation.
+ *
+ * @param <T> Le type d'élément à ajouter à la liste
+ */
 public class AddingDialog<T> extends javax.swing.JDialog {
 
+    /**
+     * Indique si le formulaire a été soumis ou non
+     */
     private boolean submited = false;
+    /**
+     * Le contrôleur d'ajout qui gère la liste d'éléments à ajouter
+     */
     private AddingController addingController;
+    /**
+     * L'interface permettant de créer un élément à partir d'un nom
+     */
     private ICreateWithName createWithName;
 
+    /**
+     * Construit une fenêtre de dialogue avec un contrôleur d'ajout et une
+     * interface de création d'élément à partir d'un nom. La fenêtre est modale
+     * et bloquante.
+     *
+     * @param addingController le contrôleur d'ajout
+     * @param createWithName l'interface de création d'élément à partir d'un nom
+     */
     public AddingDialog(AddingController addingController, ICreateWithName createWithName) {
         super(MainWindow.instance);
         setModal(true);
@@ -16,6 +42,14 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         initComponents();
     }
 
+    /**
+     * Affiche la fenêtre de dialogue et attend que l'utilisateur soumette ou
+     * annule le formulaire. Si le formulaire a été soumis, retourne l'élément
+     * sélectionné dans la liste. Si le formulaire a été annulé, retourne null.
+     *
+     * @return l'élément sélectionné dans la liste ou null si le formulaire a
+     * été annulé
+     */
     public T getResult() {
         setVisible(true);
         if (submited) {
@@ -25,6 +59,10 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Met à jour le contenu de la liste déroulante (combo box) avec les données
+     * du contrôleur d'ajout.
+     */
     private void updateComboBoxChooser() {
         comboBoxChooser.setModel(new javax.swing.DefaultComboBoxModel<>(addingController.getData().toArray()));
     }
@@ -111,17 +149,30 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Gère l'événement de clic sur le bouton d'ajout. Crée une nouvelle valeur
+     * en utilisant le texte entré dans le champ de texte et met à jour la liste
+     * déroulante si l'ajout a réussi.
+     */
     private void addingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingBtnActionPerformed
         if (addingController.createValue(jTextField1.getText())) {
             updateComboBoxChooser();
         }
     }//GEN-LAST:event_addingBtnActionPerformed
 
+    /**
+     * Gère l'événement de clic sur le bouton de validation. Ferme la fenêtre de
+     * dialogue en indiquant que la soumission a été effectuée.
+     */
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         submited = true;
         dispose();
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    /**
+     * Gère l'événement de clic sur le bouton d'annulation. Ferme la fenêtre de
+     * dialogue sans enregistrer la valeur sélectionnée.
+     */
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed

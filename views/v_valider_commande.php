@@ -77,7 +77,7 @@ require_once(PATH_VIEWS . 'alert.php');
         </div>
         <!-- Total à payer -->
         <?php } ?>
-            <div class="flex row" style="justify-content: space-between; margin: 1rem 0rem 2rem 0rem"><h3><?= TOTAL_A_PAYER?></h3><h3><?php echo "$montantTotal"; ?> €</h3></div>
+            <div class="flex row btw" style="margin: 1rem 0rem 2rem 0rem"><h3><?= TOTAL_A_PAYER?></h3><h3><?php echo "$montantTotal"; ?> €</h3></div>
     </div>
 </div>
 

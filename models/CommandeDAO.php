@@ -39,6 +39,7 @@ class CommandeDAO extends DAO
 
     public function addCommande($date,int $numorder,int $idCustomer){
         $commande = $this->queryBdd("INSERT INTO cmd VALUES (?,?,?)", array($date,$numorder,$idCustomer));
+        return $commande;
     }
     
 }

@@ -1,7 +1,7 @@
 <?php
 require_once(PATH_MODELS . 'DAO.php');
 require_once(PATH_ENTITY . 'ProductBought.php');
-require_once(PATH_ENTITY . 'Product.php');
+require_once(PATH_ENTITY . 'Cart.php');
 
 /**
  * Ce DAO représente l'intéraction avec les produits acheté
@@ -47,19 +47,22 @@ class ProductBoughtDAO extends DAO
      * @param Product $result Le tableau des résultats fournis par les requêtes SQL via le PHP
      * @return mixed Si le produit a bien été déplacé dans les ProductBought
      */
-    public function buyProduct(Product $product)
+    public function buyProduct(string $nameColor, int $idProd, int $idSize, int $numOrder, int $quantityBought, int $idCustomer)
     {
-        $id_prod = $product->getId();
-        $quantity = $this->queryAll("SELECT quantitystocked FROM stocked WHERE $id_prod = idprod");
+        $quantity = $this->queryAll("SELECT quantitystocked FROM stocked WHERE $idProd = idprod");
         // si il reste des produits en stock
         if ($quantity > 0){
-        // Ne pas oublier d'enlever du stock le produit 
-        $product_bought = $this->queryBdd("INSERT INTO productbought VALUES (?,?,?,?,?) ",array(
-            //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
-            $product->getID(),
+            // Ne pas oublier d'enlever du stock le produit 
+            $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numOrder,quantitybought) VALUES (?,?,?,?,?) ",array(
+                //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
+                $nameColor,
+                $idProd,
+                $idSize,
+                $numOrder,
+                $quantityBought
 
-        ));
-        $product_delete = $this->queryBdd("UPDATE ", array()); 
+            ));
+            $product_delete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = $idProd", array()); 
         }
         else{
             //raise error produit en rupture de stock

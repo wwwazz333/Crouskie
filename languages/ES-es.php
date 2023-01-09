@@ -72,6 +72,8 @@ define('PANIER_PAS_CONNECTE','¡No estás conectado!');
     // à traduire
 define('PANIER_BIEN_VIDE','a');
 define('PANIER_BIEN_VALIDE','a');
+define('QUANTITE_INSUFFISANTE','a');
+define('PAS_ASSEZ_DE_STOCK','a');
 
 // Página de productos
 define('RECHERCHER','Buscar...');

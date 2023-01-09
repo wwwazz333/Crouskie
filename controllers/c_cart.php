@@ -72,14 +72,30 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
-                    $dt = new \DateTime();
-                    $date->format('d/m/Y H:i:s');
-                    // Fonction pour créer un ID commande
-                    $idOerder = random_int(100, 1000000000000000000000000000000000000000000000000);
-                    $commandeDAO->addCommande($date,$idOrder,$userID);
-                    // $productBoughtDAO->buyProduct($product);
-                    $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
-                    break;
+                    foreach ($cart as $productCart) {
+                        //récupération de la date actuelle
+                        $dt = new \DateTime();
+                        $date->format('d/m/Y H:i:s');
+                        $idOrder = random_int(100, 10^30);
+
+                        // Création de la commande
+                        // $commandeDAO->addCommande($date,$idOrder,$userID);
+                        
+                        $color = $productCart->getColorCart();
+                        $size = $productCart->getSizeCart();
+                        $idProd = $productCart->getIdProd();
+                        $quantity = $productCart->getQuantity();
+                        $idCustomer = $productCart->getIdCustomer();
+
+                        $result = $productBoughtDAO->buyProduct($color, $idProd, $size, $idOrder, $quantity, $idCustomer);
+                        if($result){
+                            $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
+                        }
+                        else if($result == 2){
+                            $alert = showAlert(3, QUANTITE_INSUFFISANTE, PAS_ASSEZ_DE_STOCK);
+                        }
+                        break;
+                    }
             }
 
         }

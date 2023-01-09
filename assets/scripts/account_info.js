@@ -23,9 +23,6 @@ form_info.addEventListener("click", function(){
 form_enregistrer.addEventListener("click", function(){
     form_info.style.display = "block";
     form_enregistrer.style.display = "none";
-    nom.setAttribute("disabled","disabled");
-    prenom.setAttribute("disabled","disabled");
-    email.setAttribute("disabled","disabled");
     nom.classList.remove('post-it');
     prenom.classList.remove('post-it');
     email.classList.remove('post-it');

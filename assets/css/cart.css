@@ -1,3 +1,7 @@
+body {
+    min-height: 50vh;
+}
+
 .content, #panier-vide, #panier-pas-connecte { 
     min-height: 70vh;
     margin: 3rem;

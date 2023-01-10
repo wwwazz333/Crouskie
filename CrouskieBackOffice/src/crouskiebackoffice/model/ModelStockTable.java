@@ -123,17 +123,19 @@ public class ModelStockTable extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         ProductColorSize row = rowData.get(rowIndex);
-        return switch (columnIndex) {
-            case 0 ->
-                row.getProduct().getName();
-            case 1 ->
-                row.getColor().getName();
-            case 2 ->
-                row.getSize().getName();
-            case 3 ->
-                row.getQuantity();
-            default ->
-                null;
-        };
+        Object res = null;
+        switch (columnIndex) {
+            case 0:
+                return row.getProduct().getName();
+            case 1:
+                return row.getColor().getName();
+            case 2:
+                return row.getSize().getName();
+            case 3:
+                return res = row.getQuantity();
+            default:
+                return res;
+        }
+
     }
 }

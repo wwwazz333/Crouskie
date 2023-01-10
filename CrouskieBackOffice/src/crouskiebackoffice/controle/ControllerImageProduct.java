@@ -114,7 +114,7 @@ public class ControllerImageProduct implements ActionListener {
                     if (evt.getButton() == MouseEvent.BUTTON3) {
                         Point mousePos = evt.getPoint();
 
-                        var popup = new PopupMenuImage(pic,
+                        PopupMenuImage popup = new PopupMenuImage(pic,
                                 () -> {
                                     String descriptionImage = getDescriptionImage(pic.getAlt());
                                     if (descriptionImage != null) {

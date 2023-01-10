@@ -173,7 +173,7 @@ public class ControllerImageCollection implements ActionListener {
                     } else if (evt.getButton() == MouseEvent.BUTTON3) {
                         Point mousePos = evt.getPoint();
 
-                        var popup = new PopupMenuImage(tuple.pic,
+                        PopupMenuImage popup = new PopupMenuImage(tuple.pic,
                                 () -> {
                                     String nameCollection = getDescriptionImage(tuple.collection.getName());
                                     if (nameCollection != null) {

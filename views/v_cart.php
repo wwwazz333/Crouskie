@@ -16,7 +16,6 @@ require_once(PATH_VIEWS . 'alert.php');
 
     <div class='flex row legende'>
         <table><tr> 
-        <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
             <td class="col1">
                 <p><?= CART_ARTICLE ?></p>
             </td>
@@ -38,14 +37,13 @@ require_once(PATH_VIEWS . 'alert.php');
     </div>
     <center><hr width="90%" color="#565656" size="0.5"></center>
 
-    <!-- Affichage à régler  -->
+    <!-- Affichage des informations sur chaque produit du panier  -->
     <?php if(!$isCartEmpty && $isLogged) { ?>
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
-            <input type="hidden" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
+            <input type="hidden" name="hid-quantity" id="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
                <table><tr> 
-                <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
                     <td class="col1">
                         <p><?php $info = $product['nameprod'] ; echo "$info"; ?></p>
                     </td>

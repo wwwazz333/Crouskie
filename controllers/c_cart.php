@@ -49,9 +49,11 @@ if($isLogged) {
             // Enregistrement des informations dans un tableau traité par la vue
             $infosProdsCart[$compteur] = [
                 "compteur" => $compteur,
+                "idproduct" => $id,
                 "nameprod" => $product[0]->getName(),
                 "color" => $productCart->getColorCart(),
                 "size" => $size[0]->getName(),
+                "idsize" => $productCart->getSizeCart(),
                 "quantitycart" => $productCart->getQuantityCart(),
                 "priceprod" => $product[0]->getPrice(),
                 "pricetotal" => $product[0]->getPrice() * $productCart->getQuantityCart()
@@ -66,6 +68,15 @@ if($isLogged) {
             return true;
         } 
 
+        // Test modif quantités panier à la main 
+        /*foreach ($infosProdsCart as $ligne) {
+            // var_dump($ligne);
+            $q = 66; // Récupérer quantité 
+            $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+            // var_dump(20,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+        }*/
+
+        // Passer commande
         if(isset($_POST['action'])){
             switch ($_POST['action']){
                 case 'vider':
@@ -73,6 +84,19 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
+    
+                    // Enregistrer modifications quantité produit du panier
+                    foreach ($infosProdsCart as $ligne) {
+                        $q = 99 ; // Récupérer quantité dans variable $q
+                        if ($q == 0) {
+                            // Suppression du panier
+                            $modiv = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                        } else {
+                            // Modification de la quantité
+                            $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                        }
+                    }
+
                     foreach ($cart as $productCart) {
                         //récupération de la date actuelle
                         $dt = new \DateTime();
@@ -100,10 +124,12 @@ if($isLogged) {
             }
 
         }
+
     }
     
+
+// Si l'utilisateur n'est pas connecté
 } else {
-    // Si l'utilisateur n'est pas connecté
     $isCartEmpty = true;
 }
 

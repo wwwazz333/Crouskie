@@ -80,7 +80,8 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         comboBoxChooser = new javax.swing.JComboBox<>();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jTextField1 = new javax.swing.JTextField();
+        panelField = new javax.swing.JPanel();
+        defaultInputField = new javax.swing.JTextField();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
         addingBtn = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
@@ -94,7 +95,6 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ajoue");
         setAlwaysOnTop(true);
-        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(400, 300));
         setModal(true);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
@@ -107,9 +107,13 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         jPanel2.add(comboBoxChooser);
         jPanel2.add(filler6);
 
-        jTextField1.setMaximumSize(new java.awt.Dimension(400, 40));
-        jTextField1.setPreferredSize(new java.awt.Dimension(200, 25));
-        jPanel2.add(jTextField1);
+        panelField.setLayout(new javax.swing.BoxLayout(panelField, javax.swing.BoxLayout.Y_AXIS));
+
+        defaultInputField.setMaximumSize(new java.awt.Dimension(400, 40));
+        defaultInputField.setPreferredSize(new java.awt.Dimension(200, 25));
+        panelField.add(defaultInputField);
+
+        jPanel2.add(panelField);
         jPanel2.add(filler7);
 
         addingBtn.setText("Ajouter");
@@ -155,7 +159,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
      * déroulante si l'ajout a réussi.
      */
     private void addingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingBtnActionPerformed
-        if (addingController.createValue(jTextField1.getText())) {
+        if (addingController.createValue(defaultInputField.getText())) {
             updateComboBoxChooser();
         }
     }//GEN-LAST:event_addingBtnActionPerformed
@@ -182,6 +186,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
     private javax.swing.JButton addingBtn;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox<Object> comboBoxChooser;
+    private javax.swing.JTextField defaultInputField;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
@@ -191,7 +196,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
     private javax.swing.Box.Filler filler7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel panelField;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

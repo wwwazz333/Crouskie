@@ -196,7 +196,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
     private javax.swing.Box.Filler filler7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel panelField;
+    protected javax.swing.JPanel panelField;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }

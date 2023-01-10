@@ -9,8 +9,8 @@ import java.util.List;
 public class AddingController<T> {
 
     private DAO dao;
-    private ICreateWithName createWithName;
-    private AddingDialog<T> addingDialog;
+    protected ICreateWithName createWithName;
+    protected AddingDialog<T> addingDialog;
 
     public AddingController(DAO dao, ICreateWithName createWithName) {
         this.dao = dao;

@@ -1,6 +1,6 @@
 package crouskiebackoffice.model.listmodel;
 
-import crouskiebackoffice.controle.AddingController;
+import crouskiebackoffice.controle.AddingColorController;
 import crouskiebackoffice.model.Color;
 import crouskiebackoffice.model.Product;
 import crouskiebackoffice.model.creation.CreateColor;
@@ -19,10 +19,9 @@ public class DynamicListColorModel extends DynamicListModel<Color> {
 
     @Override
     public void addItem() {
-        add(getSize(), (new AddingController<Color>(dao, new CreateColor())).newValue());
+        add(getSize(), (new AddingColorController(dao, new CreateColor())).newValue());
     }
 
-    
     @Override
     public String toString() {
         return "DynamicListColorModel";

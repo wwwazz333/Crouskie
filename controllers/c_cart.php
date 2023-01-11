@@ -10,12 +10,15 @@ require_once(PATH_ENTITY . 'User.php');
 // Récupération du panier de l'utilisateur
 if($isLogged) {
     $commandeDAO = new CommandeDAO(DEBUG);
+    $productBoughtDAO = new ProductBoughtDAO(DEBUG);
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
 
     if (isset($_GET['vider'])){
         $alert = showAlert(1, VIDER_PANIER,PANIER_BIEN_VIDE);
+    }else if(isset($_GET['valider'])){
+        $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
     }
 
     // Si le panier est vide
@@ -72,30 +75,43 @@ if($isLogged) {
                     header('Location: index.php?page=cart&vider=1');
                     break;
                 case 'valider':
+                    // Création de la commande
+                    $resultOrder = $commandeDAO->addCommande($userId);
+                    // On récupère l'idOrder pour plus tard 
+                    $idOrder = $commandeDAO->getNumLastCommande($userId)[0][0];
+                    $resultProducts = true;
                     foreach ($cart as $productCart) {
-                        //récupération de la date actuelle
-                        $dt = new \DateTime();
-                        $date->format('d/m/Y H:i:s');
-                        $idOrder = random_int(100, 10^30);
-
-                        // Création de la commande
-                        // $commandeDAO->addCommande($date,$idOrder,$userID);
-                        
                         $color = $productCart->getColorCart();
                         $size = $productCart->getSizeCart();
                         $idProd = $productCart->getIdProd();
-                        $quantity = $productCart->getQuantity();
-                        $idCustomer = $productCart->getIdCustomer();
+                        $quantity = $productCart->getQuantityCart();
+                        $idCustomer = $productCart->getCustomerId();
 
                         $result = $productBoughtDAO->buyProduct($color, $idProd, $size, $idOrder, $quantity, $idCustomer);
-                        if($result){
-                            $alert = showAlert(1, PASSER_COMMANDE,PANIER_BIEN_VALIDE);
-                        }
-                        else if($result == 2){
+                        if($result == 2){
                             $alert = showAlert(3, QUANTITE_INSUFFISANTE, PAS_ASSEZ_DE_STOCK);
+                            break;
                         }
-                        break;
+                        $resultProducts = $resultProducts && $result;
+                        
                     }
+
+                    //alertes pour savoir si la fonction marche
+                    if($resultProducts && $resultOrder){
+                        header('Location: index.php?page=cart&valider=1');
+                    }
+                    
+                    else if($resultProducts && !$resultOrder){
+                        $alert = showAlert(3, COMMANDE, "Commande");
+                    }
+                    else if(!$resultProducts && $resultOrder){
+                        $alert = showAlert(3, COMMANDE, "Result");
+                    }
+                    else{
+                        $alert = showAlert(3, COMMANDE, "$");
+                    }
+                    
+                    break;
             }
 
         }

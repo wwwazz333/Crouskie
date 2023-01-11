@@ -74,9 +74,14 @@ require_once(PATH_VIEWS . 'alert.php');
         <?php } ?>
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
+        
+        <!-- TESTS -->
         <?php 
             if(isset($commande)){
                 print_r($commande);
+            }
+            if(isset($erreur)){
+                print_r($erreur);
             }
         ?>
         <div class="flex row wrap right contenu center">

@@ -37,8 +37,13 @@ class CommandeDAO extends DAO
         return $commande;
     }
 
-    public function addCommande($date,int $numorder,int $idCustomer){
-        $commande = $this->queryBdd("INSERT INTO cmd VALUES (?,?,?)", array($date,$numorder,$idCustomer));
+    public function addCommande(int $idCustomer){
+        $commande = $this->queryBdd("INSERT INTO cmd (idcustomer) VALUES (?)", array($idCustomer));
+        return $commande;
+    }
+
+    public function getNumLastCommande(int $idCustomer){
+        $commande = $this->queryAll("SELECT MAX(numorder) FROM cmd WHERE idcustomer=$idCustomer");
         return $commande;
     }
     

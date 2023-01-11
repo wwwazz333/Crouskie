@@ -74,9 +74,9 @@ require_once(PATH_VIEWS . 'alert.php');
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         <?php 
-            if(isset($commande)){
-                print_r($commande);
-            }
+            // if(isset($commande)){
+            //     print_r($commande);
+            // }
         ?>
         <div class="flex row wrap right contenu center">
             <form action="index.php?page=cart" method="POST" class="contenu center">

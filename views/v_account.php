@@ -15,8 +15,8 @@ require_once(PATH_VIEWS . 'alert.php');
         <a href="index.php?page=account&selected=commande">
             <p id="commande">Mes commandes</p>
         </a>
-        <a href="index.php?page=account&selected=favori">
-            <p id="favori">Mes favoris</p>
+        <a href="index.php?page=account&selected=legal">
+            <p id="legal">Legal</p>
         </a>
         <a href="index.php?page=logout&selected=info">
             <p>Se déconnecter</p>

@@ -60,4 +60,30 @@ class User{
     public function getIdUser() : int {
         return $this->_id;
     }
+
+    /*============ Setters ============*/
+
+    /**
+     * Change le prénom de l'utilisateur
+     * @param string $first_name prenom de l'utilisateur
+     */
+    public function setFirstName($first_name){
+        $this -> _first_name = $first_name;
+    }
+
+    /**
+     * Change le nom de famille de l'utilisateur
+     * @param string $last_name nom de famille de l'utilisateur
+     */
+    public function setLastName($last_name){
+        $this -> _last_name = $last_name;
+    }
+    
+    /**
+     * Change l'adresse email de l'utilisateur
+     * @param string $email l'adresse mail de l'utilisateur
+     */
+    public function setEmail($email){
+        $this -> _email = $email;
+    }
 }

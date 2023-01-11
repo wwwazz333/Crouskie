@@ -32,15 +32,35 @@ body {
     margin-left: 3rem;
 }
 
+/* --------- page legal ------- */
+#legal-page {
+    width: 100%;
+    gap: 2rem;
+}
+#legal-page p{
+    color: var(--dark-text-color);
+}
+#legal-page .button-download {
+    height: 4rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#legal-page .card{
+    height: fit-content;
+    gap: 1rem;
+}
 
 /* -------- page info -------- */
-.contenu div h2
+#account-form .contenu div h2
 {
     width: 15rem;
     font-size: 20px;
 }
 
-.contenu div {
+#account-form .contenu div {
     margin: 2rem;
 }
 
@@ -49,8 +69,7 @@ body {
 .contenu > input[type="button"], #mdp, .contenu > input[type="submit"]{
     margin: 5vh 0px;
     height: 4rem;
-    width: 30%;
-    
+    width: 30%;   
 }
 
 #mdp > input[type="button"]{

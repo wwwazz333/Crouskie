@@ -29,10 +29,9 @@ if (isset($_GET['id'])) {
             require_once(PATH_MODELS . 'CartDAO.php');
             
             $DAO = new CartDAO(DEBUG);
-            if ($isLogged) {
-                
-            }else{
+            if ($isLogged == false) {
                 header('Location: index.php?page=portal&log');
+                exit();
             }
             $cart = new Cart(
                 $user->getIdUser(),

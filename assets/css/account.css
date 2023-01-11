@@ -34,7 +34,11 @@ body {
 
 /* --------- page legal ------- */
 #legal-page {
+    width: 100%;
     gap: 2rem;
+}
+#legal-page p{
+    color: var(--dark-text-color);
 }
 #legal-page .button-download {
     height: 4rem;

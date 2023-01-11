@@ -69,34 +69,28 @@ class CartDAO extends DAO
      * Permet de supprimer un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
      * @param int $userId L'identifiant de l'utilisateur
      * @param int $productId L'identifiant du produit
+     * @param string $namecolor La couleur du produit
+     * @param int $idsize La taille du produit
      * @return bool True si l'opération a réussie sinon False
      */
-    public function deleteProductFromCart(int $userId, int $productId) : bool {
-        $result = $this->queryBdd("DELETE from cart where idcustomer = ? and idprod = ?", array($userId,$productId));
+    public function deleteProductFromCart(int $userId, int $productId, string $namecolor, int $idsize) : bool {
+        $result = $this->queryBdd("DELETE from cart where idcustomer = ? and idprod = ? and namecolor = ? and idsize = ?", 
+        array($userId,$productId,$namecolor,$idsize));
         return $result;
     }
 
     /**
-     * Permet d'incrémenter le nombre d'un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
+     * Permet de modifier le nombre d'un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
+     * @param int $quantity La quantité du produit
      * @param int $userId L'identifiant de l'utilisateur
      * @param int $productId L'identifiant du produit
+     * @param string $namecolor La couleur du produit
+     * @param int $idsize La taille du produit
      * @return bool True si l'opération a réussie sinon False
      */
-    public function increaseQuantityProductFromCart(int $userId, int $productId) : bool {
-        $result = $this->queryBdd("UPDATE from cart set quantitycart = quantitycart + 1 where idcustomer = ? and idprod = ?", 
-        array($userId,$productId));
-        return $result;
-    }
-
-    /**
-     * Permet de décrémenter le nombre d'un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
-     * @param int $userId L'identifiant de l'utilisateur
-     * @param int $productId L'identifiant du produit
-     * @return bool True si l'opération a réussie sinon False
-     */
-    public function decreaseQuantityProductFromCart(int $userId, int $productId) : bool {
-        $result = $this->queryBdd("UPDATE from cart set quantitycart = quantitycart - 1 where idcustomer = ? and idprod = ?", 
-        array($userId,$productId));
+    public function setQuantityProductFromCart(int $quantity, int $userId, int $productId, string $namecolor, int $idsize) : bool {
+        $result = $this->queryBdd("UPDATE cart set quantitycart = ? where idcustomer = ? and idprod = ? and namecolor = ? and idsize = ?", 
+        array($quantity,$userId,$productId,$namecolor,$idsize));
         return $result;
     }
     

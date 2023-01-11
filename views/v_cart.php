@@ -16,7 +16,6 @@ require_once(PATH_VIEWS . 'alert.php');
 
     <div class='flex row legende'>
         <table><tr> 
-        <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
             <td class="col1">
                 <p><?= CART_ARTICLE ?></p>
             </td>
@@ -38,13 +37,13 @@ require_once(PATH_VIEWS . 'alert.php');
     </div>
     <center><hr width="90%" color="#565656" size="0.5"></center>
 
-    <!-- Affichage à régler  -->
+    <!-- Affichage des informations sur chaque produit du panier  -->
     <?php if(!$isCartEmpty && $isLogged) { ?>
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
+            <input type="hidden" name="hid-quantity" id="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
                <table><tr> 
-                <!-- Il faudra rajouter la taille et la couleur du vêtement commandé dans le panier -->
                     <td class="col1">
                         <p><?php $info = $product['nameprod'] ; echo "$info"; ?></p>
                     </td>
@@ -58,12 +57,12 @@ require_once(PATH_VIEWS . 'alert.php');
                         <table><tr> 
                         <td></td>
                         <td><p><?php $info = $product['priceprod']; echo "$info"; ?> €</p></td>
-                        <td><p><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
+                        <td><p class="quantite"><?php $info = $product['quantitycart']; echo "$info"; ?></p></td>
                         <td>
                             <!-- Icones pour ajouter 1, enlever 1, supprimer du panier -->
-                            <iconify-icon icon="ic:baseline-plus" width="34" height="34"></iconify-icon> 
-                            <iconify-icon icon="ic:baseline-minus" width="34" height="34"></iconify-icon> 
-                            <iconify-icon icon="uil:trash-alt" width="34" height="34"></iconify-icon>
+                            <iconify-icon icon="ic:baseline-plus" width="34" height="34" class="ic-plus"></iconify-icon>
+                            <iconify-icon icon="ic:baseline-minus" width="34" height="34" class="ic-moins"></iconify-icon> 
+                            <iconify-icon icon="uil:trash-alt" width="34" height="34" class="ic-poubelle"></iconify-icon>
                         </td>
                         </tr></table>
                     </td> 
@@ -75,9 +74,9 @@ require_once(PATH_VIEWS . 'alert.php');
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         <?php 
-            if(isset($commande)){
-                print_r($commande);
-            }
+            // if(isset($commande)){
+            //     print_r($commande);
+            // }
         ?>
         <div class="flex row wrap right contenu center">
             <form action="index.php?page=cart" method="POST" class="contenu center">

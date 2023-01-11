@@ -31,6 +31,8 @@ if (!$isLogged) {
     if(isset($_POST['email']) && isset($_POST['prenom']) && isset($_POST['nom'])){
         $res = $userDAO->changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 
         if ($res) {
+            //TODO pb de save dans la session
+            $user = serializeUser( $_POST['prenom'], $_POST['nom'], $_POST['email'],$user->getIdUser());
             $alert = showAlert(1,SUCCESS,CHANGEMENT_INFORMATIONS_CONFIRMER);
         } else {
             $alert = showAlert(3,ERROR,CHANGEMENT_INFORMATIONS_ERREUR);

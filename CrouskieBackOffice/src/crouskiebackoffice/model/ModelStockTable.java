@@ -136,6 +136,5 @@ public class ModelStockTable extends AbstractTableModel {
             default:
                 return res;
         }
-
     }
 }

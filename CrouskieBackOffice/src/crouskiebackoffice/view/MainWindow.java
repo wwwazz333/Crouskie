@@ -59,7 +59,7 @@ public class MainWindow extends javax.swing.JFrame {
         onglets = new javax.swing.JTabbedPane();
         tabPane = new javax.swing.JTabbedPane();
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
-        jPanel2 = new javax.swing.JPanel();
+        stockPane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         stockTable = new crouskiebackoffice.view.StockTableView();
         statusbar = new crouskiebackoffice.view.StatusbarPanel();
@@ -78,7 +78,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         onglets.addTab("Produits", tabPane);
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        stockPane.setLayout(new java.awt.BorderLayout());
 
         stockTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,9 +93,9 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(stockTable);
 
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.PAGE_START);
+        stockPane.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        onglets.addTab("Stock", jPanel2);
+        onglets.addTab("Stock", stockPane);
 
         mainPane.add(onglets, "main");
 
@@ -126,11 +126,11 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel mainPane;
     private javax.swing.JTabbedPane onglets;
     private crouskiebackoffice.view.StatusbarPanel statusbar;
+    private javax.swing.JPanel stockPane;
     private crouskiebackoffice.view.StockTableView stockTable;
     private javax.swing.JTabbedPane tabPane;
     private crouskiebackoffice.view.VisualisationPanel visualisationPanel;

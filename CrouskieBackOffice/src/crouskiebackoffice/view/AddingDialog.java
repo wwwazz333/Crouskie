@@ -2,6 +2,7 @@ package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.AddingController;
 import crouskiebackoffice.model.creation.ICreateClass;
+import java.awt.Component;
 import javax.swing.JTextField;
 
 /**
@@ -165,7 +166,13 @@ public class AddingDialog<T> extends javax.swing.JDialog {
      */
     private void addingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingBtnActionPerformed
         if (addingController.createValue()) {
+            String newValue = defaultInputField.getText();
             updateComboBoxChooser();
+            for (Component component : panelField.getComponents()) {
+                if (component instanceof JTextField textField) {
+                    textField.setText("");
+                }
+            }
         }
     }//GEN-LAST:event_addingBtnActionPerformed
 

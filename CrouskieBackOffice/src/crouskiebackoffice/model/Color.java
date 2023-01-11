@@ -11,6 +11,10 @@ public class Color implements HasName {
      * Nom de la couleur.
      */
     private final String name;
+    /**
+     * Code de la couleur, pour la représenté.
+     */
+    private final String code;
 
     /**
      * Constructeur de la couleur.
@@ -19,6 +23,18 @@ public class Color implements HasName {
      */
     public Color(String name) {
         this.name = name;
+        this.code = null;
+    }
+
+    /**
+     * Constructeur de la couleur.
+     *
+     * @param name Nom de la couleur.
+     * @param code Code represantant la couleur
+     */
+    public Color(String name, String code) {
+        this.name = name;
+        this.code = code;
     }
 
     /**
@@ -29,6 +45,15 @@ public class Color implements HasName {
     @Override
     public String getName() {
         return name;
+    }
+
+    /**
+     * Retourne le code de la couleur.
+     *
+     * @return Le code de la couleur
+     */
+    public String getCode() {
+        return code;
     }
 
     /**

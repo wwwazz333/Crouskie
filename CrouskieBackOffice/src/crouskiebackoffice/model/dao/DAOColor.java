@@ -24,8 +24,8 @@ public class DAOColor extends DAO<Color> implements MultipleInsertSQL<Color> {
      */
     @Override
     public Boolean insertOrUpdate(Color color) throws SQLException, ErrorHandelabelAdapter {
-        Object[] args = {color.getName()};
-        return super.execute("INSERT INTO " + getTableName() + " (namecolor) VALUES (?)", args) == 1;
+        Object[] args = {color.getName(), color.getCode()};
+        return super.execute("INSERT INTO " + getTableName() + " (namecolor, code) VALUES (?, ?)", args) == 1;
 
     }
 

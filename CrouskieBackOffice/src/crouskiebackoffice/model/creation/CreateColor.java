@@ -5,9 +5,14 @@ import crouskiebackoffice.model.Color;
 /**
  * Crée une Color avec sont nom
  */
-public class CreateColor  implements ICreateWithName<Color> {
+public class CreateColor  implements ICreateClass<Color> {
     @Override
     public Color createWithName(String name) {
         return new Color(name);
+    }
+
+    @Override
+    public Color createWithNameAndInfo(String name, String info) {
+        return new Color(name, info);
     }
 }

@@ -1,12 +1,13 @@
 package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.AddingController;
-import crouskiebackoffice.model.creation.ICreateWithName;
+import crouskiebackoffice.model.creation.ICreateClass;
+import javax.swing.JTextField;
 
 /**
  * Cette classe représente une fenêtre de dialogue pour ajouter un élément à une
  * liste. Elle prend en paramètre un contrôleur d'ajout et une interface
- * {@link ICreateWithName} qui permet de créer un élément à partir d'un nom. La
+ * {@link ICreateClass} qui permet de créer un élément à partir d'un nom. La
  * fenêtre est modale et bloquante jusqu'à ce que l'utilisateur appuie sur le
  * bouton de soumission ou d'annulation.
  *
@@ -25,7 +26,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
     /**
      * L'interface permettant de créer un élément à partir d'un nom
      */
-    private ICreateWithName createWithName;
+    private ICreateClass createWithName;
 
     /**
      * Construit une fenêtre de dialogue avec un contrôleur d'ajout et une
@@ -35,7 +36,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
      * @param addingController le contrôleur d'ajout
      * @param createWithName l'interface de création d'élément à partir d'un nom
      */
-    public AddingDialog(AddingController addingController, ICreateWithName createWithName) {
+    public AddingDialog(AddingController addingController, ICreateClass createWithName) {
         super(MainWindow.instance);
         setModal(true);
         this.addingController = addingController;
@@ -57,6 +58,10 @@ public class AddingDialog<T> extends javax.swing.JDialog {
         } else {
             return null;
         }
+    }
+
+    public JTextField getDefaultInputField() {
+        return defaultInputField;
     }
 
     /**
@@ -159,7 +164,7 @@ public class AddingDialog<T> extends javax.swing.JDialog {
      * déroulante si l'ajout a réussi.
      */
     private void addingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addingBtnActionPerformed
-        if (addingController.createValue(defaultInputField.getText())) {
+        if (addingController.createValue()) {
             updateComboBoxChooser();
         }
     }//GEN-LAST:event_addingBtnActionPerformed

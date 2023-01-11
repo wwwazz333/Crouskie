@@ -1,20 +1,20 @@
 package crouskiebackoffice.controle;
 
-import crouskiebackoffice.model.creation.ICreateWithName;
 import crouskiebackoffice.model.dao.DAO;
 import crouskiebackoffice.view.AddingDialog;
 import java.util.LinkedList;
 import java.util.List;
+import crouskiebackoffice.model.creation.ICreateClass;
 
 public class AddingController<T> {
 
-    private DAO dao;
-    protected ICreateWithName createWithName;
+    protected DAO dao;
+    protected ICreateClass classCreator;
     protected AddingDialog<T> addingDialog;
 
-    public AddingController(DAO dao, ICreateWithName createWithName) {
+    public AddingController(DAO dao, ICreateClass createWithName) {
         this.dao = dao;
-        this.createWithName = createWithName;
+        this.classCreator = createWithName;
     }
 
     public void setDao(DAO dao) {
@@ -22,7 +22,7 @@ public class AddingController<T> {
     }
 
     public T newValue() {
-        addingDialog = new AddingDialog<>(this, createWithName);
+        addingDialog = new AddingDialog<>(this, classCreator);
         return addingDialog.getResult();
     }
 
@@ -42,13 +42,13 @@ public class AddingController<T> {
 
     /**
      *
-     * @param name the name for the new Value
      * @return true if the new Value has been succesfully created
      */
-    public boolean createValue(String name) {
+    public boolean createValue() {
+        String name = addingDialog.getDefaultInputField().getText();
         if (name != null && !name.isBlank()) {
             return ErrorHandeler.getInstance().exec(() -> {
-                dao.insertOrUpdate(createWithName.createWithName(name));
+                dao.insertOrUpdate(classCreator.createWithName(name));
                 return true;
             });
         }

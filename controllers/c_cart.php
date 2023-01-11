@@ -87,10 +87,10 @@ if($isLogged) {
     
                     // Enregistrer modifications quantité produit du panier
                     foreach ($infosProdsCart as $ligne) {
-                        $q = 99 ; // Récupérer quantité dans variable $q
+                        $q = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $q
                         if ($q == 0) {
                             // Suppression du panier
-                            $modiv = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                            $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
                         } else {
                             // Modification de la quantité
                             $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);

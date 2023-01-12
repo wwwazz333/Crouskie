@@ -117,8 +117,8 @@ if($isLogged) {
                             $alert = showAlert(3, QUANTITE_INSUFFISANTE, PAS_ASSEZ_DE_STOCK);
                             break;
                         }
+                        // Si un seul produit ne peux pas être acheter alors false
                         $resultProducts = $resultProducts && $result;
-                        
                     }
 
                     //alertes pour savoir si la fonction marche

@@ -11,6 +11,8 @@ for(let i=0; i<listePlus.length; i++) {
         listeQuantité[i].innerHTML = parseInt(listeQuantité[i].innerHTML) + 1
         listeHidden[i].value = listeQuantité[i].innerHTML
         console.log("plus ligne " + i + " -> " + listeHidden[i].value)
+        
+        document.getElementById("form-quantity").click()
     })
     // Actions pour les icones -
     listeMoins[i].addEventListener('click', function () {
@@ -19,11 +21,13 @@ for(let i=0; i<listePlus.length; i++) {
             listeHidden[i].value = listeQuantité[i].innerHTML
         }
         console.log("moins ligne " + i + " -> " + listeHidden[i].value)
+        document.getElementById("form-quantity").click()
     })
     // Actions pour les icones poubelle
     listePoubelle[i].addEventListener('click', function () {
         listeQuantité[i].innerHTML = 0
         listeHidden[i].value = listeQuantité[i].innerHTML
         console.log("poubelle ligne " + i + " -> " + listeHidden[i].value)
+        document.getElementById("form-quantity").click()
     })
 }

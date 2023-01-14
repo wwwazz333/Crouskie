@@ -64,42 +64,44 @@ if($isLogged) {
             $compteur ++; 
         }
 
-        // Vider le panier
+        // Fonction pour vider le panier
         function viderPanier($cartDAO,$userId) {
             $cartDAO->deleteCart($userId);
             $isCartEmpty = true;
             return true;
         } 
 
-        // Test modif quantités panier à la main 
-        /*foreach ($infosProdsCart as $ligne) {
-            // var_dump($ligne);
-            $q = 66; // Récupérer quantité 
-            $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-            // var_dump(20,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-        }*/
+        
+        // Modification des quantités du panier
+        if(isset($_POST['form-quantity'])){
+            // Enregistrer modifications quantité produit du panier
+            foreach ($infosProdsCart as $ligne) {
+                $q = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $q
+                if ($q == 0) {
+                    // Suppression du panier
+                    $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                } else {
+                    // Modification de la quantité 
+                    $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                }
+            }
+            // Rafraichissement de la page
+            header("Refresh: 0.000000000000000000000000000000001");
+        }
+
 
         // Passer commande
         if(isset($_POST['action'])){
             switch ($_POST['action']){
+
+                // On vide le panier
                 case 'vider':
                     viderPanier($cartDAO, $userId);
                     header('Location: index.php?page=cart&vider=1');
                     break;
-                case 'valider':
-    
-                    // Enregistrer modifications quantité produit du panier
-                    foreach ($infosProdsCart as $ligne) {
-                        $q = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $q
-                        if ($q == 0) {
-                            // Suppression du panier
-                            $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                        } else {
-                            // Modification de la quantité
-                            $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                        }
-                    }
 
+                // On valide la commande
+                case 'valider':
                     // Création de la commande
                     $resultOrder = $commandeDAO->addCommande($userId);
                     // On récupère l'idOrder pour plus tard 
@@ -121,7 +123,7 @@ if($isLogged) {
                         $resultProducts = $resultProducts && $result;
                     }
 
-                    //alertes pour savoir si la fonction marche
+                    // Alertes pour savoir si la fonction marche
                     if($resultProducts && $resultOrder){
                         header('Location: index.php?page=cart&valider=1');
                     }
@@ -149,11 +151,10 @@ if($isLogged) {
     $isCartEmpty = true;
 }
 
-// Test pour vider le panier
 
 if(isset($_POST['action'])){
     $commande = $_POST['action'];
 }
-// $isCartEmpty = viderPanier($cartDAO,$userId);
+
 
 require_once(PATH_VIEWS . $page . '.php');

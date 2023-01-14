@@ -42,7 +42,10 @@ require_once(PATH_VIEWS . 'alert.php');
         <?php foreach ($infosProdsCart as $product) { ?>
 
             <div class='flex row liste-panier'>
-            <input type="hidden" name="hid-quantity" id="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
+               <form id="form" action="" method="POST"> 
+                    <input type="hidden" name="hid-quantity" id="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
+                    <input type="submit" name="form-quantity" id="form-quantity" value="modif-quantity" style="display: none">
+                </form>
                <table><tr> 
                     <td class="col1">
                         <p><?php $info = $product['nameprod'] ; echo "$info"; ?></p>
@@ -64,6 +67,7 @@ require_once(PATH_VIEWS . 'alert.php');
                             <iconify-icon icon="ic:baseline-minus" width="34" height="34" class="ic-moins"></iconify-icon> 
                             <iconify-icon icon="uil:trash-alt" width="34" height="34" class="ic-poubelle"></iconify-icon>
                         </td>
+                        
                         </tr></table>
                     </td> 
                 </tr></table>
@@ -75,14 +79,14 @@ require_once(PATH_VIEWS . 'alert.php');
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         
         <!-- TESTS -->
-        <?php 
-            if(isset($commande)){
-                print_r($commande);
-            }
-            if(isset($erreur)){
-                print_r($erreur);
-            }
-        ?>
+        <!-- <?php 
+            // if(isset($commande)){
+            //     print_r($commande);
+            // }
+            // if(isset($erreur)){
+            //     print_r($erreur);
+            // }
+        ?> -->
         <div class="flex row wrap right contenu center">
             <form action="index.php?page=cart" method="POST" class="contenu center">
                 <input type="hidden" name="action" value="valider">

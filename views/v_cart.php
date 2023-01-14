@@ -43,6 +43,7 @@ require_once(PATH_VIEWS . 'alert.php');
 
             <div class='flex row liste-panier'>
                <form id="form" action="" method="POST"> 
+                    <input type="hidden" name="hid-num" id="hid-num" class="inp-hidden" value="<?= $product['compteur'] ?>">
                     <input type="hidden" name="hid-quantity" id="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
                     <input type="submit" name="form-quantity" id="form-quantity" value="modif-quantity" style="display: none">
                 </form>

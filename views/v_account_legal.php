@@ -7,11 +7,11 @@
 	<div class="card flex column even shadow-small rounded">
 		<h2 class="flex center"><?= MENTIONS_LEGALES ?></h2>
 		<p><?= CONSULTER_MENTIONS ?></p>
-		<a class="flex button-download circle" href=""><?= TELECHARGER ?></a>
+		<a class="flex button-download circle" href="<?= PATH_DOCUMENTS ?>MentionsLegales_crouskie.pdf" download="MentionsLegales_crouskie.pdf"><?= TELECHARGER ?></a>
 	</div>
 	<div class="card flex column even shadow-small rounded">
 		<h2 class="flex center"><?= CGU ?></h2>
 		<p><?= CONSULTER_CGU ?></p>
-		<a class="flex button-download circle" href=""><?= TELECHARGER ?></a>
+		<a class="flex button-download circle" href="<?= PATH_DOCUMENTS ?>CGU_crouskie.pdf" download="CGU_crouskie.pdf"><?= TELECHARGER ?></a>
 	</div>
 </section>

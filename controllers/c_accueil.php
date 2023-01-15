@@ -3,12 +3,7 @@ require_once(PATH_MODELS . 'CollectionDAO.php');
 
 // Récupération de la dernière collection sortie pour l'afficher dans la page d'accueil
 $DAO = new CollectionDAO(DEBUG);
-$lastCollection = $DAO->getLastCollection(); //for the DAO
-$lastCollection = new Collection( //create an object from the DAO
-    $lastCollection['namecollection'],
-    $lastCollection['idcollection'],
-    $lastCollection['pathpicture']
-);
+$lastCollection = $DAO->resultToCollection($DAO->getLastCollection());
 
 // ----------- Gestion des alertes potentielles ---------------
 

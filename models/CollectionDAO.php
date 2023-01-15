@@ -25,6 +25,19 @@ class CollectionDAO extends DAO
         }
         return $collections;
     }
+
+    /**
+     * Permet de convertir un resultat SQL en Objet PHP (ici Collection)
+     * @param array $result Le resultat fournis par la requête SQL en PHP
+     * @return Collection Retourne un objet produit
+     */
+    public function resultToCollection(array $result){
+        return new Collection(
+            $result['namecollection'],
+            $result['idcollection'],
+            $result['pathpicture']
+        );
+    }
     
     /**
      * Obtenir tout les produits associé à un nom d'une collection

@@ -11,7 +11,7 @@ require_once(PATH_VIEWS . 'alert.php');
     <div class='flex column'>
         <p><?=COLLECTION_DISCOVER?></p>
         <p>Crousk-hiver</p>
-        <button class='rounded'><?=DISCOVER?></button>
+        <a href='index.php?page=collection_product&id=<?= $lastCollection->getCollectionId() ?>' class='rounded'><?=DISCOVER?></a>
     </div>
 </div>
 

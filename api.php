@@ -41,20 +41,21 @@ function sendJson(mixed $result,bool $success = true)
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (isset($data['action'])) {
-    require_once(PATH_MODELS . 'UtilisateurDAO.php');
-    require_once(PATH_MODELS . 'ProductDAO.php');
-    require_once(PATH_MODELS . 'StockDAO.php');
     try {
         switch ($data['action']) {
             case 'check':
                 if (isset($data['email'])) {
+                    require_once(PATH_MODELS . 'UtilisateurDAO.php');
                     $DAO = new UtilisateurDAO(DEBUG);
                     $res = $DAO->isEmailExist(htmlspecialchars($data['email']));
                     sendJson($res);
+                }else{
+                    throw new Exception("Email argument is required");
                 }
                 break;
             case 'search':
                 if (isset($data['name'])) {
+                    require_once(PATH_MODELS . 'ProductDAO.php');
                     $DAO = new ProductDAO(DEBUG);
                     $res = $DAO->getProductsByName(htmlspecialchars($data['name']));
                     sendJson($res);
@@ -73,18 +74,19 @@ if (isset($data['action'])) {
                 break;
             case 'stock':
                 if (isset($data['id'])) {
+                    require_once(PATH_MODELS . 'StockDAO.php');
                     $DAO = new StockDAO(DEBUG);
                     if (isset($data['color'])) {
                         $res = $DAO->getSizesWithColor($data['id'],$data['color']);
                     }elseif (isset($data['size'])) {
                         $res = $DAO->getColorsWithSize($data['id'],$data['size']);
                     }else{
-                        throw new Exception("color or size argument is required");
+                        throw new Exception("Color or size argument is required");
                     }
                     sendJson($res);
                     break;
                 }
-                throw new Exception("id argument is required");
+                throw new Exception("Id argument is required");
             default:
                 sendJson("Unknow action",false);
                 break;

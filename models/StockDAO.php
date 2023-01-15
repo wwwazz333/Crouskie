@@ -11,7 +11,8 @@ class StockDAO extends DAO
      * @param int $idProd L'identifiant du produit
      * @return array La liste des tailles en stock
      */
-    public function getSizesAvaibleFor(int $idProd) : array{
+    public function getSizesAvaibleFor(int $idProd) : array 
+    {
         $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ?",array($idProd));
         // 
         /*
@@ -43,7 +44,7 @@ class StockDAO extends DAO
      * @param int $idProd L'identifiant du produit
      * @return array La liste des couleurs en stock
      */
-    public function getColorsAvaibleFor(int $idProd)
+    public function getColorsAvaibleFor(int $idProd) : array
     {
         $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ?",array($idProd));
         $result = array_map(fn($value): string => $value[0],$result);
@@ -56,7 +57,7 @@ class StockDAO extends DAO
      * @param int $idSize L'identifiant de la taille souhaitée
      * @return array La liste des couleurs en stock
      */
-    public function getColorsWithSize(int $idProd,int $idSize)
+    public function getColorsWithSize(int $idProd,int $idSize) : array
     {
         $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ? AND idsize = ?",array($idProd,$idSize));
         $result = array_map(fn($value): string => $value[0],$result);
@@ -69,10 +70,24 @@ class StockDAO extends DAO
      * @param string $color L'identifiant de la taille souhaitée
      * @return array La liste des tailles en stock
      */
-    public function getSizesWithColor(int $idProd,string $color)
+    public function getSizesWithColor(int $idProd,string $color) : array
     {
         $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ? AND namecolor = ?",array($idProd,$color));
         $result = array_map(fn($value): int => $value[0],$result);
         return $result;
+    }
+
+    /**
+     * Retourne True si un produit est en stock ou False si il ne l'est pas
+     * @param int $idProd L'identifiant du produit
+     * @param string $colorname Le nom de la couleur
+     * @param int $idSize L'identifiant de la taille
+     * @return bool True si il est en stock, False sinon
+     */
+    public function isProductInStock(int $idProd, string $colorname, int $idSize)
+    {
+        $result = $this->queryRow("SELECT IF(EXISTS(SELECT * FROM stocked  WHERE idprod = ? AND namecolor = ? AND idsize = ?),true,false ) AS result",
+        array($idProd,$colorname,$idSize));
+        return $result[0];
     }
 }

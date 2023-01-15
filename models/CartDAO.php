@@ -35,7 +35,7 @@ class CartDAO extends DAO
      * @return array Liste de dictionnaires
      */
     public function getCartByCustomerId(int $id) : array {
-        $cart = $this->queryAll("SELECT * FROM cart where idcustomer = ?", array($id));
+        $cart = $this->queryAll("SELECT * FROM cart WHERE idcustomer = ?", array($id));
         return $cart;
     }
 
@@ -52,16 +52,16 @@ class CartDAO extends DAO
     
     /**
      * Permet d'ajouter un produit au panier de l'utilisateur
-     * @param Cart $cart Un objet cart qui représente un produit du panier en PHP
+     * @param int $userId L'identifiant de l'utilisateur
+     * @param int $productId L'identifiant du produit
+     * @param int $quantityCart La quantité du produit
+     * @param int $idsize La taille du produit
+     * @param string $namecolor La couleur du produit
      * @return bool True si l'opération a réussie sinon False
      */
-    public function addCart(Cart $cart) : bool {
+    public function addCart(int $userId, int $productId, int $quantityCart, int $idsize, string $namecolor) : bool {
         $result = $this->queryBdd("INSERT INTO cart VALUES (?,?,?,?,?)", array(
-            $cart->getCustomerId(),
-            $cart->getIdProd(),
-            $cart->getQuantityCart(),
-            $cart->getSizeCart(),
-            $cart->getColorCart(),
+            $userId,$productId,$quantityCart,$idsize,$namecolor
         ));
         return $result;
     }
@@ -72,7 +72,7 @@ class CartDAO extends DAO
      * @return bool True si l'opération a réussie sinon False
      */
     public function deleteCart(int $id) : bool {
-        $result = $this->queryBdd("DELETE from cart where idcustomer = ?", array($id));
+        $result = $this->queryBdd("DELETE FROM cart WHERE idcustomer = ?", array($id));
         return $result;
     }
 
@@ -85,7 +85,7 @@ class CartDAO extends DAO
      * @return bool True si l'opération a réussie sinon False
      */
     public function deleteProductFromCart(int $userId, int $productId, string $namecolor, int $idsize) : bool {
-        $result = $this->queryBdd("DELETE from cart where idcustomer = ? and idprod = ? and namecolor = ? and idsize = ?", 
+        $result = $this->queryBdd("DELETE FROM cart WHERE idcustomer = ? AND idprod = ? AND namecolor = ? AND idsize = ?", 
         array($userId,$productId,$namecolor,$idsize));
         return $result;
     }
@@ -100,9 +100,24 @@ class CartDAO extends DAO
      * @return bool True si l'opération a réussie sinon False
      */
     public function setQuantityProductFromCart(int $quantity, int $userId, int $productId, string $namecolor, int $idsize) : bool {
-        $result = $this->queryBdd("UPDATE cart set quantitycart = ? where idcustomer = ? and idprod = ? and namecolor = ? and idsize = ?", 
+        $result = $this->queryBdd("UPDATE cart SET quantitycart = ? WHERE idcustomer = ? AND idprod = ? AND namecolor = ? AND idsize = ?", 
         array($quantity,$userId,$productId,$namecolor,$idsize));
         return $result;
+    }
+
+    /**
+     * Permet d'obtenir le nombre d'un produit précis du panier d'un utilisteurs grâce à leurs identifiant respectifs
+     * @param int $userId L'identifiant de l'utilisateur
+     * @param int $productId L'identifiant du produit
+     * @param string $namecolor La couleur du produit
+     * @param int $idsize La taille du produit
+     * @return bool True si l'opération a réussie sinon False
+     */
+    public function getQuantityProductFromCart(int $userId, int $productId, string $namecolor, int $idsize) : int
+    {
+        $result = $this->queryRow("SELECT count(*) FROM cart WHERE idcustomer = ? AND idprod = ? AND namecolor = ? AND idsize = ?",
+        array($userId,$productId,$namecolor,$idsize));
+        return $result[0];
     }
     
 }

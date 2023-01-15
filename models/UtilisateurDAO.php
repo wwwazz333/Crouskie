@@ -56,4 +56,16 @@ class UtilisateurDAO extends DAO
         
         return $result;
     }
+
+    /**
+     * Permet de savoir si le mot de passe passé en paramètre est identitique à celui de l'utilisateur
+     * @param int $id L'identifiant de l'utilisateur
+     * @param string $password Le mot de passe à vérifier
+     * @return bool True si le mot de passe est identique sinon False
+     */
+    public function checkPassword(int $id, string $password) : bool
+    {
+        $result = $this->queryRow("SELECT password FROM customer WHERE idcustomer = ?", array($id));
+        return password_verify($password,$result[0]);
+    }
 }

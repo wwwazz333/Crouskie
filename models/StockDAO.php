@@ -34,7 +34,7 @@ class StockDAO extends DAO
         [4,2]
         
         */
-        $result = array_map(fn($value): string => $value[0],$result);
+        $result = array_map(fn($value): int => $value[0],$result);
         return $result;
     }
 
@@ -72,7 +72,7 @@ class StockDAO extends DAO
     public function getSizesWithColor(int $idProd,string $color)
     {
         $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ? AND namecolor = ?",array($idProd,$color));
-        $result = array_map(fn($value): array => $value[0],$result);
+        $result = array_map(fn($value): int => $value[0],$result);
         return $result;
     }
 }

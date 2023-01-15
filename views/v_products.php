@@ -9,7 +9,7 @@ require_once(PATH_VIEWS . 'header.php');
     <div class="search">
         <input type="text" name="search" id="input-search" class="rounded shadow-small" autocomplete="off" 
         placeholder="<?=RECHERCHER?>" value="<?= isset($_GET['q']) ? $_GET['q'] : ''?>">
-        <ul class="hidden"></ul>
+        <ul class="shadow-small hidden"></ul>
     </div>
 </div>
 <div class="flex row wrap center" id="products">

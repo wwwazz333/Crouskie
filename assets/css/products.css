@@ -11,6 +11,9 @@
 }
 
 #input-search.suggestions{
+    /* border-style: solid;
+    border-color: #6d6b6b84;
+    border-width: 1px 1px 0px 1px ; */
     border-radius: 15px 15px 0 0;
     -webkit-border-radius: 15px 15px 0 0;
     -moz-border-radius: 15px 15px 0 0;
@@ -33,7 +36,9 @@
         -ms-border-radius: 0px 0px 15px 15px;
         -o-border-radius: 0px 0px 15px 15px;
         overflow: hidden;
-        border: solid #6d6b6b84 1px;
+        border-style: solid;
+        border-color: #6d6b6b84;
+        border-width: 0px 2px 2px 2px ;
     }
 
     .search li {

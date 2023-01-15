@@ -65,7 +65,12 @@ if (isset($data['action'])) {
                 break;
             case 'upload':
                 if (isset($data['image'])) {
-                    $file_name = PATH_IMAGES . 'uploads/' . random_str(16) . '.png';
+                    if (isset($data['id'])) {
+                        // temporaire
+                        $file_name = PATH_IMAGES . 'uploads/product-preview-' . $data['id'] . '.png';
+                    }else{
+                        $file_name = PATH_IMAGES . 'uploads/' . random_str(16) . '.png';
+                    }
                     file_put_contents($file_name, base64_decode($data['image']));
                     sendJson($file_name);
                 }else{

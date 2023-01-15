@@ -43,6 +43,7 @@ define('INSTRUCTIONS_SIGNUP','Saisissez vos informatons pour<br>créer un compte
 define('INSTRUCTIONS_SIGNIN','Entrez votre mot de passe afin de vous connecter');
 define('PASSWORD','Mot de passe');
 define('PASSWORD_CONFIRM','Confirmer mot de passe');
+define('PASSWORD_RULE','Le mot de passe doit contenir au moins 1 chiffre, 1 majuscule et 1 minuscule, il doit faire au moins 8 caractères');
 define('CREATE_PASSWORD','Créer un mot de passe');
 define('LASTNAME','Nom');
 define('FIRSTNAME','Prénom');

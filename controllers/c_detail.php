@@ -25,24 +25,25 @@ if (isset($_GET['id'])) {
 
         // Ajout au panier 
         if (isset($_POST['color']) && isset($_POST['size'])) {
-            require_once(PATH_ENTITY . 'Cart.php');
-            require_once(PATH_MODELS . 'CartDAO.php');
-            
-            $DAO = new CartDAO(DEBUG);
+            // Vérification de connexion
             if ($isLogged == false) {
                 header('Location: index.php?page=portal&log');
                 exit();
             }
+
+            require_once(PATH_ENTITY . 'Cart.php');
+            require_once(PATH_MODELS . 'CartDAO.php');
             
-            $cart = new Cart(
+            $DAO = new CartDAO(DEBUG);
+
+            
+
+            if ($DAO->addCart(
                 $user->getIdUser(),
                 $product->getId(),
                 1,
-                $_POST['color'],
-                $_POST['size']
-            );
-            
-            if ($DAO->addCart($cart)) {
+                $_POST['size'],
+                $_POST['color'])) {
                 $alert = showAlert(1,SUCCESS,AJOUT_PANIER_REUSSI);
             }else{
                 $alert = showAlert(3,ERROR,AJOUT_PANIER_FAIL);

@@ -82,8 +82,13 @@
     }
 
     .product-item img{
-        height: 280px;
-        width: 230px;
+        background-image: url("/assets/images/logos/crouskie-loading.png");
+        background-repeat: repeat;
+        background-position: center;
+        min-height: 280px;
+        min-width: 230px;
+        max-height: 280px;
+        max-width: 230px;
         object-fit: cover;
         border-radius: 40px;    ;
         -webkit-border-radius: 40px;

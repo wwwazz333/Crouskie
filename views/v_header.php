@@ -14,10 +14,10 @@
 				<a href="index.php?page=collections"><?=MENU_COLLECTIONS?></a>
 				<a href="index.php?page=products"><?=MENU_PRODUITS?></a>
 			</div>
-			<div class="flex row right">
+			<div class="flex row center right">
 				<!-- Bouton pour le panier -->
 				<!-- Ajouter la class 'counter' pour afficher le nombre d'articles dans le panier -->
-				<a href="index.php?page=cart" class="icon <?= $isLogged ? 'counter' : ''?>" data-number=0>
+				<a href="index.php?page=cart" class="icon <?= $isLogged ? 'counter' : ''?>" data-number=<?= $isLogged ? $cartCounter : '0'?>>
 					<iconify-icon icon="akar-icons:shopping-bag"></iconify-icon>
 				</a>
 				<button onclick="window.location.assign('index.php?page=<?= $isLogged ? 'account' : 'portal' ?>');" 

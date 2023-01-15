@@ -34,7 +34,7 @@ class StockDAO extends DAO
         [4,2]
         
         */
-        $result = array_map(fn($value): mixed => $value[0],$result);
+        $result = array_map(fn($value): string => $value[0],$result);
         return $result;
     }
 
@@ -46,7 +46,7 @@ class StockDAO extends DAO
     public function getColorsAvaibleFor(int $idProd)
     {
         $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ?",array($idProd));
-        $result = array_map(fn($value): mixed => $value[0],$result);
+        $result = array_map(fn($value): string => $value[0],$result);
         return $result;
     }
 
@@ -59,7 +59,7 @@ class StockDAO extends DAO
     public function getColorsWithSize(int $idProd,int $idSize)
     {
         $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ? AND idsize = ?",array($idProd,$idSize));
-        $result = array_map(fn($value): mixed => $value[0],$result);
+        $result = array_map(fn($value): string => $value[0],$result);
         return $result;
     }
 
@@ -72,7 +72,7 @@ class StockDAO extends DAO
     public function getSizesWithColor(int $idProd,string $color)
     {
         $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ? AND namecolor = ?",array($idProd,$color));
-        $result = array_map(fn($value): mixed => $value[0],$result);
+        $result = array_map(fn($value): array => $value[0],$result);
         return $result;
     }
 }

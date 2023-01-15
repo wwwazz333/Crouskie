@@ -38,6 +38,17 @@ class CartDAO extends DAO
         $cart = $this->queryAll("SELECT * FROM cart where idcustomer = ?", array($id));
         return $cart;
     }
+
+    /**
+     * Retourne le nombre d'article dans le panier d'un utilisateur
+     * @param int $id L'identifiant de l'utilisateur
+     * @return int Le nombre d'articles dans le panier
+     */
+    public function getCartCountByCustomerId(int $id) : int
+    {
+        $count = $this->queryRow("SELECT count(*) FROM cart WHERE idcustomer = ?",array($id));
+        return $count[0];
+    }
     
     /**
      * Permet d'ajouter un produit au panier de l'utilisateur

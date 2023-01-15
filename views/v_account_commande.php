@@ -4,7 +4,7 @@
     <?php if(!$isCommandesEmpty) { ?>
         <?php foreach ($listeCommande as $c) { ?>
             <details>
-                <summary>Commande du <?php $info = $c['date']; echo "$info"; ?> à <?php $info = $c['heure']; echo "$info"; ?></summary>
+                <summary><?= COMMANDE_DU ?> <?php $info = $c['date']; echo "$info"; ?> <?= A ?>  <?php $info = $c['heure']; echo "$info"; ?></summary>
                 
                 <!-- Affichage des produit de la commande traitée -->
                 <?php foreach ($listeProductBought as $pb) { ?>
@@ -12,10 +12,10 @@
                     <?php if($pb['order'] == $c['numorder']) { ?>
 
                         <?php $info = $pb['name']; echo "$info"; ?> - 
-                        couleur : <?php $info = $pb['color']; echo "$info"; ?> - 
-                        taile : <?php $info = $pb['size']; echo "$info"; ?> - 
-                        prix : <?php $info = $pb['price']; echo "$info"; ?> € - 
-                        quantité : <?php $info = $pb['quantity']; echo "$info"; ?>
+                        <?= CART_COULEUR ?> : <?php $info = $pb['color']; echo "$info"; ?> - 
+                        <?= CART_TAILLE ?> : <?php $info = $pb['size']; echo "$info"; ?> - 
+                        <?= CART_PRIX ?> : <?php $info = $pb['price']; echo "$info"; ?> € - 
+                        <?= CART_QUANTITE ?> : <?php $info = $pb['quantity']; echo "$info"; ?>
                         <br>
                     <?php } ?>
                 <?php } ?>

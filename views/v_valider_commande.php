@@ -42,14 +42,6 @@ require_once(PATH_VIEWS . 'alert.php');
             </form>
         </div>
 
-        <!-- Accéder au paiement -->
-        <!-- <div class="card center shadow rounded validation">
-            <h3>Validation et paiement</h3> 
-            <form action="index.php?page=valider_commande" method="post" class="card flex column center rounded">
-                <input type="submit" id="form-confirm" value="Valider ma commande" class="valid circle">
-            </form>
-        </div> -->
-
     </div>
 
 

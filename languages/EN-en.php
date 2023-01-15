@@ -56,12 +56,35 @@ define('CHANGER_INFORMATIONS','Edit my information');
 define('ENREGISTRER_INFORMATIONS','Save my information');
 define('CHANGER_MDP','Change my password');
 define('COMMANDES_VIDE','You have no orders yet!');
+define('EMAIL','Email');
+
+
+// Account page menu
+define('BONJOUR','Hello');
+define('INFOS_COMPTE','Account information');
+define('MES_COMMANDES','My orders');
+define('LEGAL','Legal basis');
+define('SE_DECONNECTER','Log out');
 
 // Change password page
 define('CHANGER_MDP_TXT','Enter your current password and then choose a new one.');
 define('MDP_ACTUEL','Current password');
 define('MDP_NOUVEAU','New password');
 define('MDP_NOUVEAU_CONF','Confirmation of the new password');
+define('VALIDER','Validate');
+
+// Orders page
+define('COMMANDE_DU','Order from the');
+define('A','at');
+
+// Legal page
+define('PORTABILITE','Data Portability');
+define('EXPORTER_JSON','Export my data in json file.');
+define('TELECHARGER','Download');
+define('MENTIONS_LEGALES','Legal Notices');
+define('CONSULTER_MENTIONS','Consult the legal notices of the site.');
+define('CGU','General Terms Of Use');
+define('CONSULTER_CGU','Consult the general terms of use.');
 
 // Cart pages
 define('MON_PANIER','My cart');

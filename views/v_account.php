@@ -8,18 +8,18 @@ require_once(PATH_VIEWS . 'alert.php');
 <!-- affichage menu -->
 <div class="flex row content">
     <div class="flex column wrap right" id="menu">
-        <h2> Bonjour <?= $user->getFirstName() ?> </h2>
+        <h2><?= BONJOUR ?> <?= $user->getFirstName() ?> </h2>
         <a href="index.php?page=account&selected=info">
-            <p id="info">Informations du compte</p>
+            <p id="info"><?= INFOS_COMPTE ?></p>
         </a>
         <a href="index.php?page=account&selected=commande">
-            <p id="commande">Mes commandes</p>
+            <p id="commande"><?= MES_COMMANDES ?></p>
         </a>
         <a href="index.php?page=account&selected=legal">
-            <p id="legal">Legal</p>
+            <p id="legal"><?= LEGAL ?></p>
         </a>
         <a href="index.php?page=logout&selected=info">
-            <p>Se déconnecter</p>
+            <p><?= SE_DECONNECTER ?></p>
         </a>
     </div>
 

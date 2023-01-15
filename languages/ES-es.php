@@ -56,12 +56,34 @@ define('CHANGER_INFORMATIONS','Modificar mis datos');
 define('ENREGISTRER_INFORMATIONS','Guardar mis datos');
 define('CHANGER_MDP','Cambiar mi contraseña');
 define('COMMANDES_VIDE','¡Aún no tienes ningún pedido!');
+define('EMAIL','Email');
+
+// mMenú de la página de cuenta
+define('BONJOUR','Hola');
+define('INFOS_COMPTE','Tnformación de la cuenta');
+define('MES_COMMANDES','Mis pedidos');
+define('LEGAL','Marco jurídico');
+define('SE_DECONNECTER','Desconectar');
 
 // Página cambiar contraseña
 define('CHANGER_MDP_TXT','Introduzca su contraseña actual y elija una nueva.');
 define('MDP_ACTUEL','Contraseña actual');
 define('MDP_NOUVEAU','Nueva contraseña');
 define('MDP_NOUVEAU_CONF','Confirmación de la nueva contraseña');
+define('VALIDER','Validar');
+
+// Página pedido
+define('COMMANDE_DU','Pedido del');
+define('A','a las');
+
+// Página legal
+define('PORTABILITE','Portabilidad De Los Datos');
+define('EXPORTER_JSON','Exportar mis datos a un archivo json.');
+define('TELECHARGER','Descargar');
+define('MENTIONS_LEGALES','Aviso Legal');
+define('CONSULTER_MENTIONS','Consulte el aviso legal del sitio.');
+define('CGU','Condiciones Generales De Uso');
+define('CONSULTER_CGU','Consultar las condiciones generales de uso.');
 
 // Página del carrito
 define('MON_PANIER','Mi carrito');

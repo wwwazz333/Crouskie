@@ -21,6 +21,6 @@ require_once(PATH_VIEWS . 'head.php');
         <input type="password" name="new-password" id="new-password" placeholder="<?= MDP_NOUVEAU ?>" class="icon rounded shadow-small" required>
         <input type="password" name="conf-new-password" id="conf-new-password" placeholder="<?= MDP_NOUVEAU_CONF ?>" class="icon rounded shadow-small" required>
         
-        <input type="submit" id="form-confirm" value="<?= CONNEXION ?>" class="valid circle">
+        <input type="submit" id="form-confirm" value="<?= VALIDER ?>" class="valid circle">
     </form>
 </div>

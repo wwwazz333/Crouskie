@@ -3,17 +3,17 @@
     <form action="index.php?page=account" method="POST" id="account-form">
         <div class="flex row wrap right contenu">
             <div class="card flex row center shadow-small rounded">
-                <h2>Nom :</h2>
+                <h2><?= LASTNAME ?> :</h2>
                 <input type="text" name="nom" id="nom" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getLastName() ?>">
             </div>
 
             <div class="card flex row center shadow-small rounded">
-                <h2>Prénom :</h2>
+                <h2><?= FIRSTNAME ?> :</h2>
                 <input type="text" name="prenom" id="prenom" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getFirstName() ?>">
             </div>
 
             <div class="card flex row center shadow-small rounded">
-                <h2>Adresse mail :</h2>
+                <h2><?= EMAIL ?>  :</h2>
                 <input type="email" name="email" id="email" class="icon rounded shadow-small" disabled="disabled" value="<?= $user->getEmail() ?>">
             </div>
         </div>

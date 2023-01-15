@@ -13,8 +13,8 @@ var SizesInStock = null;
 var ColorsInStock = null;
 
 function refreshForm() {
-
     // Actualiser les couleurs en stock
+    colorsContainer.removeAttribute('disabled');
     for(const color of colorsContainer.children){
         if (selectedSize) {
             if (ColorsInStock) {
@@ -28,6 +28,7 @@ function refreshForm() {
     }
 
     // Actualiser les tailles en stock
+    sizesContainer.removeAttribute('disabled');
     for(const size of sizesContainer.children){
         if (selectedColor) {
             if (SizesInStock) {
@@ -46,6 +47,7 @@ function refreshForm() {
 const colors = colorsContainer.querySelectorAll("input")
 colors.forEach((el)=>{
     el.addEventListener("click",()=>{
+        sizesContainer.setAttribute('disabled',true);
         if (selectedColor == el.value) {
             el.checked = false;
             selectedColor = null;
@@ -57,8 +59,7 @@ colors.forEach((el)=>{
                     SizesInStock = res.result;
                     refreshForm();
                 }else{
-                    console.log("Erreur de requête !");
-                    //afficher message erreur
+                    PopUp(3,"Erreur","Une erreur de requête est survenue, excusez nous du dérangement causé !");
                 }
             });
         } 
@@ -69,6 +70,7 @@ colors.forEach((el)=>{
 const sizes = sizesContainer.querySelectorAll("input"); 
 sizes.forEach((el)=>{
     el.addEventListener("click",()=>{
+        colorsContainer.setAttribute('disabled',true);
         if (selectedSize == el.value) {
             el.checked = false;
             selectedSize = null;
@@ -80,8 +82,7 @@ sizes.forEach((el)=>{
                     ColorsInStock = res.result;
                     refreshForm();
                 }else{
-                    console.log("Erreur de requête !");
-                    //afficher message erreur
+                    PopUp(3,"Erreur","Une erreur de requête est survenue, excusez nous du dérangement causé !");
                 }
             });
         }
@@ -89,18 +90,8 @@ sizes.forEach((el)=>{
 });
 
 form.addEventListener('submit',(ev)=>{
-    if (selectedColor && selectedSize) {
-        postJson('api.php',{"action":"cart","id":productID,"size":selectedSize},(res)=>{
-            if (res.success) {
-                ColorsInStock = res.result;
-                refreshForm();
-            }else{
-                console.log("Erreur de requête !");
-                //afficher message erreur
-            }
-        });
-    }else{
+    if (!selectedColor || !selectedSize) {
+        PopUp(2,"Attention","Veuillez choisir une couleur / taille pour votre produit !");
         ev.preventDefault();
     }
-    
 });

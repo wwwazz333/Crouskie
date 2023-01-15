@@ -33,6 +33,7 @@ if (isset($_GET['id'])) {
                 header('Location: index.php?page=portal&log');
                 exit();
             }
+            
             $cart = new Cart(
                 $user->getIdUser(),
                 $product->getId(),
@@ -41,7 +42,6 @@ if (isset($_GET['id'])) {
                 $_POST['size']
             );
             
-            // TODO : Ajouter le support de la langue
             if ($DAO->addCart($cart)) {
                 $alert = showAlert(1,SUCCESS,AJOUT_PANIER_REUSSI);
             }else{

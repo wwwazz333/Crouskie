@@ -29,6 +29,12 @@ function getJson(url, callback) {
     .catch((error) => { callback({ success : false }); });
 }
 
+// Prévenir des repost
+
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+
 // Méthodes pour activer ou désactiver la capacité à naviger dans une page WEB
 
 function disableScroll() {

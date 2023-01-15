@@ -52,10 +52,15 @@ form{
 
     #sizes-container input[type="radio"] {
         padding: 0;
-        content: attr('content');
         border: none;
         width: 80px;
     }
+
+    #sizes-container input[type="radio"]:disabled {
+        filter: blur(1px);
+        -webkit-filter: blur(1px);
+}
+
 
     #sizes-container input[type="radio"]:checked{
         border: 3px solid #0055ffb7;

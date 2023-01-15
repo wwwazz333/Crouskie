@@ -57,7 +57,13 @@ define('ENREGISTRER_INFORMATIONS','Save my information');
 define('CHANGER_MDP','Change my password');
 define('COMMANDES_VIDE','You have no orders yet!');
 
-// Cart page
+// Change password page
+define('CHANGER_MDP_TXT','Enter your current password and then choose a new one.');
+define('MDP_ACTUEL','Current password');
+define('MDP_NOUVEAU','New password');
+define('MDP_NOUVEAU_CONF','Confirmation of the new password');
+
+// Cart pages
 define('MON_PANIER','My cart');
 define('CART_ARTICLE','Product');
 define('CART_COULEUR','Color');

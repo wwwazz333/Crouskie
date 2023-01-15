@@ -57,6 +57,12 @@ define('ENREGISTRER_INFORMATIONS','Guardar mis datos');
 define('CHANGER_MDP','Cambiar mi contraseña');
 define('COMMANDES_VIDE','¡Aún no tienes ningún pedido!');
 
+// Página cambiar contraseña
+define('CHANGER_MDP_TXT','Introduzca su contraseña actual y elija una nueva.');
+define('MDP_ACTUEL','Contraseña actual');
+define('MDP_NOUVEAU','Nueva contraseña');
+define('MDP_NOUVEAU_CONF','Confirmación de la nueva contraseña');
+
 // Página del carrito
 define('MON_PANIER','Mi carrito');
 define('CART_ARTICLE','Poducto');
@@ -69,11 +75,10 @@ define('PASSER_COMMANDE','Realizar mi pedido');
 define('VIDER_PANIER','Vaciar mi carrito');
 define('PANIER_VIDE','¡Tu carrito está vacío!');
 define('PANIER_PAS_CONNECTE','¡No estás conectado!');
-    // à traduire
-define('PANIER_BIEN_VIDE','a');
-define('PANIER_BIEN_VALIDE','a');
-define('QUANTITE_INSUFFISANTE','a');
-define('PAS_ASSEZ_DE_STOCK','a');
+define('PANIER_BIEN_VIDE','¡Su cesta está vacía!');
+define('PANIER_BIEN_VALIDE','¡Su pedido ha sido registrado con éxito!');
+define('QUANTITE_INSUFFISANTE','Cantidad insuficiente del producto');
+define('PAS_ASSEZ_DE_STOCK','No hay suficientes existencias para uno o más productos de su cesta');
 
 // Página de productos
 define('RECHERCHER','Buscar...');

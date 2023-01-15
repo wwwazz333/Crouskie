@@ -86,7 +86,7 @@ if($isLogged) {
                 }
             }
             // Rafraichissement de la page
-            header("Refresh: 0.000000000000000000000000000000001");
+            header("Refresh: 0.1");
         }
 
 

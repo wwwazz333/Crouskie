@@ -60,6 +60,11 @@ define('CHANGEMENT_INFORMATIONS_CONFIRMER',"Informations changé avec succès");
 define('CHANGEMENT_INFORMATIONS_ERREUR',"Echec au moment de changer les informations");
 define('CHANGEMENT_INFORMATIONS_INCOMPLETE',"Attention tous les champs doivent être complété pour valider");
 
+// Page changer mot de passe
+define('CHANGER_MDP_TXT','Entrez votre mot de passe actuel puis choisissez en un nouveau.');
+define('MDP_ACTUEL','Mot de passe actuel');
+define('MDP_NOUVEAU','Nouveau mot de passe');
+define('MDP_NOUVEAU_CONF','Confirmation du nouveau mot de passe');
 
 // Page panier
 define('MON_PANIER','Mon panier');

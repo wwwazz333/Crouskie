@@ -27,10 +27,9 @@ else{
 // Vérification connexion
 if (isset($_SESSION['account'])) {
   require_once(PATH_MODELS . 'CartDAO.php');
-  $DAO = new CartDAO(DEBUG);
   $isLogged = true;
   $user = unserialize($_SESSION['account']);
-  // Temporaire
+  $DAO = new CartDAO(DEBUG);
   $cartCounter = $DAO->getCartCountByCustomerId($user->getIdUser());
 }else{
   $isLogged = false;

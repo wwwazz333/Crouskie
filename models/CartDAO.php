@@ -46,7 +46,8 @@ class CartDAO extends DAO
      */
     public function getCartCountByCustomerId(int $id) : int
     {
-        $count = $this->queryRow("SELECT count(*) FROM cart WHERE idcustomer = ?",array($id));
+        // NVL permet de mettre une valeur par défaut si le résulat d'une opération est nulle
+        $count = $this->queryRow("SELECT NVL(sum(quantitycart),0) FROM cart WHERE idcustomer = ?",array($id));
         return $count[0];
     }
     

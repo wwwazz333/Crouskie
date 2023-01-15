@@ -86,7 +86,7 @@ define('TELECHARGER','Télécharger');
 define('MENTIONS_LEGALES','Mentions Légales');
 define('CONSULTER_MENTIONS','Consulter les mentions légales du site.');
 define('CGU','CGU');
-define('CONSULTER_CGU','Consulter les conditions générales d\'utilisations');
+define('CONSULTER_CGU','Consulter les conditions générales d\'utilisations.');
 
 // Page panier
 define('MON_PANIER','Mon panier');

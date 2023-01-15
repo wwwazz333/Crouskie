@@ -58,7 +58,6 @@ define('CHANGER_MDP','Change my password');
 define('COMMANDES_VIDE','You have no orders yet!');
 define('EMAIL','Email');
 
-
 // Account page menu
 define('BONJOUR','Hello');
 define('INFOS_COMPTE','Account information');

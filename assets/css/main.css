@@ -342,8 +342,12 @@ iconify-icon{
 .icon.counter::after{
     content: attr(data-number);
     position: absolute;
-    left: 13px;
-    top: 18px;
+    left: 0px;
+    top: 0px;
+    width: 35px;
+    height: 35px;
+    line-height: 47px;
+    text-align: center;
     font-size: 0.8rem;
     font-weight: 600;
     color: inherit;

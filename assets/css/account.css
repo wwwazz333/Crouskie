@@ -118,3 +118,9 @@ body {
     text-align: center;
     margin-top: 7rem;
 }
+
+/* -------- page cadre légal -------- */
+
+.content .legal {
+    margin-bottom: 2rem;
+}

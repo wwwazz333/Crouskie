@@ -1,4 +1,4 @@
-<section id="legal-page" class="flex row wrap right contenu center">
+<section id="legal-page" class="flex row wrap right contenu center legal">
 	<div class="card flex column even shadow-small rounded">
 		<h2 class="flex center"><?= PORTABILITE ?></h2>
 		<p><?= EXPORTER_JSON ?></p>

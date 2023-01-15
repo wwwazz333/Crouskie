@@ -1,7 +1,7 @@
 	<body>
 		<!-- En-tête -->
 		<header class="header flex row <?= $page == 'accueil' ? 'transparent' : 'shadow'?>">
-			<div>
+			<div class="logo">
 				<a href="index.php">
 					<img src=<?= $page == 'accueil' ? 
 					PATH_LOGOS . "crouskie-text-filled-white.svg" : 

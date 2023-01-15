@@ -30,6 +30,7 @@ if (isset($_SESSION['account'])) {
   $DAO = new CartDAO(DEBUG);
   $isLogged = true;
   $user = unserialize($_SESSION['account']);
+  // Temporaire
   $cartCounter = $DAO->getCartCountByCustomerId($user->getIdUser());
 }else{
   $isLogged = false;

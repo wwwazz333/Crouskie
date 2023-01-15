@@ -424,6 +424,20 @@ iconify-icon{
     color: black;
 }
 
+/* Responsive */
+
+
+@media (max-width: 700px) { 
+    .header .nav{
+        gap: 1rem;
+    }
+    
+    .header .logo{
+        display: none;
+    }
+}
+
+
 /*============ Footer ============*/
 
 .footer{

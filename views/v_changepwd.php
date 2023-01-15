@@ -15,8 +15,7 @@ require_once(PATH_VIEWS . 'head.php');
         <h3><?= CONNEXION ?></h3>
         <p><?= CHANGER_MDP_TXT ?></p>
     </div>
-    <form action="index.php?page=account" method="POST" class="card flex column center shadow rounded">
-        <input type="hidden" name="email" id="email" value="<?= $email?>">
+    <form action="index.php?page=changepwd" method="POST" class="card flex column center shadow rounded">
         
         <input type="password" name="old-password" id="old-password" placeholder="<?= MDP_ACTUEL ?>" class="icon rounded shadow-small" required>
         <input type="password" name="new-password" id="new-password" placeholder="<?= MDP_NOUVEAU ?>" class="icon rounded shadow-small" required>

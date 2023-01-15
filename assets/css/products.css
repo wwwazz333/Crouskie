@@ -3,6 +3,7 @@
 .search{
     margin-top: 130px;
     width: 50vw;
+    position: relative;
 }
 
 #input-search{
@@ -20,8 +21,9 @@
     /* Suggestions */
 
     .search ul{
+        position: absolute;
         list-style: none;
-        z-index: 2;
+        z-index: 1;
         background-color: white;
         width: 100%;
         height: fit-content;

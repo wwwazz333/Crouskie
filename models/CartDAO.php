@@ -116,7 +116,7 @@ class CartDAO extends DAO
      */
     public function getQuantityProductFromCart(int $userId, int $productId, string $namecolor, int $idsize) : int
     {
-        $result = $this->queryRow("SELECT count(*) FROM cart WHERE idcustomer = ? AND idprod = ? AND namecolor = ? AND idsize = ?",
+        $result = $this->queryRow("SELECT NVL(sum(quantitycart),0) FROM cart WHERE idcustomer = ? AND idprod = ? AND namecolor = ? AND idsize = ?",
         array($userId,$productId,$namecolor,$idsize));
         return $result[0];
     }

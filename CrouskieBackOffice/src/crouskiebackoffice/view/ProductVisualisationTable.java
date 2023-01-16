@@ -33,8 +33,7 @@ public class ProductVisualisationTable extends JTable {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            if (value instanceof JButton) {
-                JButton btn = ((JButton) value);
+            if (value instanceof JButton btn) {
                 btn.setForeground(Color.black);
                 btn.setBackground(new Color(128, 128, 128));
                 btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ico_edit.png")));
@@ -56,8 +55,7 @@ public class ProductVisualisationTable extends JTable {
         }
 
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            if (value instanceof JButton) {
-                JButton btn = ((JButton) value);
+            if (value instanceof JButton btn) {
                 btn.setForeground(Color.black);
                 btn.setBackground(new Color(128, 128, 128));
                 btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ico_edit.png")));

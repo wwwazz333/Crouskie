@@ -47,3 +47,34 @@ function displaySuggestions() {
         suggestionsContainer.classList.add('hidden');
     }
 }
+
+// Sort and filter part
+
+const productsParent = document.getElementById('products');
+const products = productsParent.querySelectorAll('.product-item');
+
+function sortByName(order) {
+    const sortedProducts = _.sortBy(products, (product) => {
+        return product.querySelector('p').textContent;
+    });
+    if (order === 'desc') {
+        sortedProducts.reverse();
+    }
+    productsParent.innerHTML = "";
+    sortedProducts.forEach(product => {
+        productsParent.appendChild(product);
+    });
+}
+
+function sortByPrice(order) {
+    const sortedProducts = _.sortBy(products, (product) => {
+        return parseFloat(product.querySelector('h2').textContent.replace('€',''));
+    });
+    if (order === 'desc') {
+        sortedProducts.reverse();
+    }
+    productsParent.innerHTML = "";
+    sortedProducts.forEach(product => {
+        productsParent.appendChild(product);
+    });
+}

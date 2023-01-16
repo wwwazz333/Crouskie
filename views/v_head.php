@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 		<link rel="stylesheet" href="<?= PATH_CSS ?>main.css">
 		<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 		<script defer src="<?= PATH_SCRIPTS . 'main.js' ?>"></script>
 		<!-- Ajout css dynamique -->
 		<?php

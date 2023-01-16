@@ -2,18 +2,29 @@ package crouskiebackoffice.view;
 
 import crouskiebackoffice.controle.ErrorHandeler;
 import crouskiebackoffice.model.DataProduct;
+import crouskiebackoffice.model.IUpdate;
 import crouskiebackoffice.model.Observer;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * Panel qui contien La table de visualisation
  */
-public class VisualisationPanel extends javax.swing.JPanel implements Observer {
+public class VisualisationPanel extends javax.swing.JPanel implements Observer, IUpdate {
 
     /**
      * Creates new form VisualisationPanel
      */
     public VisualisationPanel() {
         initComponents();
+
+        displayOutSale.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                productVisualisationTable1.getControlle().setDisplayOutSale(e.getStateChange() == ItemEvent.SELECTED);//true si le boutton passe en Activé
+                update();
+            }
+        });
+
         try {
             ErrorHandeler.getInstance().exec(() -> {
                 DataProduct.getInstance().registerObserver(this);
@@ -36,21 +47,43 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         productVisualisationTable1 = new crouskiebackoffice.view.ProductVisualisationTable();
+        jPanel1 = new javax.swing.JPanel();
+        displayOutSale = new javax.swing.JToggleButton();
 
         setLayout(new java.awt.BorderLayout());
 
         jScrollPane2.setViewportView(productVisualisationTable1);
 
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        displayOutSale.setText("Afficher Hors Vente");
+        displayOutSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayOutSaleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(displayOutSale, java.awt.BorderLayout.EAST);
+
+        add(jPanel1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void displayOutSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayOutSaleActionPerformed
+
+    }//GEN-LAST:event_displayOutSaleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton displayOutSale;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private crouskiebackoffice.view.ProductVisualisationTable productVisualisationTable1;
     // End of variables declaration//GEN-END:variables
 
     public void update() {
+        revalidate();
         repaint();
+        
     }
 }

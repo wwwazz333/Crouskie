@@ -70,4 +70,24 @@ public class DataProduct extends Notifier {
     public List<Product> getData() {
         return data;
     }
+
+    /**
+     * Retourne la liste des produits stockés.
+     *
+     * @param outSale true si les produits retourner doivent comprendre ceux qui
+     * sont hors vente
+     * @return liste des produits
+     */
+    public List<Product> getData(boolean outSale) {
+        if (outSale) {
+            return data;
+        }
+        List<Product> d = new LinkedList<>();
+        for (Product p : data) {
+            if (p.isEnVente()) {
+                d.add(p);
+            }
+        }
+        return d;
+    }
 }

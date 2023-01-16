@@ -58,10 +58,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainPane = new javax.swing.JPanel();
         onglets = new javax.swing.JTabbedPane();
         tabPane = new javax.swing.JTabbedPane();
-        panelVisualisation = new javax.swing.JPanel();
         visualisationPanel = new crouskiebackoffice.view.VisualisationPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
         stockPane = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         stockTable = new crouskiebackoffice.view.StockTableView();
@@ -77,17 +74,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         mainPane.setLayout(new java.awt.CardLayout());
 
-        panelVisualisation.setLayout(new java.awt.BorderLayout());
-        panelVisualisation.add(visualisationPanel, java.awt.BorderLayout.CENTER);
-
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jToggleButton1.setText("Afficher Produits Hors Vente");
-        jPanel1.add(jToggleButton1, java.awt.BorderLayout.EAST);
-
-        panelVisualisation.add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
-        tabPane.addTab("Éditer", panelVisualisation);
+        tabPane.addTab("Visualiser", visualisationPanel);
 
         onglets.addTab("Produits", tabPane);
 
@@ -139,12 +126,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private crouskiebackoffice.view.HeaderPanel headerPanel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPane;
     private javax.swing.JTabbedPane onglets;
-    private javax.swing.JPanel panelVisualisation;
     private crouskiebackoffice.view.StatusbarPanel statusbar;
     private javax.swing.JPanel stockPane;
     private crouskiebackoffice.view.StockTableView stockTable;

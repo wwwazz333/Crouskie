@@ -14,9 +14,10 @@ import javax.swing.table.TableCellRenderer;
  */
 public class ProductVisualisationTable extends JTable {
 
-    ControllerProductTable controlle;
+    private ControllerProductTable controlle;
 
     public ProductVisualisationTable() {
+        System.out.println("Création ProductVisualisationTable");
         controlle = new ControllerProductTable();
         setModel(controlle.getModelVisualisationProduct());
         getColumn(getColumnName(getColumnCount() - 1)).setCellRenderer(new ButtonRenderer());
@@ -66,4 +67,9 @@ public class ProductVisualisationTable extends JTable {
 
     }
 
+    public ControllerProductTable getControlle() {
+        return controlle;
+    }
+
+    
 }

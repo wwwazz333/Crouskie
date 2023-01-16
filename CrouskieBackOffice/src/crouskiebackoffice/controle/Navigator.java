@@ -1,5 +1,6 @@
 package crouskiebackoffice.controle;
 
+import crouskiebackoffice.model.IUpdate;
 import java.awt.CardLayout;
 import java.util.Stack;
 import javax.swing.JPanel;
@@ -78,7 +79,13 @@ public class Navigator {
         if (path.size() > 1) {
             path.pop();
             pathName.pop();
+
             cardLayout.show(cardPanel, pathName.lastElement());
+
+            //met à jours en reveneant si possible
+            if (path.lastElement() instanceof IUpdate updatePanel) {
+                updatePanel.update();
+            }
         } else {
             // Sinon, afficher un message indiquant qu'il est impossible d'aller plus loin en arrière
             System.out.println("Imposible d'aller en arrière, il n'y a plus rien de la pile");

@@ -16,7 +16,10 @@ import java.util.LinkedList;
 public class ControllerProductTable implements Observer {
 
     // Modèle de visualisation de produits pour stocker et afficher les données de produits
-    ModelVisualisationProduct modelVisualisationProduct;
+    private ModelVisualisationProduct modelVisualisationProduct;
+
+    // doit afficher ou non les produits qui ne sont pas en vente
+    private boolean displayOutSale = false;
 
     /**
      * Constructeur pour s'inscrire comme observateur des données de produits et
@@ -28,12 +31,11 @@ public class ControllerProductTable implements Observer {
             ErrorHandeler.getInstance().exec(() -> {
                 DataProduct.getInstance().registerObserver(this);
                 // Initialiser le modèle de visualisation de produits avec les données actuelles de produits
-                modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData());
+                modelVisualisationProduct = new ModelVisualisationProduct(this, DataProduct.getInstance().getData(displayOutSale));
                 return true;
             });
         } catch (Exception e) {
         }
-
     }
 
     /**
@@ -71,6 +73,23 @@ public class ControllerProductTable implements Observer {
             return true;
         });
 
+    }
+
+    public boolean isDisplayOutSale() {
+        return displayOutSale;
+    }
+
+    public void setDisplayOutSale(boolean displayOutSale) {
+        this.displayOutSale = displayOutSale;
+        try {
+            ErrorHandeler.getInstance().exec(() -> {
+                DataProduct.getInstance().registerObserver(this);
+                // Initialiser le modèle de visualisation de produits avec les données actuelles de produits
+                modelVisualisationProduct.setData(DataProduct.getInstance().getData(displayOutSale));
+                return true;
+            });
+        } catch (Exception e) {
+        }
     }
 
 }

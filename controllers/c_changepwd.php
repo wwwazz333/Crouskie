@@ -19,9 +19,24 @@ if (!$isLogged) {
         $newPassword = htmlspecialchars($_POST['new-password']);
         $confNewPassword = htmlspecialchars($_POST['conf-new-password']);
         
-        // Retour à la page de compte
-        header('Location: index.php?page=account');
-        exit();
+        // On vérifie que l'ancien mot de passe entré est le bon
+        $check = $userDAO->checkPassword($id,$oldPassword);
+        if($check) {
+            
+            // On vérifie la confirmation du mot de passe
+            if($newPassword == $confNewPassword) {
+                $change = $userDAO->changePassword($id,$newPassword);
+                // Retour à la page de compte
+                header('Location: index.php?page=account');
+                exit();
+            } else {
+                $alert = showAlert(3,ERROR,MAUVAIS_MDP);
+            }
+            
+        } else {
+           $alert = showAlert(3,ERROR,MAUVAIS_MDP);
+        }
+
     }
 
 }

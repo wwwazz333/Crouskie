@@ -68,4 +68,17 @@ class UtilisateurDAO extends DAO
         $result = $this->queryRow("SELECT password FROM customer WHERE idcustomer = ?", array($id));
         return password_verify($password,$result[0]);
     }
+
+    /**
+     * Permet de modifier le mot de passe de l'utilisateur
+     * @param int $id L'identifiant de l'utilisateur
+     * @param string $password Le nouveau mot de passe
+     * @return bool True si l'opération a réussie sinon False
+     */
+    public function changePassword(int $id, string $password) : bool
+    {
+        $password = password_hash($password,PASSWORD_DEFAULT);
+        $result = $this->queryBdd("UPDATE customer SET password = ? WHERE idcustomer = ?", array($password,$id));
+        return $result;
+    }
 }

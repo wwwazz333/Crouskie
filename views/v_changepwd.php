@@ -1,8 +1,9 @@
 <?php
-
 //  En tête de page
 require_once(PATH_VIEWS . 'head.php');
+require_once(PATH_VIEWS . 'alert.php');
 ?>
+
 <div class="flex column content center">
     <div class="logo">
         <a href="index.php">
@@ -12,7 +13,7 @@ require_once(PATH_VIEWS . 'head.php');
     </div>
     <div class="flex column center instruction">
         <!-- Enregistrer les textes dans les langs -->
-        <h3><?= CONNEXION ?></h3>
+        <h3><?= CHANGER_MDP ?></h3>
         <p><?= CHANGER_MDP_TXT ?></p>
     </div>
     <form action="index.php?page=changepwd" method="POST" class="card flex column center shadow rounded">

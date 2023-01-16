@@ -5,7 +5,6 @@ import crouskiebackoffice.model.DataProduct;
 import crouskiebackoffice.model.IUpdate;
 import crouskiebackoffice.model.Observer;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 /**
  * Panel qui contien La table de visualisation
@@ -18,11 +17,9 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer, 
     public VisualisationPanel() {
         initComponents();
 
-        displayOutSale.addItemListener(new ItemListener() {
-            public void itemStateChanged(ItemEvent e) {
-                productVisualisationTable1.getControlle().setDisplayOutSale(e.getStateChange() == ItemEvent.SELECTED);//true si le boutton passe en Activé
-                update();
-            }
+        displayOutSale.addItemListener((ItemEvent e) -> {
+            productVisualisationTable.getControlle().setDisplayOutSale(e.getStateChange() == ItemEvent.SELECTED);//true si le boutton passe en Activé
+            update();
         });
 
         try {
@@ -31,7 +28,6 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer, 
                 return true;
             });
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
@@ -46,13 +42,13 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer, 
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        productVisualisationTable1 = new crouskiebackoffice.view.ProductVisualisationTable();
+        productVisualisationTable = new crouskiebackoffice.view.ProductVisualisationTable();
         jPanel1 = new javax.swing.JPanel();
         displayOutSale = new javax.swing.JToggleButton();
 
         setLayout(new java.awt.BorderLayout());
 
-        jScrollPane2.setViewportView(productVisualisationTable1);
+        jScrollPane2.setViewportView(productVisualisationTable);
 
         add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -78,12 +74,14 @@ public class VisualisationPanel extends javax.swing.JPanel implements Observer, 
     private javax.swing.JToggleButton displayOutSale;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private crouskiebackoffice.view.ProductVisualisationTable productVisualisationTable1;
+    private crouskiebackoffice.view.ProductVisualisationTable productVisualisationTable;
     // End of variables declaration//GEN-END:variables
 
+    @Override
     public void update() {
         revalidate();
         repaint();
-        
+        productVisualisationTable.revalidate();
+        productVisualisationTable.repaint();
     }
 }

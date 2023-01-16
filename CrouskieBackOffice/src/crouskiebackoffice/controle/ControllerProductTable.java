@@ -69,7 +69,7 @@ public class ControllerProductTable implements Observer {
     @Override
     public void update() {
         ErrorHandeler.getInstance().exec(() -> {
-            modelVisualisationProduct.setData(DataProduct.getInstance().getData());
+            modelVisualisationProduct.setData(DataProduct.getInstance().getData(displayOutSale));
             return true;
         });
 

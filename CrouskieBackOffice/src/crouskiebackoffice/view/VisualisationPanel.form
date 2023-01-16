@@ -25,7 +25,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="crouskiebackoffice.view.ProductVisualisationTable" name="productVisualisationTable1">
+        <Component class="crouskiebackoffice.view.ProductVisualisationTable" name="productVisualisationTable">
         </Component>
       </SubComponents>
     </Container>

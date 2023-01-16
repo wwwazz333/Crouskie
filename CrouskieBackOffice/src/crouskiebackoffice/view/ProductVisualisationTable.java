@@ -17,7 +17,6 @@ public class ProductVisualisationTable extends JTable {
     private ControllerProductTable controlle;
 
     public ProductVisualisationTable() {
-        System.out.println("Création ProductVisualisationTable");
         controlle = new ControllerProductTable();
         setModel(controlle.getModelVisualisationProduct());
         getColumn(getColumnName(getColumnCount() - 1)).setCellRenderer(new ButtonRenderer());

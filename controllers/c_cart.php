@@ -76,21 +76,24 @@ if($isLogged) {
         if(isset($_POST['form-quantity'])){
             // Enregistrer modifications quantité produit du panier
             for($i=0;$i<count($infosProdsCart);$i++) {
-                $ligne = &$infosProdsCart[$i]; //on utilise les références
-                $quantity = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $quantity
-                if ($quantity == 0) {
-                    // Suppression du panier
-                    $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                    unset($infosProdsCart[$i]);
-                } else {
-                    // Modification de la quantité 
-                    $modif = $cartDAO->setQuantityProductFromCart($quantity, $userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                }
-                $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
-                $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
+                if(isset($_POST["hid-num"]) && $_POST["hid-num"] == $i){
+                    $ligne = &$infosProdsCart[$i]; //on utilise les références
+                    $quantity = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $quantity
+                    if ($quantity == 0) {
+                        // Suppression du panier
+                        $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                        unset($infosProdsCart[$i]); // peut del comme sa dans la liste car on break à la fin
+                    } else {
+                        // Modification de la quantité 
+                        $modif = $cartDAO->setQuantityProductFromCart($quantity, $userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                    }
+                    $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
+                    $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
+                    break;
+                }   
             }
 
-            if(count($infosProdsCart) == 0){
+            if(count($infosProdsCart) == 0){//verifie si le panier est vide
                 $isCartEmpty = true;
             }
         }

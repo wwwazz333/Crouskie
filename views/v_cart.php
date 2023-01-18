@@ -43,8 +43,8 @@ require_once(PATH_VIEWS . 'alert.php');
 
             <div class='flex row liste-panier'>
                <form id="form" action="" method="POST"> 
-                    <input type="hidden" name="hid-num" value="<?= $product['compteur'] ?>">
-                    <input type="hidden" name="hid-quantity" class="inp-hidden" value="<?= $product['quantitycart'] ?>">
+                    <input type="hidden" name="hid-num" class="inp-num-hidden"value="<?= $product['compteur'] ?>">
+                    <input type="hidden" name="hid-quantity" class="inp-quantity-hidden" value="<?= $product['quantitycart'] ?>">
                     <input type="submit" name="form-quantity" class="form-quantity" value="modif-quantity" style="display: none">
                 </form>
                <table><tr> 
@@ -75,7 +75,7 @@ require_once(PATH_VIEWS . 'alert.php');
             </div>
             <center><hr width="90%" color="#565656" size="0.5"></center>
             
-        <?php } ?>
+        <?php }// fin for ?>
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         

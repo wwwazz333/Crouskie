@@ -23,11 +23,12 @@ if (!$isLogged) {
 } else {
 
     // Alerte validation changement de mot de passe
-    // require_once(PATH_CONTROLLERS. 'changepwd.php');
-    // if($chgValide) {
-    //     $alert = showAlert(1,SUCCESS,CHANGEMENT_MDP_CONFIRMER);
-    // }
-    // $chgValide = false;
+    if(isset($_GET['chg-mdp'])) {
+        if($_GET['chg-mdp'] == 1) {
+            $alert = showAlert(1,SUCCESS,CHANGEMENT_MDP_CONFIRMER);
+        }
+    }
+    
 
     require_once(PATH_MODELS . 'CommandeDAO.php');
     require_once(PATH_MODELS . 'ProductBoughtDAO.php');

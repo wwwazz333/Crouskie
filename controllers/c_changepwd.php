@@ -27,9 +27,8 @@ if (!$isLogged) {
             // On vérifie la confirmation du mot de passe
             if($newPassword == $confNewPassword) {
                 $change = $userDAO->changePassword($id,$newPassword);
-                $chgValide = true;
                 // Retour à la page de compte
-                header('Location: index.php?page=account');
+                header('Location: index.php?page=account&chg-mdp=1');
                 exit();
             } else {
                 $alert = showAlert(3,ERROR,MAUVAIS_MDP);

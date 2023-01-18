@@ -75,18 +75,24 @@ if($isLogged) {
         // Modification des quantités du panier
         if(isset($_POST['form-quantity'])){
             // Enregistrer modifications quantité produit du panier
-            foreach ($infosProdsCart as $ligne) {
-                $q = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $q
-                if ($q == 0) {
+            for($i=0;$i<count($infosProdsCart);$i++) {
+                $ligne = &$infosProdsCart[$i]; //on utilise les références
+                $quantity = $_POST['hid-quantity'] ; // Récupérer quantité dans variable $quantity
+                if ($quantity == 0) {
                     // Suppression du panier
                     $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                    unset($infosProdsCart[$i]);
                 } else {
                     // Modification de la quantité 
-                    $modif = $cartDAO->setQuantityProductFromCart($q,$userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
+                    $modif = $cartDAO->setQuantityProductFromCart($quantity, $userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
                 }
+                $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
+                $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
             }
-            // Rafraichissement de la page
-            header("Refresh: 0.1");
+
+            if(count($infosProdsCart) == 0){
+                $isCartEmpty = true;
+            }
         }
 
 

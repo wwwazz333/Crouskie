@@ -23,6 +23,7 @@ public class StockTableView extends JTable implements Observer {
             } else {
                 c.setBackground(java.awt.Color.WHITE);
             }
+            c.setForeground(java.awt.Color.BLACK);
             return c;
         }
     }

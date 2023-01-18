@@ -249,7 +249,7 @@ public class ControllerImageCollection implements ActionListener {
         if (pathToImage != null) {
             ErrorHandeler.getInstance().exec(() -> {
                 BufferedImage image = ImageIO.read(new File(pathToImage));
-                String urlRelativeToOnlineImage = FileDownloader.uploadImage(image);
+                String urlRelativeToOnlineImage = FileDownloader.uploadImage(image, null);
                 if (urlRelativeToOnlineImage != null) {
                     String nomCollection = getDescriptionImage();
                     if (nomCollection == null) {

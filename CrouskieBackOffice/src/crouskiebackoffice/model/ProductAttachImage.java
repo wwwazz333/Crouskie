@@ -35,4 +35,9 @@ public class ProductAttachImage implements AttachImage {
     public boolean isSingleAttach() {
         return false;
     }
+
+    @Override
+    public int getProductId() {
+        return product.getId();
+    }
 }

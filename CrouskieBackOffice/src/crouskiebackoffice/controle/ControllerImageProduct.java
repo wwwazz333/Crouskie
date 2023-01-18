@@ -172,7 +172,7 @@ public class ControllerImageProduct implements ActionListener {
      * sélection de fichier pour que l'utilisateur puisse sélectionner une image
      * à ajouter.
      *
-     * @param e ActionEvent déclenché
+     * @param ae ActionEvent déclenché
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -180,7 +180,13 @@ public class ControllerImageProduct implements ActionListener {
         if (pathToImage != null) {
             ErrorHandeler.getInstance().exec(() -> {
                 BufferedImage image = ImageIO.read(new File(pathToImage));
-                String urlRelativeToOnlineImage = FileDownloader.uploadImage(image);
+                String urlRelativeToOnlineImage;
+                if (pictures.isEmpty()) {//cas particulier si c'est la 1er image
+                    urlRelativeToOnlineImage = FileDownloader.uploadImage(image, attachPicture.getProductId());
+                } else {
+                    urlRelativeToOnlineImage = FileDownloader.uploadImage(image, null);
+                }
+
                 if (urlRelativeToOnlineImage != null) {
                     String descriptionImage = getDescriptionImage();
                     if (descriptionImage == null) {

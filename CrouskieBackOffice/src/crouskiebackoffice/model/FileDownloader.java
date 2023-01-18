@@ -37,11 +37,13 @@ public class FileDownloader {
 
     /**
      * Télécharge un fichier depuis une URL donnée et l'enregistre localement.
-     * 
+     *
      * @param url L'URL du fichier à télécharger.
-     * @param localFilename Le nom du fichier local où enregistrer le fichier téléchargé.
+     * @param localFilename Le nom du fichier local où enregistrer le fichier
+     * téléchargé.
      * @return Le chemin absolu du fichier local enregistré.
-     * @throws IOException Si une erreur est survenue lors de la lecture ou de l'écriture du fichier.
+     * @throws IOException Si une erreur est survenue lors de la lecture ou de
+     * l'écriture du fichier.
      */
     public static String downloadFromUrl(URL url, String localFilename) throws IOException {
         InputStream is = null;
@@ -82,10 +84,12 @@ public class FileDownloader {
 
     /**
      * Télécharger une image depuis un url
+     *
      * @param url l'url du fichier à télécharger
      * @param localFilename nom du fichier télécharger en local
      * @return l'image sous forme d'une {@code BufferedImage}
-     * @throws ErrorDownloadImage S'il y à une erreur lors du téléchargement de l'image
+     * @throws ErrorDownloadImage S'il y à une erreur lors du téléchargement de
+     * l'image
      */
     public static BufferedImage downloadImageFromUrl(String url, String localFilename) throws ErrorDownloadImage {
         try {
@@ -101,13 +105,16 @@ public class FileDownloader {
 
     /**
      * uplaoder une image sur le serveur
+     *
      * @param image l'image à uploader
+     * @param idProductForPreviewImage null if the uploaded image is note a
+     * preview of a product, else the id of the product
      * @return le nom aléatoire qui à été donné à l'image
      * @throws URISyntaxException en cas d'erreur dans le nom de l'image
      * @throws IOException
      * @throws InterruptedException
      */
-    public static String uploadImage(BufferedImage image) throws URISyntaxException, IOException, InterruptedException {
+    public static String uploadImage(BufferedImage image, Integer idProductForPreviewImage) throws URISyntaxException, IOException, InterruptedException {
         HashMap<String, String> jsonMap = new HashMap<>();
         Gson gson = new Gson();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -118,15 +125,17 @@ public class FileDownloader {
 
         jsonMap.put("action", "upload");
         jsonMap.put("image", base64Image);
-
+        System.err.println(gson.toJson(jsonMap));
+        
         URI uri = new URI(SERVER_ADRESSE + "/api.php");
+        gson.toJson(jsonMap);
+        
         HttpRequest post = HttpRequest.newBuilder().uri(uri)
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonMap))).header("Content-Type", "application/json").build();
 
         HttpClient cl = HttpClient.newHttpClient();
 
         var res = cl.send(post, HttpResponse.BodyHandlers.ofString());
-        
 
         //resultat
         Map<String, JsonElement> map = JsonParser.parseString(res.body()).getAsJsonObject().asMap();

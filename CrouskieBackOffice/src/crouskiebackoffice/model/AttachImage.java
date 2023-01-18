@@ -20,6 +20,12 @@ public interface AttachImage {
     public List<Picture> getPictures();
     
     /**
+     * 
+     * @return l'id du produit auquelle attache cette objet
+     */
+    public int getProductId();
+    
+    /**
      * Indique si l'objet ne peut avoir qu'une seule image attachée à la fois.
      * @return true si l'objet ne peut avoir qu'une seule image attachée à la fois, false sinon
      */

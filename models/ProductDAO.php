@@ -60,7 +60,7 @@ class ProductDAO extends DAO{
      */
     public function getProductsByCollectionId(int $id) : array
     {
-        $result = $this->queryAll("SELECT * FROM product WHERE idcollection = ?",array($id));
+        $result = $this->queryAll("SELECT * FROM product WHERE envente = 1 and idcollection = ?",array($id));
         return $result;
     }
 

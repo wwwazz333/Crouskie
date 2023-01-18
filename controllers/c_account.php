@@ -106,5 +106,31 @@ if (!$isLogged) {
     }
 }
 
+
+
+/************************ Page légal **************************/
+
+
+// Si l'utilisateur n'est pas connecté
+if (!$isLogged) {
+    header('Location: index.php?page=portal');
+    exit();
+
+// Si l'utilisateur est connecté
+} else {
+    if(isset($_POST['delete'])) {
+        // On supprime le compte
+        $userId = $user->getIdUser();
+        $deleting = $userDAO->deleteUser($userId);
+        // On supprime la session
+        unset($_SESSION['account']);
+        // On redirige vers la page d'accueil
+        header("Location: index.php?log=0");
+        exit();
+    }
+
+}
+
+
 // Vue
 require_once(PATH_VIEWS . $page . '.php');

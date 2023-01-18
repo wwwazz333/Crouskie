@@ -81,4 +81,17 @@ class UtilisateurDAO extends DAO
         $result = $this->queryBdd("UPDATE customer SET password = ? WHERE idcustomer = ?", array($password,$id));
         return $result;
     }
+
+    /**
+     * Permet de suppimer le compte de l'utilisateur
+     * @param int $id L'identifiant de l'utilisateur
+     * @return bool True si l'opération a réussie sinon False
+     */
+    public function deleteUser(int $id) : bool
+    {
+        $result1 = $this->queryBdd("UPDATE cmd SET idcustomer = -1 WHERE idcustomer = ?", array($id));
+        $result2 = $this->queryBdd("DELETE FROM cart WHERE idcustomer = ?", array($id));
+        $result3 = $this->queryBdd("DELETE FROM customer WHERE idcustomer = ?", array($id));
+        return $result1 && $result2 && $result3;
+    }
 }

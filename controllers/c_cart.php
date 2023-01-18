@@ -81,14 +81,17 @@ if($isLogged) {
                 if ($quantity == 0) {
                     // Suppression du panier
                     $modif = $cartDAO->deleteProductFromCart($userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                    $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
-                    $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
+                    unset($infosProdsCart[$i]);
                 } else {
                     // Modification de la quantité 
                     $modif = $cartDAO->setQuantityProductFromCart($quantity, $userId, $ligne['idproduct'], $ligne['color'], $ligne['idsize']);
-                    $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
-                    $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
                 }
+                $ligne["quantitycart"] = $quantity; // modifie affichage compter en face du produit
+                $cartCounter = $quantity; // modifie le compteur dans le header (petit sac)
+            }
+
+            if(count($infosProdsCart) == 0){
+                $isCartEmpty = true;
             }
         }
 

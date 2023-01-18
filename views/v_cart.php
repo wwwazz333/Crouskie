@@ -75,7 +75,7 @@ require_once(PATH_VIEWS . 'alert.php');
             </div>
             <center><hr width="90%" color="#565656" size="0.5"></center>
             
-        <?php } ?>
+        <?php }// fin for ?>
 
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         

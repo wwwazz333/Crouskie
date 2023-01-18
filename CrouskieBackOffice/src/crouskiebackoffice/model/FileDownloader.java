@@ -115,7 +115,7 @@ public class FileDownloader {
      * @throws InterruptedException
      */
     public static String uploadImage(BufferedImage image, Integer idProductForPreviewImage) throws URISyntaxException, IOException, InterruptedException {
-        HashMap<String, String> jsonMap = new HashMap<>();
+        HashMap<String, Object> jsonMap = new HashMap<>();
         Gson gson = new Gson();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -125,11 +125,13 @@ public class FileDownloader {
 
         jsonMap.put("action", "upload");
         jsonMap.put("image", base64Image);
-        System.err.println(gson.toJson(jsonMap));
-        
+        if (idProductForPreviewImage != null) {
+            jsonMap.put("id", idProductForPreviewImage);
+        }
+
         URI uri = new URI(SERVER_ADRESSE + "/api.php");
         gson.toJson(jsonMap);
-        
+
         HttpRequest post = HttpRequest.newBuilder().uri(uri)
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(jsonMap))).header("Content-Type", "application/json").build();
 
@@ -138,6 +140,7 @@ public class FileDownloader {
         var res = cl.send(post, HttpResponse.BodyHandlers.ofString());
 
         //resultat
+        System.out.println(res.body());
         Map<String, JsonElement> map = JsonParser.parseString(res.body()).getAsJsonObject().asMap();
         if (map.get("success").getAsBoolean()) {
             return map.get("result").getAsString();

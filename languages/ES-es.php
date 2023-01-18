@@ -56,6 +56,7 @@ define('CHANGER_INFORMATIONS','Modificar mis datos');
 define('ENREGISTRER_INFORMATIONS','Guardar mis datos');
 define('CHANGER_MDP','Cambiar mi contraseña');
 define('COMMANDES_VIDE','¡Aún no tienes ningún pedido!');
+define('CHANGEMENT_MDP_CONFIRMER',"Contraseña cambiada con éxito");
 define('EMAIL','Email');
 
 // mMenú de la página de cuenta
@@ -64,6 +65,9 @@ define('INFOS_COMPTE','Tnformación de la cuenta');
 define('MES_COMMANDES','Mis pedidos');
 define('LEGAL','Marco jurídico');
 define('SE_DECONNECTER','Desconectar');
+define('SUPPRIMER','Eliminar');
+define('SUPPRIMER_COMPTE','Eliminar mi cuenta');
+define('SUPPRIMER_COMPTE_TXT','Eliminar mi cuenta y mis datos personales');
 
 // Página cambiar contraseña
 define('CHANGER_MDP_TXT','Introduzca su contraseña actual y elija una nueva.');

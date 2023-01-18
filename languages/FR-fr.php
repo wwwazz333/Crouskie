@@ -57,7 +57,8 @@ define('CHANGER_INFORMATIONS','Modifier mes informations');
 define('ENREGISTRER_INFORMATIONS','Enregistrer mes informations');
 define('CHANGER_MDP','Changer mon mot de passe');
 define('COMMANDES_VIDE','Vous n\'avez encore aucune commande !');
-define('CHANGEMENT_INFORMATIONS_CONFIRMER',"Informations changé avec succès");
+define('CHANGEMENT_INFORMATIONS_CONFIRMER',"Informations changées avec succès");
+define('CHANGEMENT_MDP_CONFIRMER',"Mot de passe changé avec succès");
 define('CHANGEMENT_INFORMATIONS_ERREUR',"Echec au moment de changer les informations");
 define('CHANGEMENT_INFORMATIONS_INCOMPLETE',"Attention tous les champs doivent être complété pour valider");
 define('EMAIL','Email');
@@ -82,12 +83,15 @@ define('A','à');
 
 // Page cadre légal
 define('PORTABILITE','Portabilité');
-define('EXPORTER_JSON','Exporter mes donnée en fichier json.');
+define('EXPORTER_JSON','Exporter mes données en fichier json.');
 define('TELECHARGER','Télécharger');
 define('MENTIONS_LEGALES','Mentions Légales');
 define('CONSULTER_MENTIONS','Consulter les mentions légales du site.');
 define('CGU','CGU');
 define('CONSULTER_CGU','Consulter les conditions générales d\'utilisations.');
+define('SUPPRIMER','Supprimer');
+define('SUPPRIMER_COMPTE','Suppression de compte');
+define('SUPPRIMER_COMPTE_TXT','Supprimer mon compte et mes données personnelles.');
 
 // Page panier
 define('MON_PANIER','Mon panier');

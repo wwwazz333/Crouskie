@@ -10,6 +10,7 @@ if (!$isLogged) {
     $userDAO = new UtilisateurDAO(DEBUG);
     $email = $user->getEmail();
     $id = $user->getIdUser();
+    $chgValide = false;
 
     if (isset($_POST['old-password'])){
         //$alert = showAlert(1,MAUVAIS_MDP,MAUVAIS_MDP);
@@ -26,6 +27,7 @@ if (!$isLogged) {
             // On vérifie la confirmation du mot de passe
             if($newPassword == $confNewPassword) {
                 $change = $userDAO->changePassword($id,$newPassword);
+                $chgValide = true;
                 // Retour à la page de compte
                 header('Location: index.php?page=account');
                 exit();

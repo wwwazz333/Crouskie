@@ -14,4 +14,10 @@
 		<p><?= CONSULTER_CGU ?></p>
 		<a class="flex button-download circle" href="<?= PATH_DOCUMENTS ?>CGU_crouskie.pdf" download="CGU_crouskie.pdf"><?= TELECHARGER ?></a>
 	</div>
+	<div class="card flex column even shadow-small rounded">
+		<h2 class="flex center"><?= SUPPRIMER_COMPTE ?></h2>
+		<p><?= SUPPRIMER_COMPTE_TXT ?></p>
+		<form action=""form action="index.php?page=cart" method="POST" class="flex button-download circle">
+                <input type="submit" id="form-vider" value="<?= SUPPRIMER ?>" class="valid circle">
+        </form>
 </section>

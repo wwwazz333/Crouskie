@@ -56,6 +56,7 @@ define('CHANGER_INFORMATIONS','Edit my information');
 define('ENREGISTRER_INFORMATIONS','Save my information');
 define('CHANGER_MDP','Change my password');
 define('COMMANDES_VIDE','You have no orders yet!');
+define('CHANGEMENT_MDP_CONFIRMER',"Password changed successfully");
 define('EMAIL','Email');
 
 // Account page menu
@@ -84,6 +85,9 @@ define('MENTIONS_LEGALES','Legal Notices');
 define('CONSULTER_MENTIONS','Consult the legal notices of the site.');
 define('CGU','General Terms Of Use');
 define('CONSULTER_CGU','Consult the general terms of use.');
+define('SUPPRIMER','Delete');
+define('SUPPRIMER_COMPTE','Delete my account');
+define('SUPPRIMER_COMPTE_TXT','Delete my account and my personal data.');
 
 // Cart pages
 define('MON_PANIER','My cart');

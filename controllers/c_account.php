@@ -21,12 +21,19 @@ if (!$isLogged) {
 
 // Si l'utilisateur est connecté
 } else {
+
+    // Alerte validation changement de mot de passe
+    // require_once(PATH_CONTROLLERS. 'changepwd.php');
+    // if($chgValide) {
+    //     $alert = showAlert(1,SUCCESS,CHANGEMENT_MDP_CONFIRMER);
+    // }
+    // $chgValide = false;
+
     require_once(PATH_MODELS . 'CommandeDAO.php');
     require_once(PATH_MODELS . 'ProductBoughtDAO.php');
     require_once(PATH_MODELS . 'ProductDAO.php');
     require_once(PATH_MODELS . 'SizeDAO.php');
-
-
+    
     $userDAO = new UtilisateurDAO(DEBUG);
     if(isset($_POST['email']) && isset($_POST['prenom']) && isset($_POST['nom'])){
         $res = $userDAO->changeUserInfos($user->getIdUser(), $_POST['prenom'], $_POST['nom'], $_POST['email']); 

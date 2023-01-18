@@ -80,14 +80,19 @@ require_once(PATH_VIEWS . 'alert.php');
         <h3><?= MONTANT_TOTAL ?><?php echo "$montantTotal"; ?> €</h3>
         
         <!-- TESTS -->
-        <!-- <?php 
-            // if(isset($commande)){
-            //     print_r($commande);
+        <?php 
+            // foreach ($cart as $productCart) {
+            //     $p = $productCart->getIdProd();
+            //     echo "product: $p ";
+            //     if(isset($kc)){
+            //         echo "$kc";
+            //     }
+                
             // }
-            // if(isset($erreur)){
-            //     print_r($erreur);
-            // }
-        ?> -->
+        ?>
+
+
+
         <div class="flex row wrap right contenu center">
             <form action="index.php?page=cart" method="POST" class="contenu center">
                 <input type="hidden" name="action" value="valider">

@@ -107,6 +107,7 @@ if($isLogged) {
                     // On récupère l'idOrder pour plus tard 
                     $idOrder = $commandeDAO->getNumLastCommande($userId)[0][0];
                     $resultProducts = true;
+                    
                     foreach ($cart as $productCart) {
                         $color = $productCart->getColorCart();
                         $size = $productCart->getSizeCart();
@@ -115,9 +116,9 @@ if($isLogged) {
                         $idCustomer = $productCart->getCustomerId();
 
                         $result = $productBoughtDAO->buyProduct($color, $idProd, $size, $idOrder, $quantity, $idCustomer);
-                        if($result == 2){
+                        if($result === 2){
                             $alert = showAlert(3, QUANTITE_INSUFFISANTE, PAS_ASSEZ_DE_STOCK);
-                            break;
+                            $result = false;
                         }
                         // Si un seul produit ne peux pas être acheter alors false
                         $resultProducts = $resultProducts && $result;

@@ -53,7 +53,7 @@ class ProductBoughtDAO extends DAO
         // si il reste des produits en stock
         if ($quantity > 0){
             // Ne pas oublier d'enlever du stock le produit 
-            $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numOrder,quantitybought) VALUES (?,?,?,?,?) ",array(
+            $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numorder,quantitybought) VALUES (?,?,?,?,?) ",array(
                 //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
                 $nameColor,
                 $idProd,
@@ -62,6 +62,7 @@ class ProductBoughtDAO extends DAO
                 $quantityBought
 
             ));
+            
             $product_delete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = $idProd", array()); 
         }
         else{

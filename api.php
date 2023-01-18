@@ -29,7 +29,7 @@ function random_str(
 }
 
 
-function sendJson(mixed $result,bool $success = true)
+function sendJson($result,bool $success = true)
 {
     header('Content-Type: application/json; charset=utf-8');
     $res['success'] = $success;

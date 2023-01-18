@@ -19,8 +19,8 @@ require_once(PATH_VIEWS . 'alert.php');
     <form action="index.php?page=changepwd" method="POST" class="card flex column center shadow rounded">
         
         <input type="password" name="old-password" id="old-password" placeholder="<?= MDP_ACTUEL ?>" class="icon rounded shadow-small" required>
-        <input type="password" name="new-password" id="new-password" placeholder="<?= MDP_NOUVEAU ?>" class="icon rounded shadow-small" required>
-        <input type="password" name="conf-new-password" id="conf-new-password" placeholder="<?= MDP_NOUVEAU_CONF ?>" class="icon rounded shadow-small" required>
+        <input type="password" name="new-password" id="new-password" placeholder="<?= MDP_NOUVEAU ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="icon rounded shadow-small" required>
+        <input type="password" name="conf-new-password" id="conf-new-password" placeholder="<?= MDP_NOUVEAU_CONF ?>" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="icon rounded shadow-small" required>
         
         <input type="submit" id="form-confirm" value="<?= VALIDER ?>" class="valid circle">
     </form>

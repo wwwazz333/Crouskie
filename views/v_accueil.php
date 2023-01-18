@@ -10,7 +10,7 @@ require_once(PATH_VIEWS . 'alert.php');
     <img src="<?= $lastCollection->getPathPicture() ?>" alt="background">
     <div class='flex column'>
         <p><?=COLLECTION_DISCOVER?></p>
-        <p>Crousk-hiver</p>
+        <p><?= $lastCollection->getName() ?></p>
         <a href='index.php?page=collection_product&id=<?= $lastCollection->getCollectionId() ?>' class='rounded'><?=DISCOVER?></a>
     </div>
 </div>

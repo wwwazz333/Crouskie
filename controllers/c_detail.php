@@ -41,23 +41,19 @@ if (isset($_GET['id'])) {
 
             // Vérification du stock
             $DAO = new StockDAO(DEBUG);
-            if ($DAO->isProductInStock($productId,$color,$size)) {
+            if ($DAO->isProductInStock($productId, $color, $size)) {
                 // Récupération du nombre d'article dans le panier
                 $DAO = new CartDAO(DEBUG);
-                $qty = $DAO->getQuantityProductFromCart($userId,$productId,$color,$size);
+                $qty = $DAO->getQuantityProductFromCart($userId, $productId, $color, $size);
                 if ($qty > 0) {
                     // Incrémenter le nombre car il y a déjà un produit identique
-                    if ($DAO->setQuantityProductFromCart($qty + 1, $userId,$productId,$color,$size)) {
-                        $alert = showAlert(1,SUCCESS,AJOUT_PANIER_REUSSI);
-                    }else{
+                    if (!$DAO->setQuantityProductFromCart($qty + 1, $userId, $productId, $color, $size)) {
                         $alert = showAlert(3,ERROR,AJOUT_PANIER_FAIL);
                     }
                 }else{
                     // Ajouter au panier
-                    if ($DAO->addCart($userId,$productId,1,$size,$color)) {
-                        $alert = showAlert(1,SUCCESS,AJOUT_PANIER_REUSSI);
-                    }else{
-                        $alert = showAlert(3,ERROR,AJOUT_PANIER_FAIL);
+                    if (!$DAO->addCart($userId, $productId, 1, $size, $color)) {
+                        $alert = showAlert(3, ERROR,AJOUT_PANIER_FAIL);
                     }
                 }
                 // Actualiser le panier

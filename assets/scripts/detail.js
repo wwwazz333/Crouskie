@@ -95,3 +95,28 @@ form.addEventListener('submit',(ev)=>{
         ev.preventDefault();
     }
 });
+
+// Carousel
+
+const carousel = document.getElementById('carousel');
+const imageWrapper = carousel.querySelector('.image-wrapper');
+const before = carousel.querySelector('.before');
+const next = carousel.querySelector('.next');
+const images = carousel.querySelectorAll('img');
+var scrollPos = 0;
+
+before.addEventListener('click',()=>{
+    if (imageWrapper.scrollLeft == 0) {
+        imageWrapper.scrollLeft = imageWrapper.scrollWidth
+    }else{
+        imageWrapper.scrollLeft -= imageWrapper.offsetWidth;
+    }
+});
+
+next.addEventListener('click',()=>{
+    if (Math.round(imageWrapper.scrollLeft) == (imageWrapper.scrollWidth - imageWrapper.offsetWidth)) {
+        imageWrapper.scrollLeft = 0;
+    }else{
+        imageWrapper.scrollLeft += imageWrapper.offsetWidth;
+    }
+});

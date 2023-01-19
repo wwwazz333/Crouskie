@@ -6,9 +6,15 @@ require_once(PATH_VIEWS . 'alert.php');
 
 ?>
 <div class="flex row content">
-    <!-- Carousel pour visualiser les images (unique) -->
-    <div class="carousel rounded shadow-small">
-        <!-- <img src="./assets/images/uploads/woc4Eem9Pdaw6X5w.png" alt="" srcset="" class=""> -->
+    <!-- Carousel pour visualiser les images -->
+    <div id="carousel" class="rounded shadow-small">
+        <iconify-icon class="nav before circle shadow-small" icon="material-symbols:navigate-before"></iconify-icon>
+        <iconify-icon class="nav next circle shadow-small" icon="material-symbols:navigate-next"></iconify-icon>
+        <div class="image-wrapper flex row">
+            <?php foreach ($images as $image) { ?>
+                <img src="<?=$image['pathpicture']?>" alt="<?=$image['altpicture']?>" srcset="">
+            <?php } ?>
+        </div>
     </div>
     <form action="" method="POST" class="flex column center card rounded shadow-small" data-id="<?= $product->getId()?>">
         <h2><?= $product->getName()?></h2>

@@ -9,12 +9,20 @@ body {
     justify-content: center;
 }
 
+@media (max-width: 1000px) { 
+    .content{
+        flex-flow: column !important;
+       align-items: center;
+    }
+}
 #carousel{
     position: relative;
     overflow: hidden;
 
     flex: 2;
     background-color: white;
+    min-height: 420px;
+    min-width: 420px;
     max-height: 420px;
     max-width: 420px;
 }
@@ -63,6 +71,8 @@ body {
 #carousel > .image-wrapper > img{
     height: 100%;
     width: 100%;
+    min-width: 100%;
+    min-width: 100%;
     object-fit: cover;
 }
 

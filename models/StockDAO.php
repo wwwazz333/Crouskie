@@ -90,4 +90,18 @@ class StockDAO extends DAO
         array($idProd,$colorname,$idSize));
         return $result[0];
     }
+
+    /**
+     * Retourne True si un produit est en stock ou False si il ne l'est pas
+     * @param int $idProd L'identifiant du produit
+     * @param string $colorname Le nom de la couleur
+     * @param int $idSize L'identifiant de la taille
+     * @return bool True si il est en stock, False sinon
+     */
+    public function isProductInStockWithQuantity(int $idProd, string $colorname, int $idSize,int $quantity)
+    {
+        $result = $this->queryRow("SELECT IF(EXISTS(SELECT * FROM stocked  WHERE idprod = ? AND namecolor = ? AND idsize = ? AND quantitystocked >= ?),true,false ) AS result",
+        array($idProd,$colorname,$idSize,$quantity));
+        return $result[0];
+    }
 }

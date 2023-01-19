@@ -3,6 +3,7 @@ require_once(PATH_MODELS . 'CartDAO.php');
 require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
 require_once(PATH_MODELS . 'ProductBoughtDAO.php');
+require_once(PATH_MODELS . 'StockDAO.php');
 require_once(PATH_MODELS . 'SizeDAO.php');
 require_once(PATH_ENTITY . 'User.php');
 
@@ -11,6 +12,7 @@ require_once(PATH_ENTITY . 'User.php');
 if($isLogged) {
     $commandeDAO = new CommandeDAO(DEBUG);
     $productBoughtDAO = new ProductBoughtDAO(DEBUG);
+    $stockDAO = new StockDAO(DEBUG);
     $cartDAO = new CartDAO(DEBUG);
     $userId = $user->getIdUser();
     $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
@@ -116,26 +118,41 @@ if($isLogged) {
                     // On récupère l'idOrder pour plus tard 
                     $idOrder = $commandeDAO->getNumLastCommande($userId)[0][0];
                     $resultProducts = true;
+                    $enoughQuantity = true;
+                    $defaultProd;
                     
-                    foreach ($cart as $productCart) {
-                        $color = $productCart->getColorCart();
-                        $size = $productCart->getSizeCart();
-                        $idProd = $productCart->getIdProd();
-                        $quantity = $productCart->getQuantityCart();
-                        $idCustomer = $productCart->getCustomerId();
-
-                        $result = $productBoughtDAO->buyProduct($color, $idProd, $size, $idOrder, $quantity, $idCustomer);
-                        if($result === 2){
-                            $alert = showAlert(3, QUANTITE_INSUFFISANTE, PAS_ASSEZ_DE_STOCK);
-                            $result = false;
+                    //On regarde si les produits sont toujours en stock
+                    foreach($cart as $productCart){
+                        if(!$stockDAO->isProductInStockWithQuantity( $productCart->getIdProd(), $productCart->getColorCart(), $productCart->getSizeCart(), $productCart->getQuantityCart())){
+                            $enoughQuantity = false;
+                            $defaultProd = $productCart;
                         }
-                        // Si un seul produit ne peux pas être acheter alors false
-                        $resultProducts = $resultProducts && $result;
                     }
 
+
+                    if($enoughQuantity){
+                        foreach ($cart as $productCart) {
+                            $color = $productCart->getColorCart();
+                            $size = $productCart->getSizeCart();
+                            $idProd = $productCart->getIdProd();
+                            $quantity = $productCart->getQuantityCart();
+                            $idCustomer = $productCart->getCustomerId();
+
+                            $result = $productBoughtDAO->buyProduct($color, $idProd, $size, $idOrder, $quantity, $idCustomer);
+                            // Si un seul produit ne peux pas être acheter alors false
+                            $resultProducts = $resultProducts && $result;
+                        }
+                    }
                     // Alertes pour savoir si la fonction marche
                     if($resultProducts && $resultOrder){
                         header('Location: index.php?page=cart&valider=1');
+                    }
+
+                    if(!$enoughQuantity){
+                        $productPhp = $productDAO->getProductByID($defaultProd->getIdProd());
+                        $alert = showAlert(3, QUANTITE_INSUFFISANTE, 
+                        '' + ' ' +   + ' '  + PAS_ASSEZ_DE_STOCK);
+
                     }
                     
                     else if($resultProducts && !$resultOrder){

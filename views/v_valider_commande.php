@@ -56,7 +56,8 @@ require_once(PATH_VIEWS . 'alert.php');
             <?php if(!$isCartEmpty && $isLogged) { ?>
                 <?php foreach ($infosProdsCart as $product) { ?>
                     <div class="flex row produits">
-                        <img class='rounded shadow-small' src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background" width="150rem" height="150rem">
+                        <img class='rounded shadow-small' src="<?= PATH_IMAGES . 'uploads/product-preview-'. $product->getId() .'.png' ?>" 
+                        alt="image-produit" width="150rem" height="150rem">
                         <div class="flex column">
                             <p><strong><?php $info = $product['nameprod']; echo "$info"; ?></strong></p>
                             <p><?= CART_TAILLE?> : <?php $info = $product['size']; echo "$info"; ?></p>

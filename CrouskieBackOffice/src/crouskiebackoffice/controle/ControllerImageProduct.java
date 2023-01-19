@@ -3,6 +3,7 @@ package crouskiebackoffice.controle;
 import crouskiebackoffice.model.AttachImage;
 import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Picture;
+import crouskiebackoffice.model.dao.DAOProduct;
 import crouskiebackoffice.view.PopupMenuImage;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -183,6 +184,7 @@ public class ControllerImageProduct implements ActionListener {
                 String urlRelativeToOnlineImage;
                 if (pictures.isEmpty()) {//cas particulier si c'est la 1er image
                     urlRelativeToOnlineImage = FileDownloader.uploadImage(image, attachPicture.getProductId());
+
                 } else {
                     urlRelativeToOnlineImage = FileDownloader.uploadImage(image, null);
                 }

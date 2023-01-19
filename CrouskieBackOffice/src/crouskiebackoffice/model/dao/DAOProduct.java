@@ -309,4 +309,8 @@ public class DAOProduct extends DAO<Product> {
         Object[] args = {obj.getId()};
         return super.execute("DELETE FROM " + getTableName() + " WHERE idprod = ? ", args) == 1;
     }
+
+    public int getNextId() throws SQLException, ErrorHandelabelAdapter {
+        return (int) super.selectAll("SELECT max(idprod) as id FROM " + getTableName(), null).get(0).get("id");
+    }
 }

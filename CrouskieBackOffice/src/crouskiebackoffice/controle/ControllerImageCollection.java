@@ -4,6 +4,7 @@ import crouskiebackoffice.model.Collection;
 import crouskiebackoffice.model.FileDownloader;
 import crouskiebackoffice.model.Picture;
 import crouskiebackoffice.model.dao.DAOCollection;
+import crouskiebackoffice.model.dao.DAOPicture;
 import crouskiebackoffice.view.PopupMenuImage;
 import java.awt.Container;
 import java.awt.Graphics2D;
@@ -256,6 +257,7 @@ public class ControllerImageCollection implements ActionListener {
                         nomCollection = "";
                     }
                     Picture pic = new Picture(urlRelativeToOnlineImage, nomCollection, null);
+                    new DAOPicture().insertOrUpdate(pic);
                     Collection collection = new Collection(-1, nomCollection, urlRelativeToOnlineImage);
                     dao.insertOrUpdate(collection);
                     addPicture(new Tuple(pic, null, collection));

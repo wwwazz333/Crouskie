@@ -87,9 +87,7 @@ public class ControllerImageProduct implements ActionListener {
      */
     private void addPicture(Picture pic) {
         if (attachPicture.isSingleAttach()) {
-            for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
-                removePicture(imagesLabel.get(i), pictures.get(i));
-            }
+            removeAllPictures();
         }
         // Ajouter l'image à la liste et télécharger l'image à partir de l'URL
         pictures.add(pic);
@@ -146,6 +144,12 @@ public class ControllerImageProduct implements ActionListener {
         pictures.remove(pic);
         imagesLabel.remove(image);
         updatePanel();
+    }
+
+    public void removeAllPictures() {
+        for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
+            removePicture(imagesLabel.get(i), pictures.get(i));
+        }
     }
 
     /**

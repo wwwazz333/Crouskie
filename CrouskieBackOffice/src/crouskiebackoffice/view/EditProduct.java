@@ -66,6 +66,7 @@ public class EditProduct extends javax.swing.JPanel {
 
     private void clearAll() {
         controller.clearAll();
+        controllerImage.removeAllPictures();
     }
 
     public JComboBox<String> getCollectionComboBox() {
@@ -117,7 +118,6 @@ public class EditProduct extends javax.swing.JPanel {
                     DataProduct.getInstance().notif();
                     return true;
                 });
-
                 MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
 
             } else {

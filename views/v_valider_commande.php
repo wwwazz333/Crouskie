@@ -37,6 +37,7 @@ require_once(PATH_VIEWS . 'alert.php');
                     <input type="text" name="city" id="city" placeholder="<?= VILLE ?>" class="icon rounded shadow-small" style="width: 40%" required>
                     <input type="text" name="country" id="country" placeholder="<?= PAYS ?>" class="icon rounded shadow-small" style="width: 50%" required>
                 </div>
+                <input type="hidden" name="action" value="valider">
                 <input type="submit" id="form-confirm" value="<?= ENREGISTRER_PAYER ?>" class="valid circle">
                 <!-- <input type="submit" id="form-confirm" value="Enregistrer" class="valid circle center" style="margin-top: 1.5rem; margin-bottom: 0rem"> -->
             </form>

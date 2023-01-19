@@ -1,5 +1,4 @@
 
-
 [TOC]
 
 # Récupérer le code source
@@ -50,5 +49,5 @@ Ce projet est un projet `Apache NetBeans`. Le dossier `CrouskieBackOffice` est c
 6. Il est important d'importer les librairies correctement, pour cela, faire un clic droit sur `Libraries` puis clic gauche sur `Add JAR/Folder`.
 7. Naviguer jusqu’au dossier `java-lib`.
 8. Sélectionner tous son contenue.
-9. Puis Validé (bouton `Ouvrir`)
+9. Puis valider (bouton `Ouvrir`)
 

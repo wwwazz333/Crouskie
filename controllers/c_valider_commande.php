@@ -4,12 +4,61 @@ require_once(PATH_MODELS . 'StockDAO.php');
 require_once(PATH_MODELS . 'CommandeDAO.php');
 require_once(PATH_MODELS . 'ProductBoughtDAO.php');
 require_once(PATH_MODELS . 'ProductDAO.php');
+require_once(PATH_MODELS . 'SizeDAO.php');
+require_once(PATH_ENTITY . 'User.php');
 // Si l'utilisateur n'est pas connecté
 if (!$isLogged) {
     header('Location: index.php?page=portal');
     exit();
 
 } else {
+    $cartDAO = new CartDAO(DEBUG);
+    $userId = $user->getIdUser();
+    $cartPhp = $cartDAO->getCartByCustomerId($userId); // Récupération du panier de l'utilisateur -> type : objet php
+
+    // Si le panier est vide
+    if($cartPhp == null) {
+        $isCartEmpty = true;
+    // Sinon
+    } else if ($cartPhp != null || $isLogged == true){
+        $isCartEmpty = false;
+        $cart = $cartDAO->resultToCartArray($cartPhp); // Conversion type objet php en type objet Product
+        $compteur = 0;
+
+        $productDAO = new ProductDAO(DEBUG);
+        $sizeDAO = new SizeDAO(DEBUG);
+
+        // Informations destinées à la vue
+        $infosProdsCart = [];
+        $montantTotal = 0;
+
+        // On récupère le nom des produits du panier à partir de leur id 
+        foreach ($cart as $productCart) { 
+            $id = $productCart->getIdProd(); 
+            $product = $productDAO->resultToProduct($productDAO->getProductByID($id)); // type objet Product
+            
+            $montantTotal = $montantTotal + $product->getPrice() * $productCart->getQuantityCart();
+
+            // On va chercher le nom de la taille du produit avec l'idsize
+            $sizePhp = $sizeDAO->getFullSizeBySizeId($productCart->getSizeCart());
+            $size = $sizeDAO->resultToSizesArray($sizePhp);
+            
+            // Enregistrement des informations dans un tableau traité par la vue
+            $infosProdsCart[$compteur] = [
+                "compteur" => $compteur,
+                "idproduct" => $id,
+                "nameprod" => $product->getName(),
+                "color" => $productCart->getColorCart(),
+                "size" => $size[0]->getName(),
+                "idsize" => $productCart->getSizeCart(),
+                "quantitycart" => $productCart->getQuantityCart(),
+                "priceprod" => $product->getPrice(),
+                "pricetotal" => $product->getPrice() * $productCart->getQuantityCart()
+            ];  
+            $compteur ++; 
+        }
+
+    }
     if(isset($_POST['action'])){
         $stockDAO = new StockDAO(DEBUG);
         $cartDAO = new CartDAO(DEBUG);
@@ -96,5 +145,6 @@ if (!$isLogged) {
         }
     }
 }
+
 
 require_once(PATH_VIEWS . 'valider_commande.php');

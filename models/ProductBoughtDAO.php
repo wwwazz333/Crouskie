@@ -51,8 +51,7 @@ class ProductBoughtDAO extends DAO
     {
         $quantity = $this->queryAll("SELECT quantitystocked FROM stocked WHERE $idProd = idprod");
         // si il reste des produits en stock
-        if ($quantity > 0){
-            // Ne pas oublier d'enlever du stock le produit 
+        if ($quantity > $quantityBought){
             $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numorder,quantitybought) VALUES (?,?,?,?,?) ",array(
                 //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
                 $nameColor,
@@ -62,14 +61,23 @@ class ProductBoughtDAO extends DAO
                 $quantityBought
 
             ));
-            
-            $product_delete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = $idProd", array()); 
+            $productStockDelete = $this->queryBdd("UPDATE stocked SET quantitystocked = quantitystocked - 1 WHERE idprod= ? AND idsize= ? AND namecolor= ?", array(
+                $idProd,
+                $idSize,
+                $nameColor
+            ));
+            $productCartDelete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = ? AND idsize = ? AND namecolor= ?", array(
+                $idProd,
+                $idSize,
+                $nameColor
+            )); 
         }
         else{
             //raise error produit en rupture de stock
             return 2;
         }
-        return $product_bought && $product_delete;
+        // 
+        return $product_bought && $productCartDelete && $productStockDelete;
     }
     
 }

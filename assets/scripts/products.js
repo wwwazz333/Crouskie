@@ -53,7 +53,7 @@ function displaySuggestions() {
 const nameSorterButton = document.getElementById('name-sorter');
 const priceSorterButton = document.getElementById('price-sorter');
 const productsParent = document.getElementById('products');
-const products = productsParent.querySelectorAll('.product-item');
+const products = productsParent.querySelectorAll('a');
 var nameSorter = 'asc';
 var priceSorter = 'asc';
 

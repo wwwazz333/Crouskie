@@ -50,8 +50,12 @@ function displaySuggestions() {
 
 // Sort and filter part
 
+const nameSorterButton = document.getElementById('name-sorter');
+const priceSorterButton = document.getElementById('price-sorter');
 const productsParent = document.getElementById('products');
 const products = productsParent.querySelectorAll('.product-item');
+var nameSorter = 'asc';
+var priceSorter = 'asc';
 
 function sortByName(order) {
     const sortedProducts = _.sortBy(products, (product) => {
@@ -78,3 +82,22 @@ function sortByPrice(order) {
         productsParent.appendChild(product);
     });
 }
+
+nameSorterButton.addEventListener('click',()=>{
+    sortByName(nameSorter);
+    if (nameSorter == 'asc') {
+        nameSorter = 'desc';
+    }else{
+        nameSorter = 'asc';
+    }
+});
+
+priceSorterButton.addEventListener('click',()=>{
+    sortByPrice(priceSorter);
+    if (priceSorter == 'asc') {
+        priceSorter = 'desc';
+    }else{
+        priceSorter = 'asc';
+    }
+});
+

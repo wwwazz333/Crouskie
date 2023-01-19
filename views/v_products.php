@@ -13,7 +13,7 @@ require_once(PATH_VIEWS . 'header.php');
     </div>
     <div class="filters flex row">
         <button class="rounded" id="price-sorter">€</button>
-        <button class="rounded" id="name-sorter">A-Z</button>
+        <button class="rounded" id="name-sorter">ABC</button>
     </div>
 </div>
 <div class="flex row wrap center" id="products">

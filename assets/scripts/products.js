@@ -87,8 +87,11 @@ nameSorterButton.addEventListener('click',()=>{
     sortByName(nameSorter);
     if (nameSorter == 'asc') {
         nameSorter = 'desc';
+        nameSorterButton.innerText = 'A-Z';
     }else{
         nameSorter = 'asc';
+        nameSorterButton.innerText = 'Z-A';
+        
     }
 });
 
@@ -96,8 +99,10 @@ priceSorterButton.addEventListener('click',()=>{
     sortByPrice(priceSorter);
     if (priceSorter == 'asc') {
         priceSorter = 'desc';
+        priceSorterButton.innerText = '€ ↑';
     }else{
         priceSorter = 'asc';
+        priceSorterButton.innerText = '€ ↓';
     }
 });
 

@@ -57,7 +57,7 @@ public class DataProduct extends Notifier {
      */
     @Override
     public void notif() throws Exception {
-        data = daoProduct.getAllData("nameprod");
+        data = daoProduct.getAllData("envente DESC, nameprod");
 
         super.notif();
     }

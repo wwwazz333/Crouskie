@@ -283,7 +283,7 @@ public abstract class DAO<T> {
     protected abstract T parseData(HashMap<String, Object> obj);
 
     /**
-     * 
+     *
      * @return le nom de la table.
      */
     protected abstract String getTableName();

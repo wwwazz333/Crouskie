@@ -33,7 +33,7 @@ class ProductBoughtDAO extends DAO
     /**
      * Permet de convertir les requêtes PHP retournant plusieurs résultats en un tableau d'Objets (ici Product)
      * @param array $result Le tableau des résultats fournis par les requêtes SQL via le PHP
-     * @return mixed ProductBought Si le produit a bien été trouvé
+     * @return $product_bought Si le produit a bien été trouvé
      */
     public function getProductBoughtByCustomerId(int $id)
     {
@@ -44,8 +44,13 @@ class ProductBoughtDAO extends DAO
 
     /**
      * Permet de convertir les requêtes PHP retournant plusieurs résultats en un tableau d'Objets (ici Product)
-     * @param Product $result Le tableau des résultats fournis par les requêtes SQL via le PHP
-     * @return mixed Si le produit a bien été déplacé dans les ProductBought
+     * @param string $nameColor La couleur
+     * @param int $idProd l'identifiant du produit
+     * @param int $idSize l'identifiant de la taille
+     * @param int $numOrder l'identifiant de la commande
+     * @param int $quantityBought la quantité achetée
+     * @param int $idCustomer l'identifiant du client
+     * @return boolean Si le produit a bien été déplacé dans les ProductBought
      */
     public function buyProduct(string $nameColor, int $idProd, int $idSize, int $numOrder, int $quantityBought, int $idCustomer)
     {

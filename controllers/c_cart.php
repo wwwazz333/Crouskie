@@ -148,9 +148,9 @@ if($isLogged) {
                     }
 
                     if(!$enoughQuantity){
-                        $productPhp = $productDAO->getProductByID($defaultProd->getIdProd());
+                        $product = $productDAO->resultToProduct($productDAO->getProductByID($id));
                         $alert = showAlert(3, QUANTITE_INSUFFISANTE, 
-                        '' + ' ' +   + ' '  + PAS_ASSEZ_DE_STOCK);
+                        $product->getName() + ' ' + $defaultProd->getColorCart()  + ' '  + PAS_ASSEZ_DE_STOCK);
 
                     }
                     

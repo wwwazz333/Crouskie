@@ -15,12 +15,12 @@ public class CrouskieBackOffice {
 
   
 
-    public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, URISyntaxException, InterruptedException, SQLException, Exception {
-        DAO dao = new DAOStock();
-        List<ProductColorSize> d = dao.getAllData();
-        for (ProductColorSize c : d) {
-            System.out.println(c);
-        }
-    }
+//    public static void main(String[] args) throws MalformedURLException, ProtocolException, IOException, URISyntaxException, InterruptedException, SQLException, Exception {
+//        DAO dao = new DAOStock();
+//        List<ProductColorSize> d = dao.getAllData();
+//        for (ProductColorSize c : d) {
+//            System.out.println(c);
+//        }
+//    }
 
 }

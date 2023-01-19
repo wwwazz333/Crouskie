@@ -35,7 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
         stockTable.init();
         initSettings();
 
-        addProductPanel = new EditProduct(new Product("", "", 10f, null));
+        addProductPanel = new ValideProduct(new Product("", "", 10f, null));
         tabPane.addTab("Ajouter", addProductPanel);
 
         tabPane.addChangeListener((ce) -> {

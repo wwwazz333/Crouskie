@@ -124,13 +124,14 @@ public abstract class DAO<T> {
      * Insère ou met à jour l'objet spécifié dans la base de données.
      *
      * @param obj l'objet à insérer ou mettre à jour
+     * @param forceInsertWheneSave forcé l'insertion
      * @return true si l'opération a réussi, false sinon
      * @throws SQLException une exception peut être levée en cas de problème
      * avec la requête SQL
      * @throws ErrorHandelabelAdapter une exception peut survenir en raison
      * d'une erreur de connection SQL
      */
-    public abstract Boolean insertOrUpdate(T obj) throws SQLException, ErrorHandelabelAdapter;
+    public abstract Boolean insertOrUpdate(T obj, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter;
 
     /**
      * Cette méthode permet de récupérer toutes les données de la table

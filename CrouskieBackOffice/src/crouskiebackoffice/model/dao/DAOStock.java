@@ -61,7 +61,7 @@ public class DAOStock extends DAO<ProductColorSize> {
      * l'opération.
      */
     @Override
-    public Boolean insertOrUpdate(ProductColorSize productColorSize) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(ProductColorSize productColorSize, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
         if (exist(productColorSize)) {
             Object[] args = {productColorSize.getQuantity(), productColorSize.getProduct().getId(), productColorSize.getColor().getName(), productColorSize.getSize().getId()};
 

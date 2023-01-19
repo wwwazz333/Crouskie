@@ -51,6 +51,7 @@ public class ProductAttachImage implements AttachImage {
             } catch (SQLException | ErrorHandelabelAdapter ex) {
                 Logger.getLogger(ProductAttachImage.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
         return product.getId();
     }

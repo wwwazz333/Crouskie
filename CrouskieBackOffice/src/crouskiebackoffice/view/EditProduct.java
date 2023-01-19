@@ -22,14 +22,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * Interface graphique permettant d'édité les donnée d'un produit (il pourra ensuite être ajouté à la BD s'il n'existe pas déjà ou juste mis à jours)
- * Donc cette interface peut permettre d'ajouté ou édité un {@link Product}
+ * Interface graphique permettant d'édité les donnée d'un produit (il pourra
+ * ensuite être ajouté à la BD s'il n'existe pas déjà ou juste mis à jours) Donc
+ * cette interface peut permettre d'ajouté ou édité un {@link Product}
  */
 public class EditProduct extends javax.swing.JPanel {
 
-    private ControllerEditProduct controller;
+    protected ControllerEditProduct controller;
     private ControllerImageProduct controllerImage;
-    private Product product;
+    protected Product product;
 
     /**
      *
@@ -97,6 +98,37 @@ public class EditProduct extends javax.swing.JPanel {
 
     public JCheckBox getEnVenteCheckBox() {
         return enVenteCheckBox;
+    }
+
+    protected void valide() {
+        MainWindow.instance.getStatusbar().showMsg("Envoi des données");
+        MainWindow.instance.getStatusbar().setLoading(true);
+
+        boolean succes = false;
+        try {
+            succes = controller.save(nameInput.getText(), descriptionInput.getText(),
+                    priceInput.getText(), enVenteCheckBox.isSelected(), collectionComboBox.getModel(),
+                    (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel(),
+                    controllerImage.getPictures());
+            if (succes) {
+                clearAll();
+                Navigator.getInstance().goBack();
+                ErrorHandeler.getInstance().exec(() -> {
+                    DataProduct.getInstance().notif();
+                    return true;
+                });
+
+                MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
+
+            } else {
+                MainWindow.instance.getStatusbar().showMsg("Echec lors de l'envoi des données", 2000);
+            }
+
+        } catch (NumberFormatException | SQLException ex) {
+            MainWindow.instance.getStatusbar().showMsg("Erreur", 2000);
+            Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        MainWindow.instance.getStatusbar().setLoading(false);
     }
 
     /**
@@ -249,34 +281,7 @@ public class EditProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        MainWindow.instance.getStatusbar().showMsg("Envoi des données");
-        MainWindow.instance.getStatusbar().setLoading(true);
-
-        boolean succes = false;
-        try {
-            succes = controller.save(nameInput.getText(), descriptionInput.getText(),
-                    priceInput.getText(), enVenteCheckBox.isSelected(), collectionComboBox.getModel(),
-                    (DynamicListModel) listColor.getModel(), (DynamicListModel) listSize.getModel(), (DynamicListModel) listTag.getModel(),
-                    controllerImage.getPictures());
-            if (succes) {
-                clearAll();
-                Navigator.getInstance().goBack();
-                ErrorHandeler.getInstance().exec(() -> {
-                    DataProduct.getInstance().notif();
-                    return true;
-                });
-
-                MainWindow.instance.getStatusbar().showMsg("Données envoyé avec succes", 2000);
-
-            } else {
-                MainWindow.instance.getStatusbar().showMsg("Echec lors de l'envoi des données", 2000);
-            }
-
-        } catch (NumberFormatException | SQLException ex) {
-            MainWindow.instance.getStatusbar().showMsg("Erreur", 2000);
-            Logger.getLogger(EditProduct.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        MainWindow.instance.getStatusbar().setLoading(false);
+        valide();
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void nameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameInputActionPerformed
@@ -288,7 +293,7 @@ public class EditProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_addImageActionPerformed
 
     private void addCollectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCollectionActionPerformed
-        
+
     }//GEN-LAST:event_addCollectionActionPerformed
 
 

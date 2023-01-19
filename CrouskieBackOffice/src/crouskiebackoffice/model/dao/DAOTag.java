@@ -13,7 +13,7 @@ public class DAOTag extends DAO<Tag> implements MultipleInsertSQL<Tag> {
      * {@inheritDoc}
      */
     @Override
-    public Boolean insertOrUpdate(Tag obj) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(Tag obj, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getId()};
             return super.execute("UPDATE TABLE " + getTableName() + " SET  nametag = ? WHERE idtag = ?", args) == 1;

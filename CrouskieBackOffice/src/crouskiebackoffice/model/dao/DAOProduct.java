@@ -145,16 +145,17 @@ public class DAOProduct extends DAO<Product> {
      * Insert ou met à jous le produit
      *
      * @param product le produit à inserer ou mettre à jour
+     * @param forceInsert forcé l'insertion
      * @return si l'action à été faite avec succes
      * @throws SQLException s'il y a une erreur SQL
      * @throws ErrorHandelabelAdapter en cas d'erreur de connexion SQL
      */
     @Override
-    public Boolean insertOrUpdate(Product product) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(Product product, boolean forceInsert) throws SQLException, ErrorHandelabelAdapter {
         startTransaction();
         setSavePoint("edit_product");
         boolean succes = false;
-        if (exist(product)) {
+        if (exist(product) && !forceInsert) {
             Object[] idArg = {product.getId()};
             super.execute("DELETE FROM existingsize WHERE idprod = ?", idArg);
             super.execute("DELETE FROM tags_product WHERE idprod = ?", idArg);
@@ -311,6 +312,9 @@ public class DAOProduct extends DAO<Product> {
     }
 
     public int getNextId() throws SQLException, ErrorHandelabelAdapter {
-        return (int) super.selectAll("SELECT max(idprod) as id FROM " + getTableName(), null).get(0).get("id");
+        System.out.println(super.selectAll("SHOW TABLE STATUS WHERE `Name` = 'product'; ", null).toString());
+        System.out.println(super.selectAll("SHOW TABLE STATUS WHERE `Name` = 'product'; ", null).get(0).toString());
+        System.out.println(super.selectAll("SHOW TABLE STATUS WHERE `Name` = 'product'; ", null).get(0).get("auto_increment").toString());
+        return ((BigInteger) super.selectAll("SHOW TABLE STATUS WHERE `Name` = 'product'; ", null).get(0).get("auto_increment")).intValue();
     }
 }

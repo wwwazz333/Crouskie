@@ -48,7 +48,7 @@ public class AddingController<T> {
         String name = addingDialog.getDefaultInputField().getText();
         if (name != null && !name.isBlank()) {
             return ErrorHandeler.getInstance().exec(() -> {
-                dao.insertOrUpdate(classCreator.createWithName(name));
+                dao.insertOrUpdate(classCreator.createWithName(name), false);
                 return true;
             });
         }

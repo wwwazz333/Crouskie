@@ -27,7 +27,7 @@ public class DAOClothSize extends DAO<ClothSize> implements MultipleInsertSQL<Cl
      * d'erreur lors de la requête SQL.
      */
     @Override
-    public Boolean insertOrUpdate(ClothSize clothSize) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(ClothSize clothSize, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
         if (exist(clothSize)) {
             Object[] args = {clothSize.getName(), clothSize.getId()};
             return super.execute("UPDATE " + getTableName() + " SET namesize = ? WHERE idsize = ?", args) == 1;

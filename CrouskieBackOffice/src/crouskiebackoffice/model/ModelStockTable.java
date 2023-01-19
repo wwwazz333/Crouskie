@@ -95,7 +95,7 @@ public class ModelStockTable extends AbstractTableModel {
             }
 
             DAOStock dao = new DAOStock();
-            dao.insertOrUpdate(productColorSize);
+            dao.insertOrUpdate(productColorSize, false);
             return true;
         });
         MainWindow.instance.getStatusbar().setLoading(false);

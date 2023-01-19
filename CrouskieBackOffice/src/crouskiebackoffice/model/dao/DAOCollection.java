@@ -34,7 +34,7 @@ public class DAOCollection extends DAO<Collection> {
      * @throws ErrorHandelabelAdapter si une erreur inattendue survient.
      */
     @Override
-    public Boolean insertOrUpdate(Collection obj) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(Collection obj, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             Object[] args = {obj.getName(), obj.getPathPicture(), obj.getId()};
             return super.execute("UPDATE " + getTableName() + " SET namecollection = ?, pathpicture"

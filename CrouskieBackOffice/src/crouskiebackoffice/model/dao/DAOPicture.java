@@ -33,7 +33,7 @@ public class DAOPicture extends DAO<Picture> {
      * l'objet
      */
     @Override
-    public Boolean insertOrUpdate(Picture obj) throws SQLException, ErrorHandelabelAdapter {
+    public Boolean insertOrUpdate(Picture obj, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
         if (exist(obj)) {
             Object[] args = {obj.getAlt(), obj.getPath()};
             return super.execute("UPDATE TABLE " + getTableName() + " SET  altpicture = ? WHERE pathpicture = ?", args) == 1;

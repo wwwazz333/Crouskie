@@ -24,8 +24,8 @@ public class ProductManager {
         return instance;
     }
 
-    public boolean save(Product product) throws SQLException, ErrorHandelabelAdapter {
-        return daoProduct.insertOrUpdate(product);
+    public boolean save(Product product, boolean forceInsertWheneSave) throws SQLException, ErrorHandelabelAdapter {
+        return daoProduct.insertOrUpdate(product, forceInsertWheneSave);
     }
 
 }

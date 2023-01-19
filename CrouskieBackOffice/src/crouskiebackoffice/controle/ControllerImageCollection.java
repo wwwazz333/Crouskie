@@ -181,7 +181,7 @@ public class ControllerImageCollection implements ActionListener {
                                         tuple.collection.setName(nameCollection);
 
                                         ErrorHandeler.getInstance().exec(() -> {
-                                            dao.insertOrUpdate(tuple.collection);
+                                            dao.insertOrUpdate(tuple.collection, false);
                                             return true;
 
                                         });
@@ -257,9 +257,9 @@ public class ControllerImageCollection implements ActionListener {
                         nomCollection = "";
                     }
                     Picture pic = new Picture(urlRelativeToOnlineImage, nomCollection, null);
-                    new DAOPicture().insertOrUpdate(pic);
+                    new DAOPicture().insertOrUpdate(pic, false);
                     Collection collection = new Collection(-1, nomCollection, urlRelativeToOnlineImage);
-                    dao.insertOrUpdate(collection);
+                    dao.insertOrUpdate(collection, false);
                     addPicture(new Tuple(pic, null, collection));
                     updatePanel();
                 }

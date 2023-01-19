@@ -34,6 +34,8 @@ public class ControllerEditProduct {
      * Vue de modification de produit.
      */
     private EditProduct editProduct;
+    
+    private boolean forceInsertWheneSave = false;
 
     /**
      * Crée un nouveau contrôleur de modification de produit avec la vue de
@@ -94,7 +96,7 @@ public class ControllerEditProduct {
             product.setPictures(pictures);
 
             return ErrorHandeler.getInstance().exec(() -> {
-                return ProductManager.getInstance().save(product);
+                return ProductManager.getInstance().save(product, forceInsertWheneSave);
             });
 
         }
@@ -142,5 +144,11 @@ public class ControllerEditProduct {
         model.removeAllElements();
 
     }
+
+    public void setForceInsertWheneSave(boolean forceInsertWheneSave) {
+        this.forceInsertWheneSave = forceInsertWheneSave;
+    }
+    
+    
 
 }

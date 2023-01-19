@@ -25,7 +25,7 @@ public class AddingColorController extends AddingController<Color> {
 
             if (name != null && !name.isBlank()) {
                 return ErrorHandeler.getInstance().exec(() -> {
-                    dao.insertOrUpdate(classCreator.createWithNameAndInfo(name, code));
+                    dao.insertOrUpdate(classCreator.createWithNameAndInfo(name, code), false);
                     return true;
                 });
             }

@@ -40,10 +40,9 @@ if($isLogged) {
         // On récupère le nom des produits du panier à partir de leur id 
         foreach ($cart as $productCart) { 
             $id = $productCart->getIdProd(); 
-            $productPhp = $productDAO->getProductByID($id); // type objet php
-            $product = $productDAO->resultToProductsArray(["productPhp" => $productPhp]); // type objet Product
+            $product = $productDAO->resultToProduct($productDAO->getProductByID($id)); // type objet Product
             
-            $montantTotal = $montantTotal + $product[0]->getPrice() * $productCart->getQuantityCart();
+            $montantTotal = $montantTotal + $product->getPrice() * $productCart->getQuantityCart();
 
             // On va chercher le nom de la taille du produit avec l'idsize
             $sizePhp = $sizeDAO->getFullSizeBySizeId($productCart->getSizeCart());
@@ -53,13 +52,13 @@ if($isLogged) {
             $infosProdsCart[$compteur] = [
                 "compteur" => $compteur,
                 "idproduct" => $id,
-                "nameprod" => $product[0]->getName(),
+                "nameprod" => $product->getName(),
                 "color" => $productCart->getColorCart(),
                 "size" => $size[0]->getName(),
                 "idsize" => $productCart->getSizeCart(),
                 "quantitycart" => $productCart->getQuantityCart(),
-                "priceprod" => $product[0]->getPrice(),
-                "pricetotal" => $product[0]->getPrice() * $productCart->getQuantityCart()
+                "priceprod" => $product->getPrice(),
+                "pricetotal" => $product->getPrice() * $productCart->getQuantityCart()
             ];  
             $compteur ++; 
         }

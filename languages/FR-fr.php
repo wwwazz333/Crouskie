@@ -107,8 +107,8 @@ define('PANIER_VIDE','Votre panier est vide !');
 define('PANIER_PAS_CONNECTE','Vous n\'êtes pas connecté !');
 define('PANIER_BIEN_VIDE','Votre panier a bien été vidé! ');
 define('PANIER_BIEN_VALIDE','Votre commande a été enregistrée avec succès! ');
-define('QUANTITE_INSUFFISANTE','N\'est pas en quantité suffisante');
-define('PAS_ASSEZ_DE_STOCK','Il n\'y a pas assez de stocks pour un ou plusieurs produits de votre panier');
+define('QUANTITE_INSUFFISANTE','Stocks insuffisants');
+define('PAS_ASSEZ_DE_STOCK','n\'est pas disponible dans une quantité suffisante');
 
 // Page validation commande
 define('COMPTE_ASSOCIE','Compte associé');

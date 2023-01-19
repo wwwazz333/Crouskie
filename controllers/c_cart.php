@@ -112,11 +112,7 @@ if($isLogged) {
 
                 // On valide la commande
                 case 'valider':
-                    // Création de la commande
-                    $resultOrder = $commandeDAO->addCommande($userId);
-                    // On récupère l'idOrder pour plus tard 
-                    $idOrder = $commandeDAO->getNumLastCommande($userId)[0][0];
-                    $resultProducts = true;
+                    
                     $enoughQuantity = true;
                     $defaultProd;
                     
@@ -130,6 +126,12 @@ if($isLogged) {
 
 
                     if($enoughQuantity){
+                        // Création de la commande
+                        $resultOrder = $commandeDAO->addCommande($userId);
+                        // On récupère l'idOrder pour plus tard 
+                        $idOrder = $commandeDAO->getNumLastCommande($userId)[0][0];
+                        $resultProducts = true;
+
                         foreach ($cart as $productCart) {
                             $color = $productCart->getColorCart();
                             $size = $productCart->getSizeCart();
@@ -142,28 +144,29 @@ if($isLogged) {
                             $resultProducts = $resultProducts && $result;
                         }
                     }
-                    // Alertes pour savoir si la fonction marche
-                    if($resultProducts && $resultOrder){
-                        header('Location: index.php?page=cart&valider=1');
-                    }
 
                     if(!$enoughQuantity){
+                        $textToDisplay = $product->getName() . ' ' . $defaultProd->getColorCart()  . ' '  . PAS_ASSEZ_DE_STOCK;
                         $product = $productDAO->resultToProduct($productDAO->getProductByID($id));
-                        $alert = showAlert(3, QUANTITE_INSUFFISANTE, 
-                        $product->getName() + ' ' + $defaultProd->getColorCart()  + ' '  + PAS_ASSEZ_DE_STOCK);
+                        $alert = showAlert(3, QUANTITE_INSUFFISANTE, $textToDisplay);
 
                     }
-                    
-                    else if($resultProducts && !$resultOrder){
-                        $alert = showAlert(3, COMMANDE, "Commande");
-                    }
-                    else if(!$resultProducts && $resultOrder){
-                        $alert = showAlert(3, COMMANDE, "Result");
-                    }
                     else{
-                        $alert = showAlert(3, COMMANDE, "$");
+                        // Alertes pour savoir si la fonction marche
+                        if($resultProducts && $resultOrder){
+                            header('Location: index.php?page=cart&valider=1');
+                        }
+
+                        else if($resultProducts && !$resultOrder){
+                            $alert = showAlert(3, COMMANDE, "Commande");
+                        }
+                        else if(!$resultProducts && $resultOrder){
+                            $alert = showAlert(3, COMMANDE, "Result");
+                        }
+                        else{
+                            $alert = showAlert(3, COMMANDE, "$");
+                        }
                     }
-                    
                     break;
             }
 

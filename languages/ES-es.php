@@ -103,8 +103,8 @@ define('PANIER_VIDE','¡Tu carrito está vacío!');
 define('PANIER_PAS_CONNECTE','¡No estás conectado!');
 define('PANIER_BIEN_VIDE','¡Su cesta está vacía!');
 define('PANIER_BIEN_VALIDE','¡Su pedido ha sido registrado con éxito!');
-define('QUANTITE_INSUFFISANTE','no está en cantidad suficiente');
-define('PAS_ASSEZ_DE_STOCK','No hay suficientes existencias para uno o más productos de su cesta');
+define('QUANTITE_INSUFFISANTE','Existencias insuficientes');
+define('PAS_ASSEZ_DE_STOCK','no está disponible en cantidad suficiente');
 
 // Página de productos
 define('RECHERCHER','Buscar...');

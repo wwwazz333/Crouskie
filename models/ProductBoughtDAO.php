@@ -49,34 +49,31 @@ class ProductBoughtDAO extends DAO
      */
     public function buyProduct(string $nameColor, int $idProd, int $idSize, int $numOrder, int $quantityBought, int $idCustomer)
     {
-        $quantity = $this->queryAll("SELECT quantitystocked FROM stocked WHERE $idProd = idprod");
-        // si il reste des produits en stock
-        if ($quantity > $quantityBought){
-            $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numorder,quantitybought) VALUES (?,?,?,?,?) ",array(
-                //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
-                $nameColor,
-                $idProd,
-                $idSize,
-                $numOrder,
-                $quantityBought
+        // Déplacer le produit du panier de l'utilisateur vers l'historique des produits achetés du site
+        $product_bought = $this->queryBdd("INSERT INTO productbought (namecolor, idprod, idsize,numorder,quantitybought) VALUES (?,?,?,?,?) ",array(
+            //idPP, NameColor, idProd, idSize, numOrder, QuantityBought
+            $nameColor,
+            $idProd,
+            $idSize,
+            $numOrder,
+            $quantityBought
 
-            ));
-            $productStockDelete = $this->queryBdd("UPDATE stocked SET quantitystocked = quantitystocked - 1 WHERE idprod= ? AND idsize= ? AND namecolor= ?", array(
-                $idProd,
-                $idSize,
-                $nameColor
-            ));
-            $productCartDelete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = ? AND idsize = ? AND namecolor= ?", array(
-                $idProd,
-                $idSize,
-                $nameColor
-            )); 
-        }
-        else{
-            //raise error produit en rupture de stock
-            return 2;
-        }
-        // 
+        ));
+
+        // Décrémentation du stock du produit
+        $productStockDelete = $this->queryBdd("UPDATE stocked SET quantitystocked = quantitystocked - ? WHERE idprod= ? AND idsize= ? AND namecolor= ?", array(
+            $quantityBought,
+            $idProd,
+            $idSize,
+            $nameColor
+        ));
+
+        // Supression du produit dans le panier de l'utilisateur
+        $productCartDelete = $this->queryBdd("DELETE FROM cart WHERE idcustomer = $idCustomer AND idprod = ? AND idsize = ? AND namecolor= ?", array(
+            $idProd,
+            $idSize,
+            $nameColor
+        )); 
         return $product_bought && $productCartDelete && $productStockDelete;
     }
     

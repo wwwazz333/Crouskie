@@ -1,111 +1,52 @@
-# templategp-agile-sae-s3
+[TOC]
 
-Template de base pour gérer (en mode SCRUM-light) les SAE du s3 avec GitLab 🦊
+# Récupérer le code source
 
-![bannière](.ressources/SAE-s3-logo-bleu.png)
+Vous devez d'abord récupérer le code source.
 
-##  1. <a name='Tabledesmatires'></a> Table des matières
-<!-- vscode-markdown-toc -->
-* 1. [ Table des matières](#Tabledesmatires)
-* 2. [Pourquoi ce dépôt ?](#Pourquoicedpt)
-* 3. [Que propose ce dépôt ?](#Queproposecedpt)
-	* 3.1. [Les labels](#Leslabels)
-	* 3.2. [Les Jalons](#Lesjalons)
-	* 3.3. [Le Board](#LeBoard)
-	* 3.4. [Les branches](#Lesbranches)
-	* 3.5. [Modèles pour les issues et les merges requests](#Modlespourlesissuesetlesmergesrequests)
-* 4. [Comment utiliser ce dépôt ?](#Commentutilisercedpt)
-* 5. [Licence](#Licence)
-* 6. [Auteur](#Auteur)
+Pour cela, vous devez cloner le dépôt disponible à l'adresse `git@forge.univ-lyon1.fr:p2100126/crouskie-sa.git` ou `https://forge.univ-lyon1.fr/p2100126/crouskie-sa.git`.
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
 
-##  2. <a name='Pourquoicedpt'></a>Pourquoi ce dépôt ?
 
-Ce dépot à pour objectif de fournir un outil de démarrage rapide pour organiser et gérer de façon agile un nouveau projet avec GitLab, notamment pour la SAE du s3.
+# Organisation du projet
 
-Partant du constat que le démarrage d'un projet est un processus long et complexe, on fournit ici un outil simple pour lancer un projet avec GitLab, que vous pourrez réutiiser et adapter au fil du temps avec votre propre affinité de GiLab.
+## BD
 
-##  3. <a name='Queproposecedpt'></a>Que propose ce dépôt ?
+Dans le dossier `bd`, il y a 2 fichiers:
 
-Ce dépôt fournit un ensemble de modèles, de fichiers et de paramétrages pour vous faciliter le démarrage d'un projet avec GitLab, que vous pouvez modifier à volonté.
-Vous trouverez les éléments suivants :
+- `crouskie.sql` : ll contient toute la structure de la base de données que vous pouvez importer sur `phpmyadmin`. 
+- `contrainte.sql` : Il contient certaines contraintes sur des colonnes (`tag`, `color`, `cloth_size`). Ces contraintes ne sont pas exportées / importées par défaut par `phpmyadmin`. Il faut donc copier-coller le contenu de ce fichier dans l'onglet “SQL” de `phpmyadmin`. Ces contraintes sont nécessaires au bon fonctionnement du logiciel de back-office.
 
--   Ce fichier README.md
--   Des modèles pour les issues et les merge requests, et un modèle pour la réunion en séance avec le tuteur-SAE 
--   Une collection de labels
--   Une liste de jalons (_milestones_) correspondant aux dates des séances de SAE avec le tuteur
--   Un modèle de Board
--   3 Branches spécifiques à la SAE :
-    -   Main
-    -   Pré-Démonstration
-    -   Démonstration
+## Les Librairies
 
-(Dans un cadre professionnel, ces 2 dernières branches s'appellent _pré-production_ et _production_)
+Dans le dossier `java-lib`.
 
-###  3.1. <a name='Leslabels'></a>Les labels
+Le logiciel de back-office utilise certaines librairies, pour :
 
-Les labels sont des éléments qui sont associés à des _issues_ et _merge requests_ : ils permettent de les classer, les organiser et les identifier simplement. Voici ceux qu'on propose ici, vous pouvez en supprimer ou ajouter d'autres.
+- Communiquer avec la base de données (`mysql-connector`)
+- Communiquer avec le serveur (`httpclient`)
+- Formater des données (`gson`)
+- Faire des logs (`log4j`)
+- Un meilleur affichage (`flatlaf`)
 
-On a distingué les labels prioritaires :
+## Le Projet
 
-![label](.ressources/labels.png)
+Ce projet est un projet `Apache NetBeans`. Le dossier `CrouskieBackOffice` est celui qui contient tous le projet `Apache NetBeans`. 
 
-Des labels utilisés pour le board :
 
-![label](.ressources/labels2.png)
 
-###  3.2. <a name='Lesjalons'></a>Les Jalons
+# Installation
 
-Les jalons (milestones) sont les échéances connues du projet, qu'il faut préparer ou pour lesquelles certaines tâches / livrables doivent être terminées.
-Dans le modèle, on a défini des jalons qui devraient vous aider, notamment pour préparer chaque séance de SAE avec le tuteur.
+1. Cloner le dépôt.
+2. Ouvrir `Apache NetBeans` (version utilisé pour le développement : 16). 
+3. Ouvrir le projet (`File > Open Project`).
+4. Dans l’onglet `Projects`,  dérouler le projet (`CrouskieBackOffice`).
+5. Il y a 2 sous-dossiers dans le projet :
+   - Source Packages (le code source)
+   - Libraries (les librairies)
 
-Libre à vous de les adapter.
+6. Il est important d'importer les librairies correctement, pour cela, faire un clic droit sur `Libraries` puis clic gauche sur `Add JAR/Folder`.
+7. Naviguer jusqu’au dossier `java-lib`.
+8. Sélectionner tous son contenue.
+9. Puis Validé (bouton `Ouvrir`)
 
-![label](.ressources/jalons.png)
-
-###  3.3. <a name='LeBoard'></a>Le Board
-
-Le Board est l'outil central de GitLab pour organiser et gérer les tâches afférentes au projet.
-
-Il permet de les visualiser et de suivre leur progression.
-
-La structure de ce board adopte l'approche [Scrumban](https://asana.com/fr/resources/scrumban).
-
-![board](.ressources/theBoard.png)
-
-###  3.4. <a name='Lesbranches'></a>Les branches
-
-Les trois branches proposées dans ce template permettent de gérer de manière simple l'état du votre projet, jusqu'à la revue finale de projet devant un jury de 2 enseignants.
-
-Ce modèle est librement inspiré de l'approche GitLab Flow, pour en savoir plus : [GitLab Flow](https://www.youtube.com/watch?v=ZJuUz5jWb44).
-
-![](.ressources/branches.png)
-
-###  3.5. <a name='Modlespourlesissuesetlesmergesrequests'></a>Modèles pour les issues et les merges requests
-
-Ce template propose des modèles pour les _issues_ et les _merge requests_ afin de simplifier et standardiser leur utilisation par les équipes du projet.
-
-![board](.ressources/issues.png)
-
-![board](.ressources/mr.png)
-
-##  4. <a name='Commentutilisercedpt'></a>Comment utiliser ce dépôt ?
-
-> Vous utilisez ce dépôt comme **base d'inspiration** pour votre gérer votre projet simplement en adaptant les éléments à votre contexte.
-
-> **Vous pouvez également télécharger l'export du dépôt pour l'importer avec tous les éléments dèja présents (labels, issues, merges requests, board, branches, ...)**
-> 1. [Télécharger l'export du dépôt](.ressources/export.tar.gz)
-> 2. [Importer l'export dans GitLab](https://docs.gitlab.com/ee/user/project/settings/import_export.html#import-a-project-and-its-data)
-
-##  5. <a name='Licence'></a>Licence
-
-Ce dépôt est sous licence [MIT](LICENSE)
-
-##  6. <a name='Auteur'></a>Auteur
-Contact : @V.Deslandres
-Ce travail est basé sur le kit starter de projet de [YoanDev](https://yoandev.co)

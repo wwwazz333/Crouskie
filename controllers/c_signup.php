@@ -20,13 +20,7 @@ if (isset($_POST['email'])) {
         // On récupère les informations manquante pour effectuer la connexion
         $data = $DAO->getUser($email);
         if ($data) {
-            $user = new User(
-                $data["first_name"],
-                $data["last_name"],
-                $data["mail_address"],
-                $data["idcustomer"],
-            );
-            $_SESSION['account'] = serialize($user);
+            serializeUser($data["first_name"],$data["last_name"],$data["mail_address"],$data["idcustomer"]);
         }else{
             // Erreur de connexion
         }

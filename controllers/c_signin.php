@@ -18,13 +18,8 @@ if (isset($_POST['email'])) {
     $data = $DAO->getUser($email);
     if ($data) {
         if(password_verify($password,$data['password'])){
-            $user = new User(
-                $data["first_name"],
-                $data["last_name"],
-                $data["mail_address"],
-                $data["idcustomer"],
-            );
-            $_SESSION['account'] = serialize($user);
+            // Serialisation du User et enregistrement dans la SESSION 
+            $user = serializeUser($data["first_name"],$data["last_name"],$data["mail_address"],$data["idcustomer"]);
             // redirection accueil temporaire
             header('Location: index.php?log=1');
             exit();

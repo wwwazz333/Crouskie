@@ -52,6 +52,7 @@ public class ProductAttachImage implements AttachImage {
                 Logger.getLogger(ProductAttachImage.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        System.err.println("idddd " + product.getId());
         return product.getId();
     }
 }

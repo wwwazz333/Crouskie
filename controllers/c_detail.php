@@ -23,6 +23,9 @@ if (isset($_GET['id'])) {
         $colors = $DAO->getColorsByProductID($product->getId());
         $colors = $DAO->resultToColorsArray($colors);
 
+        $DAO = new ProductDAO(DEBUG);
+        $images = $DAO->getProductImages($product->getId());
+
         // Ajout au panier 
         if (isset($_POST['color']) && isset($_POST['size'])) {
             // Vérification de connexion

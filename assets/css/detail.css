@@ -9,14 +9,61 @@ body {
     justify-content: center;
 }
 
-.carousel{
+#carousel{
+    position: relative;
+    overflow: hidden;
+
     flex: 2;
     background-color: white;
     max-height: 440px;
     max-width: 700px;
+}
 
-    background-image: url("/assets/images/uploads/woc4Eem9Pdaw6X5w.png");
-    background-size: cover;
+#carousel .image-wrapper{
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    height: 100%;
+    width: 100%;
+}
+
+#carousel > .nav{
+    z-index: 1;
+    top: 50%;
+    position: absolute;
+    background-color: white;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px;
+    font-size: 35px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+#carousel > .nav.before{
+    left: 10px;
+}
+
+#carousel > .nav.next{
+    right: 10px;
+    
+}
+
+
+#carousel > .image-wrapper > img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 form{
@@ -59,7 +106,7 @@ form{
     #sizes-container input[type="radio"]:disabled {
         filter: blur(1px);
         -webkit-filter: blur(1px);
-}
+    }
 
 
     #sizes-container input[type="radio"]:checked{

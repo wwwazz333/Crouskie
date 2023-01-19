@@ -1,3 +1,5 @@
+<img src="https://cdn.discordapp.com/attachments/671746450861981768/1065564364230365225/logo.png" alt="Logo Crouskie" style="zoom:25%; float:left;" />
+
 [TOC]
 
 # Récupérer le code source

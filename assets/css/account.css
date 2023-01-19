@@ -64,7 +64,11 @@ body {
     margin: 2rem;
 }
 
-
+/* .contenu input:disabled{
+    border: none;
+    box-shadow: none;
+    background-color: white;
+} */
 
 .contenu > input[type="button"], #mdp, .contenu > input[type="submit"]{
     margin: 5vh 0px;

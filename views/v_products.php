@@ -19,7 +19,7 @@ require_once(PATH_VIEWS . 'header.php');
                 <div class='flex column product-item'>
                     <div class="image-container">
                         <!-- uploads/product-preview-id.png -->
-                        <img src="<?= PATH_IMAGES . 'backgrounds/background.jpg' ?>" alt="background" loading="lazy">
+                        <img src="<?= PATH_IMAGES . 'uploads/product-preview-'. $product->getId() .'.png' ?>" alt="image-produit" loading="lazy">
                     </div>
                     <div class='flex column fill-w details'>
                         <p><?= $product->getName() ?></p>

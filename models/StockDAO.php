@@ -59,7 +59,7 @@ class StockDAO extends DAO
      */
     public function getColorsWithSize(int $idProd,int $idSize) : array
     {
-        $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ? AND idsize = ?",array($idProd,$idSize));
+        $result = $this->queryAll("SELECT namecolor FROM stocked WHERE idprod = ? AND idsize = ? AND quantitystocked > 0",array($idProd,$idSize));
         $result = array_map(fn($value): string => $value[0],$result);
         return $result;
     }
@@ -72,7 +72,7 @@ class StockDAO extends DAO
      */
     public function getSizesWithColor(int $idProd,string $color) : array
     {
-        $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ? AND namecolor = ?",array($idProd,$color));
+        $result = $this->queryAll("SELECT idsize FROM stocked WHERE idprod = ? AND namecolor = ? AND quantitystocked > 0",array($idProd,$color));
         $result = array_map(fn($value): int => $value[0],$result);
         return $result;
     }
@@ -86,7 +86,7 @@ class StockDAO extends DAO
      */
     public function isProductInStock(int $idProd, string $colorname, int $idSize)
     {
-        $result = $this->queryRow("SELECT IF(EXISTS(SELECT * FROM stocked  WHERE idprod = ? AND namecolor = ? AND idsize = ?),true,false ) AS result",
+        $result = $this->queryRow("SELECT IF(EXISTS(SELECT * FROM stocked  WHERE idprod = ? AND namecolor = ? AND idsize = ? AND quantitystocked > 0),true,false ) AS result",
         array($idProd,$colorname,$idSize));
         return $result[0];
     }

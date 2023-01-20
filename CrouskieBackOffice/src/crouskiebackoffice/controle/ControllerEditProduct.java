@@ -138,7 +138,7 @@ public class ControllerEditProduct {
 
         DynamicListModel model = (DynamicListModel) editProduct.getListColor().getModel();
         model.removeAllElements();
-        model = (DynamicListModel) editProduct.getListColor().getModel();
+        model = (DynamicListModel) editProduct.getListSize().getModel();
         model.removeAllElements();
         model = (DynamicListModel) editProduct.getListTag().getModel();
         model.removeAllElements();

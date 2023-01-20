@@ -147,8 +147,12 @@ public class ControllerImageProduct implements ActionListener {
     }
 
     public void removeAllPictures() {
-        for (int i = 0; i < pictures.size() && i < imagesLabel.size(); i++) {
-            removePicture(imagesLabel.get(i), pictures.get(i));
+        var itp = pictures.iterator();
+        var iti = imagesLabel.iterator();
+        while (itp.hasNext() && iti.hasNext()) {
+            var pic = itp.next();
+            var im = iti.next();
+            removePicture(im, pic);
         }
     }
 
